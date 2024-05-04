@@ -1,0 +1,1715 @@
+openapi: 3.0.3
+info:
+  title: Doppler Public API
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: https://api.doppler.com/
+paths:
+  /v3/projects/project:
+    get:
+      tags:
+        - v3
+        - projects
+        - project
+      summary: Retrieve
+      description: Project
+      operationId: retrieve
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: PROJECT_NAME
+          description: (Required) Unique identifier for the project object.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"project\": {\n    \"id\": \"ed0c2a68b6\",\n   
+                    \"name\": \"Compression\",\n    \"description\": \"Super rad
+                    middle-out compression algo.\",\n    \"created_at\":
+                    \"2019-03-26T03:16:20.233Z\"\n  }\n}"
+    post:
+      tags:
+        - v3
+        - projects
+        - project
+      summary: Update
+      description: Project
+      operationId: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  example: PROJECT_DESCRIPTION
+                name:
+                  type: string
+                  example: PROJECT_NEW_NAME
+                project:
+                  type: string
+                  example: PROJECT_NAME
+            examples:
+              Update:
+                value:
+                  description: PROJECT_DESCRIPTION
+                  name: PROJECT_NEW_NAME
+                  project: PROJECT_NAME
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"project\": {\n    \"id\": \"ed0c2a68b6\",\n   
+                    \"name\": \"Compression\",\n    \"description\": \"Super rad
+                    middle-out compression algo.\",\n    \"created_at\":
+                    \"2019-03-26T03:16:20.233Z\"\n  }\n}"
+    delete:
+      tags:
+        - v3
+        - projects
+        - project
+      summary: Delete
+      description: Project
+      operationId: delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                project:
+                  type: string
+                  example: PROJECT_NAME
+            examples:
+              Delete:
+                value:
+                  project: PROJECT_NAME
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: '"{\n  success: true\n}"'
+  /v3/projects:
+    get:
+      tags:
+        - v3
+        - projects
+      summary: List
+      description: Projects
+      operationId: list
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+            example: "1"
+          description: Page number
+        - name: per_page
+          in: query
+          schema:
+            type: string
+            example: "20"
+          description: Items per page
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"page\": 1,\n  \"projects\": [\n    {\n      \"id\":
+                    \"ed0c2a68b6\",\n      \"slug\": \"compression\",\n     
+                    \"name\": \"Compression\",\n      \"description\": \"Super
+                    rad middle-out compression algo.\",\n      \"created_at\":
+                    \"2019-03-26T03:16:20.233Z\"\n    }\n  ]\n}"
+    post:
+      tags:
+        - v3
+        - projects
+      summary: Create
+      description: Project
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  example: PROJECT_DESCRIPTION
+                name:
+                  type: string
+                  example: PROJECT_NAME
+            examples:
+              Create:
+                value:
+                  description: PROJECT_DESCRIPTION
+                  name: PROJECT_NAME
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"project\": {\n    \"id\": \"ed0c2a68b6\",\n   
+                    \"name\": \"Compression\",\n    \"description\": \"Super rad
+                    middle-out compression algo.\",\n    \"created_at\":
+                    \"2019-03-26T03:16:20.233Z\"\n  }\n}"
+  /v3/environments/environment:
+    get:
+      tags:
+        - v3
+        - environments
+        - environment
+      summary: Retrieve
+      description: Environment
+      operationId: retrieve1
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: eiusmod nisi amet
+          description: (Required) The project's name
+        - name: environment
+          in: query
+          schema:
+            type: string
+            example: eiusmod nisi amet
+          description: (Required) The environment's slug
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"environment\": {\n    \"id\": \"dev\",\n   
+                    \"name\": \"Development\",\n    \"initial_fetch_at\":
+                    \"2019-11-21T03:45:47.982Z\",\n    \"created_at\":
+                    \"2019-11-19T07:19:00.476Z\",\n    \"project\":
+                    \"ed0c2a68b6\"\n  }\n}"
+    put:
+      tags:
+        - v3
+        - environments
+        - environment
+      summary: Rename
+      description: Environment
+      operationId: rename
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: eiusmod nisi amet
+          description: (Required) The project's name
+        - name: environment
+          in: query
+          schema:
+            type: string
+            example: eiusmod nisi amet
+          description: (Required) The environment's slug
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: aliqua Lorem
+                slug:
+                  type: string
+                  example: veniam reprehenderit ex
+            examples:
+              Rename:
+                value:
+                  name: aliqua Lorem
+                  slug: veniam reprehenderit ex
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"environment\": {\n    \"id\": \"dev\",\n   
+                    \"name\": \"Development\",\n    \"initial_fetch_at\":
+                    \"2019-11-21T03:45:47.982Z\",\n    \"created_at\":
+                    \"2019-11-19T07:19:00.476Z\",\n    \"project\":
+                    \"ed0c2a68b6\"\n  }\n}"
+    delete:
+      tags:
+        - v3
+        - environments
+        - environment
+      summary: Delete
+      description: Environment
+      operationId: delete1
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: eiusmod nisi amet
+          description: (Required) The project's name
+        - name: environment
+          in: query
+          schema:
+            type: string
+            example: eiusmod nisi amet
+          description: (Required) The environment's slug
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: '"{\n  success: true\n}"'
+  /v3/environments:
+    get:
+      tags:
+        - v3
+        - environments
+      summary: List
+      description: Environments
+      operationId: list1
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: eiusmod nisi amet
+          description: (Required) The project's name
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"environments\": [\n    {\n      \"id\":
+                    \"dev\",\n      \"name\": \"Development\",\n     
+                    \"initial_fetch_at\": \"2019-11-21T03:45:47.982Z\",\n     
+                    \"created_at\": \"2019-11-19T07:19:00.476Z\",\n     
+                    \"project\": \"ed0c2a68b6\"\n    },\n    {\n      \"id\":
+                    \"stg\",\n      \"name\": \"Staging\",\n     
+                    \"initial_fetch_at\": null,\n      \"created_at\":
+                    \"2019-11-19T07:19:00.484Z\",\n      \"project\":
+                    \"ed0c2a68b6\"\n    },\n    {\n      \"id\": \"prd\",\n     
+                    \"name\": \"Production\",\n      \"initial_fetch_at\":
+                    null,\n      \"created_at\":
+                    \"2019-11-19T07:19:00.492Z\",\n      \"project\":
+                    \"ed0c2a68b6\"\n    }\n  ],\n  \"page\": 1\n}"
+    post:
+      tags:
+        - v3
+        - environments
+      summary: Create
+      description: Environment
+      operationId: create1
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: eiusmod nisi amet
+          description: (Required) The project's name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: ea commodo magna occaecat pariatur
+                slug:
+                  type: string
+                  example: proident ipsum officia
+            examples:
+              Create:
+                value:
+                  name: ea commodo magna occaecat pariatur
+                  slug: proident ipsum officia
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"environment\": {\n    \"id\": \"dev\",\n   
+                    \"name\": \"Development\",\n    \"initial_fetch_at\":
+                    \"2019-11-21T03:45:47.982Z\",\n    \"created_at\":
+                    \"2019-11-19T07:19:00.476Z\",\n    \"project\":
+                    \"ed0c2a68b6\"\n  }\n}"
+  /v3/configs/config/secrets:
+    get:
+      tags:
+        - v3
+        - configs
+        - config
+        - secrets
+      summary: List
+      description: Secrets
+      operationId: list2
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: PROJECT_NAME
+          description: (Required) Unique identifier for the project object.
+        - name: config
+          in: query
+          schema:
+            type: string
+            example: CONFIG_NAME
+          description: (Required) Name of the config object.
+        - name: include_dynamic_secrets
+          in: query
+          schema:
+            type: string
+            example: "false"
+          description: >-
+            Whether or not to issue leases and include dynamic secret values for
+            the config
+        - name: dynamic_secrets_ttl_sec
+          in: query
+          schema:
+            type: string
+            example: "-93868599"
+          description: >-
+            The number of seconds until dynamic leases expire. Must be used with
+            `include_dynamic_secrets`. Defaults to 1800 (30 minutes).
+        - name: secrets
+          in: query
+          schema:
+            type: string
+            example: eiusmod nisi amet
+          description: A comma-separated list of secrets to include in the response
+        - name: include_managed_secrets
+          in: query
+          schema:
+            type: string
+            example: "true"
+          description: Whether to include Doppler's auto-generated (managed) secrets
+        - name: accepts
+          in: header
+          schema:
+            type: string
+            example: application/json
+          description: "Available options are: **application/json**, **text/plain**"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"secrets\": {\n    \"STRIPE\": {\n      \"raw\":
+                    \"sk_test_9YxLnoLDdvOPn2dfjBVPB\",\n      \"computed\":
+                    \"sk_test_9YxLnoLDdvOPn2dfjBVPB\",\n      \"note\":
+                    \"\"\n    },\n    \"ALGOLIA\": {\n      \"raw\":
+                    \"N9TOPUCTO\",\n      \"computed\": \"N9TOPUCTO\"\n     
+                    \"note\": \"\",\n    },\n    \"DATABASE\": {\n    \t\"raw\":
+                    \"${USER}@aws.dynamodb.com:9876\",\n      \"computed\":
+                    \"brian@aws.dynamodb.com:9876\"\n      \"note\": \"\",\n   
+                    },\n    \"USER\": {\n    \t\"raw\": \"brian\",\n     
+                    \"computed\": \"brian\",\n      \"note\": \"\"\n    }\n 
+                    }\n}"
+    post:
+      tags:
+        - v3
+        - configs
+        - config
+        - secrets
+      summary: Update
+      description: Secrets
+      operationId: update1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config:
+                  type: string
+                  example: CONFIG_NAME
+                project:
+                  type: string
+                  example: PROJECT_NAME
+                secrets:
+                  type: object
+                  properties:
+                    ALGOLIA:
+                      type: string
+                      example: N9TOPUCTO
+                    DATABASE:
+                      type: string
+                      example: ${USER}@aws.dynamodb.com:9876
+                    STRIPE:
+                      type: string
+                      example: sk_test_9YxLnoLDdvOPn2dfjBVPB
+            examples:
+              Update:
+                value:
+                  config: CONFIG_NAME
+                  project: PROJECT_NAME
+                  secrets:
+                    ALGOLIA: N9TOPUCTO
+                    DATABASE: ${USER}@aws.dynamodb.com:9876
+                    STRIPE: sk_test_9YxLnoLDdvOPn2dfjBVPB
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"secrets\": {\n    \"STRIPE\": {\n      \"raw\":
+                    \"sk_test_9YxLnoLDdvOPn2dfjBVPB\",\n      \"computed\":
+                    \"sk_test_9YxLnoLDdvOPn2dfjBVPB\",\n      \"note\":
+                    \"\"\n    },\n    \"ALGOLIA\": {\n      \"raw\":
+                    \"N9TOPUCTO\",\n      \"computed\": \"N9TOPUCTO\",\n     
+                    \"note\": \"\"\n    },\n    \"DATABASE\": {\n    \t\"raw\":
+                    \"${USER}@aws.dynamodb.com:9876\",\n      \"computed\":
+                    \"brian@aws.dynamodb.com:9876\",\n      \"note\": \"\"\n   
+                    }\n  }\n}"
+  /v3/configs/config/secrets/download:
+    get:
+      tags:
+        - v3
+        - configs
+        - config
+        - secrets
+      summary: Download
+      description: Download Secrets
+      operationId: download
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: eiusmod nisi amet
+          description: >-
+            (Required) Unique identifier for the project object. Not required if
+            using a Service Token.
+        - name: config
+          in: query
+          schema:
+            type: string
+            example: eiusmod nisi amet
+          description: >-
+            (Required) Name of the config object. Not required if using a
+            Service Token.
+        - name: format
+          in: query
+          schema:
+            type: string
+            example: json
+        - name: name_transformer
+          in: query
+          schema:
+            type: string
+            example: tf-var
+          description: Transform secret names to a different case
+        - name: include_dynamic_secrets
+          in: query
+          schema:
+            type: string
+            example: "false"
+          description: >-
+            Whether or not to issue leases and include dynamic secret values for
+            the config
+        - name: dynamic_secrets_ttl_sec
+          in: query
+          schema:
+            type: string
+            example: "1800"
+          description: >-
+            The number of seconds until dynamic leases expire. Must be used with
+            `include_dynamic_secrets`. Defaults to 1800 (30 minutes).
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"STRIPE\": \"sk_test_9YxLnoLDdvOPn2dfjBVPB\",\n 
+                    \"ALGOLIA\": \"N9TOPUCTO\",\n  \"DATABASE\":
+                    \"brian@aws.dynamodb.com:9876\",\n  \"USER\": \"brian\"\n}"
+  /v3/configs/config/secrets/names:
+    get:
+      tags:
+        - v3
+        - configs
+        - config
+        - secrets
+      summary: List
+      description: Secret Names
+      operationId: list3
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: PROJECT_NAME
+          description: (Required) Unique identifier for the project object.
+        - name: config
+          in: query
+          schema:
+            type: string
+            example: CONFIG_NAME
+          description: (Required) Name of the config object.
+        - name: include_dynamic_secrets
+          in: query
+          schema:
+            type: string
+            example: "false"
+          description: >-
+            Whether or not to issue leases and include dynamic secret values for
+            the config
+        - name: include_managed_secrets
+          in: query
+          schema:
+            type: string
+            example: "true"
+          description: Whether to include Doppler's auto-generated (managed) secrets
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"names\": [\n    \"STRIPE\",\n    \"ALGOLIA\",\n   
+                    \"DATABASE\",\n    \"USER\"\n  ]\n}"
+  /v3/configs/config/secrets/note:
+    post:
+      tags:
+        - v3
+        - configs
+        - config
+        - secrets
+      summary: Note
+      description: Set a note on a secret
+      operationId: note
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config:
+                  type: string
+                  example: CONFIG_NAME
+                note:
+                  type: string
+                  example: officia proident
+                project:
+                  type: string
+                  example: PROJECT_NAME
+                secret:
+                  type: string
+                  example: exercitation magna non
+            examples:
+              Note:
+                value:
+                  config: CONFIG_NAME
+                  note: officia proident
+                  project: PROJECT_NAME
+                  secret: exercitation magna non
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: '"{\n  \"secret\": \"FOO\",\n  \"note\": \"bar\"\n}"'
+  /v3/configs/config/logs/log:
+    get:
+      tags:
+        - v3
+        - configs
+        - config
+        - logs
+        - log
+      summary: Retrieve
+      description: Config Log
+      operationId: retrieve2
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: PROJECT_NAME
+          description: (Required) Unique identifier for the project object.
+        - name: config
+          in: query
+          schema:
+            type: string
+            example: CONFIG_NAME
+          description: (Required) Name of the config object.
+        - name: log
+          in: query
+          schema:
+            type: string
+            example: LOG_ID
+          description: (Required) Unique identifier for the log object.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"log\": {\n    \"id\": \"WaRMMyxHUg4lOKR\",\n   
+                    \"text\": \"Defaults were updated which resulted in this
+                    config's secrets being modified\",\n    \"html\": \"Defaults
+                    were updated which resulted in this config's secrets being
+                    modified\",\n    \"diff\": [\n      {\n        \"name\":
+                    \"STRIPE\",\n        \"added\":
+                    \"sk_test_9YxLnoLDdvOPn2dfjBVPB\"\n      },\n     
+                    {\n        \"name\": \"ALGOLIA\",\n        \"added\":
+                    \"N9TOPUBTO\"\n      }\n    ],\n    \"rollback\":
+                    false,\n    \"created_at\":
+                    \"2019-11-19T07:19:01.073Z\",\n    \"config\": \"dev\",\n   
+                    \"environment\": \"dev\",\n    \"project\":
+                    \"ed0c2a68b6\",\n    \"user\": {\n      \"email\":
+                    \"jake@piedpiper.com\",\n      \"name\": \"Jake
+                    Sun\",\n      \"username\": \"jake\",\n     
+                    \"profile_image_url\":
+                    \"https://www.gravatar.com/avatar/84da5be2b398382c676bfca6b38dae41?s=500&d=retro\"\n   
+                    }\n  }\n}"
+  /v3/configs/config/logs/log/rollback:
+    post:
+      tags:
+        - v3
+        - configs
+        - config
+        - logs
+        - log
+      summary: Rollback
+      description: Config Log
+      operationId: rollback
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: PROJECT_NAME
+          description: (Required) Unique identifier for the project object.
+        - name: config
+          in: query
+          schema:
+            type: string
+            example: CONFIG_NAME
+          description: (Required) Name of the config object.
+        - name: log
+          in: query
+          schema:
+            type: string
+            example: LOG_ID
+          description: (Required) Unique identifier for the log object.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"log\": {\n    \"id\": \"koVGA1cgzkFnTHx\",\n   
+                    \"text\": \"Rolled back log WaRMMyxHUg4lOKR\",\n   
+                    \"html\": \"Rolled back log <a 
+                    href='https://doppler.internal:3030/workplace/2ada3/enclave/484/configs/2026/logs?id=WaRMMyxHUg4lOKR'>WaRMMyxHUg4lOKR</a>\",\n   
+                    \"diff\": [\n      {\n        \"name\": \"STRIPE\",\n       
+                    \"removed\": \"sk_test_9YxLnoLDdvOPn2dfjBVPB\"\n     
+                    },\n      {\n        \"name\": \"ALGOLIA\",\n       
+                    \"removed\": \"N9TOPUBTO\"\n      }\n    ],\n   
+                    \"rollback\": true,\n    \"created_at\":
+                    \"2019-11-24T02:25:54.761Z\",\n    \"config\": \"dev\",\n   
+                    \"environment\": \"dev\",\n    \"project\":
+                    \"ed0c2a68b6\",\n    \"user\": {\n      \"email\":
+                    \"jake@piedpiper.com\",\n      \"name\": \"Jake
+                    Sun\",\n      \"username\": \"jake\",\n     
+                    \"profile_image_url\":
+                    \"https://www.gravatar.com/avatar/84da5be2b398382c676bfca6b38dae41?s=500&d=retro\"\n   
+                    }\n  }\n}"
+  /v3/configs/config/logs:
+    get:
+      tags:
+        - v3
+        - configs
+        - config
+        - logs
+      summary: List
+      description: Config Logs
+      operationId: list4
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: PROJECT_NAME
+          description: (Required) Unique identifier for the project object.
+        - name: config
+          in: query
+          schema:
+            type: string
+            example: CONFIG_NAME
+          description: (Required) Name of the config object.
+        - name: page
+          in: query
+          schema:
+            type: string
+            example: "1"
+          description: Page number
+        - name: per_page
+          in: query
+          schema:
+            type: string
+            example: "20"
+          description: Items per page
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"page\": 1,\n  \"logs\": [\n    {\n      \"id\":
+                    \"WaRMMyxHUg4lOKR\",\n      \"text\": \"Defaults were
+                    updated which resulted in this config's secrets being
+                    modified\",\n      \"html\": \"Defaults were updated which
+                    resulted in this config's secrets being modified\",\n     
+                    \"rollback\": false,\n      \"created_at\":
+                    \"2019-11-19T07:19:01.073Z\",\n      \"config\":
+                    \"dev\",\n      \"environment\": \"dev\",\n     
+                    \"project\": \"ed0c2a68b6t\",\n      \"user\": {\n       
+                    \"email\": \"jake@piedpiper.com\",\n        \"name\": \"Jake
+                    Sun\",\n        \"username\": \"jake\",\n       
+                    \"profile_image_url\":
+                    \"https://www.gravatar.com/avatar/84da5be2b398382c676bfca6b38dae41?s=500&d=retro\"\n     
+                    }\n    }\n  ]\n}"
+  /v3/configs/config/tokens:
+    get:
+      tags:
+        - v3
+        - configs
+        - config
+        - tokens
+      summary: List
+      description: Service Tokens
+      operationId: list5
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: PROJECT_NAME
+          description: (Required) Unique identifier for the project object.
+        - name: config
+          in: query
+          schema:
+            type: string
+            example: CONFIG_NAME
+          description: (Required) Name of the config object.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"tokens\": [\n    {\n      \"name\": \"AWS
+                    Lambda\",\n      \"slug\":
+                    \"56c69f96-3045-11ea-978f-2e728ce88125\",\n     
+                    \"created_at\": \"2019-11-19T07:19:01.073Z\",\n     
+                    \"config\": \"dev\",\n      \"environment\": \"dev\",\n     
+                    \"project\": \"ed0c2a68b6t\"\n      \"expires_at\":
+                    null,\n    }\n  ]\n}"
+    post:
+      tags:
+        - v3
+        - configs
+        - config
+        - tokens
+      summary: Create
+      description: Service Token
+      operationId: create2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access:
+                  type: string
+                  example: read
+                config:
+                  type: string
+                  example: CONFIG_NAME
+                expire_at:
+                  type: string
+                  example: "2004-05-27T16:13:40.598Z"
+                name:
+                  type: string
+                  example: TOKEN_NAME
+                project:
+                  type: string
+                  example: PROJECT_NAME
+            examples:
+              Create:
+                value:
+                  access: read
+                  config: CONFIG_NAME
+                  expire_at: "2004-05-27T16:13:40.598Z"
+                  name: TOKEN_NAME
+                  project: PROJECT_NAME
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"name\": \"AWS Lambda\",\n  \"slug\":
+                    \"56c69f96-3045-11ea-978f-2e728ce88125\",\n  \"created_at\":
+                    \"2019-11-19T07:19:01.073Z\",\n  \"key\":
+                    \"<fake token>\",\n 
+                    \"config\": \"dev\",\n  \"environment\": \"dev\",\n 
+                    \"project\": \"ed0c2a68b6t\"\n  \"expires_at\": null,\n 
+                    \"access\": \"read\"\n}"
+  /v3/configs/config/tokens/token:
+    delete:
+      tags:
+        - v3
+        - configs
+        - config
+        - tokens
+      summary: Delete
+      description: Service Token
+      operationId: delete2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config:
+                  type: string
+                  example: CONFIG_NAME
+                project:
+                  type: string
+                  example: PROJECT_NAME
+                slug:
+                  type: string
+                  example: TOKEN_SLUG
+                token:
+                  type: string
+                  example: TOKEN_VALUE
+            examples:
+              Delete:
+                value:
+                  config: CONFIG_NAME
+                  project: PROJECT_NAME
+                  slug: TOKEN_SLUG
+                  token: TOKEN_VALUE
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: '"{\n  \"success\": true\n}"'
+  /v3/configs/config/dynamic_secrets/dynamic_secret/leases:
+    post:
+      tags:
+        - v3
+        - configs
+        - config
+        - dynamic_secrets/dynamic_secret/leases
+      summary: Issue Lease
+      description: Issue a lease for a dynamic secret
+      operationId: issueLease
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config:
+                  type: string
+                  example: "sed "
+                dynamic_secret:
+                  type: string
+                  example: do laboris
+                project:
+                  type: string
+                  example: occaecat labo
+                ttl_sec:
+                  type: number
+                  example: 91697832
+            examples:
+              Issue Lease:
+                value:
+                  config: "sed "
+                  dynamic_secret: do laboris
+                  project: occaecat labo
+                  ttl_sec: 91697832
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n    \"success\": true,\n    \"id\":
+                    \"59ed03c9-63a7-4789-9187-a3d858355353\",\n   
+                    \"expires_at\": \"2022-02-18T20:36:28.427Z\",\n   
+                    \"value\": { ... }\n}"
+  /v3/configs/config/dynamic_secrets/dynamic_secret/leases/lease:
+    delete:
+      tags:
+        - v3
+        - configs
+        - config
+        - dynamic_secrets/dynamic_secret/leases
+      summary: Revoke Lease
+      description: Revoke Lease
+      operationId: revokeLease
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config:
+                  type: string
+                  example: in voluptate et proident
+                dynamic_secret:
+                  type: string
+                  example: sit deserunt elit ut
+                project:
+                  type: string
+                  example: esse ullamco cillum
+                slug:
+                  type: string
+                  example: aute quis in
+            examples:
+              Revoke Lease:
+                value:
+                  config: in voluptate et proident
+                  dynamic_secret: sit deserunt elit ut
+                  project: esse ullamco cillum
+                  slug: aute quis in
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: '"{ \"success\": true }"'
+  /v3/configs/config:
+    get:
+      tags:
+        - v3
+        - configs
+        - config
+      summary: Retrieve
+      description: Fetch a config's details.
+      operationId: retrieve3
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: PROJECT_NAME
+          description: (Required) Unique identifier for the project object.
+        - name: config
+          in: query
+          schema:
+            type: string
+            example: CONFIG_NAME
+          description: (Required) Name of the config object.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"config\": {\n    \"name\": \"prd_aws\",\n   
+                    \"root\": false,\n    \"locked\": false,\n   
+                    \"initial_fetch_at\": \"2019-11-19T07:32:12.000Z\",\n   
+                    \"last_fetch_at\": \"2019-11-19T07:36:10.980Z\",\n   
+                    \"created_at\": \"2019-11-19T07:19:00.480Z\",\n   
+                    \"environment\": \"prd\",\n    \"project\":
+                    \"ed0c2a68b6\"\n  }\n}"
+    post:
+      tags:
+        - v3
+        - configs
+        - config
+      summary: Update
+      description: Modify an existing config.
+      operationId: update2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config:
+                  type: string
+                  example: CONFIG_NAME
+                name:
+                  type: string
+                  example: CONFIG_NEW_NAME
+                project:
+                  type: string
+                  example: PROJECT_NAME
+            examples:
+              Update:
+                value:
+                  config: CONFIG_NAME
+                  name: CONFIG_NEW_NAME
+                  project: PROJECT_NAME
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"config\": {\n    \"name\": \"prd_gcp\",\n   
+                    \"root\": false,\n    \"locked\": false,\n   
+                    \"initial_fetch_at\": \"2019-11-19T07:32:12.000Z\",\n   
+                    \"last_fetch_at\": \"2019-11-19T07:36:10.980Z\",\n   
+                    \"created_at\": \"2019-11-19T07:19:00.480Z\",\n   
+                    \"environment\": \"prd\",\n    \"project\":
+                    \"ed0c2a68b6\"\n  }\n}"
+    delete:
+      tags:
+        - v3
+        - configs
+        - config
+      summary: Delete
+      description: Permanently delete the config.
+      operationId: delete3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config:
+                  type: string
+                  example: CONFIG_NAME
+                project:
+                  type: string
+                  example: PROJECT_NAME
+            examples:
+              Delete:
+                value:
+                  config: CONFIG_NAME
+                  project: PROJECT_NAME
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: '"{\n  \"success\": true\n}"'
+  /v3/configs/config/secret:
+    get:
+      tags:
+        - v3
+        - configs
+        - config
+      summary: Retrieve
+      description: Secret
+      operationId: retrieve4
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: PROJECT_NAME
+          description: (Required) Unique identifier for the project object.
+        - name: config
+          in: query
+          schema:
+            type: string
+            example: CONFIG_NAME
+          description: (Required) Name of the config object.
+        - name: name
+          in: query
+          schema:
+            type: string
+            example: SECRET_NAME
+          description: (Required) Name of the secret.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"name\": \"DATABASE\",\n  \"value\": {\n    \"raw\":
+                    \"${USER}@aws.dynamodb.com:9876\",\n    \"computed\":
+                    \"brian@aws.dynamodb.com:9876\",\n    \"note\": \"\"\n 
+                    }\n}"
+  /v3/configs/config/clone:
+    post:
+      tags:
+        - v3
+        - configs
+        - config
+      summary: Clone
+      description: >-
+        Create a new branch config by cloning another. This duplicates a branch
+        config and all its secrets.
+      operationId: clone
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config:
+                  type: string
+                  example: CONFIG_NAME
+                name:
+                  type: string
+                  example: NEW_CONFIG_NAME
+                project:
+                  type: string
+                  example: PROJECT_NAME
+            examples:
+              Clone:
+                value:
+                  config: CONFIG_NAME
+                  name: NEW_CONFIG_NAME
+                  project: PROJECT_NAME
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"config\": {\n    \"name\": \"prd_aws\",\n   
+                    \"root\": false,\n    \"locked\": false,\n   
+                    \"initial_fetch_at\": \"2019-11-19T07:32:12.000Z\",\n   
+                    \"last_fetch_at\": \"2019-11-19T07:36:10.980Z\",\n   
+                    \"created_at\": \"2019-11-19T07:19:00.480Z\",\n   
+                    \"environment\": \"prd\",\n    \"project\":
+                    \"ed0c2a68b6\"\n  }\n}"
+  /v3/configs/config/lock:
+    post:
+      tags:
+        - v3
+        - configs
+        - config
+      summary: Lock
+      description: Prevent the config from being renamed or deleted.
+      operationId: lock
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config:
+                  type: string
+                  example: CONFIG_NAME
+                project:
+                  type: string
+                  example: PROJECT_NAME
+            examples:
+              Lock:
+                value:
+                  config: CONFIG_NAME
+                  project: PROJECT_NAME
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"config\": {\n    \"name\": \"prd_aws\",\n   
+                    \"root\": false,\n    \"locked\": true,\n   
+                    \"initial_fetch_at\": \"2019-11-19T07:32:12.000Z\",\n   
+                    \"last_fetch_at\": \"2019-11-19T07:36:10.980Z\",\n   
+                    \"created_at\": \"2019-11-19T07:19:00.480Z\",\n   
+                    \"environment\": \"prd\",\n    \"project\":
+                    \"ed0c2a68b6\"\n  }\n}"
+  /v3/configs/config/unlock:
+    post:
+      tags:
+        - v3
+        - configs
+        - config
+      summary: Unlock
+      description: Allow the config to be renamed and/or deleted.
+      operationId: unlock
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config:
+                  type: string
+                  example: CONFIG_NAME
+                project:
+                  type: string
+                  example: PROJECT_NAME
+            examples:
+              Unlock:
+                value:
+                  config: CONFIG_NAME
+                  project: PROJECT_NAME
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"config\": {\n    \"name\": \"prd_aws\",\n   
+                    \"root\": false,\n    \"locked\": false,\n   
+                    \"initial_fetch_at\": \"2019-11-19T07:32:12.000Z\",\n   
+                    \"last_fetch_at\": \"2019-11-19T07:36:10.980Z\",\n   
+                    \"created_at\": \"2019-11-19T07:19:00.480Z\",\n   
+                    \"environment\": \"prd\",\n    \"project\":
+                    \"ed0c2a68b6\"\n  }\n}"
+  /v3/configs:
+    get:
+      tags:
+        - v3
+        - configs
+      summary: List
+      description: Fetch all configs.
+      operationId: list6
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+            example: eiusmod nisi amet
+          description: (Required) The project's name
+        - name: environment
+          in: query
+          schema:
+            type: string
+            example: Environment slug
+          description: (optional) the environment from which to list configs
+        - name: page
+          in: query
+          schema:
+            type: string
+            example: "1"
+          description: Page number
+        - name: per_page
+          in: query
+          schema:
+            type: string
+            example: "20"
+          description: Items per page
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"page\": 1,\n  \"configs\": [\n    {\n      \"name\":
+                    \"dev\",\n      \"root\": true,\n      \"locked\":
+                    true,\n      \"initial_fetch_at\":
+                    \"2019-11-19T07:36:12.000Z\",\n      \"last_fetch_at\":
+                    \"2019-11-19T07:32:10.980Z\",\n      \"created_at\":
+                    \"2019-11-19T07:19:00.480Z\",\n      \"environment\":
+                    \"dev\",\n      \"project\": \"ed0c2a68b6\"\n    },\n   
+                    {\n      \"name\": \"stg\",\n      \"root\": true,\n     
+                    \"locked\": true,\n      \"initial_fetch_at\": null,\n     
+                    \"last_fetch_at\": null,\n      \"created_at\":
+                    \"2019-11-19T07:19:00.488Z\",\n      \"environment\":
+                    \"stg\",\n      \"project\": \"ed0c2a68b6\"\n    },\n   
+                    {\n      \"name\": \"prd\",\n      \"root\": true,\n     
+                    \"locked\": true,\n      \"initial_fetch_at\": null,\n     
+                    \"last_fetch_at\": null,\n      \"created_at\":
+                    \"2019-11-19T07:19:00.495Z\",\n      \"environment\":
+                    \"prd\",\n      \"project\": \"ed0c2a68b6\"\n    }\n  ]\n}"
+    post:
+      tags:
+        - v3
+        - configs
+      summary: Create
+      description: Create a new branch config.
+      operationId: create3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                environment:
+                  type: string
+                  example: ENVIRONMENT_ID
+                name:
+                  type: string
+                  example: CONFIG_NAME
+                project:
+                  type: string
+                  example: PROJECT_NAME
+            examples:
+              Create:
+                value:
+                  environment: ENVIRONMENT_ID
+                  name: CONFIG_NAME
+                  project: PROJECT_NAME
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"config\": {\n    \"name\": \"prd_aws\",\n   
+                    \"root\": false,\n    \"locked\": false,\n   
+                    \"initial_fetch_at\": \"2019-11-19T07:32:12.000Z\",\n   
+                    \"last_fetch_at\": \"2019-11-19T07:36:10.980Z\",\n   
+                    \"created_at\": \"2019-11-19T07:19:00.480Z\",\n   
+                    \"environment\": \"prd\",\n    \"project\":
+                    \"ed0c2a68b6\"\n  }\n}"
+  /v3/workplace/users:
+    get:
+      tags:
+        - v3
+        - workplace
+        - users
+      summary: Workplace Users
+      description: Get all users of a workplace
+      operationId: workplaceUsers
+      parameters:
+        - name: settings
+          in: query
+          schema:
+            type: string
+            example: "true"
+          description: >-
+            If true, the api will return more information if users have e.g.
+            SAML enabled and/or Multi Factor Auth enabled
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"workplace_users\": [\n    {\n      \"id\":
+                    \"45786c9a-8c97-4f5b-a35b-ce941796502b\",\n      \"access\":
+                    \"owner\",\n      \"created_at\":
+                    \"2020-09-01T23:57:27.052Z\",\n      \"user\": {\n       
+                    \"email\": \"test@example.com\",\n        \"name\": \"Adam
+                    Smith\",\n        \"username\": \"adam_smith\",\n       
+                    \"profile_image_url\":
+                    \"https://www.gravatar.com/avatar/12345678?s=500&d=retro\",\n       
+                    \"mfa_enabled\": false,\n        \"thirdparty_sso_enabled\":
+                    true,\n        \"saml_sso_enabled\": false\n      }\n   
+                    }\n  ],\n  \"page\": 1,\n  \"success\": true\n}"
+  /v3/workplace/users/{workplace_user_id}:
+    get:
+      tags:
+        - v3
+        - workplace
+        - users
+      summary: Workplace User
+      description: Get a specific user in a workplace
+      operationId: workplaceUser
+      parameters:
+        - name: settings
+          in: query
+          schema:
+            type: string
+            example: "true"
+          description: >-
+            If true, the api will return more information if the user has e.g.
+            SAML enabled and/or Multi Factor Auth enabled
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"workplace_user\": {\n    \"id\":
+                    \"9629f890-eb33-426c-8694-28ce363b44f0\",\n    \"access\":
+                    \"owner\",\n    \"created_at\":
+                    \"2021-01-08T02:43:20.524Z\",\n    \"user\": {\n     
+                    \"email\": \"ruud.visser@doppler.com\",\n      \"name\":
+                    \"Ruud Visser\",\n      \"username\": \"ruud\",\n     
+                    \"profile_image_url\":
+                    \"https://lh3.googleusercontent.com/a-/AOh14Ggx8--xAHCMfmrNwV3hVGWrwSicyaALmjvu5of1=s96-c\",\n     
+                    \"mfa_enabled\": false,\n      \"thirdparty_sso_enabled\":
+                    true,\n      \"saml_sso_enabled\": false\n    }\n  },\n 
+                    \"success\": true\n}"
+    parameters:
+      - name: workplace_user_id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: eiusmod nisi amet
+        description: (Required) The ID of the workplace user
+  /v3/workplace:
+    get:
+      tags:
+        - v3
+        - workplace
+      summary: Workplace
+      description: Get information about the specific workplace
+      operationId: workplace
+      parameters:
+        - name: settings
+          in: query
+          schema:
+            type: string
+            example: "true"
+          description: >-
+            If true, the api will return more information if the workplace has
+            e.g. SAML enabled and SCIM enabled
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"workplace\": {\n    \"id\": \"188f5\",\n   
+                    \"name\": \"Test Workplace\",\n    \"billing_email\":
+                    \"billing@test.com\",\n    \"saml_enabled\": false,\n   
+                    \"scim_enabled\": false\n  },\n  \"success\": true\n}"
+    post:
+      tags:
+        - v3
+        - workplace
+      summary: Update
+      description: Workplace
+      operationId: update3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                billing_email:
+                  type: string
+                  example: elit Du
+                name:
+                  type: string
+                  example: adipisicing pariatur in
+            examples:
+              Update:
+                value:
+                  billing_email: elit Du
+                  name: adipisicing pariatur in
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"workplace\": {\n    \"id\": \"fcd76\",\n   
+                    \"name\": \"Test\",\n    \"billing_email\":
+                    \"billing@test.com\"\n  }\n}"
+  /v3/logs:
+    get:
+      tags:
+        - v3
+        - logs1
+      summary: List
+      description: Activity Logs
+      operationId: list7
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+            example: "1"
+          description: Page number
+        - name: per_page
+          in: query
+          schema:
+            type: string
+            example: "20"
+          description: Items per page
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"page\": 1,\n  \"logs\": [\n    {\n      \"id\":
+                    \"emwk7ra70oem3xa\",\n      \"text\": \"Modified Development
+                    defaults in Pied Piper Demo project\",\n      \"html\":
+                    \"Modified <a
+                    href='/workplace/103/projects/wk7radvodfneb/defaults?stage=dev'>Development's</a>
+                    defaults in <a
+                    href='/workplace/wk7radvodfneb/pipelines/410'>Pied Piper
+                    Demo</a> project\",\n      \"created_at\":
+                    \"2019-04-01T21:40:34.891Z\",\n      \"config\":
+                    null,\n      \"environment\": \"dev\",\n      \"project\":
+                    \"wk7radvodfneb\",\n      \"user\": {\n        \"email\":
+                    \"adam@piedpiper.com\",\n        \"name\": \"Adam
+                    Smitth\",\n        \"profile_image_url\":
+                    \"https://www.gravatar.com/avatar/082c73740a33762db7c5cc7481833e1e?s=500&d=retro\"\n     
+                    }\n    }\n  ]\n}"
+  /v3/logs/log:
+    get:
+      tags:
+        - v3
+        - logs1
+      summary: Retrieve
+      description: Activity Log
+      operationId: retrieve5
+      parameters:
+        - name: log
+          in: query
+          schema:
+            type: string
+            example: LOG_ID
+          description: (Required) Unique identifier for the log object.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: >-
+                    "{\n  \"log\": {\n    \"id\": \"emwk7ra70oem3xa\",\n   
+                    \"text\": \"Modified Development defaults in Pied Piper Demo
+                    project\",\n    \"html\": \"Modified <a
+                    href='/workplace/103/projects/wk7radvodfneb/defaults?stage=dev'>Development's</a>
+                    defaults in <a
+                    href='/workplace/wk7radvodfneb/pipelines/410'>Pied Piper
+                    Demo</a> project\",\n    \"created_at\":
+                    \"2019-04-01T21:40:34.891Z\",\n    \"config\": null,\n   
+                    \"environment\": \"dev\",\n    \"project\":
+                    \"wk7radvodfneb\",\n    \"user\": {\n      \"email\":
+                    \"adam@piedpiper.com\",\n      \"name\": \"Adam
+                    Smitth\",\n      \"profile_image_url\":
+                    \"https://www.gravatar.com/avatar/082c73740a33762db7c5cc7481833e1e?s=500&d=retro\"\n   
+                    }\n  }\n}"
+  /v3/auth/revoke:
+    post:
+      tags:
+        - v3
+      summary: Revoke
+      description: Revoke an auth token
+      operationId: revoke
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: <YOUR TOKEN>
+            examples:
+              Revoke:
+                value:
+                  token: <YOUR TOKEN>
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/octet-stream:
+              examples:
+                "200":
+                  value: '""'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows: {}
+security:
+  - oauth2: []
+tags:
+  - name: v3
+  - name: projects
+  - name: project
+  - name: environments
+  - name: environment
+  - name: configs
+  - name: config
+  - name: secrets
+  - name: logs
+  - name: log
+  - name: tokens
+  - name: dynamic_secrets/dynamic_secret/leases
+  - name: workplace
+  - name: users
+  - name: logs1

@@ -1,12 +1,12 @@
-PROJECT_NAME := Pulumi Xyz Resource Provider
+PROJECT_NAME := Pulumi Doppler Resource Provider
 
 SHELL = /bin/bash
 
-PACK             := xyz
+PACK             := doppler
 PACKDIR          := sdk
-PROJECT          := github.com/cloudy-sky-software/pulumi-xyz
-NODE_MODULE_NAME := @cloudyskysoftware/pulumi-xyz
-NUGET_PKG_NAME   := Pulumi.Xyz
+PROJECT          := github.com/cloudy-sky-software/pulumi-doppler
+NODE_MODULE_NAME := @cloudyskysoftware/pulumi-doppler
+NUGET_PKG_NAME   := Pulumi.Doppler
 
 PROVIDER        := pulumi-resource-${PACK}
 CODEGEN         := pulumi-gen-${PACK}
@@ -14,7 +14,7 @@ VERSION         ?= $(shell pulumictl get version)
 PROVIDER_PATH   := provider
 VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
 
-SCHEMA_FILE     := provider/cmd/pulumi-resource-xyz/schema.json
+SCHEMA_FILE     := provider/cmd/pulumi-resource-doppler/schema.json
 GOPATH			:= $(shell go env GOPATH)
 
 WORKING_DIR     := $(shell pwd)
