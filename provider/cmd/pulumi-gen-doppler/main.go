@@ -11,6 +11,8 @@ import (
 	"os"
 	"path/filepath"
 
+	"gopkg.in/yaml.v3"
+
 	providerSchemaGen "github.com/cloudy-sky-software/pulumi-doppler/provider/pkg/gen"
 	providerVersion "github.com/cloudy-sky-software/pulumi-doppler/provider/pkg/version"
 
@@ -87,8 +89,7 @@ func main() {
 		writeGoClient(schemaPkg, outdir)
 	case Schema:
 		openAPIDoc := openapi.GetOpenAPISpec(openapiDocBytes)
-		providerSchemaGen.FixOpenAPIDoc(openAPIDoc)
-		schemaSpec, metadata, updatedOpenAPIDoc := providerSchemaGen.PulumiSchema(openAPIDoc)
+		schemaSpec, metadata, updatedOpenAPIDoc := providerSchemaGen.PulumiSchema(*openAPIDoc)
 		providerDir := filepath.Join(".", "provider", "cmd", "pulumi-resource-doppler")
 		mustWritePulumiSchema(schemaSpec, providerDir)
 
