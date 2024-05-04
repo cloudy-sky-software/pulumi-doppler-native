@@ -5,8 +5,8 @@ package main
 import (
 	_ "embed"
 
-	"github.com/cloudy-sky-software/pulumi-doppler/provider/pkg/provider"
-	"github.com/cloudy-sky-software/pulumi-doppler/provider/pkg/version"
+	"github.com/cloudy-sky-software/pulumi-doppler-native/provider/pkg/provider"
+	"github.com/cloudy-sky-software/pulumi-doppler-native/provider/pkg/version"
 )
 
 var providerName = "doppler"

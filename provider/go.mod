@@ -1,4 +1,4 @@
-module github.com/cloudy-sky-software/pulumi-doppler/provider
+module github.com/cloudy-sky-software/pulumi-doppler-native/provider
 
 go 1.21
 

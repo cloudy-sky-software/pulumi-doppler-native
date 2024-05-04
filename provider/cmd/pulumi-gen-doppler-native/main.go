@@ -13,8 +13,8 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	providerSchemaGen "github.com/cloudy-sky-software/pulumi-doppler/provider/pkg/gen"
-	providerVersion "github.com/cloudy-sky-software/pulumi-doppler/provider/pkg/version"
+	providerSchemaGen "github.com/cloudy-sky-software/pulumi-doppler-native/provider/pkg/gen"
+	providerVersion "github.com/cloudy-sky-software/pulumi-doppler-native/provider/pkg/version"
 
 	"github.com/cloudy-sky-software/pulumi-provider-framework/openapi"
 
