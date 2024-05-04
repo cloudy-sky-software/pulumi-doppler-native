@@ -14,7 +14,7 @@ on:
 env:
   GOLANG_CI_LINT_VERSION: v1.55.2
   GOPRIVATE: "github.com/cloudy-sky-software/*"
-  PROVIDER: "doppler"
+  PROVIDER: "doppler-native"
 
 jobs:
   lint:

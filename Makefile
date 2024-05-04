@@ -1,11 +1,11 @@
-PROJECT_NAME := Pulumi Doppler Resource Provider
+PROJECT_NAME := Pulumi DopplerNative Resource Provider
 
 SHELL = /bin/bash
 
-PACK             := doppler-native
+PACK             := doppler-native-native
 PACKDIR          := sdk
-PROJECT          := github.com/cloudy-sky-software/pulumi-doppler-native
-NODE_MODULE_NAME := @cloudyskysoftware/pulumi-doppler-native
+PROJECT          := github.com/cloudy-sky-software/pulumi-doppler-native-native
+NODE_MODULE_NAME := @cloudyskysoftware/pulumi-doppler-native-native
 NUGET_PKG_NAME   := Pulumi.DopplerNative
 
 PROVIDER        := pulumi-resource-${PACK}
@@ -14,7 +14,7 @@ VERSION         ?= $(shell pulumictl get version)
 PROVIDER_PATH   := provider
 VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
 
-SCHEMA_FILE     := provider/cmd/pulumi-resource-doppler-native/schema.json
+SCHEMA_FILE     := provider/cmd/pulumi-resource-doppler-native-native/schema.json
 GOPATH			:= $(shell go env GOPATH)
 
 WORKING_DIR     := $(shell pwd)

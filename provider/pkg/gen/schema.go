@@ -14,17 +14,17 @@ import (
 
 	openapigen "github.com/cloudy-sky-software/pulschema/pkg"
 
-	"github.com/cloudy-sky-software/pulumi-doppler-native/provider/pkg/gen/examples"
+	"github.com/cloudy-sky-software/pulumi-doppler-native-native/provider/pkg/gen/examples"
 )
 
-const packageName = "doppler"
+const packageName = "doppler-native"
 
 // PulumiSchema will generate a Pulumi schema for the given k8s schema.
 func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.ProviderMetadata, openapi3.T) {
 	pkg := pschema.PackageSpec{
 		Name:        packageName,
-		Description: "A Pulumi package for creating and managing Doppler resources.",
-		DisplayName: "Doppler",
+		Description: "A Pulumi package for creating and managing DopplerNative resources.",
+		DisplayName: "DopplerNative",
 		License:     "Apache-2.0",
 		Keywords: []string{
 			"pulumi",
@@ -34,7 +34,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		},
 		Homepage:   "https://cloudysky.software",
 		Publisher:  "Cloudy Sky Software",
-		Repository: "https://github.com/cloudy-sky-software/pulumi-doppler",
+		Repository: "https://github.com/cloudy-sky-software/pulumi-doppler-native",
 
 		Config: pschema.ConfigSpec{
 			Variables: map[string]pschema.PropertySpec{
@@ -53,7 +53,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 
 		Provider: pschema.ResourceSpec{
 			ObjectTypeSpec: pschema.ObjectTypeSpec{
-				Description: "The provider type for the Doppler package.",
+				Description: "The provider type for the DopplerNative package.",
 				Type:        "object",
 			},
 			InputProperties: map[string]pschema.PropertySpec{
@@ -61,6 +61,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 					DefaultInfo: &pschema.DefaultSpec{
 						Environment: []string{
 							"DOPPLER_APIKEY",
+							"DOPPLER_NATIVE_APIKEY",
 						},
 					},
 					Description: "The Doppler API key.",
@@ -75,7 +76,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 			},
 		},
 
-		PluginDownloadURL: "github://api.github.com/cloudy-sky-software/pulumi-doppler",
+		PluginDownloadURL: "github://api.github.com/cloudy-sky-software/pulumi-doppler-native",
 		Types:             map[string]pschema.ComplexTypeSpec{},
 		Resources:         map[string]pschema.ResourceSpec{},
 		Functions:         map[string]pschema.FunctionSpec{},
@@ -83,7 +84,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 	}
 
 	csharpNamespaces := map[string]string{
-		"doppler": "DOPPLER",
+		"doppler-native": "DopplerNative",
 		// TODO: Is this needed?
 		"": "Provider",
 	}
@@ -118,10 +119,10 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 	})
 
 	pkg.Language["go"] = rawMessage(map[string]interface{}{
-		"importBasePath": "github.com/cloudy-sky-software/pulumi-doppler/sdk/go/doppler",
+		"importBasePath": "github.com/cloudy-sky-software/pulumi-doppler-native/sdk/go/doppler-native",
 	})
 	pkg.Language["nodejs"] = rawMessage(map[string]interface{}{
-		"packageName": "@cloudyskysoftware/pulumi-doppler",
+		"packageName": "@cloudyskysoftware/pulumi-doppler-native",
 	})
 	pkg.Language["python"] = rawMessage(map[string]interface{}{
 		"packageName": "pulumi_doppler",

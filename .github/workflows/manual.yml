@@ -3,7 +3,7 @@ on:
 
 env:
   GOPRIVATE: "github.com/cloudy-sky-software/*"
-  PROVIDER: "doppler"
+  PROVIDER: "doppler-native"
 
 jobs:
   publish-binary:

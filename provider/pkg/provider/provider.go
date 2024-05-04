@@ -61,7 +61,7 @@ func (p *dopplerProvider) OnPostInvoke(ctx context.Context, req *pulumirpc.Invok
 // OnConfigure is called by the provider framework when Pulumi calls Configure on
 // the resource provider server.
 func (p *dopplerProvider) OnConfigure(_ context.Context, req *pulumirpc.ConfigureRequest) (*pulumirpc.ConfigureResponse, error) {
-	apiKey, ok := req.GetVariables()["doppler:config:apiKey"]
+	apiKey, ok := req.GetVariables()["doppler-native:config:apiKey"]
 	if !ok {
 		// Check if it's set as an env var.
 		envVarNames := handler.GetSchemaSpec().Provider.InputProperties["apiKey"].DefaultInfo.Environment
@@ -78,7 +78,7 @@ func (p *dopplerProvider) OnConfigure(_ context.Context, req *pulumirpc.Configur
 		}
 	}
 
-	logging.V(3).Info("Configuring Doppler API key")
+	logging.V(3).Info("Configuring DopplerNative API key")
 	p.apiKey = apiKey
 
 	return &pulumirpc.ConfigureResponse{

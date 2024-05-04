@@ -13,8 +13,8 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	providerSchemaGen "github.com/cloudy-sky-software/pulumi-doppler-native/provider/pkg/gen"
-	providerVersion "github.com/cloudy-sky-software/pulumi-doppler-native/provider/pkg/version"
+	providerSchemaGen "github.com/cloudy-sky-software/pulumi-doppler-native-native/provider/pkg/gen"
+	providerVersion "github.com/cloudy-sky-software/pulumi-doppler-native-native/provider/pkg/version"
 
 	"github.com/cloudy-sky-software/pulumi-provider-framework/openapi"
 
@@ -51,7 +51,7 @@ const (
 
 func main() {
 	flag.Usage = func() {
-		const usageFormat = "Usage: %s <language> <schema-file> <root-pulumi-doppler-dir>"
+		const usageFormat = "Usage: %s <language> <schema-file> <root-pulumi-doppler-native-dir>"
 		_, err := fmt.Fprintf(flag.CommandLine.Output(), usageFormat, os.Args[0])
 		contract.IgnoreError(err)
 		flag.PrintDefaults()
@@ -96,7 +96,7 @@ func main() {
 		}
 
 		schemaSpec, metadata, updatedOpenAPIDoc := providerSchemaGen.PulumiSchema(*openAPIDoc)
-		providerDir := filepath.Join(".", "provider", "cmd", "pulumi-resource-doppler")
+		providerDir := filepath.Join(".", "provider", "cmd", "pulumi-resource-doppler-native")
 		mustWritePulumiSchema(schemaSpec, providerDir)
 
 		// Write the metadata.json file as well.

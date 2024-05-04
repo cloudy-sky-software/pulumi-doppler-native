@@ -1,9 +1,9 @@
 run:
   skip-files:
-    - pulumi-resource-doppler/schema.go
+    - pulumi-resource-doppler-native/schema.go
     # Ignore the generated config.go file temporarily because it contains
     # an unused import that the linter will complain about.
-    - go/doppler/config/config.go
+    - go/doppler-native/config/config.go
 
 linters:
   enable-all: false
