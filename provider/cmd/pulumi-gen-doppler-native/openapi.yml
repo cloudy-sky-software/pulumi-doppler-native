@@ -1,9 +1,10 @@
+---
 openapi: 3.1.0
 info:
   title: Core
   version: "4"
 servers:
-  - url: "https://api.doppler.com/"
+  - url: https://api.doppler.com/
 components:
   securitySchemes:
     sec0:
@@ -12,7 +13,7 @@ components:
 security:
   - sec0: []
 paths:
-  /v3/projects:
+  "/v3/projects":
     get:
       summary: List
       description: Projects
@@ -135,7 +136,7 @@ paths:
                         type: string
                         example: "2019-03-26T03:16:20.233Z"
       deprecated: false
-  /v3/environments:
+  "/v3/environments":
     get:
       summary: List
       description: Environments
@@ -272,7 +273,7 @@ paths:
                         type: string
                         example: ed0c2a68b6
       deprecated: false
-  /v3/projects/project:
+  "/v3/projects/project":
     get:
       summary: Retrieve
       description: Project
@@ -285,66 +286,6 @@ paths:
           schema:
             type: string
             default: PROJECT_NAME
-      responses:
-        "200":
-          description: "200"
-          content:
-            application/json:
-              examples:
-                Result:
-                  value: |-
-                    {
-                      "project": {
-                        "id": "ed0c2a68b6",
-                        "name": "Compression",
-                        "description": "Super rad middle-out compression algo.",
-                        "created_at": "2019-03-26T03:16:20.233Z"
-                      }
-                    }
-              schema:
-                type: object
-                properties:
-                  project:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        example: ed0c2a68b6
-                      name:
-                        type: string
-                        example: Compression
-                      description:
-                        type: string
-                        example: Super rad middle-out compression algo.
-                      created_at:
-                        type: string
-                        example: "2019-03-26T03:16:20.233Z"
-      deprecated: false
-    post:
-      summary: Update
-      description: Project
-      operationId: projects-update
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - project
-                - name
-              properties:
-                project:
-                  type: string
-                  description: Unique identifier for the project object.
-                  default: PROJECT_NAME
-                name:
-                  type: string
-                  description: Name of the project.
-                  default: PROJECT_NEW_NAME
-                description:
-                  type: string
-                  description: Description of the project.
-                  default: PROJECT_DESCRIPTION
       responses:
         "200":
           description: "200"
@@ -408,7 +349,67 @@ paths:
                       success: true
                     }
       deprecated: false
-  /v3/configs/config:
+    post:
+      summary: Update
+      description: Project
+      operationId: projects-update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - project
+                - name
+              properties:
+                project:
+                  type: string
+                  description: Unique identifier for the project object.
+                  default: PROJECT_NAME
+                name:
+                  type: string
+                  description: Name of the project.
+                  default: PROJECT_NEW_NAME
+                description:
+                  type: string
+                  description: Description of the project.
+                  default: PROJECT_DESCRIPTION
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                      "project": {
+                        "id": "ed0c2a68b6",
+                        "name": "Compression",
+                        "description": "Super rad middle-out compression algo.",
+                        "created_at": "2019-03-26T03:16:20.233Z"
+                      }
+                    }
+              schema:
+                type: object
+                properties:
+                  project:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: ed0c2a68b6
+                      name:
+                        type: string
+                        example: Compression
+                      description:
+                        type: string
+                        example: Super rad middle-out compression algo.
+                      created_at:
+                        type: string
+                        example: "2019-03-26T03:16:20.233Z"
+      deprecated: false
+  "/v3/configs/config":
     post:
       summary: Update
       description: Modify an existing config.
@@ -564,23 +565,19 @@ paths:
       summary: Delete
       description: Permanently delete the config.
       operationId: configs-delete
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - project
-                - config
-              properties:
-                project:
-                  type: string
-                  description: Unique identifier for the project object.
-                  default: PROJECT_NAME
-                config:
-                  type: string
-                  description: Name of the config object.
-                  default: CONFIG_NAME
+      parameters:
+        - name: project
+          in: query
+          description: Unique identifier for the project.
+          required: true
+          schema:
+            type: string
+        - name: config
+          in: query
+          description: Name of the config.
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: "200"
@@ -600,7 +597,161 @@ paths:
                     example: true
                     default: true
       deprecated: false
-  /v3/configs:
+  "/v3/environments/environment":
+    get:
+      summary: Retrieve
+      description: Environment
+      operationId: environments-get
+      parameters:
+        - name: project
+          in: query
+          description: The project's name
+          required: true
+          schema:
+            type: string
+        - name: environment
+          in: query
+          description: The environment's slug
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                      "environment": {
+                        "id": "dev",
+                        "name": "Development",
+                        "initial_fetch_at": "2019-11-21T03:45:47.982Z",
+                        "created_at": "2019-11-19T07:19:00.476Z",
+                        "project": "ed0c2a68b6"
+                      }
+                    }
+              schema:
+                type: object
+                properties:
+                  environment:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: dev
+                      name:
+                        type: string
+                        example: Development
+                      initial_fetch_at:
+                        type: string
+                        example: "2019-11-21T03:45:47.982Z"
+                      created_at:
+                        type: string
+                        example: "2019-11-19T07:19:00.476Z"
+                      project:
+                        type: string
+                        example: ed0c2a68b6
+      deprecated: false
+    delete:
+      summary: Delete
+      description: Environment
+      operationId: environments-delete
+      parameters:
+        - name: project
+          in: query
+          description: The project's name
+          required: true
+          schema:
+            type: string
+        - name: environment
+          in: query
+          description: The environment's slug
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                      success: true
+                    }
+      deprecated: false
+    put:
+      summary: Rename
+      description: Environment
+      operationId: environments-rename
+      parameters:
+        - name: project
+          in: query
+          description: The project's name
+          required: true
+          schema:
+            type: string
+        - name: environment
+          in: query
+          description: The environment's slug
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Desired name
+                slug:
+                  type: string
+                  description: Desired slug
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                      "environment": {
+                        "id": "dev",
+                        "name": "Development",
+                        "initial_fetch_at": "2019-11-21T03:45:47.982Z",
+                        "created_at": "2019-11-19T07:19:00.476Z",
+                        "project": "ed0c2a68b6"
+                      }
+                    }
+              schema:
+                type: object
+                properties:
+                  environment:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: dev
+                      name:
+                        type: string
+                        example: Development
+                      initial_fetch_at:
+                        type: string
+                        example: "2019-11-21T03:45:47.982Z"
+                      created_at:
+                        type: string
+                        example: "2019-11-19T07:19:00.476Z"
+                      project:
+                        type: string
+                        example: ed0c2a68b6
+      deprecated: false
+  "/v3/configs":
     get:
       summary: List
       description: Fetch all configs.
@@ -614,7 +765,7 @@ paths:
             type: string
         - name: environment
           in: query
-          description: (optional) the environment from which to list configs
+          description: "(optional) the environment from which to list configs"
           schema:
             type: string
             default: Environment slug
@@ -793,24 +944,33 @@ paths:
                         type: string
                         example: ed0c2a68b6
       deprecated: false
-  /v3/environments/environment:
+  "/v3/configs/config/logs/log":
     get:
       summary: Retrieve
-      description: Environment
-      operationId: environments-get
+      description: Config Log
+      operationId: config_logs-get
       parameters:
         - name: project
           in: query
-          description: The project's name
+          description: Unique identifier for the project object.
           required: true
           schema:
             type: string
-        - name: environment
+            default: PROJECT_NAME
+        - name: config
           in: query
-          description: The environment's slug
+          description: Name of the config object.
           required: true
           schema:
             type: string
+            default: CONFIG_NAME
+        - name: log
+          in: query
+          description: Unique identifier for the log object.
+          required: true
+          schema:
+            type: string
+            default: LOG_ID
       responses:
         "200":
           description: "200"
@@ -820,134 +980,96 @@ paths:
                 Result:
                   value: |-
                     {
-                      "environment": {
-                        "id": "dev",
-                        "name": "Development",
-                        "initial_fetch_at": "2019-11-21T03:45:47.982Z",
-                        "created_at": "2019-11-19T07:19:00.476Z",
-                        "project": "ed0c2a68b6"
+                      "log": {
+                        "id": "WaRMMyxHUg4lOKR",
+                        "text": "Defaults were updated which resulted in this config's secrets being modified",
+                        "html": "Defaults were updated which resulted in this config's secrets being modified",
+                        "diff": [
+                          {
+                            "name": "STRIPE",
+                            "added": "sk_test_9YxLnoLDdvOPn2dfjBVPB"
+                          },
+                          {
+                            "name": "ALGOLIA",
+                            "added": "N9TOPUBTO"
+                          }
+                        ],
+                        "rollback": false,
+                        "created_at": "2019-11-19T07:19:01.073Z",
+                        "config": "dev",
+                        "environment": "dev",
+                        "project": "ed0c2a68b6",
+                        "user": {
+                          "email": "jake@piedpiper.com",
+                          "name": "Jake Sun",
+                          "username": "jake",
+                          "profile_image_url": "https://www.gravatar.com/avatar/84da5be2b398382c676bfca6b38dae41?s=500&d=retro"
+                        }
                       }
                     }
               schema:
                 type: object
                 properties:
-                  environment:
+                  log:
                     type: object
                     properties:
                       id:
                         type: string
-                        example: dev
-                      name:
+                        example: WaRMMyxHUg4lOKR
+                      text:
                         type: string
-                        example: Development
-                      initial_fetch_at:
+                        example:
+                          Defaults were updated which resulted in this config's
+                          secrets being modified
+                      html:
                         type: string
-                        example: "2019-11-21T03:45:47.982Z"
+                        example:
+                          Defaults were updated which resulted in this config's
+                          secrets being modified
+                      diff:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: STRIPE
+                            added:
+                              type: string
+                              example: sk_test_9YxLnoLDdvOPn2dfjBVPB
+                      rollback:
+                        type: boolean
+                        example: false
+                        default: true
                       created_at:
                         type: string
-                        example: "2019-11-19T07:19:00.476Z"
+                        example: "2019-11-19T07:19:01.073Z"
+                      config:
+                        type: string
+                        example: dev
+                      environment:
+                        type: string
+                        example: dev
                       project:
                         type: string
                         example: ed0c2a68b6
+                      user:
+                        type: object
+                        properties:
+                          email:
+                            type: string
+                            example: jake@piedpiper.com
+                          name:
+                            type: string
+                            example: Jake Sun
+                          username:
+                            type: string
+                            example: jake
+                          profile_image_url:
+                            type: string
+                            example: https://www.gravatar.com/avatar/84da5be2b398382c676bfca6b38dae41?s=500&d=retro
       deprecated: false
-    delete:
-      summary: Delete
-      description: Environment
-      operationId: environments-delete
-      parameters:
-        - name: project
-          in: query
-          description: The project's name
-          required: true
-          schema:
-            type: string
-        - name: environment
-          in: query
-          description: The environment's slug
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: "200"
-          content:
-            application/json:
-              examples:
-                Result:
-                  value: |-
-                    {
-                      success: true
-                    }
-      deprecated: false
-    put:
-      summary: Rename
-      description: Environment
-      operationId: environments-rename
-      parameters:
-        - name: project
-          in: query
-          description: The project's name
-          required: true
-          schema:
-            type: string
-        - name: environment
-          in: query
-          description: The environment's slug
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: Desired name
-                slug:
-                  type: string
-                  description: Desired slug
-      responses:
-        "200":
-          description: "200"
-          content:
-            application/json:
-              examples:
-                Result:
-                  value: |-
-                    {
-                      "environment": {
-                        "id": "dev",
-                        "name": "Development",
-                        "initial_fetch_at": "2019-11-21T03:45:47.982Z",
-                        "created_at": "2019-11-19T07:19:00.476Z",
-                        "project": "ed0c2a68b6"
-                      }
-                    }
-              schema:
-                type: object
-                properties:
-                  environment:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        example: dev
-                      name:
-                        type: string
-                        example: Development
-                      initial_fetch_at:
-                        type: string
-                        example: "2019-11-21T03:45:47.982Z"
-                      created_at:
-                        type: string
-                        example: "2019-11-19T07:19:00.476Z"
-                      project:
-                        type: string
-                        example: ed0c2a68b6
-      deprecated: false
-  /v3/configs/config/logs:
+  "/v3/configs/config/logs":
     get:
       summary: List
       description: Config Logs
@@ -1027,14 +1149,14 @@ paths:
                           example: WaRMMyxHUg4lOKR
                         text:
                           type: string
-                          example: >-
-                            Defaults were updated which resulted in this
-                            config's secrets being modified
+                          example:
+                            Defaults were updated which resulted in this config's
+                            secrets being modified
                         html:
                           type: string
-                          example: >-
-                            Defaults were updated which resulted in this
-                            config's secrets being modified
+                          example:
+                            Defaults were updated which resulted in this config's
+                            secrets being modified
                         rollback:
                           type: boolean
                           example: false
@@ -1065,10 +1187,9 @@ paths:
                               example: jake
                             profile_image_url:
                               type: string
-                              example: >-
-                                https://www.gravatar.com/avatar/84da5be2b398382c676bfca6b38dae41?s=500&d=retro
+                              example: https://www.gravatar.com/avatar/84da5be2b398382c676bfca6b38dae41?s=500&d=retro
       deprecated: false
-  /v3/configs/config/secrets:
+  "/v3/configs/config/secrets":
     get:
       summary: List
       description: Secrets
@@ -1096,17 +1217,17 @@ paths:
             default: application/json
         - name: include_dynamic_secrets
           in: query
-          description: >-
-            Whether or not to issue leases and include dynamic secret values for
-            the config
+          description:
+            Whether or not to issue leases and include dynamic secret values
+            for the config
           schema:
             type: boolean
             default: false
         - name: dynamic_secrets_ttl_sec
           in: query
-          description: >-
-            The number of seconds until dynamic leases expire. Must be used with
-            `include_dynamic_secrets`. Defaults to 1800 (30 minutes).
+          description:
+            The number of seconds until dynamic leases expire. Must be used
+            with `include_dynamic_secrets`. Defaults to 1800 (30 minutes).
           schema:
             type: integer
             format: int32
@@ -1128,7 +1249,20 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"secrets\": {\n    \"STRIPE\": {\n      \"raw\": \"sk_test_9YxLnoLDdvOPn2dfjBVPB\",\n      \"computed\": \"sk_test_9YxLnoLDdvOPn2dfjBVPB\",\n      \"note\": \"\",\n      \"rawVisibility\": \"masked\",\n      \"computedVisibility\": \"masked\"\n    },\n    \"ALGOLIA\": {\n      \"raw\": \"N9TOPUCTO\",\n      \"computed\": \"N9TOPUCTO\",\n      \"note\": \"\",\n      \"rawVisibility\": \"masked\",\n      \"computedVisibility\": \"masked\"\n    },\n    \"DATABASE\": {\n    \t\"raw\": \"${USER}@aws.dynamodb.com:9876\",\n      \"computed\": \"brian@aws.dynamodb.com:9876\",\n      \"note\": \"\",\n      \"rawVisibility\": \"restricted\",\n      \"computedVisibility\": \"restricted\"\n    },\n    \"USER\": {\n    \t\"raw\": \"brian\",\n      \"computed\": \"brian\",\n      \"note\": \"\",\n      \"rawVisibility\": \"unmasked\",\n      \"computedVisibility\": \"unmasked\"\n    }\n  }\n}"
+                  value:
+                    "{\n  \"secrets\": {\n    \"STRIPE\": {\n      \"raw\": \"sk_test_9YxLnoLDdvOPn2dfjBVPB\",\n
+                    \     \"computed\": \"sk_test_9YxLnoLDdvOPn2dfjBVPB\",\n      \"note\":
+                    \"\",\n      \"rawVisibility\": \"masked\",\n      \"computedVisibility\":
+                    \"masked\"\n    },\n    \"ALGOLIA\": {\n      \"raw\": \"N9TOPUCTO\",\n
+                    \     \"computed\": \"N9TOPUCTO\",\n      \"note\": \"\",\n      \"rawVisibility\":
+                    \"masked\",\n      \"computedVisibility\": \"masked\"\n    },\n
+                    \   \"DATABASE\": {\n    \t\"raw\": \"${USER}@aws.dynamodb.com:9876\",\n
+                    \     \"computed\": \"brian@aws.dynamodb.com:9876\",\n      \"note\":
+                    \"\",\n      \"rawVisibility\": \"restricted\",\n      \"computedVisibility\":
+                    \"restricted\"\n    },\n    \"USER\": {\n    \t\"raw\": \"brian\",\n
+                    \     \"computed\": \"brian\",\n      \"note\": \"\",\n      \"rawVisibility\":
+                    \"unmasked\",\n      \"computedVisibility\": \"unmasked\"\n    }\n
+                    \ }\n}"
               schema:
                 type: object
                 properties:
@@ -1179,7 +1313,7 @@ paths:
                             example: "${USER}@aws.dynamodb.com:9876"
                           computed:
                             type: string
-                            example: "brian@aws.dynamodb.com:9876"
+                            example: brian@aws.dynamodb.com:9876
                           note:
                             type: string
                             example: ""
@@ -1231,10 +1365,10 @@ paths:
                   default: CONFIG_NAME
                 secrets:
                   type: object
-                  description: >-
-                    Either `secrets` or `change_requests` is required (can't use
-                    both). Object of secrets you would like to save to the
-                    config. Try it with the sample secrets below.
+                  description:
+                    Either `secrets` or `change_requests` is required (can't
+                    use both). Object of secrets you would like to save to the config.
+                    Try it with the sample secrets below.
                   properties:
                     STRIPE:
                       type: string
@@ -1247,10 +1381,10 @@ paths:
                       default: "${USER}@aws.dynamodb.com:9876"
                 change_requests:
                   type: array
-                  description: >-
-                    Either `secrets` or `change_requests` is required (can't use
-                    both). Object of secrets you would like to save to the
-                    config. Try it with the sample secrets below.
+                  description:
+                    Either `secrets` or `change_requests` is required (can't
+                    use both). Object of secrets you would like to save to the config.
+                    Try it with the sample secrets below.
                   items:
                     properties:
                       name:
@@ -1258,63 +1392,62 @@ paths:
                         description: The name of the secret.
                       originalName:
                         type: string
-                        description: >-
-                          The original name of the secret. Use `null` (an actual
-                          `null`, not the string `null`) or omit this parameter
-                          for new secrets. If it differs from `name` then a
-                          rename is inferred.
+                        description:
+                          The original name of the secret. Use `null` (an
+                          actual `null`, not the string `null`) or omit this parameter
+                          for new secrets. If it differs from `name` then a rename
+                          is inferred.
                       value:
                         type: string
-                        description: >-
-                          The value the secret should have. Use `null` (an
-                          actual `null`, not the string `null`) to leave the
-                          existing secret value unchanged.
+                        description:
+                          The value the secret should have. Use `null`
+                          (an actual `null`, not the string `null`) to leave the existing
+                          secret value unchanged.
                       originalValue:
                         type: string
-                        description: >-
-                          The value you expect the secret to have before `name`
-                          is applied. If specified, the request will only be
-                          processed if the provided value matches what's found
-                          in Doppler.
+                        description:
+                          The value you expect the secret to have before
+                          `name` is applied. If specified, the request will only be
+                          processed if the provided value matches what's found in
+                          Doppler.
                       visibility:
                         type: string
-                        description: >-
+                        description:
                           Must be set to either `masked`, `unmasked`, or
                           `restricted`.
                       originalVisibility:
                         type: string
-                        description: >-
+                        description:
                           Must be set to either `masked`, `unmasked`, or
-                          `restricted`. The visibility you expect the secret to
-                          have before `visibility` is applied. If specified, the
-                          request will only be processed if the provided
-                          visibility matches what's found in Doppler.
+                          `restricted`. The visibility you expect the secret to have
+                          before `visibility` is applied. If specified, the request
+                          will only be processed if the provided visibility matches
+                          what's found in Doppler.
                       shouldPromote:
                         type: boolean
-                        description: >-
-                          Defaults to `false`. Can only be set to `true` if the
-                          config being updated is a branch config. If set to
-                          `true`, the provided secret will be set in both the
-                          branch config as well as the root config in that
-                          environment.
+                        description:
+                          Defaults to `false`. Can only be set to `true`
+                          if the config being updated is a branch config. If set to
+                          `true`, the provided secret will be set in both the branch
+                          config as well as the root config in that environment.
                       shouldDelete:
                         type: boolean
-                        description: >-
-                          Defaults to `false`. If set to `true`, will delete the
-                          secret matching the `name` field.
+                        description:
+                          Defaults to `false`. If set to `true`, will delete
+                          the secret matching the `name` field.
                       shouldConverge:
                         type: boolean
-                        description: >-
-                          Defaults to `false`. Can only be set to `true` if the
-                          config being updated is a branch config and there is a
-                          secret with the same name in the root config. In this
-                          case, the branch secret will inherit the value and
-                          visibility type from the root secret.
+                        description:
+                          Defaults to `false`. Can only be set to `true`
+                          if the config being updated is a branch config and there
+                          is a secret with the same name in the root config. In this
+                          case, the branch secret will inherit the value and visibility
+                          type from the root secret.
                       valueType:
                         type: object
-                        description: >-
-                          The default valueType (string) will result in no
-                          validations being applied.
+                        description:
+                          The default valueType (string) will result in
+                          no validations being applied.
                         properties:
                           type:
                             type: string
@@ -1335,11 +1468,11 @@ paths:
                               - yaml
                       originalValueType:
                         type: object
-                        description: >-
+                        description:
                           The valueType you expect the secret to have before
-                          `valueType` is applied. If specified, the request will
-                          only be processed if the provided valueType matches
-                          what's found in Doppler.
+                          `valueType` is applied. If specified, the request will only
+                          be processed if the provided valueType matches what's found
+                          in Doppler.
                         properties:
                           type:
                             type: string
@@ -1370,7 +1503,14 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"secrets\": {\n    \"STRIPE\": {\n      \"raw\": \"sk_test_9YxLnoLDdvOPn2dfjBVPB\",\n      \"computed\": \"sk_test_9YxLnoLDdvOPn2dfjBVPB\",\n      \"note\": \"\"\n    },\n    \"ALGOLIA\": {\n      \"raw\": \"N9TOPUCTO\",\n      \"computed\": \"N9TOPUCTO\",\n      \"note\": \"\"\n    },\n    \"DATABASE\": {\n    \t\"raw\": \"${USER}@aws.dynamodb.com:9876\",\n      \"computed\": \"brian@aws.dynamodb.com:9876\",\n      \"note\": \"\"\n    }\n  }\n}"
+                  value:
+                    "{\n  \"secrets\": {\n    \"STRIPE\": {\n      \"raw\": \"sk_test_9YxLnoLDdvOPn2dfjBVPB\",\n
+                    \     \"computed\": \"sk_test_9YxLnoLDdvOPn2dfjBVPB\",\n      \"note\":
+                    \"\"\n    },\n    \"ALGOLIA\": {\n      \"raw\": \"N9TOPUCTO\",\n
+                    \     \"computed\": \"N9TOPUCTO\",\n      \"note\": \"\"\n    },\n
+                    \   \"DATABASE\": {\n    \t\"raw\": \"${USER}@aws.dynamodb.com:9876\",\n
+                    \     \"computed\": \"brian@aws.dynamodb.com:9876\",\n      \"note\":
+                    \"\"\n    }\n  }\n}"
               schema:
                 type: object
                 properties:
@@ -1409,138 +1549,12 @@ paths:
                             example: "${USER}@aws.dynamodb.com:9876"
                           computed:
                             type: string
-                            example: "brian@aws.dynamodb.com:9876"
+                            example: brian@aws.dynamodb.com:9876
                           note:
                             type: string
                             example: ""
       deprecated: false
-  /v3/configs/config/logs/log:
-    get:
-      summary: Retrieve
-      description: Config Log
-      operationId: config_logs-get
-      parameters:
-        - name: project
-          in: query
-          description: Unique identifier for the project object.
-          required: true
-          schema:
-            type: string
-            default: PROJECT_NAME
-        - name: config
-          in: query
-          description: Name of the config object.
-          required: true
-          schema:
-            type: string
-            default: CONFIG_NAME
-        - name: log
-          in: query
-          description: Unique identifier for the log object.
-          required: true
-          schema:
-            type: string
-            default: LOG_ID
-      responses:
-        "200":
-          description: "200"
-          content:
-            application/json:
-              examples:
-                Result:
-                  value: |-
-                    {
-                      "log": {
-                        "id": "WaRMMyxHUg4lOKR",
-                        "text": "Defaults were updated which resulted in this config's secrets being modified",
-                        "html": "Defaults were updated which resulted in this config's secrets being modified",
-                        "diff": [
-                          {
-                            "name": "STRIPE",
-                            "added": "sk_test_9YxLnoLDdvOPn2dfjBVPB"
-                          },
-                          {
-                            "name": "ALGOLIA",
-                            "added": "N9TOPUBTO"
-                          }
-                        ],
-                        "rollback": false,
-                        "created_at": "2019-11-19T07:19:01.073Z",
-                        "config": "dev",
-                        "environment": "dev",
-                        "project": "ed0c2a68b6",
-                        "user": {
-                          "email": "jake@piedpiper.com",
-                          "name": "Jake Sun",
-                          "username": "jake",
-                          "profile_image_url": "https://www.gravatar.com/avatar/84da5be2b398382c676bfca6b38dae41?s=500&d=retro"
-                        }
-                      }
-                    }
-              schema:
-                type: object
-                properties:
-                  log:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        example: WaRMMyxHUg4lOKR
-                      text:
-                        type: string
-                        example: >-
-                          Defaults were updated which resulted in this config's
-                          secrets being modified
-                      html:
-                        type: string
-                        example: >-
-                          Defaults were updated which resulted in this config's
-                          secrets being modified
-                      diff:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            name:
-                              type: string
-                              example: STRIPE
-                            added:
-                              type: string
-                              example: sk_test_9YxLnoLDdvOPn2dfjBVPB
-                      rollback:
-                        type: boolean
-                        example: false
-                        default: true
-                      created_at:
-                        type: string
-                        example: "2019-11-19T07:19:01.073Z"
-                      config:
-                        type: string
-                        example: dev
-                      environment:
-                        type: string
-                        example: dev
-                      project:
-                        type: string
-                        example: ed0c2a68b6
-                      user:
-                        type: object
-                        properties:
-                          email:
-                            type: string
-                            example: jake@piedpiper.com
-                          name:
-                            type: string
-                            example: Jake Sun
-                          username:
-                            type: string
-                            example: jake
-                          profile_image_url:
-                            type: string
-                            example: >-
-                              https://www.gravatar.com/avatar/84da5be2b398382c676bfca6b38dae41?s=500&d=retro
-      deprecated: false
-  /v3/workplace:
+  "/v3/workplace":
     post:
       summary: Update
       description: ""
@@ -1632,7 +1646,7 @@ paths:
                         type: string
                         example: security@example.com
       deprecated: false
-  /v3/logs:
+  "/v3/logs":
     get:
       summary: List
       description: Activity Logs
@@ -1695,16 +1709,14 @@ paths:
                           example: emwk7ra70oem3xa
                         text:
                           type: string
-                          example: >-
+                          example:
                             Modified Development defaults in Pied Piper Demo
                             project
                         html:
                           type: string
-                          example: >-
-                            Modified <a
-                            href='/workplace/103/projects/wk7radvodfneb/defaults?stage=dev'>Development's</a>
-                            defaults in <a
-                            href='/workplace/wk7radvodfneb/pipelines/410'>Pied
+                          example:
+                            Modified <a href='/workplace/103/projects/wk7radvodfneb/defaults?stage=dev'>Development's</a>
+                            defaults in <a href='/workplace/wk7radvodfneb/pipelines/410'>Pied
                             Piper Demo</a> project
                         created_at:
                           type: string
@@ -1727,10 +1739,9 @@ paths:
                               example: Adam Smitth
                             profile_image_url:
                               type: string
-                              example: >-
-                                https://www.gravatar.com/avatar/082c73740a33762db7c5cc7481833e1e?s=500&d=retro
+                              example: https://www.gravatar.com/avatar/082c73740a33762db7c5cc7481833e1e?s=500&d=retro
       deprecated: false
-  /v3/logs/log:
+  "/v3/logs/log":
     get:
       summary: Retrieve
       description: Activity Log
@@ -1778,16 +1789,14 @@ paths:
                         example: emwk7ra70oem3xa
                       text:
                         type: string
-                        example: >-
+                        example:
                           Modified Development defaults in Pied Piper Demo
                           project
                       html:
                         type: string
-                        example: >-
-                          Modified <a
-                          href='/workplace/103/projects/wk7radvodfneb/defaults?stage=dev'>Development's</a>
-                          defaults in <a
-                          href='/workplace/wk7radvodfneb/pipelines/410'>Pied
+                        example:
+                          Modified <a href='/workplace/103/projects/wk7radvodfneb/defaults?stage=dev'>Development's</a>
+                          defaults in <a href='/workplace/wk7radvodfneb/pipelines/410'>Pied
                           Piper Demo</a> project
                       created_at:
                         type: string
@@ -1810,10 +1819,9 @@ paths:
                             example: Adam Smitth
                           profile_image_url:
                             type: string
-                            example: >-
-                              https://www.gravatar.com/avatar/082c73740a33762db7c5cc7481833e1e?s=500&d=retro
+                            example: https://www.gravatar.com/avatar/082c73740a33762db7c5cc7481833e1e?s=500&d=retro
       deprecated: false
-  /v3/configs/config/secret:
+  "/v3/configs/config/secret":
     get:
       summary: Retrieve
       description: Secret
@@ -1870,7 +1878,7 @@ paths:
                         example: "${USER}@aws.dynamodb.com:9876"
                       computed:
                         type: string
-                        example: "brian@aws.dynamodb.com:9876"
+                        example: brian@aws.dynamodb.com:9876
                       note:
                         type: string
                         example: ""
@@ -1910,7 +1918,7 @@ paths:
                 Result:
                   value: ""
       deprecated: false
-  /v3/configs/config/tokens/token:
+  "/v3/configs/config/tokens/token":
     delete:
       summary: Delete
       description: Service Token
@@ -1959,7 +1967,7 @@ paths:
                     example: true
                     default: true
       deprecated: false
-  /v3/configs/config/tokens:
+  "/v3/configs/config/tokens":
     get:
       summary: List
       description: Service Tokens
@@ -2026,7 +2034,8 @@ paths:
                         project:
                           type: string
                           example: ed0c2a68b6t
-                        expires_at: {}
+                        expires_at:
+                          type: string
       deprecated: false
     post:
       summary: Create
@@ -2113,12 +2122,13 @@ paths:
                       project:
                         type: string
                         example: ed0c2a68b6t
-                      expires_at: {}
+                      expires_at:
+                        type: string
                       access:
                         type: string
                         example: read
       deprecated: false
-  /v3/configs/config/logs/log/rollback:
+  "/v3/configs/config/logs/log/rollback":
     post:
       summary: Rollback
       description: Config Log
@@ -2195,9 +2205,7 @@ paths:
                         example: Rolled back log WaRMMyxHUg4lOKR
                       html:
                         type: string
-                        example: >-
-                          Rolled back log <a 
-                          href='https://doppler.internal:3030/workplace/2ada3/enclave/484/configs/2026/logs?id=WaRMMyxHUg4lOKR'>WaRMMyxHUg4lOKR</a>
+                        example: Rolled back log <a  href='https://doppler.internal:3030/workplace/2ada3/enclave/484/configs/2026/logs?id=WaRMMyxHUg4lOKR'>WaRMMyxHUg4lOKR</a>
                       diff:
                         type: array
                         items:
@@ -2239,15 +2247,89 @@ paths:
                             example: jake
                           profile_image_url:
                             type: string
-                            example: >-
-                              https://www.gravatar.com/avatar/84da5be2b398382c676bfca6b38dae41?s=500&d=retro
+                            example: https://www.gravatar.com/avatar/84da5be2b398382c676bfca6b38dae41?s=500&d=retro
       deprecated: false
-  /v3/configs/config/clone:
+  "/v3/configs/config/unlock":
+    post:
+      summary: Unlock
+      description: Allow the config to be renamed and/or deleted.
+      operationId: configs-unlock
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - project
+                - config
+              properties:
+                project:
+                  type: string
+                  description: Unique identifier for the project object.
+                  default: PROJECT_NAME
+                config:
+                  type: string
+                  description: Name of the config.
+                  default: CONFIG_NAME
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                      "config": {
+                        "name": "prd_aws",
+                        "root": false,
+                        "locked": false,
+                        "initial_fetch_at": "2019-11-19T07:32:12.000Z",
+                        "last_fetch_at": "2019-11-19T07:36:10.980Z",
+                        "created_at": "2019-11-19T07:19:00.480Z",
+                        "environment": "prd",
+                        "project": "ed0c2a68b6"
+                      }
+                    }
+              schema:
+                type: object
+                properties:
+                  config:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: prd_aws
+                      root:
+                        type: boolean
+                        example: false
+                        default: true
+                      locked:
+                        type: boolean
+                        example: false
+                        default: true
+                      initial_fetch_at:
+                        type: string
+                        example: "2019-11-19T07:32:12.000Z"
+                      last_fetch_at:
+                        type: string
+                        example: "2019-11-19T07:36:10.980Z"
+                      created_at:
+                        type: string
+                        example: "2019-11-19T07:19:00.480Z"
+                      environment:
+                        type: string
+                        example: prd
+                      project:
+                        type: string
+                        example: ed0c2a68b6
+      deprecated: false
+  "/v3/configs/config/clone":
     post:
       summary: Clone
-      description: >-
-        Create a new branch config by cloning another. This duplicates a branch
-        config and all its secrets.
+      description:
+        Create a new branch config by cloning another. This duplicates
+        a branch config and all its secrets.
       operationId: configs-clone
       requestBody:
         content:
@@ -2324,82 +2406,7 @@ paths:
                         type: string
                         example: ed0c2a68b6
       deprecated: false
-  /v3/configs/config/unlock:
-    post:
-      summary: Unlock
-      description: Allow the config to be renamed and/or deleted.
-      operationId: configs-unlock
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - project
-                - config
-              properties:
-                project:
-                  type: string
-                  description: Unique identifier for the project object.
-                  default: PROJECT_NAME
-                config:
-                  type: string
-                  description: Name of the config.
-                  default: CONFIG_NAME
-      responses:
-        "200":
-          description: "200"
-          content:
-            application/json:
-              examples:
-                Result:
-                  value: |-
-                    {
-                      "config": {
-                        "name": "prd_aws",
-                        "root": false,
-                        "locked": false,
-                        "initial_fetch_at": "2019-11-19T07:32:12.000Z",
-                        "last_fetch_at": "2019-11-19T07:36:10.980Z",
-                        "created_at": "2019-11-19T07:19:00.480Z",
-                        "environment": "prd",
-                        "project": "ed0c2a68b6"
-                      }
-                    }
-              schema:
-                type: object
-                properties:
-                  config:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        example: prd_aws
-                      root:
-                        type: boolean
-                        example: false
-                        default: true
-                      locked:
-                        type: boolean
-                        example: false
-                        default: true
-                      initial_fetch_at:
-                        type: string
-                        example: "2019-11-19T07:32:12.000Z"
-                      last_fetch_at:
-                        type: string
-                        example: "2019-11-19T07:36:10.980Z"
-                      created_at:
-                        type: string
-                        example: "2019-11-19T07:19:00.480Z"
-                      environment:
-                        type: string
-                        example: prd
-                      project:
-                        type: string
-                        example: ed0c2a68b6
-      deprecated: false
-  /v3/configs/config/lock:
+  "/v3/configs/config/lock":
     post:
       summary: Lock
       description: Prevent the config from being renamed or deleted.
@@ -2474,7 +2481,7 @@ paths:
                         type: string
                         example: ed0c2a68b6
       deprecated: false
-  /v3/configs/config/secrets/download:
+  "/v3/configs/config/secrets/download":
     get:
       summary: Download
       description: Download Secrets
@@ -2482,9 +2489,9 @@ paths:
       parameters:
         - name: project
           in: query
-          description: >-
-            Unique identifier for the project object. Not required if using a
-            Service Token.
+          description:
+            Unique identifier for the project object. Not required if using
+            a Service Token.
           required: true
           schema:
             type: string
@@ -2521,24 +2528,24 @@ paths:
               - lower-kebab
         - name: include_dynamic_secrets
           in: query
-          description: >-
-            Whether or not to issue leases and include dynamic secret values for
-            the config
+          description:
+            Whether or not to issue leases and include dynamic secret values
+            for the config
           schema:
             type: boolean
             default: false
         - name: dynamic_secrets_ttl_sec
           in: query
-          description: >-
-            The number of seconds until dynamic leases expire. Must be used with
-            `include_dynamic_secrets`. Defaults to 1800 (30 minutes).
+          description:
+            The number of seconds until dynamic leases expire. Must be used
+            with `include_dynamic_secrets`. Defaults to 1800 (30 minutes).
           schema:
             type: integer
             format: int32
             default: 1800
         - name: secrets
           in: query
-          description: >-
+          description:
             Comma-delimited list of secrets to include in the download. Defaults
             to all secrets if left unspecified.
           schema:
@@ -2568,7 +2575,7 @@ paths:
                     example: N9TOPUCTO
                   DATABASE:
                     type: string
-                    example: "brian@aws.dynamodb.com:9876"
+                    example: brian@aws.dynamodb.com:9876
                   USER:
                     type: string
                     example: brian
@@ -2587,9 +2594,9 @@ paths:
           required: true
         - name: settings
           in: query
-          description: >-
-            If true, the api will return more information if the user has e.g.
-            SAML enabled and/or Multi Factor Auth enabled
+          description:
+            If true, the api will return more information if the user has
+            e.g. SAML enabled and/or Multi Factor Auth enabled
           schema:
             type: boolean
       responses:
@@ -2646,8 +2653,7 @@ paths:
                             example: ruud
                           profile_image_url:
                             type: string
-                            example: >-
-                              https://lh3.googleusercontent.com/a-/AOh14Ggx8--xAHCMfmrNwV3hVGWrwSicyaALmjvu5of1=s96-c
+                            example: https://lh3.googleusercontent.com/a-/AOh14Ggx8--xAHCMfmrNwV3hVGWrwSicyaALmjvu5of1=s96-c
                           mfa_enabled:
                             type: boolean
                             example: false
@@ -2665,7 +2671,7 @@ paths:
                     example: true
                     default: true
       deprecated: false
-  /v3/configs/config/dynamic_secrets/dynamic_secret/leases/lease:
+  "/v3/configs/config/dynamic_secrets/dynamic_secret/leases/lease":
     delete:
       summary: Revoke Lease
       description: ""
@@ -2689,9 +2695,9 @@ paths:
                   description: The config where the dynamic secret is located
                 dynamic_secret:
                   type: string
-                  description: >-
-                    The name of the dynamic secret from which this lease was
-                    issued
+                  description:
+                    The name of the dynamic secret from which this lease
+                    was issued
                 slug:
                   type: string
                   description: The slug of the lease to revoke
@@ -2711,7 +2717,7 @@ paths:
                     example: true
                     default: true
       deprecated: false
-  /v3/auth/revoke:
+  "/v3/auth/revoke":
     post:
       summary: Revoke
       description: Revoke an auth token
@@ -2736,7 +2742,7 @@ paths:
                   value: ""
       deprecated: false
       security: []
-  /v3/configs/config/dynamic_secrets/dynamic_secret/leases:
+  "/v3/configs/config/dynamic_secrets/dynamic_secret/leases":
     post:
       summary: Issue Lease
       description: Issue a lease for a dynamic secret
@@ -2760,10 +2766,12 @@ paths:
                   description: The config where the dynamic secret is located
                 dynamic_secret:
                   type: string
-                  description: The name of the dynamic secret for which to issue this lease
+                  description:
+                    The name of the dynamic secret for which to issue this
+                    lease
                 ttl_sec:
                   type: integer
-                  description: >-
+                  description:
                     The number of seconds until this lease is automatically
                     revoked
                   format: int32
@@ -2798,7 +2806,7 @@ paths:
                     type: object
                     properties: {}
       deprecated: false
-  /v3/configs/config/secrets/note:
+  "/v3/configs/config/secrets/note":
     post:
       summary: Update Note
       description: Set a note on a secret
@@ -2819,18 +2827,18 @@ paths:
                   default: PROJECT_NAME
                 config:
                   type: string
-                  description: >-
-                    Deprecated: Config is no longer required as notes have
-                    always been set at the project level.
+                  description:
+                    "Deprecated: Config is no longer required as notes
+                    have always been set at the project level."
                 secret:
                   type: string
                   description: The name of the secret
                   default: SECRET_NAME
                 note:
                   type: string
-                  description: >-
-                    The note you want to set on the secret. This note will be
-                    applied to the specified secret in all environments.
+                  description:
+                    The note you want to set on the secret. This note will
+                    be applied to the specified secret in all environments.
                   default: YOUR_NOTE
       responses:
         "200":
@@ -2854,7 +2862,7 @@ paths:
                     type: string
                     example: bar
       deprecated: false
-  /v3/configs/config/secrets/names:
+  "/v3/configs/config/secrets/names":
     get:
       summary: List Names
       description: Secret Names
@@ -2876,9 +2884,9 @@ paths:
             default: CONFIG_NAME
         - name: include_dynamic_secrets
           in: query
-          description: >-
-            Whether or not to issue leases and include dynamic secret values for
-            the config
+          description:
+            Whether or not to issue leases and include dynamic secret values
+            for the config
           schema:
             type: boolean
             default: false
@@ -2913,7 +2921,7 @@ paths:
                       type: string
                       example: STRIPE
       deprecated: false
-  /v3/integrations/integration:
+  "/v3/integrations/integration":
     delete:
       summary: Delete
       description: Delete an existing integration.
@@ -2965,7 +2973,9 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n\t\"integration\": {\n  \t\"slug\": \"00000000-0000-0000-0000-000000000000\",\n    \"name\": \"my-integration\",\n    \"type\": \"aws\"\n  }\n}"
+                  value:
+                    "{\n\t\"integration\": {\n  \t\"slug\": \"00000000-0000-0000-0000-000000000000\",\n
+                    \   \"name\": \"my-integration\",\n    \"type\": \"aws\"\n  }\n}"
               schema:
                 type: object
                 properties:
@@ -3037,7 +3047,7 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-  /v3/configs/config/syncs:
+  "/v3/configs/config/syncs":
     post:
       summary: Create
       description: Create a new secrets sync.
@@ -3073,9 +3083,9 @@ paths:
                   properties: {}
                 import_option:
                   type: string
-                  description: >-
-                    An option indicating if and how Doppler should attempt to
-                    import secrets from the sync destination
+                  description:
+                    An option indicating if and how Doppler should attempt
+                    to import secrets from the sync destination
                   default: none
                   enum:
                     - none
@@ -3083,7 +3093,7 @@ paths:
                     - prefer_integration
                 await_initial_sync:
                   type: boolean
-                  description: >-
+                  description:
                     Causes sync creation to wait for the initial sync to
                     complete before returning.
                   default: true
@@ -3094,7 +3104,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n\t\"sync\": {\n  \t\"slug\": \"00000000-0000-0000-0000-000000000000\",\n  \t\"integration\": \"00000000-0000-0000-0000-000000000000\",\n    \"project\": \"backend\",\n    \"config\": \"prd\",\n    \"enabled\": true,\n    \"lastSyncedAt\": \"2023-08-01T00:00:00.000Z\"\n  }\n}"
+                  value:
+                    "{\n\t\"sync\": {\n  \t\"slug\": \"00000000-0000-0000-0000-000000000000\",\n
+                    \ \t\"integration\": \"00000000-0000-0000-0000-000000000000\",\n
+                    \   \"project\": \"backend\",\n    \"config\": \"prd\",\n    \"enabled\":
+                    true,\n    \"lastSyncedAt\": \"2023-08-01T00:00:00.000Z\"\n  }\n}"
               schema:
                 type: object
                 properties:
@@ -3131,7 +3145,7 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-  /v3/configs/config/syncs/sync:
+  "/v3/configs/config/syncs/sync":
     delete:
       summary: Delete
       description: Delete an existing sync.
@@ -3213,7 +3227,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n\t\"sync\": {\n  \t\"slug\": \"00000000-0000-0000-0000-000000000000\",\n  \t\"integration\": \"00000000-0000-0000-0000-000000000000\",\n    \"project\": \"backend\",\n    \"config\": \"prd\",\n    \"enabled\": true,\n    \"lastSyncedAt\": \"2023-08-01T00:00:00.000Z\"\n  }\n}"
+                  value:
+                    "{\n\t\"sync\": {\n  \t\"slug\": \"00000000-0000-0000-0000-000000000000\",\n
+                    \ \t\"integration\": \"00000000-0000-0000-0000-000000000000\",\n
+                    \   \"project\": \"backend\",\n    \"config\": \"prd\",\n    \"enabled\":
+                    true,\n    \"lastSyncedAt\": \"2023-08-01T00:00:00.000Z\"\n  }\n}"
               schema:
                 type: object
                 properties:
@@ -3250,7 +3268,7 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-  /v3/me:
+  "/v3/me":
     get:
       summary: Me
       description: Get information about a token
@@ -3316,7 +3334,7 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-  /v3/integrations:
+  "/v3/integrations":
     post:
       summary: Create
       description: Create a new external integration.
@@ -3347,7 +3365,9 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n\t\"integration\": {\n  \t\"slug\": \"00000000-0000-0000-0000-000000000000\",\n    \"name\": \"my-integration\",\n    \"type\": \"aws\"\n  }\n}"
+                  value:
+                    "{\n\t\"integration\": {\n  \t\"slug\": \"00000000-0000-0000-0000-000000000000\",\n
+                    \   \"name\": \"my-integration\",\n    \"type\": \"aws\"\n  }\n}"
               schema:
                 type: object
                 properties:
@@ -3452,7 +3472,7 @@ paths:
                     example: true
                     default: true
       deprecated: false
-  /v3/configs/config/trusted_ips:
+  "/v3/configs/config/trusted_ips":
     get:
       summary: List
       description: ""
@@ -3578,7 +3598,7 @@ paths:
                 IP exists:
                   value: ""
       deprecated: false
-  /v3/workplace/roles:
+  "/v3/workplace/roles":
     post:
       summary: Create
       description: ""
@@ -3597,21 +3617,16 @@ paths:
                   description: The name of the role
                 permissions:
                   type: array
-                  description: >-
-                    An array containing the permissions the role has. Valid
-                    permissions are: `all_enclave_projects_admin`,
-                    `all_enclave_projects`, `billing_manage`, `billing`,
-                    `create_enclave_project`, `custom_roles_manage`, `ekm`,
-                    `enclave_secrets_referencing`, `logs_audit`, `logs`,
-                    `service_account_api_tokens_manage`,
-                    `service_account_api_tokens`, `service_accounts_manage`,
-                    `service_accounts`, `settings_manage`, `settings`,
-                    `team_manage`, `team`, `verified_domains_manage`,
-                    `verified_domains`, `workplace_default_environments_manage`,
-                    `workplace_default_environments_read`,
-                    `workplace_integrations_list`,
-                    `workplace_integrations_manage`,
-                    `workplace_integrations_read`
+                  description:
+                    "An array containing the permissions the role has.
+                    Valid permissions are: `all_enclave_projects_admin`, `all_enclave_projects`,
+                    `billing_manage`, `billing`, `create_enclave_project`, `custom_roles_manage`,
+                    `ekm`, `enclave_secrets_referencing`, `logs_audit`, `logs`, `service_account_api_tokens_manage`,
+                    `service_account_api_tokens`, `service_accounts_manage`, `service_accounts`,
+                    `settings_manage`, `settings`, `team_manage`, `team`, `verified_domains_manage`,
+                    `verified_domains`, `workplace_default_environments_manage`, `workplace_default_environments_read`,
+                    `workplace_integrations_list`, `workplace_integrations_manage`,
+                    `workplace_integrations_read`"
                   items:
                     type: string
       responses:
@@ -3621,7 +3636,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"role\": {\n    \"name\": \"custom\",\n    \"permissions\": [\"team\"],\n    \"identifier\": \"custom\",\n    \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\": true,\n    \"is_inline_role\": false\n\t}\n}"
+                  value:
+                    "{\n  \"role\": {\n    \"name\": \"custom\",\n    \"permissions\":
+                    [\"team\"],\n    \"identifier\": \"custom\",\n    \"created_at\":
+                    \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\": true,\n
+                    \   \"is_inline_role\": false\n\t}\n}"
               schema:
                 type: object
                 properties:
@@ -3662,7 +3681,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"roles\": [{\n    \"name\": \"custom\",\n    \"permissions\": [\"team\"],\n    \"identifier\": \"custom\",\n    \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\": false,\n    \"is_inline_role\": false\n\t}]\n}"
+                  value:
+                    "{\n  \"roles\": [{\n    \"name\": \"custom\",\n    \"permissions\":
+                    [\"team\"],\n    \"identifier\": \"custom\",\n    \"created_at\":
+                    \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\": false,\n
+                    \   \"is_inline_role\": false\n\t}]\n}"
               schema:
                 type: object
                 properties:
@@ -3743,7 +3766,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"role\": {\n    \"name\": \"custom\",\n    \"permissions\": [\"team\"],\n    \"identifier\": \"custom\",\n    \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\": false,\n    \"is_inline_role\": false\n\t}\n}"
+                  value:
+                    "{\n  \"role\": {\n    \"name\": \"custom\",\n    \"permissions\":
+                    [\"team\"],\n    \"identifier\": \"custom\",\n    \"created_at\":
+                    \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\": false,\n
+                    \   \"is_inline_role\": false\n\t}\n}"
               schema:
                 type: object
                 properties:
@@ -3787,9 +3814,9 @@ paths:
       parameters:
         - name: role
           in: path
-          description: >-
-            The role's unique identifier, which is the initial name the role was
-            given
+          description:
+            The role's unique identifier, which is the initial name the role
+            was given
           schema:
             type: string
           required: true
@@ -3804,21 +3831,16 @@ paths:
                   description: The name of the role
                 permissions:
                   type: array
-                  description: >-
-                    An array containing the permissions the role has. Valid
-                    permissions are: `all_enclave_projects_admin`,
-                    `all_enclave_projects`, `billing_manage`, `billing`,
-                    `create_enclave_project`, `custom_roles_manage`, `ekm`,
-                    `enclave_secrets_referencing`, `logs_audit`, `logs`,
-                    `service_account_api_tokens_manage`,
-                    `service_account_api_tokens`, `service_accounts_manage`,
-                    `service_accounts`, `settings_manage`, `settings`,
-                    `team_manage`, `team`, `verified_domains_manage`,
-                    `verified_domains`, `workplace_default_environments_manage`,
-                    `workplace_default_environments_read`,
-                    `workplace_integrations_list`,
-                    `workplace_integrations_manage`,
-                    `workplace_integrations_read`
+                  description:
+                    "An array containing the permissions the role has.
+                    Valid permissions are: `all_enclave_projects_admin`, `all_enclave_projects`,
+                    `billing_manage`, `billing`, `create_enclave_project`, `custom_roles_manage`,
+                    `ekm`, `enclave_secrets_referencing`, `logs_audit`, `logs`, `service_account_api_tokens_manage`,
+                    `service_account_api_tokens`, `service_accounts_manage`, `service_accounts`,
+                    `settings_manage`, `settings`, `team_manage`, `team`, `verified_domains_manage`,
+                    `verified_domains`, `workplace_default_environments_manage`, `workplace_default_environments_read`,
+                    `workplace_integrations_list`, `workplace_integrations_manage`,
+                    `workplace_integrations_read`"
                   items:
                     type: string
       responses:
@@ -3828,7 +3850,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"role\": {\n    \"name\": \"custom\",\n    \"permissions\": [\"team\"],\n    \"identifier\": \"custom\",\n    \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\": true,\n    \"is_inline_role\": false\n\t}\n}"
+                  value:
+                    "{\n  \"role\": {\n    \"name\": \"custom\",\n    \"permissions\":
+                    [\"team\"],\n    \"identifier\": \"custom\",\n    \"created_at\":
+                    \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\": true,\n
+                    \   \"is_inline_role\": false\n\t}\n}"
               schema:
                 type: object
                 properties:
@@ -3869,57 +3895,6 @@ paths:
                 properties: {}
       deprecated: false
   "/v3/projects/roles/role/{role}":
-    get:
-      summary: Retrieve
-      description: ""
-      operationId: project_roles-get
-      parameters:
-        - name: role
-          in: path
-          description: The role's unique identifier
-          schema:
-            type: string
-          required: true
-      responses:
-        "200":
-          description: "200"
-          content:
-            application/json:
-              examples:
-                Result:
-                  value: "{\n  \"role\": {\n    \"name\": \"custom\",\n    \"permissions\": [\"enclave_config_logs\"],\n    \"identifier\": \"custom\",\n    \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\": false\n\t}\n}"
-              schema:
-                type: object
-                properties:
-                  role:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        example: custom
-                      permissions:
-                        type: array
-                        items:
-                          type: string
-                          example: enclave_config_logs
-                      identifier:
-                        type: string
-                        example: custom
-                      created_at:
-                        type: string
-                        example: "2023-08-01T00:00:00.000Z"
-                      is_custom_role:
-                        type: boolean
-                        example: false
-                        default: true
-        "404":
-          description: "404"
-          content:
-            application/json:
-              examples:
-                Result:
-                  value: ""
-      deprecated: false
     patch:
       summary: Update
       description: ""
@@ -3942,42 +3917,26 @@ paths:
                   description: The name of the role
                 permissions:
                   type: array
-                  description: >-
-                    An array containing the permissions the role has. Valid
-                    permissions are: `enclave_config_logs`,
-                    `enclave_project_config_secrets_read`,
-                    `enclave_project_config_dynamic_secrets_read`,
-                    `enclave_project_config_dynamic_secrets_leases_write`,
-                    `enclave_project_config_rotated_secrets_read`,
-                    `enclave_config_syncs_manage`,
-                    `enclave_project_secrets_notes_manage`,
-                    `enclave_project_config_create`,
-                    `enclave_project_config_duplicate`,
-                    `enclave_project_config_secrets_write`,
-                    `enclave_project_config_service_tokens`,
-                    `enclave_project_config_trusted_ips`,
-                    `enclave_project_config_logs_rollback`,
-                    `enclave_project_config_list_all`,
-                    `enclave_project_pull_request_create`,
-                    `enclave_project_pull_request_respond`,
-                    `enclave_project_pull_request_view`,
-                    `enclave_secret_reminders`, `enclave_config_access_logs`,
-                    `enclave_project_members`, `enclave_project_rename`,
-                    `enclave_project_delete`, `enclave_project_webhooks`,
-                    `enclave_project_config_dynamic_secrets_manage`,
-                    `enclave_project_config_rotated_secrets_manage`,
-                    `enclave_project_config_rename`,
-                    `enclave_project_config_lock`,
-                    `enclave_project_config_delete`,
-                    `enclave_project_environment_list_all`,
-                    `enclave_project_environment_all`,
-                    `enclave_project_environment_order`,
-                    `enclave_project_environment_create`,
-                    `enclave_project_environment_delete`,
-                    `enclave_project_environment_rename`,
-                    `enclave_project_environment_settings_manage`,
-                    `enclave_project_secrets_referencing`,
-                    `enclave_config_secrets_referencing`
+                  description:
+                    "An array containing the permissions the role has.
+                    Valid permissions are: `enclave_config_logs`, `enclave_project_config_secrets_read`,
+                    `enclave_project_config_dynamic_secrets_read`, `enclave_project_config_dynamic_secrets_leases_write`,
+                    `enclave_project_config_rotated_secrets_read`, `enclave_config_syncs_manage`,
+                    `enclave_project_secrets_notes_manage`, `enclave_project_config_create`,
+                    `enclave_project_config_duplicate`, `enclave_project_config_secrets_write`,
+                    `enclave_project_config_service_tokens`, `enclave_project_config_trusted_ips`,
+                    `enclave_project_config_logs_rollback`, `enclave_project_config_list_all`,
+                    `enclave_project_pull_request_create`, `enclave_project_pull_request_respond`,
+                    `enclave_project_pull_request_view`, `enclave_secret_reminders`,
+                    `enclave_config_access_logs`, `enclave_project_members`, `enclave_project_rename`,
+                    `enclave_project_delete`, `enclave_project_webhooks`, `enclave_project_config_dynamic_secrets_manage`,
+                    `enclave_project_config_rotated_secrets_manage`, `enclave_project_config_rename`,
+                    `enclave_project_config_lock`, `enclave_project_config_delete`,
+                    `enclave_project_environment_list_all`, `enclave_project_environment_all`,
+                    `enclave_project_environment_order`, `enclave_project_environment_create`,
+                    `enclave_project_environment_delete`, `enclave_project_environment_rename`,
+                    `enclave_project_environment_settings_manage`, `enclave_project_secrets_referencing`,
+                    `enclave_config_secrets_referencing`"
                   items:
                     type: string
       responses:
@@ -3987,7 +3946,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"role\": {\n    \"name\": \"custom\",\n    \"permissions\": [\"enclave_config_logs\"],\n    \"identifier\": \"custom\",\n    \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\": true\n\t}\n}"
+                  value:
+                    "{\n  \"role\": {\n    \"name\": \"custom\",\n    \"permissions\":
+                    [\"enclave_config_logs\"],\n    \"identifier\": \"custom\",\n
+                    \   \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\":
+                    true\n\t}\n}"
               schema:
                 type: object
                 properties:
@@ -4023,6 +3986,61 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
+    get:
+      summary: Retrieve
+      description: ""
+      operationId: project_roles-get
+      parameters:
+        - name: role
+          in: path
+          description: The role's unique identifier
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    "{\n  \"role\": {\n    \"name\": \"custom\",\n    \"permissions\":
+                    [\"enclave_config_logs\"],\n    \"identifier\": \"custom\",\n
+                    \   \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\":
+                    false\n\t}\n}"
+              schema:
+                type: object
+                properties:
+                  role:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: custom
+                      permissions:
+                        type: array
+                        items:
+                          type: string
+                          example: enclave_config_logs
+                      identifier:
+                        type: string
+                        example: custom
+                      created_at:
+                        type: string
+                        example: "2023-08-01T00:00:00.000Z"
+                      is_custom_role:
+                        type: boolean
+                        example: false
+                        default: true
+        "404":
+          description: "404"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ""
+      deprecated: false
     delete:
       summary: Delete
       description: ""
@@ -4053,7 +4071,7 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-  /v3/workplace/permissions:
+  "/v3/workplace/permissions":
     get:
       summary: List Permissions
       description: ""
@@ -4078,7 +4096,7 @@ paths:
                       type: string
                       example: team
       deprecated: false
-  /v3/projects/project/members:
+  "/v3/projects/project/members":
     get:
       summary: List
       description: ""
@@ -4109,7 +4127,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"members\": [{\n    \"type\": \"workplace_user\",\n    \"slug\": \"00000000-0000-0000-0000-000000000000\",\n    \"role\": {\n    \t\"identifier\": \"collaborator\"\n    },\n    \"access_all_environments\": false,\n    \"environments\": [\"dev\"]\n  }]\n}"
+                  value:
+                    "{\n  \"members\": [{\n    \"type\": \"workplace_user\",\n
+                    \   \"slug\": \"00000000-0000-0000-0000-000000000000\",\n    \"role\":
+                    {\n    \t\"identifier\": \"collaborator\"\n    },\n    \"access_all_environments\":
+                    false,\n    \"environments\": [\"dev\"]\n  }]\n}"
               schema:
                 type: object
                 properties:
@@ -4185,7 +4207,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"member\": {\n    \"type\": \"workplace_user\",\n    \"slug\": \"00000000-0000-0000-0000-000000000000\",\n    \"role\": {\n    \t\"identifier\": \"collaborator\"\n    },\n    \"access_all_environments\": false,\n    \"environments\": [\"dev\"]\n  }\n}"
+                  value:
+                    "{\n  \"member\": {\n    \"type\": \"workplace_user\",\n
+                    \   \"slug\": \"00000000-0000-0000-0000-000000000000\",\n    \"role\":
+                    {\n    \t\"identifier\": \"collaborator\"\n    },\n    \"access_all_environments\":
+                    false,\n    \"environments\": [\"dev\"]\n  }\n}"
               schema:
                 type: object
                 properties:
@@ -4214,7 +4240,7 @@ paths:
                           type: string
                           example: dev
       deprecated: false
-  /v3/workplace/invites:
+  "/v3/workplace/invites":
     get:
       summary: List
       description: ""
@@ -4298,7 +4324,7 @@ paths:
                               example: false
                               default: true
       deprecated: false
-  /v3/projects/roles:
+  "/v3/projects/roles":
     get:
       summary: List
       description: ""
@@ -4310,7 +4336,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"roles\": [{\n    \"name\": \"custom\",\n    \"permissions\": [\"enclave_config_logs\"],\n    \"identifier\": \"custom\",\n    \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\": false\n\t}]\n}"
+                  value:
+                    "{\n  \"roles\": [{\n    \"name\": \"custom\",\n    \"permissions\":
+                    [\"enclave_config_logs\"],\n    \"identifier\": \"custom\",\n
+                    \   \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\":
+                    false\n\t}]\n}"
               schema:
                 type: object
                 properties:
@@ -4356,42 +4386,26 @@ paths:
                   description: The name of the role
                 permissions:
                   type: array
-                  description: >-
-                    An array containing the permissions the role has. Valid
-                    permissions are: `enclave_config_logs`,
-                    `enclave_project_config_secrets_read`,
-                    `enclave_project_config_dynamic_secrets_read`,
-                    `enclave_project_config_dynamic_secrets_leases_write`,
-                    `enclave_project_config_rotated_secrets_read`,
-                    `enclave_config_syncs_manage`,
-                    `enclave_project_secrets_notes_manage`,
-                    `enclave_project_config_create`,
-                    `enclave_project_config_duplicate`,
-                    `enclave_project_config_secrets_write`,
-                    `enclave_project_config_service_tokens`,
-                    `enclave_project_config_trusted_ips`,
-                    `enclave_project_config_logs_rollback`,
-                    `enclave_project_config_list_all`,
-                    `enclave_project_pull_request_create`,
-                    `enclave_project_pull_request_respond`,
-                    `enclave_project_pull_request_view`,
-                    `enclave_secret_reminders`, `enclave_config_access_logs`,
-                    `enclave_project_members`, `enclave_project_rename`,
-                    `enclave_project_delete`, `enclave_project_webhooks`,
-                    `enclave_project_config_dynamic_secrets_manage`,
-                    `enclave_project_config_rotated_secrets_manage`,
-                    `enclave_project_config_rename`,
-                    `enclave_project_config_lock`,
-                    `enclave_project_config_delete`,
-                    `enclave_project_environment_list_all`,
-                    `enclave_project_environment_all`,
-                    `enclave_project_environment_order`,
-                    `enclave_project_environment_create`,
-                    `enclave_project_environment_delete`,
-                    `enclave_project_environment_rename`,
-                    `enclave_project_environment_settings_manage`,
-                    `enclave_project_secrets_referencing`,
-                    `enclave_config_secrets_referencing`
+                  description:
+                    "An array containing the permissions the role has.
+                    Valid permissions are: `enclave_config_logs`, `enclave_project_config_secrets_read`,
+                    `enclave_project_config_dynamic_secrets_read`, `enclave_project_config_dynamic_secrets_leases_write`,
+                    `enclave_project_config_rotated_secrets_read`, `enclave_config_syncs_manage`,
+                    `enclave_project_secrets_notes_manage`, `enclave_project_config_create`,
+                    `enclave_project_config_duplicate`, `enclave_project_config_secrets_write`,
+                    `enclave_project_config_service_tokens`, `enclave_project_config_trusted_ips`,
+                    `enclave_project_config_logs_rollback`, `enclave_project_config_list_all`,
+                    `enclave_project_pull_request_create`, `enclave_project_pull_request_respond`,
+                    `enclave_project_pull_request_view`, `enclave_secret_reminders`,
+                    `enclave_config_access_logs`, `enclave_project_members`, `enclave_project_rename`,
+                    `enclave_project_delete`, `enclave_project_webhooks`, `enclave_project_config_dynamic_secrets_manage`,
+                    `enclave_project_config_rotated_secrets_manage`, `enclave_project_config_rename`,
+                    `enclave_project_config_lock`, `enclave_project_config_delete`,
+                    `enclave_project_environment_list_all`, `enclave_project_environment_all`,
+                    `enclave_project_environment_order`, `enclave_project_environment_create`,
+                    `enclave_project_environment_delete`, `enclave_project_environment_rename`,
+                    `enclave_project_environment_settings_manage`, `enclave_project_secrets_referencing`,
+                    `enclave_config_secrets_referencing`"
                   items:
                     type: string
       responses:
@@ -4401,7 +4415,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"role\": {\n    \"name\": \"custom\",\n    \"permissions\": [\"enclave_config_logs\"],\n    \"identifier\": \"custom\",\n    \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\": true\n\t}\n}"
+                  value:
+                    "{\n  \"role\": {\n    \"name\": \"custom\",\n    \"permissions\":
+                    [\"enclave_config_logs\"],\n    \"identifier\": \"custom\",\n
+                    \   \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"is_custom_role\":
+                    true\n\t}\n}"
               schema:
                 type: object
                 properties:
@@ -4498,7 +4516,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"member\": {\n    \"type\": \"workplace_user\",\n    \"slug\": \"00000000-0000-0000-0000-000000000000\",\n    \"role\": {\n    \t\"identifier\": \"collaborator\"\n    },\n    \"access_all_environments\": false,\n    \"environments\": [\"dev\"]\n  }\n}"
+                  value:
+                    "{\n  \"member\": {\n    \"type\": \"workplace_user\",\n
+                    \   \"slug\": \"00000000-0000-0000-0000-000000000000\",\n    \"role\":
+                    {\n    \t\"identifier\": \"collaborator\"\n    },\n    \"access_all_environments\":
+                    false,\n    \"environments\": [\"dev\"]\n  }\n}"
               schema:
                 type: object
                 properties:
@@ -4575,7 +4597,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"member\": {\n    \"type\": \"workplace_user\",\n    \"slug\": \"00000000-0000-0000-0000-000000000000\",\n    \"role\": {\n    \t\"identifier\": \"collaborator\"\n    },\n    \"access_all_environments\": false,\n    \"environments\": [\"dev\"]\n  }\n}"
+                  value:
+                    "{\n  \"member\": {\n    \"type\": \"workplace_user\",\n
+                    \   \"slug\": \"00000000-0000-0000-0000-000000000000\",\n    \"role\":
+                    {\n    \t\"identifier\": \"collaborator\"\n    },\n    \"access_all_environments\":
+                    false,\n    \"environments\": [\"dev\"]\n  }\n}"
               schema:
                 type: object
                 properties:
@@ -4735,7 +4761,9 @@ paths:
                   type: string
                 workplace_role:
                   type: object
-                  description: "You may provide an identifier OR permissions, but not both"
+                  description:
+                    You may provide an identifier OR permissions, but not
+                    both
                   properties:
                     identifier:
                       type: string
@@ -4791,6 +4819,8 @@ paths:
                             example: None
                           permissions:
                             type: array
+                            items:
+                              type: string
                           identifier:
                             type: string
                             example: no_access
@@ -4813,7 +4843,7 @@ paths:
                 Result:
                   value: ""
       deprecated: false
-  /v3/projects/permissions:
+  "/v3/projects/permissions":
     get:
       summary: List Permissions
       description: ""
@@ -4857,7 +4887,16 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"group\": {\n    \"name\": \"group\",\n    \"slug\": \"00000000-0000-0000-0000-000000000000\",\n    \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"default_project_role\": {\n      \"identifier\": \"no_access\"\n    },\n    \"projects\": [{\n    \t\"name\": \"Project\",\n      \"slug\": \"project\",\n      \"role\": {\n        \"identifier\": \"viewer\"\n      }\n    }],\n    \"members\": [{\n      \"type\": \"workplace_user\",\n      \"slug\": \"00000000-0000-0000-0000-000000000000\"\n    }]\n  }\n}"
+                  value:
+                    "{\n  \"group\": {\n    \"name\": \"group\",\n    \"slug\":
+                    \"00000000-0000-0000-0000-000000000000\",\n    \"created_at\":
+                    \"2023-08-01T00:00:00.000Z\",\n    \"default_project_role\": {\n
+                    \     \"identifier\": \"no_access\"\n    },\n    \"projects\":
+                    [{\n    \t\"name\": \"Project\",\n      \"slug\": \"project\",\n
+                    \     \"role\": {\n        \"identifier\": \"viewer\"\n      }\n
+                    \   }],\n    \"members\": [{\n      \"type\": \"workplace_user\",\n
+                    \     \"slug\": \"00000000-0000-0000-0000-000000000000\"\n    }]\n
+                    \ }\n}"
               schema:
                 type: object
                 properties:
@@ -4964,7 +5003,16 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"group\": {\n    \"name\": \"group\",\n    \"slug\": \"00000000-0000-0000-0000-000000000000\",\n    \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"default_project_role\": {\n      \"identifier\": \"no_access\"\n    },\n    \"projects\": [{\n    \t\"name\": \"Project\",\n      \"slug\": \"project\",\n      \"role\": {\n        \"identifier\": \"viewer\"\n      }\n    }],\n    \"members\": [{\n      \"type\": \"workplace_user\",\n      \"slug\": \"00000000-0000-0000-0000-000000000000\"\n    }]\n  }\n}"
+                  value:
+                    "{\n  \"group\": {\n    \"name\": \"group\",\n    \"slug\":
+                    \"00000000-0000-0000-0000-000000000000\",\n    \"created_at\":
+                    \"2023-08-01T00:00:00.000Z\",\n    \"default_project_role\": {\n
+                    \     \"identifier\": \"no_access\"\n    },\n    \"projects\":
+                    [{\n    \t\"name\": \"Project\",\n      \"slug\": \"project\",\n
+                    \     \"role\": {\n        \"identifier\": \"viewer\"\n      }\n
+                    \   }],\n    \"members\": [{\n      \"type\": \"workplace_user\",\n
+                    \     \"slug\": \"00000000-0000-0000-0000-000000000000\"\n    }]\n
+                    \ }\n}"
               schema:
                 type: object
                 properties:
@@ -5022,7 +5070,7 @@ paths:
                 Result:
                   value: ""
       deprecated: false
-  /v3/workplace/service_accounts:
+  "/v3/workplace/service_accounts":
     get:
       summary: List
       description: ""
@@ -5120,7 +5168,9 @@ paths:
                   type: string
                 workplace_role:
                   type: object
-                  description: "You may provide an identifier OR permissions, but not both"
+                  description:
+                    You may provide an identifier OR permissions, but not
+                    both
                   properties:
                     identifier:
                       type: string
@@ -5194,7 +5244,7 @@ paths:
                             example: false
                             default: true
       deprecated: false
-  /v3/workplace/groups:
+  "/v3/workplace/groups":
     post:
       summary: Create
       description: ""
@@ -5219,7 +5269,16 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"group\": {\n    \"name\": \"group\",\n    \"slug\": \"00000000-0000-0000-0000-000000000000\",\n    \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"default_project_role\": {\n      \"identifier\": \"no_access\"\n    },\n    \"projects\": [{\n    \t\"name\": \"Project\",\n      \"slug\": \"project\",\n      \"role\": {\n        \"identifier\": \"viewer\"\n      }\n    }],\n    \"members\": [{\n      \"type\": \"workplace_user\",\n      \"slug\": \"00000000-0000-0000-0000-000000000000\"\n    }]\n  }\n}"
+                  value:
+                    "{\n  \"group\": {\n    \"name\": \"group\",\n    \"slug\":
+                    \"00000000-0000-0000-0000-000000000000\",\n    \"created_at\":
+                    \"2023-08-01T00:00:00.000Z\",\n    \"default_project_role\": {\n
+                    \     \"identifier\": \"no_access\"\n    },\n    \"projects\":
+                    [{\n    \t\"name\": \"Project\",\n      \"slug\": \"project\",\n
+                    \     \"role\": {\n        \"identifier\": \"viewer\"\n      }\n
+                    \   }],\n    \"members\": [{\n      \"type\": \"workplace_user\",\n
+                    \     \"slug\": \"00000000-0000-0000-0000-000000000000\"\n    }]\n
+                    \ }\n}"
               schema:
                 type: object
                 properties:
@@ -5370,7 +5429,7 @@ paths:
                 Result:
                   value: ""
       deprecated: false
-  /v3/workplace/users:
+  "/v3/workplace/users":
     get:
       summary: List
       description: Get all users within a workplace
@@ -5385,7 +5444,7 @@ paths:
             default: 1
         - name: email
           in: query
-          description: >-
+          description:
             Filter results to only include the user with the provided email
             address
           schema:
@@ -5569,7 +5628,7 @@ paths:
                     example: true
                     default: true
       deprecated: false
-  /v3/integrations/integration/options:
+  "/v3/integrations/integration/options":
     get:
       summary: Get Options
       description: ""
@@ -5629,13 +5688,22 @@ paths:
             type: string
           required: true
       responses:
-        "204":
-          description: "204"
+        "200":
+          description: "200"
           content:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"group\": {\n    \"name\": \"group\",\n    \"slug\": \"00000000-0000-0000-0000-000000000000\",\n    \"created_at\": \"2023-08-01T00:00:00.000Z\",\n    \"default_project_role\": {\n      \"identifier\": \"no_access\"\n    },\n    \"projects\": [{\n    \t\"name\": \"Project\",\n      \"slug\": \"project\",\n      \"role\": {\n        \"identifier\": \"viewer\"\n      }\n    }],\n    \"members\": [{\n      \"type\": \"workplace_user\",\n      \"slug\": \"00000000-0000-0000-0000-000000000000\"\n    }]\n  }\n}"
+                  value:
+                    "{\n  \"group\": {\n    \"name\": \"group\",\n    \"slug\":
+                    \"00000000-0000-0000-0000-000000000000\",\n    \"created_at\":
+                    \"2023-08-01T00:00:00.000Z\",\n    \"default_project_role\": {\n
+                    \     \"identifier\": \"no_access\"\n    },\n    \"projects\":
+                    [{\n    \t\"name\": \"Project\",\n      \"slug\": \"project\",\n
+                    \     \"role\": {\n        \"identifier\": \"viewer\"\n      }\n
+                    \   }],\n    \"members\": [{\n      \"type\": \"workplace_user\",\n
+                    \     \"slug\": \"00000000-0000-0000-0000-000000000000\"\n    }]\n
+                    \ }\n}"
               schema:
                 type: object
                 properties:
@@ -5693,39 +5761,40 @@ paths:
                 Result:
                   value: ""
       deprecated: false
-  /v3/webhooks:
-    get:
-      summary: List
-      description: Webhooks
-      operationId: webhooks-list
-      parameters:
-        - name: project
-          in: query
-          description: The project's name
-          schema:
-            type: string
-      responses:
-        "200":
-          description: "200"
-          content:
-            application/json:
-              examples:
-                Result:
-                  value: "{}"
-              schema:
-                type: object
-                properties: {}
-        "400":
-          description: "400"
-          content:
-            application/json:
-              examples:
-                Result:
-                  value: "{}"
-              schema:
-                type: object
-                properties: {}
-      deprecated: false
+  "/v3/webhooks":
+    # TODO: Commented out because the response schema is empty!
+    # get:
+    #   summary: List
+    #   description: Webhooks
+    #   operationId: webhooks-list
+    #   parameters:
+    #     - name: project
+    #       in: query
+    #       description: The project's name
+    #       schema:
+    #         type: string
+    #   responses:
+    #     "200":
+    #       description: "200"
+    #       content:
+    #         application/json:
+    #           examples:
+    #             Result:
+    #               value: "{}"
+    #           schema:
+    #             type: object
+    #             properties: {}
+    #     "400":
+    #       description: "400"
+    #       content:
+    #         application/json:
+    #           examples:
+    #             Result:
+    #               value: "{}"
+    #           schema:
+    #             type: object
+    #             properties: {}
+    #   deprecated: false
     post:
       summary: Add
       description: Webhook
@@ -5749,9 +5818,7 @@ paths:
                   description: The webhook URL. Must be https
                 secret:
                   type: string
-                  description: >-
-                    See:
-                    https://docs.doppler.com/docs/webhooks#verify-webhook-with-request-signing
+                  description: "See: https://docs.doppler.com/docs/webhooks#verify-webhook-with-request-signing"
                 authentication:
                   type: object
                   properties:
@@ -5867,9 +5934,7 @@ paths:
                   description: The webhook URL. Must be https
                 secret:
                   type: string
-                  description: >-
-                    See:
-                    https://docs.doppler.com/docs/webhooks#verify-webhook-with-request-signing
+                  description: "See: https://docs.doppler.com/docs/webhooks#verify-webhook-with-request-signing"
                 authentication:
                   type: object
                   properties:
@@ -6132,9 +6197,9 @@ paths:
                   description: The display name of the API token
                 expires_at:
                   type: string
-                  description: >-
-                    The datetime at which the API token should expire. If not
-                    provided, the API token will remain vaild indefinitely
+                  description:
+                    The datetime at which the API token should expire.
+                    If not provided, the API token will remain vaild indefinitely
                     unless manually revoked
                   format: date-time
       responses:
@@ -6171,7 +6236,8 @@ paths:
                       created_at:
                         type: string
                         example: "2023-03-14T00:00:00.000Z"
-                      last_seen_at: {}
+                      last_seen_at:
+                        type: string
                       expires_at:
                         type: string
                         example: "2023-08-01T00:00:00.000Z"
@@ -6250,11 +6316,9 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: |-
-                    { 
-                      "messages": ["Service account API token does not exist"], 
-                      "success": false 
-                    }
+                  value:
+                    "{ \n  \"messages\": [\"Service account API token does not
+                    exist\"], \n  \"success\": false \n}"
               schema:
                 type: object
                 properties:
@@ -6299,11 +6363,9 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: |-
-                    { 
-                      "messages": ["Service account API token does not exist"], 
-                      "success": false 
-                    }
+                  value:
+                    "{ \n  \"messages\": [\"Service account API token does not
+                    exist\"], \n  \"success\": false \n}"
               schema:
                 type: object
                 properties:
