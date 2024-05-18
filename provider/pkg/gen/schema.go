@@ -90,9 +90,13 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 	}
 
 	openAPICtx := &openapigen.OpenAPIContext{
-		Doc:           openapiDoc,
-		Pkg:           &pkg,
-		ExcludedPaths: []string{},
+		Doc: openapiDoc,
+		Pkg: &pkg,
+		ExcludedPaths: []string{
+			"/v3/logs",
+			"/v3/logs/log",
+			"/v3/auth/revoke",
+		},
 	}
 
 	providerMetadata, updatedOpenAPIDoc, err := openAPICtx.GatherResourcesFromAPI(csharpNamespaces)
