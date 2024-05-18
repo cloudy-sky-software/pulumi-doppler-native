@@ -6,7 +6,7 @@ import (
 
 // FixOpenAPIDoc applies patches to the raw OpenAPI spec
 // before passing it to pulschema.
-func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
+func FixOpenAPIDoc(_ *openapi3.T) error {
 	// TODO: Fill me in if there are patches to be made!
 	return nil
 }
