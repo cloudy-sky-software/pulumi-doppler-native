@@ -14,7 +14,7 @@ import (
 
 	openapigen "github.com/cloudy-sky-software/pulschema/pkg"
 
-	"github.com/cloudy-sky-software/pulumi-doppler-native-native/provider/pkg/gen/examples"
+	"github.com/cloudy-sky-software/pulumi-doppler-native/provider/pkg/gen/examples"
 )
 
 const packageName = "doppler-native"
