@@ -16,7 +16,7 @@ type ServiceTokens struct {
 	pulumi.CustomResourceState
 
 	// Token's capabilities.
-	Access ServiceTokensAccessPtrOutput `pulumi:"access"`
+	Access AccessPtrOutput `pulumi:"access"`
 	// Name of the config object.
 	Config pulumi.StringOutput `pulumi:"config"`
 	// Unix timestamp of when token should expire.
@@ -36,7 +36,7 @@ func NewServiceTokens(ctx *pulumi.Context,
 	}
 
 	if args.Access == nil {
-		args.Access = ServiceTokensAccess("read")
+		args.Access = Access("read")
 	}
 	if args.Config == nil {
 		args.Config = pulumi.String("CONFIG_NAME")
@@ -81,7 +81,7 @@ func (ServiceTokensState) ElementType() reflect.Type {
 
 type serviceTokensArgs struct {
 	// Token's capabilities.
-	Access *ServiceTokensAccess `pulumi:"access"`
+	Access *Access `pulumi:"access"`
 	// Name of the config object.
 	Config string `pulumi:"config"`
 	// Unix timestamp of when token should expire.
@@ -95,7 +95,7 @@ type serviceTokensArgs struct {
 // The set of arguments for constructing a ServiceTokens resource.
 type ServiceTokensArgs struct {
 	// Token's capabilities.
-	Access ServiceTokensAccessPtrInput
+	Access AccessPtrInput
 	// Name of the config object.
 	Config pulumi.StringInput
 	// Unix timestamp of when token should expire.
@@ -144,8 +144,8 @@ func (o ServiceTokensOutput) ToServiceTokensOutputWithContext(ctx context.Contex
 }
 
 // Token's capabilities.
-func (o ServiceTokensOutput) Access() ServiceTokensAccessPtrOutput {
-	return o.ApplyT(func(v *ServiceTokens) ServiceTokensAccessPtrOutput { return v.Access }).(ServiceTokensAccessPtrOutput)
+func (o ServiceTokensOutput) Access() AccessPtrOutput {
+	return o.ApplyT(func(v *ServiceTokens) AccessPtrOutput { return v.Access }).(AccessPtrOutput)
 }
 
 // Name of the config object.

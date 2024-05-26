@@ -226,7 +226,7 @@ class ChangeRequestsItemPropertiesOriginalValueTypeProperties(dict):
     The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler.
     """
     def __init__(__self__, *,
-                 type: Optional['SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType'] = None):
+                 type: Optional['ChangeRequestsItemPropertiesOriginalValueTypePropertiesType'] = None):
         """
         The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler.
         """
@@ -235,7 +235,7 @@ class ChangeRequestsItemPropertiesOriginalValueTypeProperties(dict):
 
     @property
     @pulumi.getter
-    def type(self) -> Optional['SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType']:
+    def type(self) -> Optional['ChangeRequestsItemPropertiesOriginalValueTypePropertiesType']:
         return pulumi.get(self, "type")
 
 
@@ -245,7 +245,7 @@ class ChangeRequestsItemPropertiesValueTypeProperties(dict):
     The default valueType (string) will result in no validations being applied.
     """
     def __init__(__self__, *,
-                 type: Optional['SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType'] = None):
+                 type: Optional['ChangeRequestsItemPropertiesValueTypePropertiesType'] = None):
         """
         The default valueType (string) will result in no validations being applied.
         """
@@ -254,7 +254,7 @@ class ChangeRequestsItemPropertiesValueTypeProperties(dict):
 
     @property
     @pulumi.getter
-    def type(self) -> Optional['SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType']:
+    def type(self) -> Optional['ChangeRequestsItemPropertiesValueTypePropertiesType']:
         return pulumi.get(self, "type")
 
 

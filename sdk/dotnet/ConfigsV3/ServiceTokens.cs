@@ -16,7 +16,7 @@ namespace Pulumi.DopplerNative.ConfigsV3
         /// Token's capabilities.
         /// </summary>
         [Output("access")]
-        public Output<Pulumi.DopplerNative.ConfigsV3.ServiceTokensAccess?> Access { get; private set; } = null!;
+        public Output<Pulumi.DopplerNative.ConfigsV3.Access?> Access { get; private set; } = null!;
 
         /// <summary>
         /// Name of the config object.
@@ -95,7 +95,7 @@ namespace Pulumi.DopplerNative.ConfigsV3
         /// Token's capabilities.
         /// </summary>
         [Input("access")]
-        public Input<Pulumi.DopplerNative.ConfigsV3.ServiceTokensAccess>? Access { get; set; }
+        public Input<Pulumi.DopplerNative.ConfigsV3.Access>? Access { get; set; }
 
         /// <summary>
         /// Name of the config object.
@@ -123,7 +123,7 @@ namespace Pulumi.DopplerNative.ConfigsV3
 
         public ServiceTokensArgs()
         {
-            Access = Pulumi.DopplerNative.ConfigsV3.ServiceTokensAccess.Read;
+            Access = Pulumi.DopplerNative.ConfigsV3.Access.Read;
             Config = "CONFIG_NAME";
             Name = "TOKEN_NAME";
             Project = "PROJECT_NAME";

@@ -5,11 +5,11 @@
 from enum import Enum
 
 __all__ = [
-    'WebhooksAuthenticationPropertiesType',
+    'AuthenticationPropertiesType',
 ]
 
 
-class WebhooksAuthenticationPropertiesType(str, Enum):
+class AuthenticationPropertiesType(str, Enum):
     NONE = "None"
     BEARER = "Bearer"
     BASIC = "Basic"

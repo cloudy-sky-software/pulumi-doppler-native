@@ -16,8 +16,8 @@ type GroupsMember struct {
 	pulumi.CustomResourceState
 
 	// The member's slug
-	Slug pulumi.StringOutput    `pulumi:"slug"`
-	Type GroupsMemberTypeOutput `pulumi:"type"`
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	Type TypeOutput          `pulumi:"type"`
 }
 
 // NewGroupsMember registers a new resource with the given unique name, arguments, and options.
@@ -67,15 +67,15 @@ func (GroupsMemberState) ElementType() reflect.Type {
 
 type groupsMemberArgs struct {
 	// The group's slug
-	Slug string           `pulumi:"slug"`
-	Type GroupsMemberType `pulumi:"type"`
+	Slug string `pulumi:"slug"`
+	Type Type   `pulumi:"type"`
 }
 
 // The set of arguments for constructing a GroupsMember resource.
 type GroupsMemberArgs struct {
 	// The group's slug
 	Slug pulumi.StringInput
-	Type GroupsMemberTypeInput
+	Type TypeInput
 }
 
 func (GroupsMemberArgs) ElementType() reflect.Type {
@@ -120,8 +120,8 @@ func (o GroupsMemberOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *GroupsMember) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
-func (o GroupsMemberOutput) Type() GroupsMemberTypeOutput {
-	return o.ApplyT(func(v *GroupsMember) GroupsMemberTypeOutput { return v.Type }).(GroupsMemberTypeOutput)
+func (o GroupsMemberOutput) Type() TypeOutput {
+	return o.ApplyT(func(v *GroupsMember) TypeOutput { return v.Type }).(TypeOutput)
 }
 
 func init() {

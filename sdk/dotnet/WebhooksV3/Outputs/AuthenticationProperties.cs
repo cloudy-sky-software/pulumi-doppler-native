@@ -21,7 +21,7 @@ namespace Pulumi.DopplerNative.WebhooksV3.Outputs
         /// Used when type = Bearer
         /// </summary>
         public readonly string? Token;
-        public readonly Pulumi.DopplerNative.WebhooksV3.WebhooksAuthenticationPropertiesType? Type;
+        public readonly Pulumi.DopplerNative.WebhooksV3.AuthenticationPropertiesType? Type;
         /// <summary>
         /// Used when type = Basic
         /// </summary>
@@ -33,7 +33,7 @@ namespace Pulumi.DopplerNative.WebhooksV3.Outputs
 
             string? token,
 
-            Pulumi.DopplerNative.WebhooksV3.WebhooksAuthenticationPropertiesType? type,
+            Pulumi.DopplerNative.WebhooksV3.AuthenticationPropertiesType? type,
 
             string? username)
         {

@@ -23,7 +23,7 @@ __all__ = [
 @pulumi.input_type
 class ChangeRequestsItemPropertiesOriginalValueTypePropertiesArgs:
     def __init__(__self__, *,
-                 type: Optional[pulumi.Input['SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType']] = None):
+                 type: Optional[pulumi.Input['ChangeRequestsItemPropertiesOriginalValueTypePropertiesType']] = None):
         """
         The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler.
         """
@@ -32,18 +32,18 @@ class ChangeRequestsItemPropertiesOriginalValueTypePropertiesArgs:
 
     @property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input['SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType']]:
+    def type(self) -> Optional[pulumi.Input['ChangeRequestsItemPropertiesOriginalValueTypePropertiesType']]:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input['SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType']]):
+    def type(self, value: Optional[pulumi.Input['ChangeRequestsItemPropertiesOriginalValueTypePropertiesType']]):
         pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
 class ChangeRequestsItemPropertiesValueTypePropertiesArgs:
     def __init__(__self__, *,
-                 type: Optional[pulumi.Input['SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType']] = None):
+                 type: Optional[pulumi.Input['ChangeRequestsItemPropertiesValueTypePropertiesType']] = None):
         """
         The default valueType (string) will result in no validations being applied.
         """
@@ -52,11 +52,11 @@ class ChangeRequestsItemPropertiesValueTypePropertiesArgs:
 
     @property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input['SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType']]:
+    def type(self) -> Optional[pulumi.Input['ChangeRequestsItemPropertiesValueTypePropertiesType']]:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input['SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType']]):
+    def type(self, value: Optional[pulumi.Input['ChangeRequestsItemPropertiesValueTypePropertiesType']]):
         pulumi.set(self, "type", value)
 
 

@@ -10,123 +10,123 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-type GroupsMemberType string
+type Type string
 
 const (
-	GroupsMemberTypeWorkplaceUser = GroupsMemberType("workplace_user")
+	TypeWorkplaceUser = Type("workplace_user")
 )
 
-func (GroupsMemberType) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupsMemberType)(nil)).Elem()
+func (Type) ElementType() reflect.Type {
+	return reflect.TypeOf((*Type)(nil)).Elem()
 }
 
-func (e GroupsMemberType) ToGroupsMemberTypeOutput() GroupsMemberTypeOutput {
-	return pulumi.ToOutput(e).(GroupsMemberTypeOutput)
+func (e Type) ToTypeOutput() TypeOutput {
+	return pulumi.ToOutput(e).(TypeOutput)
 }
 
-func (e GroupsMemberType) ToGroupsMemberTypeOutputWithContext(ctx context.Context) GroupsMemberTypeOutput {
-	return pulumi.ToOutputWithContext(ctx, e).(GroupsMemberTypeOutput)
+func (e Type) ToTypeOutputWithContext(ctx context.Context) TypeOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(TypeOutput)
 }
 
-func (e GroupsMemberType) ToGroupsMemberTypePtrOutput() GroupsMemberTypePtrOutput {
-	return e.ToGroupsMemberTypePtrOutputWithContext(context.Background())
+func (e Type) ToTypePtrOutput() TypePtrOutput {
+	return e.ToTypePtrOutputWithContext(context.Background())
 }
 
-func (e GroupsMemberType) ToGroupsMemberTypePtrOutputWithContext(ctx context.Context) GroupsMemberTypePtrOutput {
-	return GroupsMemberType(e).ToGroupsMemberTypeOutputWithContext(ctx).ToGroupsMemberTypePtrOutputWithContext(ctx)
+func (e Type) ToTypePtrOutputWithContext(ctx context.Context) TypePtrOutput {
+	return Type(e).ToTypeOutputWithContext(ctx).ToTypePtrOutputWithContext(ctx)
 }
 
-func (e GroupsMemberType) ToStringOutput() pulumi.StringOutput {
+func (e Type) ToStringOutput() pulumi.StringOutput {
 	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
 }
 
-func (e GroupsMemberType) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+func (e Type) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
 	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
 }
 
-func (e GroupsMemberType) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (e Type) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
 }
 
-func (e GroupsMemberType) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+func (e Type) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
 	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
 }
 
-type GroupsMemberTypeOutput struct{ *pulumi.OutputState }
+type TypeOutput struct{ *pulumi.OutputState }
 
-func (GroupsMemberTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupsMemberType)(nil)).Elem()
+func (TypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Type)(nil)).Elem()
 }
 
-func (o GroupsMemberTypeOutput) ToGroupsMemberTypeOutput() GroupsMemberTypeOutput {
+func (o TypeOutput) ToTypeOutput() TypeOutput {
 	return o
 }
 
-func (o GroupsMemberTypeOutput) ToGroupsMemberTypeOutputWithContext(ctx context.Context) GroupsMemberTypeOutput {
+func (o TypeOutput) ToTypeOutputWithContext(ctx context.Context) TypeOutput {
 	return o
 }
 
-func (o GroupsMemberTypeOutput) ToGroupsMemberTypePtrOutput() GroupsMemberTypePtrOutput {
-	return o.ToGroupsMemberTypePtrOutputWithContext(context.Background())
+func (o TypeOutput) ToTypePtrOutput() TypePtrOutput {
+	return o.ToTypePtrOutputWithContext(context.Background())
 }
 
-func (o GroupsMemberTypeOutput) ToGroupsMemberTypePtrOutputWithContext(ctx context.Context) GroupsMemberTypePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GroupsMemberType) *GroupsMemberType {
+func (o TypeOutput) ToTypePtrOutputWithContext(ctx context.Context) TypePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Type) *Type {
 		return &v
-	}).(GroupsMemberTypePtrOutput)
+	}).(TypePtrOutput)
 }
 
-func (o GroupsMemberTypeOutput) ToStringOutput() pulumi.StringOutput {
+func (o TypeOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o GroupsMemberTypeOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e GroupsMemberType) string {
+func (o TypeOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e Type) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o GroupsMemberTypeOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o TypeOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o GroupsMemberTypeOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e GroupsMemberType) *string {
+func (o TypeOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e Type) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type GroupsMemberTypePtrOutput struct{ *pulumi.OutputState }
+type TypePtrOutput struct{ *pulumi.OutputState }
 
-func (GroupsMemberTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GroupsMemberType)(nil)).Elem()
+func (TypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Type)(nil)).Elem()
 }
 
-func (o GroupsMemberTypePtrOutput) ToGroupsMemberTypePtrOutput() GroupsMemberTypePtrOutput {
+func (o TypePtrOutput) ToTypePtrOutput() TypePtrOutput {
 	return o
 }
 
-func (o GroupsMemberTypePtrOutput) ToGroupsMemberTypePtrOutputWithContext(ctx context.Context) GroupsMemberTypePtrOutput {
+func (o TypePtrOutput) ToTypePtrOutputWithContext(ctx context.Context) TypePtrOutput {
 	return o
 }
 
-func (o GroupsMemberTypePtrOutput) Elem() GroupsMemberTypeOutput {
-	return o.ApplyT(func(v *GroupsMemberType) GroupsMemberType {
+func (o TypePtrOutput) Elem() TypeOutput {
+	return o.ApplyT(func(v *Type) Type {
 		if v != nil {
 			return *v
 		}
-		var ret GroupsMemberType
+		var ret Type
 		return ret
-	}).(GroupsMemberTypeOutput)
+	}).(TypeOutput)
 }
 
-func (o GroupsMemberTypePtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o TypePtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o GroupsMemberTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *GroupsMemberType) *string {
+func (o TypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *Type) *string {
 		if e == nil {
 			return nil
 		}
@@ -135,47 +135,47 @@ func (o GroupsMemberTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Cont
 	}).(pulumi.StringPtrOutput)
 }
 
-// GroupsMemberTypeInput is an input type that accepts values of the GroupsMemberType enum
-// A concrete instance of `GroupsMemberTypeInput` can be one of the following:
+// TypeInput is an input type that accepts values of the Type enum
+// A concrete instance of `TypeInput` can be one of the following:
 //
-//	GroupsMemberTypeWorkplaceUser
-type GroupsMemberTypeInput interface {
+//	TypeWorkplaceUser
+type TypeInput interface {
 	pulumi.Input
 
-	ToGroupsMemberTypeOutput() GroupsMemberTypeOutput
-	ToGroupsMemberTypeOutputWithContext(context.Context) GroupsMemberTypeOutput
+	ToTypeOutput() TypeOutput
+	ToTypeOutputWithContext(context.Context) TypeOutput
 }
 
-var groupsMemberTypePtrType = reflect.TypeOf((**GroupsMemberType)(nil)).Elem()
+var typePtrType = reflect.TypeOf((**Type)(nil)).Elem()
 
-type GroupsMemberTypePtrInput interface {
+type TypePtrInput interface {
 	pulumi.Input
 
-	ToGroupsMemberTypePtrOutput() GroupsMemberTypePtrOutput
-	ToGroupsMemberTypePtrOutputWithContext(context.Context) GroupsMemberTypePtrOutput
+	ToTypePtrOutput() TypePtrOutput
+	ToTypePtrOutputWithContext(context.Context) TypePtrOutput
 }
 
-type groupsMemberTypePtr string
+type typePtr string
 
-func GroupsMemberTypePtr(v string) GroupsMemberTypePtrInput {
-	return (*groupsMemberTypePtr)(&v)
+func TypePtr(v string) TypePtrInput {
+	return (*typePtr)(&v)
 }
 
-func (*groupsMemberTypePtr) ElementType() reflect.Type {
-	return groupsMemberTypePtrType
+func (*typePtr) ElementType() reflect.Type {
+	return typePtrType
 }
 
-func (in *groupsMemberTypePtr) ToGroupsMemberTypePtrOutput() GroupsMemberTypePtrOutput {
-	return pulumi.ToOutput(in).(GroupsMemberTypePtrOutput)
+func (in *typePtr) ToTypePtrOutput() TypePtrOutput {
+	return pulumi.ToOutput(in).(TypePtrOutput)
 }
 
-func (in *groupsMemberTypePtr) ToGroupsMemberTypePtrOutputWithContext(ctx context.Context) GroupsMemberTypePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, in).(GroupsMemberTypePtrOutput)
+func (in *typePtr) ToTypePtrOutputWithContext(ctx context.Context) TypePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(TypePtrOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*GroupsMemberTypeInput)(nil)).Elem(), GroupsMemberType("workplace_user"))
-	pulumi.RegisterInputType(reflect.TypeOf((*GroupsMemberTypePtrInput)(nil)).Elem(), GroupsMemberType("workplace_user"))
-	pulumi.RegisterOutputType(GroupsMemberTypeOutput{})
-	pulumi.RegisterOutputType(GroupsMemberTypePtrOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TypeInput)(nil)).Elem(), Type("workplace_user"))
+	pulumi.RegisterInputType(reflect.TypeOf((*TypePtrInput)(nil)).Elem(), Type("workplace_user"))
+	pulumi.RegisterOutputType(TypeOutput{})
+	pulumi.RegisterOutputType(TypePtrOutput{})
 }

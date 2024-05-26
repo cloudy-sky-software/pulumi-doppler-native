@@ -19,13 +19,13 @@ class SyncsArgs:
                  data: Any,
                  integration: pulumi.Input[str],
                  await_initial_sync: Optional[pulumi.Input[bool]] = None,
-                 import_option: Optional[pulumi.Input['SyncsImportOption']] = None):
+                 import_option: Optional[pulumi.Input['ImportOption']] = None):
         """
         The set of arguments for constructing a Syncs resource.
         :param Any data: Configuration data for the sync
         :param pulumi.Input[str] integration: The integration slug which the sync will use
         :param pulumi.Input[bool] await_initial_sync: Causes sync creation to wait for the initial sync to complete before returning.
-        :param pulumi.Input['SyncsImportOption'] import_option: An option indicating if and how Doppler should attempt to import secrets from the sync destination
+        :param pulumi.Input['ImportOption'] import_option: An option indicating if and how Doppler should attempt to import secrets from the sync destination
         """
         pulumi.set(__self__, "data", data)
         pulumi.set(__self__, "integration", integration)
@@ -76,14 +76,14 @@ class SyncsArgs:
 
     @property
     @pulumi.getter(name="importOption")
-    def import_option(self) -> Optional[pulumi.Input['SyncsImportOption']]:
+    def import_option(self) -> Optional[pulumi.Input['ImportOption']]:
         """
         An option indicating if and how Doppler should attempt to import secrets from the sync destination
         """
         return pulumi.get(self, "import_option")
 
     @import_option.setter
-    def import_option(self, value: Optional[pulumi.Input['SyncsImportOption']]):
+    def import_option(self, value: Optional[pulumi.Input['ImportOption']]):
         pulumi.set(self, "import_option", value)
 
 
@@ -94,7 +94,7 @@ class Syncs(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  await_initial_sync: Optional[pulumi.Input[bool]] = None,
                  data: Optional[Any] = None,
-                 import_option: Optional[pulumi.Input['SyncsImportOption']] = None,
+                 import_option: Optional[pulumi.Input['ImportOption']] = None,
                  integration: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -103,7 +103,7 @@ class Syncs(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] await_initial_sync: Causes sync creation to wait for the initial sync to complete before returning.
         :param Any data: Configuration data for the sync
-        :param pulumi.Input['SyncsImportOption'] import_option: An option indicating if and how Doppler should attempt to import secrets from the sync destination
+        :param pulumi.Input['ImportOption'] import_option: An option indicating if and how Doppler should attempt to import secrets from the sync destination
         :param pulumi.Input[str] integration: The integration slug which the sync will use
         """
         ...
@@ -131,7 +131,7 @@ class Syncs(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  await_initial_sync: Optional[pulumi.Input[bool]] = None,
                  data: Optional[Any] = None,
-                 import_option: Optional[pulumi.Input['SyncsImportOption']] = None,
+                 import_option: Optional[pulumi.Input['ImportOption']] = None,
                  integration: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -202,7 +202,7 @@ class Syncs(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="importOption")
-    def import_option(self) -> pulumi.Output[Optional['SyncsImportOption']]:
+    def import_option(self) -> pulumi.Output[Optional['ImportOption']]:
         """
         An option indicating if and how Doppler should attempt to import secrets from the sync destination
         """

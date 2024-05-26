@@ -16,7 +16,7 @@ __all__ = ['GroupsMemberArgs', 'GroupsMember']
 class GroupsMemberArgs:
     def __init__(__self__, *,
                  slug: pulumi.Input[str],
-                 type: pulumi.Input['GroupsMemberType']):
+                 type: pulumi.Input['Type']):
         """
         The set of arguments for constructing a GroupsMember resource.
         :param pulumi.Input[str] slug: The group's slug
@@ -38,11 +38,11 @@ class GroupsMemberArgs:
 
     @property
     @pulumi.getter
-    def type(self) -> pulumi.Input['GroupsMemberType']:
+    def type(self) -> pulumi.Input['Type']:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: pulumi.Input['GroupsMemberType']):
+    def type(self, value: pulumi.Input['Type']):
         pulumi.set(self, "type", value)
 
 
@@ -52,7 +52,7 @@ class GroupsMember(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  slug: Optional[pulumi.Input[str]] = None,
-                 type: Optional[pulumi.Input['GroupsMemberType']] = None,
+                 type: Optional[pulumi.Input['Type']] = None,
                  __props__=None):
         """
         Create a GroupsMember resource with the given unique name, props, and options.
@@ -84,7 +84,7 @@ class GroupsMember(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  slug: Optional[pulumi.Input[str]] = None,
-                 type: Optional[pulumi.Input['GroupsMemberType']] = None,
+                 type: Optional[pulumi.Input['Type']] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -136,6 +136,6 @@ class GroupsMember(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def type(self) -> pulumi.Output['GroupsMemberType']:
+    def type(self) -> pulumi.Output['Type']:
         return pulumi.get(self, "type")
 

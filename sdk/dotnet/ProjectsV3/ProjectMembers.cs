@@ -34,7 +34,7 @@ namespace Pulumi.DopplerNative.ProjectsV3
         public Output<string> Slug { get; private set; } = null!;
 
         [Output("type")]
-        public Output<Pulumi.DopplerNative.ProjectsV3.ProjectMembersType> Type { get; private set; } = null!;
+        public Output<Pulumi.DopplerNative.ProjectsV3.Type> Type { get; private set; } = null!;
 
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Pulumi.DopplerNative.ProjectsV3
         public Input<string> Slug { get; set; } = null!;
 
         [Input("type", required: true)]
-        public Input<Pulumi.DopplerNative.ProjectsV3.ProjectMembersType> Type { get; set; } = null!;
+        public Input<Pulumi.DopplerNative.ProjectsV3.Type> Type { get; set; } = null!;
 
         public ProjectMembersArgs()
         {

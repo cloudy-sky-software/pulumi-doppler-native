@@ -61,14 +61,14 @@ export namespace configs {
          * The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler.
          */
         export interface ChangeRequestsItemPropertiesOriginalValueTypePropertiesArgs {
-            type?: pulumi.Input<enums.configs.v3.SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType>;
+            type?: pulumi.Input<enums.configs.v3.ChangeRequestsItemPropertiesOriginalValueTypePropertiesType>;
         }
 
         /**
          * The default valueType (string) will result in no validations being applied.
          */
         export interface ChangeRequestsItemPropertiesValueTypePropertiesArgs {
-            type?: pulumi.Input<enums.configs.v3.SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType>;
+            type?: pulumi.Input<enums.configs.v3.ChangeRequestsItemPropertiesValueTypePropertiesType>;
         }
 
         export interface SecretsPropertiesArgs {
@@ -129,7 +129,7 @@ export namespace webhooks {
              * Used when type = Bearer
              */
             token?: pulumi.Input<string>;
-            type?: pulumi.Input<enums.webhooks.v3.WebhooksAuthenticationPropertiesType>;
+            type?: pulumi.Input<enums.webhooks.v3.AuthenticationPropertiesType>;
             /**
              * Used when type = Basic
              */

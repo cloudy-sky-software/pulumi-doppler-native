@@ -2,45 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 
-export const SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType = {
-    String: "string",
-    Json: "json",
-    Json5: "json5",
-    Boolean: "boolean",
-    Integer: "integer",
-    Decimal: "decimal",
-    Email: "email",
-    Url: "url",
-    Uuidv4: "uuidv4",
-    Cuid2: "cuid2",
-    Ulid: "ulid",
-    Datetime8601: "datetime8601",
-    Date8601: "date8601",
-    Yaml: "yaml",
-} as const;
-
-export type SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType = (typeof SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType)[keyof typeof SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType];
-
-export const SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType = {
-    String: "string",
-    Json: "json",
-    Json5: "json5",
-    Boolean: "boolean",
-    Integer: "integer",
-    Decimal: "decimal",
-    Email: "email",
-    Url: "url",
-    Uuidv4: "uuidv4",
-    Cuid2: "cuid2",
-    Ulid: "ulid",
-    Datetime8601: "datetime8601",
-    Date8601: "date8601",
-    Yaml: "yaml",
-} as const;
-
-export type SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType = (typeof SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType)[keyof typeof SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType];
-
-export const ServiceTokensAccess = {
+export const Access = {
     Read: "read",
     Readwrite: "read/write",
 } as const;
@@ -48,9 +10,47 @@ export const ServiceTokensAccess = {
 /**
  * Token's capabilities.
  */
-export type ServiceTokensAccess = (typeof ServiceTokensAccess)[keyof typeof ServiceTokensAccess];
+export type Access = (typeof Access)[keyof typeof Access];
 
-export const SyncsImportOption = {
+export const ChangeRequestsItemPropertiesOriginalValueTypePropertiesType = {
+    String: "string",
+    Json: "json",
+    Json5: "json5",
+    Boolean: "boolean",
+    Integer: "integer",
+    Decimal: "decimal",
+    Email: "email",
+    Url: "url",
+    Uuidv4: "uuidv4",
+    Cuid2: "cuid2",
+    Ulid: "ulid",
+    Datetime8601: "datetime8601",
+    Date8601: "date8601",
+    Yaml: "yaml",
+} as const;
+
+export type ChangeRequestsItemPropertiesOriginalValueTypePropertiesType = (typeof ChangeRequestsItemPropertiesOriginalValueTypePropertiesType)[keyof typeof ChangeRequestsItemPropertiesOriginalValueTypePropertiesType];
+
+export const ChangeRequestsItemPropertiesValueTypePropertiesType = {
+    String: "string",
+    Json: "json",
+    Json5: "json5",
+    Boolean: "boolean",
+    Integer: "integer",
+    Decimal: "decimal",
+    Email: "email",
+    Url: "url",
+    Uuidv4: "uuidv4",
+    Cuid2: "cuid2",
+    Ulid: "ulid",
+    Datetime8601: "datetime8601",
+    Date8601: "date8601",
+    Yaml: "yaml",
+} as const;
+
+export type ChangeRequestsItemPropertiesValueTypePropertiesType = (typeof ChangeRequestsItemPropertiesValueTypePropertiesType)[keyof typeof ChangeRequestsItemPropertiesValueTypePropertiesType];
+
+export const ImportOption = {
     None: "none",
     PreferDoppler: "prefer_doppler",
     PreferIntegration: "prefer_integration",
@@ -59,4 +59,4 @@ export const SyncsImportOption = {
 /**
  * An option indicating if and how Doppler should attempt to import secrets from the sync destination
  */
-export type SyncsImportOption = (typeof SyncsImportOption)[keyof typeof SyncsImportOption];
+export type ImportOption = (typeof ImportOption)[keyof typeof ImportOption];

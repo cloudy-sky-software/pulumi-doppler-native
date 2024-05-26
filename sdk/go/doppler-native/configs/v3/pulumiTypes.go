@@ -206,7 +206,7 @@ func (o ChangeRequestsItemPropertiesArrayOutput) Index(i pulumi.IntInput) Change
 
 // The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler.
 type ChangeRequestsItemPropertiesOriginalValueTypeProperties struct {
-	Type *SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType `pulumi:"type"`
+	Type *ChangeRequestsItemPropertiesOriginalValueTypePropertiesType `pulumi:"type"`
 }
 
 // ChangeRequestsItemPropertiesOriginalValueTypePropertiesInput is an input type that accepts ChangeRequestsItemPropertiesOriginalValueTypePropertiesArgs and ChangeRequestsItemPropertiesOriginalValueTypePropertiesOutput values.
@@ -222,7 +222,7 @@ type ChangeRequestsItemPropertiesOriginalValueTypePropertiesInput interface {
 
 // The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler.
 type ChangeRequestsItemPropertiesOriginalValueTypePropertiesArgs struct {
-	Type SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrInput `pulumi:"type"`
+	Type ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrInput `pulumi:"type"`
 }
 
 func (ChangeRequestsItemPropertiesOriginalValueTypePropertiesArgs) ElementType() reflect.Type {
@@ -303,10 +303,10 @@ func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesOutput) ToChangeR
 	}).(ChangeRequestsItemPropertiesOriginalValueTypePropertiesPtrOutput)
 }
 
-func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesOutput) Type() SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
-	return o.ApplyT(func(v ChangeRequestsItemPropertiesOriginalValueTypeProperties) *SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType {
+func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesOutput) Type() ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
+	return o.ApplyT(func(v ChangeRequestsItemPropertiesOriginalValueTypeProperties) *ChangeRequestsItemPropertiesOriginalValueTypePropertiesType {
 		return v.Type
-	}).(SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput)
+	}).(ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput)
 }
 
 type ChangeRequestsItemPropertiesOriginalValueTypePropertiesPtrOutput struct{ *pulumi.OutputState }
@@ -333,18 +333,18 @@ func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesPtrOutput) Elem()
 	}).(ChangeRequestsItemPropertiesOriginalValueTypePropertiesOutput)
 }
 
-func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesPtrOutput) Type() SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
-	return o.ApplyT(func(v *ChangeRequestsItemPropertiesOriginalValueTypeProperties) *SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType {
+func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesPtrOutput) Type() ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
+	return o.ApplyT(func(v *ChangeRequestsItemPropertiesOriginalValueTypeProperties) *ChangeRequestsItemPropertiesOriginalValueTypePropertiesType {
 		if v == nil {
 			return nil
 		}
 		return v.Type
-	}).(SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput)
+	}).(ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput)
 }
 
 // The default valueType (string) will result in no validations being applied.
 type ChangeRequestsItemPropertiesValueTypeProperties struct {
-	Type *SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType `pulumi:"type"`
+	Type *ChangeRequestsItemPropertiesValueTypePropertiesType `pulumi:"type"`
 }
 
 // ChangeRequestsItemPropertiesValueTypePropertiesInput is an input type that accepts ChangeRequestsItemPropertiesValueTypePropertiesArgs and ChangeRequestsItemPropertiesValueTypePropertiesOutput values.
@@ -360,7 +360,7 @@ type ChangeRequestsItemPropertiesValueTypePropertiesInput interface {
 
 // The default valueType (string) will result in no validations being applied.
 type ChangeRequestsItemPropertiesValueTypePropertiesArgs struct {
-	Type SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrInput `pulumi:"type"`
+	Type ChangeRequestsItemPropertiesValueTypePropertiesTypePtrInput `pulumi:"type"`
 }
 
 func (ChangeRequestsItemPropertiesValueTypePropertiesArgs) ElementType() reflect.Type {
@@ -441,10 +441,10 @@ func (o ChangeRequestsItemPropertiesValueTypePropertiesOutput) ToChangeRequestsI
 	}).(ChangeRequestsItemPropertiesValueTypePropertiesPtrOutput)
 }
 
-func (o ChangeRequestsItemPropertiesValueTypePropertiesOutput) Type() SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
-	return o.ApplyT(func(v ChangeRequestsItemPropertiesValueTypeProperties) *SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType {
+func (o ChangeRequestsItemPropertiesValueTypePropertiesOutput) Type() ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
+	return o.ApplyT(func(v ChangeRequestsItemPropertiesValueTypeProperties) *ChangeRequestsItemPropertiesValueTypePropertiesType {
 		return v.Type
-	}).(SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput)
+	}).(ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput)
 }
 
 type ChangeRequestsItemPropertiesValueTypePropertiesPtrOutput struct{ *pulumi.OutputState }
@@ -471,13 +471,13 @@ func (o ChangeRequestsItemPropertiesValueTypePropertiesPtrOutput) Elem() ChangeR
 	}).(ChangeRequestsItemPropertiesValueTypePropertiesOutput)
 }
 
-func (o ChangeRequestsItemPropertiesValueTypePropertiesPtrOutput) Type() SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
-	return o.ApplyT(func(v *ChangeRequestsItemPropertiesValueTypeProperties) *SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType {
+func (o ChangeRequestsItemPropertiesValueTypePropertiesPtrOutput) Type() ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
+	return o.ApplyT(func(v *ChangeRequestsItemPropertiesValueTypeProperties) *ChangeRequestsItemPropertiesValueTypePropertiesType {
 		if v == nil {
 			return nil
 		}
 		return v.Type
-	}).(SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput)
+	}).(ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput)
 }
 
 type ConfigProperties struct {

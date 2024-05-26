@@ -5,11 +5,11 @@
 from enum import Enum
 
 __all__ = [
-    'ProjectMembersType',
+    'Type',
 ]
 
 
-class ProjectMembersType(str, Enum):
+class Type(str, Enum):
     WORKPLACE_USER = "workplace_user"
     GROUP = "group"
     INVITE = "invite"

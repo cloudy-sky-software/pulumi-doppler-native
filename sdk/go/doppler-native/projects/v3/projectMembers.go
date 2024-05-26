@@ -21,8 +21,8 @@ type ProjectMembers struct {
 	// Identifier of the project role
 	Role pulumi.StringPtrOutput `pulumi:"role"`
 	// Member's slug
-	Slug pulumi.StringOutput      `pulumi:"slug"`
-	Type ProjectMembersTypeOutput `pulumi:"type"`
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	Type TypeOutput          `pulumi:"type"`
 }
 
 // NewProjectMembers registers a new resource with the given unique name, arguments, and options.
@@ -76,8 +76,8 @@ type projectMembersArgs struct {
 	// Identifier of the project role
 	Role *string `pulumi:"role"`
 	// Member's slug
-	Slug string             `pulumi:"slug"`
-	Type ProjectMembersType `pulumi:"type"`
+	Slug string `pulumi:"slug"`
+	Type Type   `pulumi:"type"`
 }
 
 // The set of arguments for constructing a ProjectMembers resource.
@@ -88,7 +88,7 @@ type ProjectMembersArgs struct {
 	Role pulumi.StringPtrInput
 	// Member's slug
 	Slug pulumi.StringInput
-	Type ProjectMembersTypeInput
+	Type TypeInput
 }
 
 func (ProjectMembersArgs) ElementType() reflect.Type {
@@ -147,8 +147,8 @@ func (o ProjectMembersOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectMembers) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
-func (o ProjectMembersOutput) Type() ProjectMembersTypeOutput {
-	return o.ApplyT(func(v *ProjectMembers) ProjectMembersTypeOutput { return v.Type }).(ProjectMembersTypeOutput)
+func (o ProjectMembersOutput) Type() TypeOutput {
+	return o.ApplyT(func(v *ProjectMembers) TypeOutput { return v.Type }).(TypeOutput)
 }
 
 func init() {

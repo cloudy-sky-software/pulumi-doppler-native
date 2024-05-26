@@ -10,503 +10,125 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-type SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType string
-
-const (
-	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeString       = SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("string")
-	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeJson         = SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("json")
-	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeJson5        = SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("json5")
-	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeBoolean      = SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("boolean")
-	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeInteger      = SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("integer")
-	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeDecimal      = SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("decimal")
-	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeEmail        = SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("email")
-	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeUrl          = SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("url")
-	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeUuidv4       = SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("uuidv4")
-	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeCuid2        = SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("cuid2")
-	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeUlid         = SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("ulid")
-	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeDatetime8601 = SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("datetime8601")
-	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeDate8601     = SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("date8601")
-	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeYaml         = SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("yaml")
-)
-
-func (SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType)(nil)).Elem()
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput() SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput {
-	return pulumi.ToOutput(e).(SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput)
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutputWithContext(ctx context.Context) SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput {
-	return pulumi.ToOutputWithContext(ctx, e).(SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput)
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput() SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
-	return e.ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(context.Background())
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
-	return SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType(e).ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutputWithContext(ctx).ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(ctx)
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToStringOutput() pulumi.StringOutput {
-	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToStringPtrOutput() pulumi.StringPtrOutput {
-	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
-}
-
-type SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput struct{ *pulumi.OutputState }
-
-func (SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType)(nil)).Elem()
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput() SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput {
-	return o
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutputWithContext(ctx context.Context) SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput {
-	return o
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput() SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
-	return o.ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(context.Background())
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType) *SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType {
-		return &v
-	}).(SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput)
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToStringOutput() pulumi.StringOutput {
-	return o.ToStringOutputWithContext(context.Background())
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType) string {
-		return string(e)
-	}).(pulumi.StringOutput)
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
-	return o.ToStringPtrOutputWithContext(context.Background())
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType) *string {
-		v := string(e)
-		return &v
-	}).(pulumi.StringPtrOutput)
-}
-
-type SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput struct{ *pulumi.OutputState }
-
-func (SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType)(nil)).Elem()
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput) ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput() SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
-	return o
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput) ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
-	return o
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput) Elem() SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput {
-	return o.ApplyT(func(v *SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType) SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType {
-		if v != nil {
-			return *v
-		}
-		var ret SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType
-		return ret
-	}).(SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput)
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
-	return o.ToStringPtrOutputWithContext(context.Background())
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType) *string {
-		if e == nil {
-			return nil
-		}
-		v := string(*e)
-		return &v
-	}).(pulumi.StringPtrOutput)
-}
-
-// SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeInput is an input type that accepts values of the SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType enum
-// A concrete instance of `SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeInput` can be one of the following:
-//
-//	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeString
-//	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeJson
-//	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeJson5
-//	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeBoolean
-//	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeInteger
-//	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeDecimal
-//	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeEmail
-//	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeUrl
-//	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeUuidv4
-//	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeCuid2
-//	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeUlid
-//	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeDatetime8601
-//	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeDate8601
-//	SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeYaml
-type SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeInput interface {
-	pulumi.Input
-
-	ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput() SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput
-	ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutputWithContext(context.Context) SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput
-}
-
-var secretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrType = reflect.TypeOf((**SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType)(nil)).Elem()
-
-type SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrInput interface {
-	pulumi.Input
-
-	ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput() SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput
-	ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(context.Context) SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput
-}
-
-type secretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtr string
-
-func SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtr(v string) SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrInput {
-	return (*secretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtr)(&v)
-}
-
-func (*secretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtr) ElementType() reflect.Type {
-	return secretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrType
-}
-
-func (in *secretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtr) ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput() SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
-	return pulumi.ToOutput(in).(SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput)
-}
-
-func (in *secretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtr) ToSecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, in).(SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput)
-}
-
-type SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType string
-
-const (
-	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeString       = SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("string")
-	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeJson         = SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("json")
-	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeJson5        = SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("json5")
-	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeBoolean      = SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("boolean")
-	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeInteger      = SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("integer")
-	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeDecimal      = SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("decimal")
-	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeEmail        = SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("email")
-	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeUrl          = SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("url")
-	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeUuidv4       = SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("uuidv4")
-	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeCuid2        = SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("cuid2")
-	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeUlid         = SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("ulid")
-	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeDatetime8601 = SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("datetime8601")
-	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeDate8601     = SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("date8601")
-	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeYaml         = SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("yaml")
-)
-
-func (SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType)(nil)).Elem()
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType) ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput() SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput {
-	return pulumi.ToOutput(e).(SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput)
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType) ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutputWithContext(ctx context.Context) SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput {
-	return pulumi.ToOutputWithContext(ctx, e).(SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput)
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType) ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput() SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
-	return e.ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(context.Background())
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType) ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
-	return SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType(e).ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutputWithContext(ctx).ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(ctx)
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType) ToStringOutput() pulumi.StringOutput {
-	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType) ToStringPtrOutput() pulumi.StringPtrOutput {
-	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
-}
-
-func (e SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
-}
-
-type SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput struct{ *pulumi.OutputState }
-
-func (SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType)(nil)).Elem()
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput() SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput {
-	return o
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutputWithContext(ctx context.Context) SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput {
-	return o
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput() SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
-	return o.ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(context.Background())
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType) *SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType {
-		return &v
-	}).(SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput)
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToStringOutput() pulumi.StringOutput {
-	return o.ToStringOutputWithContext(context.Background())
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType) string {
-		return string(e)
-	}).(pulumi.StringOutput)
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
-	return o.ToStringPtrOutputWithContext(context.Background())
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType) *string {
-		v := string(e)
-		return &v
-	}).(pulumi.StringPtrOutput)
-}
-
-type SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput struct{ *pulumi.OutputState }
-
-func (SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType)(nil)).Elem()
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput) ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput() SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
-	return o
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput) ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
-	return o
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput) Elem() SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput {
-	return o.ApplyT(func(v *SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType) SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType {
-		if v != nil {
-			return *v
-		}
-		var ret SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType
-		return ret
-	}).(SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput)
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
-	return o.ToStringPtrOutputWithContext(context.Background())
-}
-
-func (o SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType) *string {
-		if e == nil {
-			return nil
-		}
-		v := string(*e)
-		return &v
-	}).(pulumi.StringPtrOutput)
-}
-
-// SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeInput is an input type that accepts values of the SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType enum
-// A concrete instance of `SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeInput` can be one of the following:
-//
-//	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeString
-//	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeJson
-//	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeJson5
-//	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeBoolean
-//	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeInteger
-//	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeDecimal
-//	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeEmail
-//	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeUrl
-//	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeUuidv4
-//	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeCuid2
-//	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeUlid
-//	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeDatetime8601
-//	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeDate8601
-//	SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeYaml
-type SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeInput interface {
-	pulumi.Input
-
-	ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput() SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput
-	ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutputWithContext(context.Context) SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput
-}
-
-var secretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrType = reflect.TypeOf((**SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType)(nil)).Elem()
-
-type SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrInput interface {
-	pulumi.Input
-
-	ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput() SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput
-	ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(context.Context) SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput
-}
-
-type secretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtr string
-
-func SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtr(v string) SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrInput {
-	return (*secretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtr)(&v)
-}
-
-func (*secretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtr) ElementType() reflect.Type {
-	return secretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrType
-}
-
-func (in *secretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtr) ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput() SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
-	return pulumi.ToOutput(in).(SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput)
-}
-
-func (in *secretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtr) ToSecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, in).(SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput)
-}
-
 // Token's capabilities.
-type ServiceTokensAccess string
+type Access string
 
 const (
-	ServiceTokensAccessRead      = ServiceTokensAccess("read")
-	ServiceTokensAccessReadwrite = ServiceTokensAccess("read/write")
+	AccessRead      = Access("read")
+	AccessReadwrite = Access("read/write")
 )
 
-func (ServiceTokensAccess) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceTokensAccess)(nil)).Elem()
+func (Access) ElementType() reflect.Type {
+	return reflect.TypeOf((*Access)(nil)).Elem()
 }
 
-func (e ServiceTokensAccess) ToServiceTokensAccessOutput() ServiceTokensAccessOutput {
-	return pulumi.ToOutput(e).(ServiceTokensAccessOutput)
+func (e Access) ToAccessOutput() AccessOutput {
+	return pulumi.ToOutput(e).(AccessOutput)
 }
 
-func (e ServiceTokensAccess) ToServiceTokensAccessOutputWithContext(ctx context.Context) ServiceTokensAccessOutput {
-	return pulumi.ToOutputWithContext(ctx, e).(ServiceTokensAccessOutput)
+func (e Access) ToAccessOutputWithContext(ctx context.Context) AccessOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(AccessOutput)
 }
 
-func (e ServiceTokensAccess) ToServiceTokensAccessPtrOutput() ServiceTokensAccessPtrOutput {
-	return e.ToServiceTokensAccessPtrOutputWithContext(context.Background())
+func (e Access) ToAccessPtrOutput() AccessPtrOutput {
+	return e.ToAccessPtrOutputWithContext(context.Background())
 }
 
-func (e ServiceTokensAccess) ToServiceTokensAccessPtrOutputWithContext(ctx context.Context) ServiceTokensAccessPtrOutput {
-	return ServiceTokensAccess(e).ToServiceTokensAccessOutputWithContext(ctx).ToServiceTokensAccessPtrOutputWithContext(ctx)
+func (e Access) ToAccessPtrOutputWithContext(ctx context.Context) AccessPtrOutput {
+	return Access(e).ToAccessOutputWithContext(ctx).ToAccessPtrOutputWithContext(ctx)
 }
 
-func (e ServiceTokensAccess) ToStringOutput() pulumi.StringOutput {
+func (e Access) ToStringOutput() pulumi.StringOutput {
 	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
 }
 
-func (e ServiceTokensAccess) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+func (e Access) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
 	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
 }
 
-func (e ServiceTokensAccess) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (e Access) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
 }
 
-func (e ServiceTokensAccess) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+func (e Access) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
 	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
 }
 
-type ServiceTokensAccessOutput struct{ *pulumi.OutputState }
+type AccessOutput struct{ *pulumi.OutputState }
 
-func (ServiceTokensAccessOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceTokensAccess)(nil)).Elem()
+func (AccessOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Access)(nil)).Elem()
 }
 
-func (o ServiceTokensAccessOutput) ToServiceTokensAccessOutput() ServiceTokensAccessOutput {
+func (o AccessOutput) ToAccessOutput() AccessOutput {
 	return o
 }
 
-func (o ServiceTokensAccessOutput) ToServiceTokensAccessOutputWithContext(ctx context.Context) ServiceTokensAccessOutput {
+func (o AccessOutput) ToAccessOutputWithContext(ctx context.Context) AccessOutput {
 	return o
 }
 
-func (o ServiceTokensAccessOutput) ToServiceTokensAccessPtrOutput() ServiceTokensAccessPtrOutput {
-	return o.ToServiceTokensAccessPtrOutputWithContext(context.Background())
+func (o AccessOutput) ToAccessPtrOutput() AccessPtrOutput {
+	return o.ToAccessPtrOutputWithContext(context.Background())
 }
 
-func (o ServiceTokensAccessOutput) ToServiceTokensAccessPtrOutputWithContext(ctx context.Context) ServiceTokensAccessPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceTokensAccess) *ServiceTokensAccess {
+func (o AccessOutput) ToAccessPtrOutputWithContext(ctx context.Context) AccessPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Access) *Access {
 		return &v
-	}).(ServiceTokensAccessPtrOutput)
+	}).(AccessPtrOutput)
 }
 
-func (o ServiceTokensAccessOutput) ToStringOutput() pulumi.StringOutput {
+func (o AccessOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o ServiceTokensAccessOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e ServiceTokensAccess) string {
+func (o AccessOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e Access) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o ServiceTokensAccessOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o AccessOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o ServiceTokensAccessOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e ServiceTokensAccess) *string {
+func (o AccessOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e Access) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type ServiceTokensAccessPtrOutput struct{ *pulumi.OutputState }
+type AccessPtrOutput struct{ *pulumi.OutputState }
 
-func (ServiceTokensAccessPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ServiceTokensAccess)(nil)).Elem()
+func (AccessPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Access)(nil)).Elem()
 }
 
-func (o ServiceTokensAccessPtrOutput) ToServiceTokensAccessPtrOutput() ServiceTokensAccessPtrOutput {
+func (o AccessPtrOutput) ToAccessPtrOutput() AccessPtrOutput {
 	return o
 }
 
-func (o ServiceTokensAccessPtrOutput) ToServiceTokensAccessPtrOutputWithContext(ctx context.Context) ServiceTokensAccessPtrOutput {
+func (o AccessPtrOutput) ToAccessPtrOutputWithContext(ctx context.Context) AccessPtrOutput {
 	return o
 }
 
-func (o ServiceTokensAccessPtrOutput) Elem() ServiceTokensAccessOutput {
-	return o.ApplyT(func(v *ServiceTokensAccess) ServiceTokensAccess {
+func (o AccessPtrOutput) Elem() AccessOutput {
+	return o.ApplyT(func(v *Access) Access {
 		if v != nil {
 			return *v
 		}
-		var ret ServiceTokensAccess
+		var ret Access
 		return ret
-	}).(ServiceTokensAccessOutput)
+	}).(AccessOutput)
 }
 
-func (o ServiceTokensAccessPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o AccessPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o ServiceTokensAccessPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ServiceTokensAccess) *string {
+func (o AccessPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *Access) *string {
 		if e == nil {
 			return nil
 		}
@@ -515,165 +137,543 @@ func (o ServiceTokensAccessPtrOutput) ToStringPtrOutputWithContext(ctx context.C
 	}).(pulumi.StringPtrOutput)
 }
 
-// ServiceTokensAccessInput is an input type that accepts values of the ServiceTokensAccess enum
-// A concrete instance of `ServiceTokensAccessInput` can be one of the following:
+// AccessInput is an input type that accepts values of the Access enum
+// A concrete instance of `AccessInput` can be one of the following:
 //
-//	ServiceTokensAccessRead
-//	ServiceTokensAccessReadwrite
-type ServiceTokensAccessInput interface {
+//	AccessRead
+//	AccessReadwrite
+type AccessInput interface {
 	pulumi.Input
 
-	ToServiceTokensAccessOutput() ServiceTokensAccessOutput
-	ToServiceTokensAccessOutputWithContext(context.Context) ServiceTokensAccessOutput
+	ToAccessOutput() AccessOutput
+	ToAccessOutputWithContext(context.Context) AccessOutput
 }
 
-var serviceTokensAccessPtrType = reflect.TypeOf((**ServiceTokensAccess)(nil)).Elem()
+var accessPtrType = reflect.TypeOf((**Access)(nil)).Elem()
 
-type ServiceTokensAccessPtrInput interface {
+type AccessPtrInput interface {
 	pulumi.Input
 
-	ToServiceTokensAccessPtrOutput() ServiceTokensAccessPtrOutput
-	ToServiceTokensAccessPtrOutputWithContext(context.Context) ServiceTokensAccessPtrOutput
+	ToAccessPtrOutput() AccessPtrOutput
+	ToAccessPtrOutputWithContext(context.Context) AccessPtrOutput
 }
 
-type serviceTokensAccessPtr string
+type accessPtr string
 
-func ServiceTokensAccessPtr(v string) ServiceTokensAccessPtrInput {
-	return (*serviceTokensAccessPtr)(&v)
+func AccessPtr(v string) AccessPtrInput {
+	return (*accessPtr)(&v)
 }
 
-func (*serviceTokensAccessPtr) ElementType() reflect.Type {
-	return serviceTokensAccessPtrType
+func (*accessPtr) ElementType() reflect.Type {
+	return accessPtrType
 }
 
-func (in *serviceTokensAccessPtr) ToServiceTokensAccessPtrOutput() ServiceTokensAccessPtrOutput {
-	return pulumi.ToOutput(in).(ServiceTokensAccessPtrOutput)
+func (in *accessPtr) ToAccessPtrOutput() AccessPtrOutput {
+	return pulumi.ToOutput(in).(AccessPtrOutput)
 }
 
-func (in *serviceTokensAccessPtr) ToServiceTokensAccessPtrOutputWithContext(ctx context.Context) ServiceTokensAccessPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, in).(ServiceTokensAccessPtrOutput)
+func (in *accessPtr) ToAccessPtrOutputWithContext(ctx context.Context) AccessPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(AccessPtrOutput)
+}
+
+type ChangeRequestsItemPropertiesOriginalValueTypePropertiesType string
+
+const (
+	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeString       = ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("string")
+	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeJson         = ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("json")
+	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeJson5        = ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("json5")
+	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeBoolean      = ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("boolean")
+	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeInteger      = ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("integer")
+	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeDecimal      = ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("decimal")
+	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeEmail        = ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("email")
+	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeUrl          = ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("url")
+	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeUuidv4       = ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("uuidv4")
+	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeCuid2        = ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("cuid2")
+	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeUlid         = ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("ulid")
+	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeDatetime8601 = ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("datetime8601")
+	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeDate8601     = ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("date8601")
+	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeYaml         = ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("yaml")
+)
+
+func (ChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ElementType() reflect.Type {
+	return reflect.TypeOf((*ChangeRequestsItemPropertiesOriginalValueTypePropertiesType)(nil)).Elem()
+}
+
+func (e ChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput() ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput {
+	return pulumi.ToOutput(e).(ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput)
+}
+
+func (e ChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutputWithContext(ctx context.Context) ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput)
+}
+
+func (e ChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput() ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
+	return e.ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(context.Background())
+}
+
+func (e ChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
+	return ChangeRequestsItemPropertiesOriginalValueTypePropertiesType(e).ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutputWithContext(ctx).ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(ctx)
+}
+
+func (e ChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput struct{ *pulumi.OutputState }
+
+func (ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ChangeRequestsItemPropertiesOriginalValueTypePropertiesType)(nil)).Elem()
+}
+
+func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput() ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput {
+	return o
+}
+
+func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutputWithContext(ctx context.Context) ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput {
+	return o
+}
+
+func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput() ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
+	return o.ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(context.Background())
+}
+
+func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ChangeRequestsItemPropertiesOriginalValueTypePropertiesType) *ChangeRequestsItemPropertiesOriginalValueTypePropertiesType {
+		return &v
+	}).(ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput)
+}
+
+func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ChangeRequestsItemPropertiesOriginalValueTypePropertiesType) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ChangeRequestsItemPropertiesOriginalValueTypePropertiesType) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput struct{ *pulumi.OutputState }
+
+func (ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ChangeRequestsItemPropertiesOriginalValueTypePropertiesType)(nil)).Elem()
+}
+
+func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput) ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput() ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
+	return o
+}
+
+func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput) ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
+	return o
+}
+
+func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput) Elem() ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput {
+	return o.ApplyT(func(v *ChangeRequestsItemPropertiesOriginalValueTypePropertiesType) ChangeRequestsItemPropertiesOriginalValueTypePropertiesType {
+		if v != nil {
+			return *v
+		}
+		var ret ChangeRequestsItemPropertiesOriginalValueTypePropertiesType
+		return ret
+	}).(ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput)
+}
+
+func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ChangeRequestsItemPropertiesOriginalValueTypePropertiesType) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeInput is an input type that accepts values of the ChangeRequestsItemPropertiesOriginalValueTypePropertiesType enum
+// A concrete instance of `ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeInput` can be one of the following:
+//
+//	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeString
+//	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeJson
+//	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeJson5
+//	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeBoolean
+//	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeInteger
+//	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeDecimal
+//	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeEmail
+//	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeUrl
+//	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeUuidv4
+//	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeCuid2
+//	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeUlid
+//	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeDatetime8601
+//	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeDate8601
+//	ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeYaml
+type ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeInput interface {
+	pulumi.Input
+
+	ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput() ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput
+	ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutputWithContext(context.Context) ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput
+}
+
+var changeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrType = reflect.TypeOf((**ChangeRequestsItemPropertiesOriginalValueTypePropertiesType)(nil)).Elem()
+
+type ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrInput interface {
+	pulumi.Input
+
+	ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput() ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput
+	ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(context.Context) ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput
+}
+
+type changeRequestsItemPropertiesOriginalValueTypePropertiesTypePtr string
+
+func ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtr(v string) ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrInput {
+	return (*changeRequestsItemPropertiesOriginalValueTypePropertiesTypePtr)(&v)
+}
+
+func (*changeRequestsItemPropertiesOriginalValueTypePropertiesTypePtr) ElementType() reflect.Type {
+	return changeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrType
+}
+
+func (in *changeRequestsItemPropertiesOriginalValueTypePropertiesTypePtr) ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput() ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
+	return pulumi.ToOutput(in).(ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput)
+}
+
+func (in *changeRequestsItemPropertiesOriginalValueTypePropertiesTypePtr) ToChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput)
+}
+
+type ChangeRequestsItemPropertiesValueTypePropertiesType string
+
+const (
+	ChangeRequestsItemPropertiesValueTypePropertiesTypeString       = ChangeRequestsItemPropertiesValueTypePropertiesType("string")
+	ChangeRequestsItemPropertiesValueTypePropertiesTypeJson         = ChangeRequestsItemPropertiesValueTypePropertiesType("json")
+	ChangeRequestsItemPropertiesValueTypePropertiesTypeJson5        = ChangeRequestsItemPropertiesValueTypePropertiesType("json5")
+	ChangeRequestsItemPropertiesValueTypePropertiesTypeBoolean      = ChangeRequestsItemPropertiesValueTypePropertiesType("boolean")
+	ChangeRequestsItemPropertiesValueTypePropertiesTypeInteger      = ChangeRequestsItemPropertiesValueTypePropertiesType("integer")
+	ChangeRequestsItemPropertiesValueTypePropertiesTypeDecimal      = ChangeRequestsItemPropertiesValueTypePropertiesType("decimal")
+	ChangeRequestsItemPropertiesValueTypePropertiesTypeEmail        = ChangeRequestsItemPropertiesValueTypePropertiesType("email")
+	ChangeRequestsItemPropertiesValueTypePropertiesTypeUrl          = ChangeRequestsItemPropertiesValueTypePropertiesType("url")
+	ChangeRequestsItemPropertiesValueTypePropertiesTypeUuidv4       = ChangeRequestsItemPropertiesValueTypePropertiesType("uuidv4")
+	ChangeRequestsItemPropertiesValueTypePropertiesTypeCuid2        = ChangeRequestsItemPropertiesValueTypePropertiesType("cuid2")
+	ChangeRequestsItemPropertiesValueTypePropertiesTypeUlid         = ChangeRequestsItemPropertiesValueTypePropertiesType("ulid")
+	ChangeRequestsItemPropertiesValueTypePropertiesTypeDatetime8601 = ChangeRequestsItemPropertiesValueTypePropertiesType("datetime8601")
+	ChangeRequestsItemPropertiesValueTypePropertiesTypeDate8601     = ChangeRequestsItemPropertiesValueTypePropertiesType("date8601")
+	ChangeRequestsItemPropertiesValueTypePropertiesTypeYaml         = ChangeRequestsItemPropertiesValueTypePropertiesType("yaml")
+)
+
+func (ChangeRequestsItemPropertiesValueTypePropertiesType) ElementType() reflect.Type {
+	return reflect.TypeOf((*ChangeRequestsItemPropertiesValueTypePropertiesType)(nil)).Elem()
+}
+
+func (e ChangeRequestsItemPropertiesValueTypePropertiesType) ToChangeRequestsItemPropertiesValueTypePropertiesTypeOutput() ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput {
+	return pulumi.ToOutput(e).(ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput)
+}
+
+func (e ChangeRequestsItemPropertiesValueTypePropertiesType) ToChangeRequestsItemPropertiesValueTypePropertiesTypeOutputWithContext(ctx context.Context) ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput)
+}
+
+func (e ChangeRequestsItemPropertiesValueTypePropertiesType) ToChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput() ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
+	return e.ToChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(context.Background())
+}
+
+func (e ChangeRequestsItemPropertiesValueTypePropertiesType) ToChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
+	return ChangeRequestsItemPropertiesValueTypePropertiesType(e).ToChangeRequestsItemPropertiesValueTypePropertiesTypeOutputWithContext(ctx).ToChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(ctx)
+}
+
+func (e ChangeRequestsItemPropertiesValueTypePropertiesType) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ChangeRequestsItemPropertiesValueTypePropertiesType) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ChangeRequestsItemPropertiesValueTypePropertiesType) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ChangeRequestsItemPropertiesValueTypePropertiesType) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput struct{ *pulumi.OutputState }
+
+func (ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ChangeRequestsItemPropertiesValueTypePropertiesType)(nil)).Elem()
+}
+
+func (o ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToChangeRequestsItemPropertiesValueTypePropertiesTypeOutput() ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput {
+	return o
+}
+
+func (o ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToChangeRequestsItemPropertiesValueTypePropertiesTypeOutputWithContext(ctx context.Context) ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput {
+	return o
+}
+
+func (o ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput() ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
+	return o.ToChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(context.Background())
+}
+
+func (o ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ChangeRequestsItemPropertiesValueTypePropertiesType) *ChangeRequestsItemPropertiesValueTypePropertiesType {
+		return &v
+	}).(ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput)
+}
+
+func (o ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ChangeRequestsItemPropertiesValueTypePropertiesType) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ChangeRequestsItemPropertiesValueTypePropertiesType) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput struct{ *pulumi.OutputState }
+
+func (ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ChangeRequestsItemPropertiesValueTypePropertiesType)(nil)).Elem()
+}
+
+func (o ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput) ToChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput() ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
+	return o
+}
+
+func (o ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput) ToChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
+	return o
+}
+
+func (o ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput) Elem() ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput {
+	return o.ApplyT(func(v *ChangeRequestsItemPropertiesValueTypePropertiesType) ChangeRequestsItemPropertiesValueTypePropertiesType {
+		if v != nil {
+			return *v
+		}
+		var ret ChangeRequestsItemPropertiesValueTypePropertiesType
+		return ret
+	}).(ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput)
+}
+
+func (o ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ChangeRequestsItemPropertiesValueTypePropertiesType) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ChangeRequestsItemPropertiesValueTypePropertiesTypeInput is an input type that accepts values of the ChangeRequestsItemPropertiesValueTypePropertiesType enum
+// A concrete instance of `ChangeRequestsItemPropertiesValueTypePropertiesTypeInput` can be one of the following:
+//
+//	ChangeRequestsItemPropertiesValueTypePropertiesTypeString
+//	ChangeRequestsItemPropertiesValueTypePropertiesTypeJson
+//	ChangeRequestsItemPropertiesValueTypePropertiesTypeJson5
+//	ChangeRequestsItemPropertiesValueTypePropertiesTypeBoolean
+//	ChangeRequestsItemPropertiesValueTypePropertiesTypeInteger
+//	ChangeRequestsItemPropertiesValueTypePropertiesTypeDecimal
+//	ChangeRequestsItemPropertiesValueTypePropertiesTypeEmail
+//	ChangeRequestsItemPropertiesValueTypePropertiesTypeUrl
+//	ChangeRequestsItemPropertiesValueTypePropertiesTypeUuidv4
+//	ChangeRequestsItemPropertiesValueTypePropertiesTypeCuid2
+//	ChangeRequestsItemPropertiesValueTypePropertiesTypeUlid
+//	ChangeRequestsItemPropertiesValueTypePropertiesTypeDatetime8601
+//	ChangeRequestsItemPropertiesValueTypePropertiesTypeDate8601
+//	ChangeRequestsItemPropertiesValueTypePropertiesTypeYaml
+type ChangeRequestsItemPropertiesValueTypePropertiesTypeInput interface {
+	pulumi.Input
+
+	ToChangeRequestsItemPropertiesValueTypePropertiesTypeOutput() ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput
+	ToChangeRequestsItemPropertiesValueTypePropertiesTypeOutputWithContext(context.Context) ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput
+}
+
+var changeRequestsItemPropertiesValueTypePropertiesTypePtrType = reflect.TypeOf((**ChangeRequestsItemPropertiesValueTypePropertiesType)(nil)).Elem()
+
+type ChangeRequestsItemPropertiesValueTypePropertiesTypePtrInput interface {
+	pulumi.Input
+
+	ToChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput() ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput
+	ToChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(context.Context) ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput
+}
+
+type changeRequestsItemPropertiesValueTypePropertiesTypePtr string
+
+func ChangeRequestsItemPropertiesValueTypePropertiesTypePtr(v string) ChangeRequestsItemPropertiesValueTypePropertiesTypePtrInput {
+	return (*changeRequestsItemPropertiesValueTypePropertiesTypePtr)(&v)
+}
+
+func (*changeRequestsItemPropertiesValueTypePropertiesTypePtr) ElementType() reflect.Type {
+	return changeRequestsItemPropertiesValueTypePropertiesTypePtrType
+}
+
+func (in *changeRequestsItemPropertiesValueTypePropertiesTypePtr) ToChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput() ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
+	return pulumi.ToOutput(in).(ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput)
+}
+
+func (in *changeRequestsItemPropertiesValueTypePropertiesTypePtr) ToChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutputWithContext(ctx context.Context) ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput)
 }
 
 // An option indicating if and how Doppler should attempt to import secrets from the sync destination
-type SyncsImportOption string
+type ImportOption string
 
 const (
-	SyncsImportOptionNone              = SyncsImportOption("none")
-	SyncsImportOptionPreferDoppler     = SyncsImportOption("prefer_doppler")
-	SyncsImportOptionPreferIntegration = SyncsImportOption("prefer_integration")
+	ImportOptionNone              = ImportOption("none")
+	ImportOptionPreferDoppler     = ImportOption("prefer_doppler")
+	ImportOptionPreferIntegration = ImportOption("prefer_integration")
 )
 
-func (SyncsImportOption) ElementType() reflect.Type {
-	return reflect.TypeOf((*SyncsImportOption)(nil)).Elem()
+func (ImportOption) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportOption)(nil)).Elem()
 }
 
-func (e SyncsImportOption) ToSyncsImportOptionOutput() SyncsImportOptionOutput {
-	return pulumi.ToOutput(e).(SyncsImportOptionOutput)
+func (e ImportOption) ToImportOptionOutput() ImportOptionOutput {
+	return pulumi.ToOutput(e).(ImportOptionOutput)
 }
 
-func (e SyncsImportOption) ToSyncsImportOptionOutputWithContext(ctx context.Context) SyncsImportOptionOutput {
-	return pulumi.ToOutputWithContext(ctx, e).(SyncsImportOptionOutput)
+func (e ImportOption) ToImportOptionOutputWithContext(ctx context.Context) ImportOptionOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ImportOptionOutput)
 }
 
-func (e SyncsImportOption) ToSyncsImportOptionPtrOutput() SyncsImportOptionPtrOutput {
-	return e.ToSyncsImportOptionPtrOutputWithContext(context.Background())
+func (e ImportOption) ToImportOptionPtrOutput() ImportOptionPtrOutput {
+	return e.ToImportOptionPtrOutputWithContext(context.Background())
 }
 
-func (e SyncsImportOption) ToSyncsImportOptionPtrOutputWithContext(ctx context.Context) SyncsImportOptionPtrOutput {
-	return SyncsImportOption(e).ToSyncsImportOptionOutputWithContext(ctx).ToSyncsImportOptionPtrOutputWithContext(ctx)
+func (e ImportOption) ToImportOptionPtrOutputWithContext(ctx context.Context) ImportOptionPtrOutput {
+	return ImportOption(e).ToImportOptionOutputWithContext(ctx).ToImportOptionPtrOutputWithContext(ctx)
 }
 
-func (e SyncsImportOption) ToStringOutput() pulumi.StringOutput {
+func (e ImportOption) ToStringOutput() pulumi.StringOutput {
 	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
 }
 
-func (e SyncsImportOption) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+func (e ImportOption) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
 	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
 }
 
-func (e SyncsImportOption) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (e ImportOption) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
 }
 
-func (e SyncsImportOption) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+func (e ImportOption) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
 	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
 }
 
-type SyncsImportOptionOutput struct{ *pulumi.OutputState }
+type ImportOptionOutput struct{ *pulumi.OutputState }
 
-func (SyncsImportOptionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SyncsImportOption)(nil)).Elem()
+func (ImportOptionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImportOption)(nil)).Elem()
 }
 
-func (o SyncsImportOptionOutput) ToSyncsImportOptionOutput() SyncsImportOptionOutput {
+func (o ImportOptionOutput) ToImportOptionOutput() ImportOptionOutput {
 	return o
 }
 
-func (o SyncsImportOptionOutput) ToSyncsImportOptionOutputWithContext(ctx context.Context) SyncsImportOptionOutput {
+func (o ImportOptionOutput) ToImportOptionOutputWithContext(ctx context.Context) ImportOptionOutput {
 	return o
 }
 
-func (o SyncsImportOptionOutput) ToSyncsImportOptionPtrOutput() SyncsImportOptionPtrOutput {
-	return o.ToSyncsImportOptionPtrOutputWithContext(context.Background())
+func (o ImportOptionOutput) ToImportOptionPtrOutput() ImportOptionPtrOutput {
+	return o.ToImportOptionPtrOutputWithContext(context.Background())
 }
 
-func (o SyncsImportOptionOutput) ToSyncsImportOptionPtrOutputWithContext(ctx context.Context) SyncsImportOptionPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v SyncsImportOption) *SyncsImportOption {
+func (o ImportOptionOutput) ToImportOptionPtrOutputWithContext(ctx context.Context) ImportOptionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ImportOption) *ImportOption {
 		return &v
-	}).(SyncsImportOptionPtrOutput)
+	}).(ImportOptionPtrOutput)
 }
 
-func (o SyncsImportOptionOutput) ToStringOutput() pulumi.StringOutput {
+func (o ImportOptionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o SyncsImportOptionOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e SyncsImportOption) string {
+func (o ImportOptionOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ImportOption) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o SyncsImportOptionOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o ImportOptionOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o SyncsImportOptionOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e SyncsImportOption) *string {
+func (o ImportOptionOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ImportOption) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type SyncsImportOptionPtrOutput struct{ *pulumi.OutputState }
+type ImportOptionPtrOutput struct{ *pulumi.OutputState }
 
-func (SyncsImportOptionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SyncsImportOption)(nil)).Elem()
+func (ImportOptionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ImportOption)(nil)).Elem()
 }
 
-func (o SyncsImportOptionPtrOutput) ToSyncsImportOptionPtrOutput() SyncsImportOptionPtrOutput {
+func (o ImportOptionPtrOutput) ToImportOptionPtrOutput() ImportOptionPtrOutput {
 	return o
 }
 
-func (o SyncsImportOptionPtrOutput) ToSyncsImportOptionPtrOutputWithContext(ctx context.Context) SyncsImportOptionPtrOutput {
+func (o ImportOptionPtrOutput) ToImportOptionPtrOutputWithContext(ctx context.Context) ImportOptionPtrOutput {
 	return o
 }
 
-func (o SyncsImportOptionPtrOutput) Elem() SyncsImportOptionOutput {
-	return o.ApplyT(func(v *SyncsImportOption) SyncsImportOption {
+func (o ImportOptionPtrOutput) Elem() ImportOptionOutput {
+	return o.ApplyT(func(v *ImportOption) ImportOption {
 		if v != nil {
 			return *v
 		}
-		var ret SyncsImportOption
+		var ret ImportOption
 		return ret
-	}).(SyncsImportOptionOutput)
+	}).(ImportOptionOutput)
 }
 
-func (o SyncsImportOptionPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o ImportOptionPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o SyncsImportOptionPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *SyncsImportOption) *string {
+func (o ImportOptionPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ImportOption) *string {
 		if e == nil {
 			return nil
 		}
@@ -682,61 +682,61 @@ func (o SyncsImportOptionPtrOutput) ToStringPtrOutputWithContext(ctx context.Con
 	}).(pulumi.StringPtrOutput)
 }
 
-// SyncsImportOptionInput is an input type that accepts values of the SyncsImportOption enum
-// A concrete instance of `SyncsImportOptionInput` can be one of the following:
+// ImportOptionInput is an input type that accepts values of the ImportOption enum
+// A concrete instance of `ImportOptionInput` can be one of the following:
 //
-//	SyncsImportOptionNone
-//	SyncsImportOptionPreferDoppler
-//	SyncsImportOptionPreferIntegration
-type SyncsImportOptionInput interface {
+//	ImportOptionNone
+//	ImportOptionPreferDoppler
+//	ImportOptionPreferIntegration
+type ImportOptionInput interface {
 	pulumi.Input
 
-	ToSyncsImportOptionOutput() SyncsImportOptionOutput
-	ToSyncsImportOptionOutputWithContext(context.Context) SyncsImportOptionOutput
+	ToImportOptionOutput() ImportOptionOutput
+	ToImportOptionOutputWithContext(context.Context) ImportOptionOutput
 }
 
-var syncsImportOptionPtrType = reflect.TypeOf((**SyncsImportOption)(nil)).Elem()
+var importOptionPtrType = reflect.TypeOf((**ImportOption)(nil)).Elem()
 
-type SyncsImportOptionPtrInput interface {
+type ImportOptionPtrInput interface {
 	pulumi.Input
 
-	ToSyncsImportOptionPtrOutput() SyncsImportOptionPtrOutput
-	ToSyncsImportOptionPtrOutputWithContext(context.Context) SyncsImportOptionPtrOutput
+	ToImportOptionPtrOutput() ImportOptionPtrOutput
+	ToImportOptionPtrOutputWithContext(context.Context) ImportOptionPtrOutput
 }
 
-type syncsImportOptionPtr string
+type importOptionPtr string
 
-func SyncsImportOptionPtr(v string) SyncsImportOptionPtrInput {
-	return (*syncsImportOptionPtr)(&v)
+func ImportOptionPtr(v string) ImportOptionPtrInput {
+	return (*importOptionPtr)(&v)
 }
 
-func (*syncsImportOptionPtr) ElementType() reflect.Type {
-	return syncsImportOptionPtrType
+func (*importOptionPtr) ElementType() reflect.Type {
+	return importOptionPtrType
 }
 
-func (in *syncsImportOptionPtr) ToSyncsImportOptionPtrOutput() SyncsImportOptionPtrOutput {
-	return pulumi.ToOutput(in).(SyncsImportOptionPtrOutput)
+func (in *importOptionPtr) ToImportOptionPtrOutput() ImportOptionPtrOutput {
+	return pulumi.ToOutput(in).(ImportOptionPtrOutput)
 }
 
-func (in *syncsImportOptionPtr) ToSyncsImportOptionPtrOutputWithContext(ctx context.Context) SyncsImportOptionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, in).(SyncsImportOptionPtrOutput)
+func (in *importOptionPtr) ToImportOptionPtrOutputWithContext(ctx context.Context) ImportOptionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ImportOptionPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeInput)(nil)).Elem(), SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("string"))
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrInput)(nil)).Elem(), SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("string"))
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeInput)(nil)).Elem(), SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("string"))
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrInput)(nil)).Elem(), SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("string"))
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceTokensAccessInput)(nil)).Elem(), ServiceTokensAccess("read"))
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceTokensAccessPtrInput)(nil)).Elem(), ServiceTokensAccess("read"))
-	pulumi.RegisterInputType(reflect.TypeOf((*SyncsImportOptionInput)(nil)).Elem(), SyncsImportOption("none"))
-	pulumi.RegisterInputType(reflect.TypeOf((*SyncsImportOptionPtrInput)(nil)).Elem(), SyncsImportOption("none"))
-	pulumi.RegisterOutputType(SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput{})
-	pulumi.RegisterOutputType(SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput{})
-	pulumi.RegisterOutputType(SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypeOutput{})
-	pulumi.RegisterOutputType(SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput{})
-	pulumi.RegisterOutputType(ServiceTokensAccessOutput{})
-	pulumi.RegisterOutputType(ServiceTokensAccessPtrOutput{})
-	pulumi.RegisterOutputType(SyncsImportOptionOutput{})
-	pulumi.RegisterOutputType(SyncsImportOptionPtrOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccessInput)(nil)).Elem(), Access("read"))
+	pulumi.RegisterInputType(reflect.TypeOf((*AccessPtrInput)(nil)).Elem(), Access("read"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeInput)(nil)).Elem(), ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("string"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrInput)(nil)).Elem(), ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("string"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ChangeRequestsItemPropertiesValueTypePropertiesTypeInput)(nil)).Elem(), ChangeRequestsItemPropertiesValueTypePropertiesType("string"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ChangeRequestsItemPropertiesValueTypePropertiesTypePtrInput)(nil)).Elem(), ChangeRequestsItemPropertiesValueTypePropertiesType("string"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportOptionInput)(nil)).Elem(), ImportOption("none"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ImportOptionPtrInput)(nil)).Elem(), ImportOption("none"))
+	pulumi.RegisterOutputType(AccessOutput{})
+	pulumi.RegisterOutputType(AccessPtrOutput{})
+	pulumi.RegisterOutputType(ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypeOutput{})
+	pulumi.RegisterOutputType(ChangeRequestsItemPropertiesOriginalValueTypePropertiesTypePtrOutput{})
+	pulumi.RegisterOutputType(ChangeRequestsItemPropertiesValueTypePropertiesTypeOutput{})
+	pulumi.RegisterOutputType(ChangeRequestsItemPropertiesValueTypePropertiesTypePtrOutput{})
+	pulumi.RegisterOutputType(ImportOptionOutput{})
+	pulumi.RegisterOutputType(ImportOptionPtrOutput{})
 }

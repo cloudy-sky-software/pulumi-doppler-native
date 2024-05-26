@@ -28,7 +28,7 @@ namespace Pulumi.DopplerNative.ConfigsV3
         /// An option indicating if and how Doppler should attempt to import secrets from the sync destination
         /// </summary>
         [Output("importOption")]
-        public Output<Pulumi.DopplerNative.ConfigsV3.SyncsImportOption?> ImportOption { get; private set; } = null!;
+        public Output<Pulumi.DopplerNative.ConfigsV3.ImportOption?> ImportOption { get; private set; } = null!;
 
         /// <summary>
         /// The integration slug which the sync will use
@@ -101,7 +101,7 @@ namespace Pulumi.DopplerNative.ConfigsV3
         /// An option indicating if and how Doppler should attempt to import secrets from the sync destination
         /// </summary>
         [Input("importOption")]
-        public Input<Pulumi.DopplerNative.ConfigsV3.SyncsImportOption>? ImportOption { get; set; }
+        public Input<Pulumi.DopplerNative.ConfigsV3.ImportOption>? ImportOption { get; set; }
 
         /// <summary>
         /// The integration slug which the sync will use
@@ -112,7 +112,7 @@ namespace Pulumi.DopplerNative.ConfigsV3
         public SyncsArgs()
         {
             AwaitInitialSync = true;
-            ImportOption = Pulumi.DopplerNative.ConfigsV3.SyncsImportOption.None;
+            ImportOption = Pulumi.DopplerNative.ConfigsV3.ImportOption.None;
         }
         public static new SyncsArgs Empty => new SyncsArgs();
     }

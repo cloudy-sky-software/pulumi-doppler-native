@@ -8,25 +8,25 @@ using Pulumi;
 namespace Pulumi.DopplerNative.WorkplaceV3
 {
     [EnumType]
-    public readonly struct GroupsMemberType : IEquatable<GroupsMemberType>
+    public readonly struct Type : IEquatable<Type>
     {
         private readonly string _value;
 
-        private GroupsMemberType(string value)
+        private Type(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static GroupsMemberType WorkplaceUser { get; } = new GroupsMemberType("workplace_user");
+        public static Type WorkplaceUser { get; } = new Type("workplace_user");
 
-        public static bool operator ==(GroupsMemberType left, GroupsMemberType right) => left.Equals(right);
-        public static bool operator !=(GroupsMemberType left, GroupsMemberType right) => !left.Equals(right);
+        public static bool operator ==(Type left, Type right) => left.Equals(right);
+        public static bool operator !=(Type left, Type right) => !left.Equals(right);
 
-        public static explicit operator string(GroupsMemberType value) => value._value;
+        public static explicit operator string(Type value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is GroupsMemberType other && Equals(other);
-        public bool Equals(GroupsMemberType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is Type other && Equals(other);
+        public bool Equals(Type other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;

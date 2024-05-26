@@ -18,14 +18,14 @@ class ServiceTokensArgs:
     def __init__(__self__, *,
                  config: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
-                 access: Optional[pulumi.Input['ServiceTokensAccess']] = None,
+                 access: Optional[pulumi.Input['Access']] = None,
                  expire_at: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ServiceTokens resource.
         :param pulumi.Input[str] config: Name of the config object.
         :param pulumi.Input[str] project: Unique identifier for the project object.
-        :param pulumi.Input['ServiceTokensAccess'] access: Token's capabilities.
+        :param pulumi.Input['Access'] access: Token's capabilities.
         :param pulumi.Input[str] expire_at: Unix timestamp of when token should expire.
         :param pulumi.Input[str] name: Name of the service token.
         """
@@ -72,14 +72,14 @@ class ServiceTokensArgs:
 
     @property
     @pulumi.getter
-    def access(self) -> Optional[pulumi.Input['ServiceTokensAccess']]:
+    def access(self) -> Optional[pulumi.Input['Access']]:
         """
         Token's capabilities.
         """
         return pulumi.get(self, "access")
 
     @access.setter
-    def access(self, value: Optional[pulumi.Input['ServiceTokensAccess']]):
+    def access(self, value: Optional[pulumi.Input['Access']]):
         pulumi.set(self, "access", value)
 
     @property
@@ -112,7 +112,7 @@ class ServiceTokens(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access: Optional[pulumi.Input['ServiceTokensAccess']] = None,
+                 access: Optional[pulumi.Input['Access']] = None,
                  config: Optional[pulumi.Input[str]] = None,
                  expire_at: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -122,7 +122,7 @@ class ServiceTokens(pulumi.CustomResource):
         Create a ServiceTokens resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['ServiceTokensAccess'] access: Token's capabilities.
+        :param pulumi.Input['Access'] access: Token's capabilities.
         :param pulumi.Input[str] config: Name of the config object.
         :param pulumi.Input[str] expire_at: Unix timestamp of when token should expire.
         :param pulumi.Input[str] name: Name of the service token.
@@ -151,7 +151,7 @@ class ServiceTokens(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access: Optional[pulumi.Input['ServiceTokensAccess']] = None,
+                 access: Optional[pulumi.Input['Access']] = None,
                  config: Optional[pulumi.Input[str]] = None,
                  expire_at: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -215,7 +215,7 @@ class ServiceTokens(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def access(self) -> pulumi.Output[Optional['ServiceTokensAccess']]:
+    def access(self) -> pulumi.Output[Optional['Access']]:
         """
         Token's capabilities.
         """

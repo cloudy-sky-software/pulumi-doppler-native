@@ -8,28 +8,28 @@ using Pulumi;
 namespace Pulumi.DopplerNative.ProjectsV3
 {
     [EnumType]
-    public readonly struct ProjectMembersType : IEquatable<ProjectMembersType>
+    public readonly struct Type : IEquatable<Type>
     {
         private readonly string _value;
 
-        private ProjectMembersType(string value)
+        private Type(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static ProjectMembersType WorkplaceUser { get; } = new ProjectMembersType("workplace_user");
-        public static ProjectMembersType Group { get; } = new ProjectMembersType("group");
-        public static ProjectMembersType Invite { get; } = new ProjectMembersType("invite");
-        public static ProjectMembersType ServiceAccount { get; } = new ProjectMembersType("service_account");
+        public static Type WorkplaceUser { get; } = new Type("workplace_user");
+        public static Type Group { get; } = new Type("group");
+        public static Type Invite { get; } = new Type("invite");
+        public static Type ServiceAccount { get; } = new Type("service_account");
 
-        public static bool operator ==(ProjectMembersType left, ProjectMembersType right) => left.Equals(right);
-        public static bool operator !=(ProjectMembersType left, ProjectMembersType right) => !left.Equals(right);
+        public static bool operator ==(Type left, Type right) => left.Equals(right);
+        public static bool operator !=(Type left, Type right) => !left.Equals(right);
 
-        public static explicit operator string(ProjectMembersType value) => value._value;
+        public static explicit operator string(Type value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ProjectMembersType other && Equals(other);
-        public bool Equals(ProjectMembersType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is Type other && Equals(other);
+        public bool Equals(Type other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;

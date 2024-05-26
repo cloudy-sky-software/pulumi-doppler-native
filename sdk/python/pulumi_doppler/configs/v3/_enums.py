@@ -5,48 +5,14 @@
 from enum import Enum
 
 __all__ = [
-    'SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType',
-    'SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType',
-    'ServiceTokensAccess',
-    'SyncsImportOption',
+    'Access',
+    'ChangeRequestsItemPropertiesOriginalValueTypePropertiesType',
+    'ChangeRequestsItemPropertiesValueTypePropertiesType',
+    'ImportOption',
 ]
 
 
-class SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType(str, Enum):
-    STRING = "string"
-    JSON = "json"
-    JSON5 = "json5"
-    BOOLEAN = "boolean"
-    INTEGER = "integer"
-    DECIMAL = "decimal"
-    EMAIL = "email"
-    URL = "url"
-    UUIDV4 = "uuidv4"
-    CUID2 = "cuid2"
-    ULID = "ulid"
-    DATETIME8601 = "datetime8601"
-    DATE8601 = "date8601"
-    YAML = "yaml"
-
-
-class SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType(str, Enum):
-    STRING = "string"
-    JSON = "json"
-    JSON5 = "json5"
-    BOOLEAN = "boolean"
-    INTEGER = "integer"
-    DECIMAL = "decimal"
-    EMAIL = "email"
-    URL = "url"
-    UUIDV4 = "uuidv4"
-    CUID2 = "cuid2"
-    ULID = "ulid"
-    DATETIME8601 = "datetime8601"
-    DATE8601 = "date8601"
-    YAML = "yaml"
-
-
-class ServiceTokensAccess(str, Enum):
+class Access(str, Enum):
     """
     Token's capabilities.
     """
@@ -54,7 +20,41 @@ class ServiceTokensAccess(str, Enum):
     READWRITE = "read/write"
 
 
-class SyncsImportOption(str, Enum):
+class ChangeRequestsItemPropertiesOriginalValueTypePropertiesType(str, Enum):
+    STRING = "string"
+    JSON = "json"
+    JSON5 = "json5"
+    BOOLEAN = "boolean"
+    INTEGER = "integer"
+    DECIMAL = "decimal"
+    EMAIL = "email"
+    URL = "url"
+    UUIDV4 = "uuidv4"
+    CUID2 = "cuid2"
+    ULID = "ulid"
+    DATETIME8601 = "datetime8601"
+    DATE8601 = "date8601"
+    YAML = "yaml"
+
+
+class ChangeRequestsItemPropertiesValueTypePropertiesType(str, Enum):
+    STRING = "string"
+    JSON = "json"
+    JSON5 = "json5"
+    BOOLEAN = "boolean"
+    INTEGER = "integer"
+    DECIMAL = "decimal"
+    EMAIL = "email"
+    URL = "url"
+    UUIDV4 = "uuidv4"
+    CUID2 = "cuid2"
+    ULID = "ulid"
+    DATETIME8601 = "datetime8601"
+    DATE8601 = "date8601"
+    YAML = "yaml"
+
+
+class ImportOption(str, Enum):
     """
     An option indicating if and how Doppler should attempt to import secrets from the sync destination
     """

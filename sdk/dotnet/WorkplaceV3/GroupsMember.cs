@@ -19,7 +19,7 @@ namespace Pulumi.DopplerNative.WorkplaceV3
         public Output<string> Slug { get; private set; } = null!;
 
         [Output("type")]
-        public Output<Pulumi.DopplerNative.WorkplaceV3.GroupsMemberType> Type { get; private set; } = null!;
+        public Output<Pulumi.DopplerNative.WorkplaceV3.Type> Type { get; private set; } = null!;
 
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Pulumi.DopplerNative.WorkplaceV3
         public Input<string> Slug { get; set; } = null!;
 
         [Input("type", required: true)]
-        public Input<Pulumi.DopplerNative.WorkplaceV3.GroupsMemberType> Type { get; set; } = null!;
+        public Input<Pulumi.DopplerNative.WorkplaceV3.Type> Type { get; set; } = null!;
 
         public GroupsMemberArgs()
         {

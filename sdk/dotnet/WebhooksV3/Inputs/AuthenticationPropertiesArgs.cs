@@ -25,7 +25,7 @@ namespace Pulumi.DopplerNative.WebhooksV3.Inputs
         public Input<string>? Token { get; set; }
 
         [Input("type")]
-        public Input<Pulumi.DopplerNative.WebhooksV3.WebhooksAuthenticationPropertiesType>? Type { get; set; }
+        public Input<Pulumi.DopplerNative.WebhooksV3.AuthenticationPropertiesType>? Type { get; set; }
 
         /// <summary>
         /// Used when type = Basic

@@ -10,126 +10,126 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-type ProjectMembersType string
+type Type string
 
 const (
-	ProjectMembersTypeWorkplaceUser  = ProjectMembersType("workplace_user")
-	ProjectMembersTypeGroup          = ProjectMembersType("group")
-	ProjectMembersTypeInvite         = ProjectMembersType("invite")
-	ProjectMembersTypeServiceAccount = ProjectMembersType("service_account")
+	TypeWorkplaceUser  = Type("workplace_user")
+	TypeGroup          = Type("group")
+	TypeInvite         = Type("invite")
+	TypeServiceAccount = Type("service_account")
 )
 
-func (ProjectMembersType) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectMembersType)(nil)).Elem()
+func (Type) ElementType() reflect.Type {
+	return reflect.TypeOf((*Type)(nil)).Elem()
 }
 
-func (e ProjectMembersType) ToProjectMembersTypeOutput() ProjectMembersTypeOutput {
-	return pulumi.ToOutput(e).(ProjectMembersTypeOutput)
+func (e Type) ToTypeOutput() TypeOutput {
+	return pulumi.ToOutput(e).(TypeOutput)
 }
 
-func (e ProjectMembersType) ToProjectMembersTypeOutputWithContext(ctx context.Context) ProjectMembersTypeOutput {
-	return pulumi.ToOutputWithContext(ctx, e).(ProjectMembersTypeOutput)
+func (e Type) ToTypeOutputWithContext(ctx context.Context) TypeOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(TypeOutput)
 }
 
-func (e ProjectMembersType) ToProjectMembersTypePtrOutput() ProjectMembersTypePtrOutput {
-	return e.ToProjectMembersTypePtrOutputWithContext(context.Background())
+func (e Type) ToTypePtrOutput() TypePtrOutput {
+	return e.ToTypePtrOutputWithContext(context.Background())
 }
 
-func (e ProjectMembersType) ToProjectMembersTypePtrOutputWithContext(ctx context.Context) ProjectMembersTypePtrOutput {
-	return ProjectMembersType(e).ToProjectMembersTypeOutputWithContext(ctx).ToProjectMembersTypePtrOutputWithContext(ctx)
+func (e Type) ToTypePtrOutputWithContext(ctx context.Context) TypePtrOutput {
+	return Type(e).ToTypeOutputWithContext(ctx).ToTypePtrOutputWithContext(ctx)
 }
 
-func (e ProjectMembersType) ToStringOutput() pulumi.StringOutput {
+func (e Type) ToStringOutput() pulumi.StringOutput {
 	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
 }
 
-func (e ProjectMembersType) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+func (e Type) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
 	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
 }
 
-func (e ProjectMembersType) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (e Type) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
 }
 
-func (e ProjectMembersType) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+func (e Type) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
 	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
 }
 
-type ProjectMembersTypeOutput struct{ *pulumi.OutputState }
+type TypeOutput struct{ *pulumi.OutputState }
 
-func (ProjectMembersTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectMembersType)(nil)).Elem()
+func (TypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Type)(nil)).Elem()
 }
 
-func (o ProjectMembersTypeOutput) ToProjectMembersTypeOutput() ProjectMembersTypeOutput {
+func (o TypeOutput) ToTypeOutput() TypeOutput {
 	return o
 }
 
-func (o ProjectMembersTypeOutput) ToProjectMembersTypeOutputWithContext(ctx context.Context) ProjectMembersTypeOutput {
+func (o TypeOutput) ToTypeOutputWithContext(ctx context.Context) TypeOutput {
 	return o
 }
 
-func (o ProjectMembersTypeOutput) ToProjectMembersTypePtrOutput() ProjectMembersTypePtrOutput {
-	return o.ToProjectMembersTypePtrOutputWithContext(context.Background())
+func (o TypeOutput) ToTypePtrOutput() TypePtrOutput {
+	return o.ToTypePtrOutputWithContext(context.Background())
 }
 
-func (o ProjectMembersTypeOutput) ToProjectMembersTypePtrOutputWithContext(ctx context.Context) ProjectMembersTypePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProjectMembersType) *ProjectMembersType {
+func (o TypeOutput) ToTypePtrOutputWithContext(ctx context.Context) TypePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Type) *Type {
 		return &v
-	}).(ProjectMembersTypePtrOutput)
+	}).(TypePtrOutput)
 }
 
-func (o ProjectMembersTypeOutput) ToStringOutput() pulumi.StringOutput {
+func (o TypeOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o ProjectMembersTypeOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e ProjectMembersType) string {
+func (o TypeOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e Type) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o ProjectMembersTypeOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o TypeOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o ProjectMembersTypeOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e ProjectMembersType) *string {
+func (o TypeOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e Type) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type ProjectMembersTypePtrOutput struct{ *pulumi.OutputState }
+type TypePtrOutput struct{ *pulumi.OutputState }
 
-func (ProjectMembersTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ProjectMembersType)(nil)).Elem()
+func (TypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Type)(nil)).Elem()
 }
 
-func (o ProjectMembersTypePtrOutput) ToProjectMembersTypePtrOutput() ProjectMembersTypePtrOutput {
+func (o TypePtrOutput) ToTypePtrOutput() TypePtrOutput {
 	return o
 }
 
-func (o ProjectMembersTypePtrOutput) ToProjectMembersTypePtrOutputWithContext(ctx context.Context) ProjectMembersTypePtrOutput {
+func (o TypePtrOutput) ToTypePtrOutputWithContext(ctx context.Context) TypePtrOutput {
 	return o
 }
 
-func (o ProjectMembersTypePtrOutput) Elem() ProjectMembersTypeOutput {
-	return o.ApplyT(func(v *ProjectMembersType) ProjectMembersType {
+func (o TypePtrOutput) Elem() TypeOutput {
+	return o.ApplyT(func(v *Type) Type {
 		if v != nil {
 			return *v
 		}
-		var ret ProjectMembersType
+		var ret Type
 		return ret
-	}).(ProjectMembersTypeOutput)
+	}).(TypeOutput)
 }
 
-func (o ProjectMembersTypePtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o TypePtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o ProjectMembersTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ProjectMembersType) *string {
+func (o TypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *Type) *string {
 		if e == nil {
 			return nil
 		}
@@ -138,50 +138,50 @@ func (o ProjectMembersTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Co
 	}).(pulumi.StringPtrOutput)
 }
 
-// ProjectMembersTypeInput is an input type that accepts values of the ProjectMembersType enum
-// A concrete instance of `ProjectMembersTypeInput` can be one of the following:
+// TypeInput is an input type that accepts values of the Type enum
+// A concrete instance of `TypeInput` can be one of the following:
 //
-//	ProjectMembersTypeWorkplaceUser
-//	ProjectMembersTypeGroup
-//	ProjectMembersTypeInvite
-//	ProjectMembersTypeServiceAccount
-type ProjectMembersTypeInput interface {
+//	TypeWorkplaceUser
+//	TypeGroup
+//	TypeInvite
+//	TypeServiceAccount
+type TypeInput interface {
 	pulumi.Input
 
-	ToProjectMembersTypeOutput() ProjectMembersTypeOutput
-	ToProjectMembersTypeOutputWithContext(context.Context) ProjectMembersTypeOutput
+	ToTypeOutput() TypeOutput
+	ToTypeOutputWithContext(context.Context) TypeOutput
 }
 
-var projectMembersTypePtrType = reflect.TypeOf((**ProjectMembersType)(nil)).Elem()
+var typePtrType = reflect.TypeOf((**Type)(nil)).Elem()
 
-type ProjectMembersTypePtrInput interface {
+type TypePtrInput interface {
 	pulumi.Input
 
-	ToProjectMembersTypePtrOutput() ProjectMembersTypePtrOutput
-	ToProjectMembersTypePtrOutputWithContext(context.Context) ProjectMembersTypePtrOutput
+	ToTypePtrOutput() TypePtrOutput
+	ToTypePtrOutputWithContext(context.Context) TypePtrOutput
 }
 
-type projectMembersTypePtr string
+type typePtr string
 
-func ProjectMembersTypePtr(v string) ProjectMembersTypePtrInput {
-	return (*projectMembersTypePtr)(&v)
+func TypePtr(v string) TypePtrInput {
+	return (*typePtr)(&v)
 }
 
-func (*projectMembersTypePtr) ElementType() reflect.Type {
-	return projectMembersTypePtrType
+func (*typePtr) ElementType() reflect.Type {
+	return typePtrType
 }
 
-func (in *projectMembersTypePtr) ToProjectMembersTypePtrOutput() ProjectMembersTypePtrOutput {
-	return pulumi.ToOutput(in).(ProjectMembersTypePtrOutput)
+func (in *typePtr) ToTypePtrOutput() TypePtrOutput {
+	return pulumi.ToOutput(in).(TypePtrOutput)
 }
 
-func (in *projectMembersTypePtr) ToProjectMembersTypePtrOutputWithContext(ctx context.Context) ProjectMembersTypePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, in).(ProjectMembersTypePtrOutput)
+func (in *typePtr) ToTypePtrOutputWithContext(ctx context.Context) TypePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(TypePtrOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ProjectMembersTypeInput)(nil)).Elem(), ProjectMembersType("workplace_user"))
-	pulumi.RegisterInputType(reflect.TypeOf((*ProjectMembersTypePtrInput)(nil)).Elem(), ProjectMembersType("workplace_user"))
-	pulumi.RegisterOutputType(ProjectMembersTypeOutput{})
-	pulumi.RegisterOutputType(ProjectMembersTypePtrOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TypeInput)(nil)).Elem(), Type("workplace_user"))
+	pulumi.RegisterInputType(reflect.TypeOf((*TypePtrInput)(nil)).Elem(), Type("workplace_user"))
+	pulumi.RegisterOutputType(TypeOutput{})
+	pulumi.RegisterOutputType(TypePtrOutput{})
 }

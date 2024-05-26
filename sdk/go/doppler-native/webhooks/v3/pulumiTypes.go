@@ -17,8 +17,8 @@ type AuthenticationProperties struct {
 	// Used when type = Basic
 	Password *string `pulumi:"password"`
 	// Used when type = Bearer
-	Token *string                               `pulumi:"token"`
-	Type  *WebhooksAuthenticationPropertiesType `pulumi:"type"`
+	Token *string                       `pulumi:"token"`
+	Type  *AuthenticationPropertiesType `pulumi:"type"`
 	// Used when type = Basic
 	Username *string `pulumi:"username"`
 }
@@ -38,8 +38,8 @@ type AuthenticationPropertiesArgs struct {
 	// Used when type = Basic
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Used when type = Bearer
-	Token pulumi.StringPtrInput                        `pulumi:"token"`
-	Type  WebhooksAuthenticationPropertiesTypePtrInput `pulumi:"type"`
+	Token pulumi.StringPtrInput                `pulumi:"token"`
+	Type  AuthenticationPropertiesTypePtrInput `pulumi:"type"`
 	// Used when type = Basic
 	Username pulumi.StringPtrInput `pulumi:"username"`
 }
@@ -131,8 +131,8 @@ func (o AuthenticationPropertiesOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AuthenticationProperties) *string { return v.Token }).(pulumi.StringPtrOutput)
 }
 
-func (o AuthenticationPropertiesOutput) Type() WebhooksAuthenticationPropertiesTypePtrOutput {
-	return o.ApplyT(func(v AuthenticationProperties) *WebhooksAuthenticationPropertiesType { return v.Type }).(WebhooksAuthenticationPropertiesTypePtrOutput)
+func (o AuthenticationPropertiesOutput) Type() AuthenticationPropertiesTypePtrOutput {
+	return o.ApplyT(func(v AuthenticationProperties) *AuthenticationPropertiesType { return v.Type }).(AuthenticationPropertiesTypePtrOutput)
 }
 
 // Used when type = Basic
@@ -184,13 +184,13 @@ func (o AuthenticationPropertiesPtrOutput) Token() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AuthenticationPropertiesPtrOutput) Type() WebhooksAuthenticationPropertiesTypePtrOutput {
-	return o.ApplyT(func(v *AuthenticationProperties) *WebhooksAuthenticationPropertiesType {
+func (o AuthenticationPropertiesPtrOutput) Type() AuthenticationPropertiesTypePtrOutput {
+	return o.ApplyT(func(v *AuthenticationProperties) *AuthenticationPropertiesType {
 		if v == nil {
 			return nil
 		}
 		return v.Type
-	}).(WebhooksAuthenticationPropertiesTypePtrOutput)
+	}).(AuthenticationPropertiesTypePtrOutput)
 }
 
 // Used when type = Basic

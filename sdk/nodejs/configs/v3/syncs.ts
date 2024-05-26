@@ -45,7 +45,7 @@ export class Syncs extends pulumi.CustomResource {
     /**
      * An option indicating if and how Doppler should attempt to import secrets from the sync destination
      */
-    public readonly importOption!: pulumi.Output<enums.configs.v3.SyncsImportOption | undefined>;
+    public readonly importOption!: pulumi.Output<enums.configs.v3.ImportOption | undefined>;
     /**
      * The integration slug which the sync will use
      */
@@ -101,7 +101,7 @@ export interface SyncsArgs {
     /**
      * An option indicating if and how Doppler should attempt to import secrets from the sync destination
      */
-    importOption?: pulumi.Input<enums.configs.v3.SyncsImportOption>;
+    importOption?: pulumi.Input<enums.configs.v3.ImportOption>;
     /**
      * The integration slug which the sync will use
      */

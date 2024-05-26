@@ -10,125 +10,125 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-type WebhooksAuthenticationPropertiesType string
+type AuthenticationPropertiesType string
 
 const (
-	WebhooksAuthenticationPropertiesTypeNone   = WebhooksAuthenticationPropertiesType("None")
-	WebhooksAuthenticationPropertiesTypeBearer = WebhooksAuthenticationPropertiesType("Bearer")
-	WebhooksAuthenticationPropertiesTypeBasic  = WebhooksAuthenticationPropertiesType("Basic")
+	AuthenticationPropertiesTypeNone   = AuthenticationPropertiesType("None")
+	AuthenticationPropertiesTypeBearer = AuthenticationPropertiesType("Bearer")
+	AuthenticationPropertiesTypeBasic  = AuthenticationPropertiesType("Basic")
 )
 
-func (WebhooksAuthenticationPropertiesType) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebhooksAuthenticationPropertiesType)(nil)).Elem()
+func (AuthenticationPropertiesType) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthenticationPropertiesType)(nil)).Elem()
 }
 
-func (e WebhooksAuthenticationPropertiesType) ToWebhooksAuthenticationPropertiesTypeOutput() WebhooksAuthenticationPropertiesTypeOutput {
-	return pulumi.ToOutput(e).(WebhooksAuthenticationPropertiesTypeOutput)
+func (e AuthenticationPropertiesType) ToAuthenticationPropertiesTypeOutput() AuthenticationPropertiesTypeOutput {
+	return pulumi.ToOutput(e).(AuthenticationPropertiesTypeOutput)
 }
 
-func (e WebhooksAuthenticationPropertiesType) ToWebhooksAuthenticationPropertiesTypeOutputWithContext(ctx context.Context) WebhooksAuthenticationPropertiesTypeOutput {
-	return pulumi.ToOutputWithContext(ctx, e).(WebhooksAuthenticationPropertiesTypeOutput)
+func (e AuthenticationPropertiesType) ToAuthenticationPropertiesTypeOutputWithContext(ctx context.Context) AuthenticationPropertiesTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(AuthenticationPropertiesTypeOutput)
 }
 
-func (e WebhooksAuthenticationPropertiesType) ToWebhooksAuthenticationPropertiesTypePtrOutput() WebhooksAuthenticationPropertiesTypePtrOutput {
-	return e.ToWebhooksAuthenticationPropertiesTypePtrOutputWithContext(context.Background())
+func (e AuthenticationPropertiesType) ToAuthenticationPropertiesTypePtrOutput() AuthenticationPropertiesTypePtrOutput {
+	return e.ToAuthenticationPropertiesTypePtrOutputWithContext(context.Background())
 }
 
-func (e WebhooksAuthenticationPropertiesType) ToWebhooksAuthenticationPropertiesTypePtrOutputWithContext(ctx context.Context) WebhooksAuthenticationPropertiesTypePtrOutput {
-	return WebhooksAuthenticationPropertiesType(e).ToWebhooksAuthenticationPropertiesTypeOutputWithContext(ctx).ToWebhooksAuthenticationPropertiesTypePtrOutputWithContext(ctx)
+func (e AuthenticationPropertiesType) ToAuthenticationPropertiesTypePtrOutputWithContext(ctx context.Context) AuthenticationPropertiesTypePtrOutput {
+	return AuthenticationPropertiesType(e).ToAuthenticationPropertiesTypeOutputWithContext(ctx).ToAuthenticationPropertiesTypePtrOutputWithContext(ctx)
 }
 
-func (e WebhooksAuthenticationPropertiesType) ToStringOutput() pulumi.StringOutput {
+func (e AuthenticationPropertiesType) ToStringOutput() pulumi.StringOutput {
 	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
 }
 
-func (e WebhooksAuthenticationPropertiesType) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+func (e AuthenticationPropertiesType) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
 	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
 }
 
-func (e WebhooksAuthenticationPropertiesType) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (e AuthenticationPropertiesType) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
 }
 
-func (e WebhooksAuthenticationPropertiesType) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+func (e AuthenticationPropertiesType) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
 	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
 }
 
-type WebhooksAuthenticationPropertiesTypeOutput struct{ *pulumi.OutputState }
+type AuthenticationPropertiesTypeOutput struct{ *pulumi.OutputState }
 
-func (WebhooksAuthenticationPropertiesTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebhooksAuthenticationPropertiesType)(nil)).Elem()
+func (AuthenticationPropertiesTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthenticationPropertiesType)(nil)).Elem()
 }
 
-func (o WebhooksAuthenticationPropertiesTypeOutput) ToWebhooksAuthenticationPropertiesTypeOutput() WebhooksAuthenticationPropertiesTypeOutput {
+func (o AuthenticationPropertiesTypeOutput) ToAuthenticationPropertiesTypeOutput() AuthenticationPropertiesTypeOutput {
 	return o
 }
 
-func (o WebhooksAuthenticationPropertiesTypeOutput) ToWebhooksAuthenticationPropertiesTypeOutputWithContext(ctx context.Context) WebhooksAuthenticationPropertiesTypeOutput {
+func (o AuthenticationPropertiesTypeOutput) ToAuthenticationPropertiesTypeOutputWithContext(ctx context.Context) AuthenticationPropertiesTypeOutput {
 	return o
 }
 
-func (o WebhooksAuthenticationPropertiesTypeOutput) ToWebhooksAuthenticationPropertiesTypePtrOutput() WebhooksAuthenticationPropertiesTypePtrOutput {
-	return o.ToWebhooksAuthenticationPropertiesTypePtrOutputWithContext(context.Background())
+func (o AuthenticationPropertiesTypeOutput) ToAuthenticationPropertiesTypePtrOutput() AuthenticationPropertiesTypePtrOutput {
+	return o.ToAuthenticationPropertiesTypePtrOutputWithContext(context.Background())
 }
 
-func (o WebhooksAuthenticationPropertiesTypeOutput) ToWebhooksAuthenticationPropertiesTypePtrOutputWithContext(ctx context.Context) WebhooksAuthenticationPropertiesTypePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebhooksAuthenticationPropertiesType) *WebhooksAuthenticationPropertiesType {
+func (o AuthenticationPropertiesTypeOutput) ToAuthenticationPropertiesTypePtrOutputWithContext(ctx context.Context) AuthenticationPropertiesTypePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AuthenticationPropertiesType) *AuthenticationPropertiesType {
 		return &v
-	}).(WebhooksAuthenticationPropertiesTypePtrOutput)
+	}).(AuthenticationPropertiesTypePtrOutput)
 }
 
-func (o WebhooksAuthenticationPropertiesTypeOutput) ToStringOutput() pulumi.StringOutput {
+func (o AuthenticationPropertiesTypeOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o WebhooksAuthenticationPropertiesTypeOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebhooksAuthenticationPropertiesType) string {
+func (o AuthenticationPropertiesTypeOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e AuthenticationPropertiesType) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o WebhooksAuthenticationPropertiesTypeOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o AuthenticationPropertiesTypeOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o WebhooksAuthenticationPropertiesTypeOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebhooksAuthenticationPropertiesType) *string {
+func (o AuthenticationPropertiesTypeOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e AuthenticationPropertiesType) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type WebhooksAuthenticationPropertiesTypePtrOutput struct{ *pulumi.OutputState }
+type AuthenticationPropertiesTypePtrOutput struct{ *pulumi.OutputState }
 
-func (WebhooksAuthenticationPropertiesTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebhooksAuthenticationPropertiesType)(nil)).Elem()
+func (AuthenticationPropertiesTypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthenticationPropertiesType)(nil)).Elem()
 }
 
-func (o WebhooksAuthenticationPropertiesTypePtrOutput) ToWebhooksAuthenticationPropertiesTypePtrOutput() WebhooksAuthenticationPropertiesTypePtrOutput {
+func (o AuthenticationPropertiesTypePtrOutput) ToAuthenticationPropertiesTypePtrOutput() AuthenticationPropertiesTypePtrOutput {
 	return o
 }
 
-func (o WebhooksAuthenticationPropertiesTypePtrOutput) ToWebhooksAuthenticationPropertiesTypePtrOutputWithContext(ctx context.Context) WebhooksAuthenticationPropertiesTypePtrOutput {
+func (o AuthenticationPropertiesTypePtrOutput) ToAuthenticationPropertiesTypePtrOutputWithContext(ctx context.Context) AuthenticationPropertiesTypePtrOutput {
 	return o
 }
 
-func (o WebhooksAuthenticationPropertiesTypePtrOutput) Elem() WebhooksAuthenticationPropertiesTypeOutput {
-	return o.ApplyT(func(v *WebhooksAuthenticationPropertiesType) WebhooksAuthenticationPropertiesType {
+func (o AuthenticationPropertiesTypePtrOutput) Elem() AuthenticationPropertiesTypeOutput {
+	return o.ApplyT(func(v *AuthenticationPropertiesType) AuthenticationPropertiesType {
 		if v != nil {
 			return *v
 		}
-		var ret WebhooksAuthenticationPropertiesType
+		var ret AuthenticationPropertiesType
 		return ret
-	}).(WebhooksAuthenticationPropertiesTypeOutput)
+	}).(AuthenticationPropertiesTypeOutput)
 }
 
-func (o WebhooksAuthenticationPropertiesTypePtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o AuthenticationPropertiesTypePtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o WebhooksAuthenticationPropertiesTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *WebhooksAuthenticationPropertiesType) *string {
+func (o AuthenticationPropertiesTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *AuthenticationPropertiesType) *string {
 		if e == nil {
 			return nil
 		}
@@ -137,49 +137,49 @@ func (o WebhooksAuthenticationPropertiesTypePtrOutput) ToStringPtrOutputWithCont
 	}).(pulumi.StringPtrOutput)
 }
 
-// WebhooksAuthenticationPropertiesTypeInput is an input type that accepts values of the WebhooksAuthenticationPropertiesType enum
-// A concrete instance of `WebhooksAuthenticationPropertiesTypeInput` can be one of the following:
+// AuthenticationPropertiesTypeInput is an input type that accepts values of the AuthenticationPropertiesType enum
+// A concrete instance of `AuthenticationPropertiesTypeInput` can be one of the following:
 //
-//	WebhooksAuthenticationPropertiesTypeNone
-//	WebhooksAuthenticationPropertiesTypeBearer
-//	WebhooksAuthenticationPropertiesTypeBasic
-type WebhooksAuthenticationPropertiesTypeInput interface {
+//	AuthenticationPropertiesTypeNone
+//	AuthenticationPropertiesTypeBearer
+//	AuthenticationPropertiesTypeBasic
+type AuthenticationPropertiesTypeInput interface {
 	pulumi.Input
 
-	ToWebhooksAuthenticationPropertiesTypeOutput() WebhooksAuthenticationPropertiesTypeOutput
-	ToWebhooksAuthenticationPropertiesTypeOutputWithContext(context.Context) WebhooksAuthenticationPropertiesTypeOutput
+	ToAuthenticationPropertiesTypeOutput() AuthenticationPropertiesTypeOutput
+	ToAuthenticationPropertiesTypeOutputWithContext(context.Context) AuthenticationPropertiesTypeOutput
 }
 
-var webhooksAuthenticationPropertiesTypePtrType = reflect.TypeOf((**WebhooksAuthenticationPropertiesType)(nil)).Elem()
+var authenticationPropertiesTypePtrType = reflect.TypeOf((**AuthenticationPropertiesType)(nil)).Elem()
 
-type WebhooksAuthenticationPropertiesTypePtrInput interface {
+type AuthenticationPropertiesTypePtrInput interface {
 	pulumi.Input
 
-	ToWebhooksAuthenticationPropertiesTypePtrOutput() WebhooksAuthenticationPropertiesTypePtrOutput
-	ToWebhooksAuthenticationPropertiesTypePtrOutputWithContext(context.Context) WebhooksAuthenticationPropertiesTypePtrOutput
+	ToAuthenticationPropertiesTypePtrOutput() AuthenticationPropertiesTypePtrOutput
+	ToAuthenticationPropertiesTypePtrOutputWithContext(context.Context) AuthenticationPropertiesTypePtrOutput
 }
 
-type webhooksAuthenticationPropertiesTypePtr string
+type authenticationPropertiesTypePtr string
 
-func WebhooksAuthenticationPropertiesTypePtr(v string) WebhooksAuthenticationPropertiesTypePtrInput {
-	return (*webhooksAuthenticationPropertiesTypePtr)(&v)
+func AuthenticationPropertiesTypePtr(v string) AuthenticationPropertiesTypePtrInput {
+	return (*authenticationPropertiesTypePtr)(&v)
 }
 
-func (*webhooksAuthenticationPropertiesTypePtr) ElementType() reflect.Type {
-	return webhooksAuthenticationPropertiesTypePtrType
+func (*authenticationPropertiesTypePtr) ElementType() reflect.Type {
+	return authenticationPropertiesTypePtrType
 }
 
-func (in *webhooksAuthenticationPropertiesTypePtr) ToWebhooksAuthenticationPropertiesTypePtrOutput() WebhooksAuthenticationPropertiesTypePtrOutput {
-	return pulumi.ToOutput(in).(WebhooksAuthenticationPropertiesTypePtrOutput)
+func (in *authenticationPropertiesTypePtr) ToAuthenticationPropertiesTypePtrOutput() AuthenticationPropertiesTypePtrOutput {
+	return pulumi.ToOutput(in).(AuthenticationPropertiesTypePtrOutput)
 }
 
-func (in *webhooksAuthenticationPropertiesTypePtr) ToWebhooksAuthenticationPropertiesTypePtrOutputWithContext(ctx context.Context) WebhooksAuthenticationPropertiesTypePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, in).(WebhooksAuthenticationPropertiesTypePtrOutput)
+func (in *authenticationPropertiesTypePtr) ToAuthenticationPropertiesTypePtrOutputWithContext(ctx context.Context) AuthenticationPropertiesTypePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(AuthenticationPropertiesTypePtrOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*WebhooksAuthenticationPropertiesTypeInput)(nil)).Elem(), WebhooksAuthenticationPropertiesType("None"))
-	pulumi.RegisterInputType(reflect.TypeOf((*WebhooksAuthenticationPropertiesTypePtrInput)(nil)).Elem(), WebhooksAuthenticationPropertiesType("None"))
-	pulumi.RegisterOutputType(WebhooksAuthenticationPropertiesTypeOutput{})
-	pulumi.RegisterOutputType(WebhooksAuthenticationPropertiesTypePtrOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthenticationPropertiesTypeInput)(nil)).Elem(), AuthenticationPropertiesType("None"))
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthenticationPropertiesTypePtrInput)(nil)).Elem(), AuthenticationPropertiesType("None"))
+	pulumi.RegisterOutputType(AuthenticationPropertiesTypeOutput{})
+	pulumi.RegisterOutputType(AuthenticationPropertiesTypePtrOutput{})
 }

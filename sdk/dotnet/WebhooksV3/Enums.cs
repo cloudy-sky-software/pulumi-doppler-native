@@ -8,27 +8,27 @@ using Pulumi;
 namespace Pulumi.DopplerNative.WebhooksV3
 {
     [EnumType]
-    public readonly struct WebhooksAuthenticationPropertiesType : IEquatable<WebhooksAuthenticationPropertiesType>
+    public readonly struct AuthenticationPropertiesType : IEquatable<AuthenticationPropertiesType>
     {
         private readonly string _value;
 
-        private WebhooksAuthenticationPropertiesType(string value)
+        private AuthenticationPropertiesType(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static WebhooksAuthenticationPropertiesType None { get; } = new WebhooksAuthenticationPropertiesType("None");
-        public static WebhooksAuthenticationPropertiesType Bearer { get; } = new WebhooksAuthenticationPropertiesType("Bearer");
-        public static WebhooksAuthenticationPropertiesType Basic { get; } = new WebhooksAuthenticationPropertiesType("Basic");
+        public static AuthenticationPropertiesType None { get; } = new AuthenticationPropertiesType("None");
+        public static AuthenticationPropertiesType Bearer { get; } = new AuthenticationPropertiesType("Bearer");
+        public static AuthenticationPropertiesType Basic { get; } = new AuthenticationPropertiesType("Basic");
 
-        public static bool operator ==(WebhooksAuthenticationPropertiesType left, WebhooksAuthenticationPropertiesType right) => left.Equals(right);
-        public static bool operator !=(WebhooksAuthenticationPropertiesType left, WebhooksAuthenticationPropertiesType right) => !left.Equals(right);
+        public static bool operator ==(AuthenticationPropertiesType left, AuthenticationPropertiesType right) => left.Equals(right);
+        public static bool operator !=(AuthenticationPropertiesType left, AuthenticationPropertiesType right) => !left.Equals(right);
 
-        public static explicit operator string(WebhooksAuthenticationPropertiesType value) => value._value;
+        public static explicit operator string(AuthenticationPropertiesType value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is WebhooksAuthenticationPropertiesType other && Equals(other);
-        public bool Equals(WebhooksAuthenticationPropertiesType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is AuthenticationPropertiesType other && Equals(other);
+        public bool Equals(AuthenticationPropertiesType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;

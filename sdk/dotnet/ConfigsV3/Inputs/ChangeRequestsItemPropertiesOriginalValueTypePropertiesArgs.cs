@@ -16,7 +16,7 @@ namespace Pulumi.DopplerNative.ConfigsV3.Inputs
     public sealed class ChangeRequestsItemPropertiesOriginalValueTypePropertiesArgs : global::Pulumi.ResourceArgs
     {
         [Input("type")]
-        public Input<Pulumi.DopplerNative.ConfigsV3.SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType>? Type { get; set; }
+        public Input<Pulumi.DopplerNative.ConfigsV3.ChangeRequestsItemPropertiesOriginalValueTypePropertiesType>? Type { get; set; }
 
         public ChangeRequestsItemPropertiesOriginalValueTypePropertiesArgs()
         {

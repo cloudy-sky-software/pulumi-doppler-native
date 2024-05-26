@@ -37,7 +37,7 @@ export class ServiceTokens extends pulumi.CustomResource {
     /**
      * Token's capabilities.
      */
-    public readonly access!: pulumi.Output<enums.configs.v3.ServiceTokensAccess | undefined>;
+    public readonly access!: pulumi.Output<enums.configs.v3.Access | undefined>;
     /**
      * Name of the config object.
      */
@@ -99,7 +99,7 @@ export interface ServiceTokensArgs {
     /**
      * Token's capabilities.
      */
-    access?: pulumi.Input<enums.configs.v3.ServiceTokensAccess>;
+    access?: pulumi.Input<enums.configs.v3.Access>;
     /**
      * Name of the config object.
      */

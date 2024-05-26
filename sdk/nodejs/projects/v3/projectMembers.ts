@@ -47,7 +47,7 @@ export class ProjectMembers extends pulumi.CustomResource {
      * Member's slug
      */
     public readonly slug!: pulumi.Output<string>;
-    public readonly type!: pulumi.Output<enums.projects.v3.ProjectMembersType>;
+    public readonly type!: pulumi.Output<enums.projects.v3.Type>;
 
     /**
      * Create a ProjectMembers resource with the given unique name, arguments, and options.
@@ -99,5 +99,5 @@ export interface ProjectMembersArgs {
      * Member's slug
      */
     slug: pulumi.Input<string>;
-    type: pulumi.Input<enums.projects.v3.ProjectMembersType>;
+    type: pulumi.Input<enums.projects.v3.Type>;
 }

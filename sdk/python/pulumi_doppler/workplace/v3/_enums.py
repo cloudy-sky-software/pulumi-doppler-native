@@ -5,9 +5,9 @@
 from enum import Enum
 
 __all__ = [
-    'GroupsMemberType',
+    'Type',
 ]
 
 
-class GroupsMemberType(str, Enum):
+class Type(str, Enum):
     WORKPLACE_USER = "workplace_user"

@@ -19,7 +19,7 @@ class AuthenticationProperties(dict):
     def __init__(__self__, *,
                  password: Optional[str] = None,
                  token: Optional[str] = None,
-                 type: Optional['WebhooksAuthenticationPropertiesType'] = None,
+                 type: Optional['AuthenticationPropertiesType'] = None,
                  username: Optional[str] = None):
         """
         :param str password: Used when type = Basic
@@ -53,7 +53,7 @@ class AuthenticationProperties(dict):
 
     @property
     @pulumi.getter
-    def type(self) -> Optional['WebhooksAuthenticationPropertiesType']:
+    def type(self) -> Optional['AuthenticationPropertiesType']:
         return pulumi.get(self, "type")
 
     @property

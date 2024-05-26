@@ -38,7 +38,7 @@ export class GroupsMember extends pulumi.CustomResource {
      * The member's slug
      */
     public readonly slug!: pulumi.Output<string>;
-    public readonly type!: pulumi.Output<enums.workplace.v3.GroupsMemberType>;
+    public readonly type!: pulumi.Output<enums.workplace.v3.Type>;
 
     /**
      * Create a GroupsMember resource with the given unique name, arguments, and options.
@@ -76,5 +76,5 @@ export interface GroupsMemberArgs {
      * The group's slug
      */
     slug: pulumi.Input<string>;
-    type: pulumi.Input<enums.workplace.v3.GroupsMemberType>;
+    type: pulumi.Input<enums.workplace.v3.Type>;
 }

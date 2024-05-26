@@ -16,10 +16,10 @@ namespace Pulumi.DopplerNative.ConfigsV3.Outputs
     [OutputType]
     public sealed class ChangeRequestsItemPropertiesValueTypeProperties
     {
-        public readonly Pulumi.DopplerNative.ConfigsV3.SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType? Type;
+        public readonly Pulumi.DopplerNative.ConfigsV3.ChangeRequestsItemPropertiesValueTypePropertiesType? Type;
 
         [OutputConstructor]
-        private ChangeRequestsItemPropertiesValueTypeProperties(Pulumi.DopplerNative.ConfigsV3.SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType? type)
+        private ChangeRequestsItemPropertiesValueTypeProperties(Pulumi.DopplerNative.ConfigsV3.ChangeRequestsItemPropertiesValueTypePropertiesType? type)
         {
             Type = type;
         }

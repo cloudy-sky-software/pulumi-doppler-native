@@ -7,110 +7,110 @@ using Pulumi;
 
 namespace Pulumi.DopplerNative.ConfigsV3
 {
-    [EnumType]
-    public readonly struct SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType : IEquatable<SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType>
-    {
-        private readonly string _value;
-
-        private SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType String { get; } = new SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("string");
-        public static SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType Json { get; } = new SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("json");
-        public static SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType Json5 { get; } = new SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("json5");
-        public static SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType Boolean { get; } = new SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("boolean");
-        public static SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType Integer { get; } = new SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("integer");
-        public static SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType Decimal { get; } = new SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("decimal");
-        public static SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType Email { get; } = new SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("email");
-        public static SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType Url { get; } = new SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("url");
-        public static SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType Uuidv4 { get; } = new SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("uuidv4");
-        public static SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType Cuid2 { get; } = new SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("cuid2");
-        public static SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType Ulid { get; } = new SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("ulid");
-        public static SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType Datetime8601 { get; } = new SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("datetime8601");
-        public static SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType Date8601 { get; } = new SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("date8601");
-        public static SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType Yaml { get; } = new SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType("yaml");
-
-        public static bool operator ==(SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType left, SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType right) => left.Equals(right);
-        public static bool operator !=(SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType left, SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType right) => !left.Equals(right);
-
-        public static explicit operator string(SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType other && Equals(other);
-        public bool Equals(SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
-    [EnumType]
-    public readonly struct SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType : IEquatable<SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType>
-    {
-        private readonly string _value;
-
-        private SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType String { get; } = new SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("string");
-        public static SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType Json { get; } = new SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("json");
-        public static SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType Json5 { get; } = new SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("json5");
-        public static SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType Boolean { get; } = new SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("boolean");
-        public static SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType Integer { get; } = new SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("integer");
-        public static SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType Decimal { get; } = new SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("decimal");
-        public static SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType Email { get; } = new SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("email");
-        public static SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType Url { get; } = new SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("url");
-        public static SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType Uuidv4 { get; } = new SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("uuidv4");
-        public static SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType Cuid2 { get; } = new SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("cuid2");
-        public static SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType Ulid { get; } = new SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("ulid");
-        public static SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType Datetime8601 { get; } = new SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("datetime8601");
-        public static SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType Date8601 { get; } = new SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("date8601");
-        public static SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType Yaml { get; } = new SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType("yaml");
-
-        public static bool operator ==(SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType left, SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType right) => left.Equals(right);
-        public static bool operator !=(SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType left, SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType right) => !left.Equals(right);
-
-        public static explicit operator string(SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType other && Equals(other);
-        public bool Equals(SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
     /// <summary>
     /// Token's capabilities.
     /// </summary>
     [EnumType]
-    public readonly struct ServiceTokensAccess : IEquatable<ServiceTokensAccess>
+    public readonly struct Access : IEquatable<Access>
     {
         private readonly string _value;
 
-        private ServiceTokensAccess(string value)
+        private Access(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static ServiceTokensAccess Read { get; } = new ServiceTokensAccess("read");
-        public static ServiceTokensAccess Readwrite { get; } = new ServiceTokensAccess("read/write");
+        public static Access Read { get; } = new Access("read");
+        public static Access Readwrite { get; } = new Access("read/write");
 
-        public static bool operator ==(ServiceTokensAccess left, ServiceTokensAccess right) => left.Equals(right);
-        public static bool operator !=(ServiceTokensAccess left, ServiceTokensAccess right) => !left.Equals(right);
+        public static bool operator ==(Access left, Access right) => left.Equals(right);
+        public static bool operator !=(Access left, Access right) => !left.Equals(right);
 
-        public static explicit operator string(ServiceTokensAccess value) => value._value;
+        public static explicit operator string(Access value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ServiceTokensAccess other && Equals(other);
-        public bool Equals(ServiceTokensAccess other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is Access other && Equals(other);
+        public bool Equals(Access other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct ChangeRequestsItemPropertiesOriginalValueTypePropertiesType : IEquatable<ChangeRequestsItemPropertiesOriginalValueTypePropertiesType>
+    {
+        private readonly string _value;
+
+        private ChangeRequestsItemPropertiesOriginalValueTypePropertiesType(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ChangeRequestsItemPropertiesOriginalValueTypePropertiesType String { get; } = new ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("string");
+        public static ChangeRequestsItemPropertiesOriginalValueTypePropertiesType Json { get; } = new ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("json");
+        public static ChangeRequestsItemPropertiesOriginalValueTypePropertiesType Json5 { get; } = new ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("json5");
+        public static ChangeRequestsItemPropertiesOriginalValueTypePropertiesType Boolean { get; } = new ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("boolean");
+        public static ChangeRequestsItemPropertiesOriginalValueTypePropertiesType Integer { get; } = new ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("integer");
+        public static ChangeRequestsItemPropertiesOriginalValueTypePropertiesType Decimal { get; } = new ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("decimal");
+        public static ChangeRequestsItemPropertiesOriginalValueTypePropertiesType Email { get; } = new ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("email");
+        public static ChangeRequestsItemPropertiesOriginalValueTypePropertiesType Url { get; } = new ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("url");
+        public static ChangeRequestsItemPropertiesOriginalValueTypePropertiesType Uuidv4 { get; } = new ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("uuidv4");
+        public static ChangeRequestsItemPropertiesOriginalValueTypePropertiesType Cuid2 { get; } = new ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("cuid2");
+        public static ChangeRequestsItemPropertiesOriginalValueTypePropertiesType Ulid { get; } = new ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("ulid");
+        public static ChangeRequestsItemPropertiesOriginalValueTypePropertiesType Datetime8601 { get; } = new ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("datetime8601");
+        public static ChangeRequestsItemPropertiesOriginalValueTypePropertiesType Date8601 { get; } = new ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("date8601");
+        public static ChangeRequestsItemPropertiesOriginalValueTypePropertiesType Yaml { get; } = new ChangeRequestsItemPropertiesOriginalValueTypePropertiesType("yaml");
+
+        public static bool operator ==(ChangeRequestsItemPropertiesOriginalValueTypePropertiesType left, ChangeRequestsItemPropertiesOriginalValueTypePropertiesType right) => left.Equals(right);
+        public static bool operator !=(ChangeRequestsItemPropertiesOriginalValueTypePropertiesType left, ChangeRequestsItemPropertiesOriginalValueTypePropertiesType right) => !left.Equals(right);
+
+        public static explicit operator string(ChangeRequestsItemPropertiesOriginalValueTypePropertiesType value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ChangeRequestsItemPropertiesOriginalValueTypePropertiesType other && Equals(other);
+        public bool Equals(ChangeRequestsItemPropertiesOriginalValueTypePropertiesType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct ChangeRequestsItemPropertiesValueTypePropertiesType : IEquatable<ChangeRequestsItemPropertiesValueTypePropertiesType>
+    {
+        private readonly string _value;
+
+        private ChangeRequestsItemPropertiesValueTypePropertiesType(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ChangeRequestsItemPropertiesValueTypePropertiesType String { get; } = new ChangeRequestsItemPropertiesValueTypePropertiesType("string");
+        public static ChangeRequestsItemPropertiesValueTypePropertiesType Json { get; } = new ChangeRequestsItemPropertiesValueTypePropertiesType("json");
+        public static ChangeRequestsItemPropertiesValueTypePropertiesType Json5 { get; } = new ChangeRequestsItemPropertiesValueTypePropertiesType("json5");
+        public static ChangeRequestsItemPropertiesValueTypePropertiesType Boolean { get; } = new ChangeRequestsItemPropertiesValueTypePropertiesType("boolean");
+        public static ChangeRequestsItemPropertiesValueTypePropertiesType Integer { get; } = new ChangeRequestsItemPropertiesValueTypePropertiesType("integer");
+        public static ChangeRequestsItemPropertiesValueTypePropertiesType Decimal { get; } = new ChangeRequestsItemPropertiesValueTypePropertiesType("decimal");
+        public static ChangeRequestsItemPropertiesValueTypePropertiesType Email { get; } = new ChangeRequestsItemPropertiesValueTypePropertiesType("email");
+        public static ChangeRequestsItemPropertiesValueTypePropertiesType Url { get; } = new ChangeRequestsItemPropertiesValueTypePropertiesType("url");
+        public static ChangeRequestsItemPropertiesValueTypePropertiesType Uuidv4 { get; } = new ChangeRequestsItemPropertiesValueTypePropertiesType("uuidv4");
+        public static ChangeRequestsItemPropertiesValueTypePropertiesType Cuid2 { get; } = new ChangeRequestsItemPropertiesValueTypePropertiesType("cuid2");
+        public static ChangeRequestsItemPropertiesValueTypePropertiesType Ulid { get; } = new ChangeRequestsItemPropertiesValueTypePropertiesType("ulid");
+        public static ChangeRequestsItemPropertiesValueTypePropertiesType Datetime8601 { get; } = new ChangeRequestsItemPropertiesValueTypePropertiesType("datetime8601");
+        public static ChangeRequestsItemPropertiesValueTypePropertiesType Date8601 { get; } = new ChangeRequestsItemPropertiesValueTypePropertiesType("date8601");
+        public static ChangeRequestsItemPropertiesValueTypePropertiesType Yaml { get; } = new ChangeRequestsItemPropertiesValueTypePropertiesType("yaml");
+
+        public static bool operator ==(ChangeRequestsItemPropertiesValueTypePropertiesType left, ChangeRequestsItemPropertiesValueTypePropertiesType right) => left.Equals(right);
+        public static bool operator !=(ChangeRequestsItemPropertiesValueTypePropertiesType left, ChangeRequestsItemPropertiesValueTypePropertiesType right) => !left.Equals(right);
+
+        public static explicit operator string(ChangeRequestsItemPropertiesValueTypePropertiesType value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ChangeRequestsItemPropertiesValueTypePropertiesType other && Equals(other);
+        public bool Equals(ChangeRequestsItemPropertiesValueTypePropertiesType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -122,27 +122,27 @@ namespace Pulumi.DopplerNative.ConfigsV3
     /// An option indicating if and how Doppler should attempt to import secrets from the sync destination
     /// </summary>
     [EnumType]
-    public readonly struct SyncsImportOption : IEquatable<SyncsImportOption>
+    public readonly struct ImportOption : IEquatable<ImportOption>
     {
         private readonly string _value;
 
-        private SyncsImportOption(string value)
+        private ImportOption(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static SyncsImportOption None { get; } = new SyncsImportOption("none");
-        public static SyncsImportOption PreferDoppler { get; } = new SyncsImportOption("prefer_doppler");
-        public static SyncsImportOption PreferIntegration { get; } = new SyncsImportOption("prefer_integration");
+        public static ImportOption None { get; } = new ImportOption("none");
+        public static ImportOption PreferDoppler { get; } = new ImportOption("prefer_doppler");
+        public static ImportOption PreferIntegration { get; } = new ImportOption("prefer_integration");
 
-        public static bool operator ==(SyncsImportOption left, SyncsImportOption right) => left.Equals(right);
-        public static bool operator !=(SyncsImportOption left, SyncsImportOption right) => !left.Equals(right);
+        public static bool operator ==(ImportOption left, ImportOption right) => left.Equals(right);
+        public static bool operator !=(ImportOption left, ImportOption right) => !left.Equals(right);
 
-        public static explicit operator string(SyncsImportOption value) => value._value;
+        public static explicit operator string(ImportOption value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is SyncsImportOption other && Equals(other);
-        public bool Equals(SyncsImportOption other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is ImportOption other && Equals(other);
+        public bool Equals(ImportOption other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;

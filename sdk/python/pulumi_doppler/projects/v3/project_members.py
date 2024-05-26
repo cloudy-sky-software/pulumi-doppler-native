@@ -17,7 +17,7 @@ __all__ = ['ProjectMembersArgs', 'ProjectMembers']
 class ProjectMembersArgs:
     def __init__(__self__, *,
                  slug: pulumi.Input[str],
-                 type: pulumi.Input['ProjectMembersType'],
+                 type: pulumi.Input['Type'],
                  environments: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role: Optional[pulumi.Input[str]] = None):
         """
@@ -47,11 +47,11 @@ class ProjectMembersArgs:
 
     @property
     @pulumi.getter
-    def type(self) -> pulumi.Input['ProjectMembersType']:
+    def type(self) -> pulumi.Input['Type']:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: pulumi.Input['ProjectMembersType']):
+    def type(self, value: pulumi.Input['Type']):
         pulumi.set(self, "type", value)
 
     @property
@@ -87,7 +87,7 @@ class ProjectMembers(pulumi.CustomResource):
                  environments: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
-                 type: Optional[pulumi.Input['ProjectMembersType']] = None,
+                 type: Optional[pulumi.Input['Type']] = None,
                  __props__=None):
         """
         Create a ProjectMembers resource with the given unique name, props, and options.
@@ -123,7 +123,7 @@ class ProjectMembers(pulumi.CustomResource):
                  environments: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
-                 type: Optional[pulumi.Input['ProjectMembersType']] = None,
+                 type: Optional[pulumi.Input['Type']] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -202,6 +202,6 @@ class ProjectMembers(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def type(self) -> pulumi.Output['ProjectMembersType']:
+    def type(self) -> pulumi.Output['Type']:
         return pulumi.get(self, "type")
 

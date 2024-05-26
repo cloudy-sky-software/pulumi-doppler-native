@@ -2,8 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 
-export const GroupsMemberType = {
+export const Type = {
     WorkplaceUser: "workplace_user",
 } as const;
 
-export type GroupsMemberType = (typeof GroupsMemberType)[keyof typeof GroupsMemberType];
+export type Type = (typeof Type)[keyof typeof Type];

@@ -61,14 +61,14 @@ export namespace configs {
          * The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler.
          */
         export interface ChangeRequestsItemPropertiesOriginalValueTypeProperties {
-            type?: enums.configs.v3.SecretsUpdateChangeRequestsItemPropertiesOriginalValueTypePropertiesType;
+            type?: enums.configs.v3.ChangeRequestsItemPropertiesOriginalValueTypePropertiesType;
         }
 
         /**
          * The default valueType (string) will result in no validations being applied.
          */
         export interface ChangeRequestsItemPropertiesValueTypeProperties {
-            type?: enums.configs.v3.SecretsUpdateChangeRequestsItemPropertiesValueTypePropertiesType;
+            type?: enums.configs.v3.ChangeRequestsItemPropertiesValueTypePropertiesType;
         }
 
         export interface ConfigProperties {
@@ -782,7 +782,7 @@ export namespace webhooks {
              * Used when type = Bearer
              */
             token?: string;
-            type?: enums.webhooks.v3.WebhooksAuthenticationPropertiesType;
+            type?: enums.webhooks.v3.AuthenticationPropertiesType;
             /**
              * Used when type = Basic
              */

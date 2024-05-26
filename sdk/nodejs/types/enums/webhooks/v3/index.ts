@@ -2,10 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 
-export const WebhooksAuthenticationPropertiesType = {
+export const AuthenticationPropertiesType = {
     None: "None",
     Bearer: "Bearer",
     Basic: "Basic",
 } as const;
 
-export type WebhooksAuthenticationPropertiesType = (typeof WebhooksAuthenticationPropertiesType)[keyof typeof WebhooksAuthenticationPropertiesType];
+export type AuthenticationPropertiesType = (typeof AuthenticationPropertiesType)[keyof typeof AuthenticationPropertiesType];

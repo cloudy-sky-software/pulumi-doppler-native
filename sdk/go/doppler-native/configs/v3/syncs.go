@@ -20,7 +20,7 @@ type Syncs struct {
 	// Configuration data for the sync
 	Data pulumi.AnyOutput `pulumi:"data"`
 	// An option indicating if and how Doppler should attempt to import secrets from the sync destination
-	ImportOption SyncsImportOptionPtrOutput `pulumi:"importOption"`
+	ImportOption ImportOptionPtrOutput `pulumi:"importOption"`
 	// The integration slug which the sync will use
 	Integration pulumi.StringOutput     `pulumi:"integration"`
 	Sync        SyncPropertiesPtrOutput `pulumi:"sync"`
@@ -43,7 +43,7 @@ func NewSyncs(ctx *pulumi.Context,
 		args.AwaitInitialSync = pulumi.BoolPtr(true)
 	}
 	if args.ImportOption == nil {
-		args.ImportOption = SyncsImportOption("none")
+		args.ImportOption = ImportOption("none")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Syncs
@@ -83,7 +83,7 @@ type syncsArgs struct {
 	// Configuration data for the sync
 	Data interface{} `pulumi:"data"`
 	// An option indicating if and how Doppler should attempt to import secrets from the sync destination
-	ImportOption *SyncsImportOption `pulumi:"importOption"`
+	ImportOption *ImportOption `pulumi:"importOption"`
 	// The integration slug which the sync will use
 	Integration string `pulumi:"integration"`
 }
@@ -95,7 +95,7 @@ type SyncsArgs struct {
 	// Configuration data for the sync
 	Data pulumi.Input
 	// An option indicating if and how Doppler should attempt to import secrets from the sync destination
-	ImportOption SyncsImportOptionPtrInput
+	ImportOption ImportOptionPtrInput
 	// The integration slug which the sync will use
 	Integration pulumi.StringInput
 }
@@ -148,8 +148,8 @@ func (o SyncsOutput) Data() pulumi.AnyOutput {
 }
 
 // An option indicating if and how Doppler should attempt to import secrets from the sync destination
-func (o SyncsOutput) ImportOption() SyncsImportOptionPtrOutput {
-	return o.ApplyT(func(v *Syncs) SyncsImportOptionPtrOutput { return v.ImportOption }).(SyncsImportOptionPtrOutput)
+func (o SyncsOutput) ImportOption() ImportOptionPtrOutput {
+	return o.ApplyT(func(v *Syncs) ImportOptionPtrOutput { return v.ImportOption }).(ImportOptionPtrOutput)
 }
 
 // The integration slug which the sync will use

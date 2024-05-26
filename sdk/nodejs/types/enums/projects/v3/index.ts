@@ -2,11 +2,11 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 
-export const ProjectMembersType = {
+export const Type = {
     WorkplaceUser: "workplace_user",
     Group: "group",
     Invite: "invite",
     ServiceAccount: "service_account",
 } as const;
 
-export type ProjectMembersType = (typeof ProjectMembersType)[keyof typeof ProjectMembersType];
+export type Type = (typeof Type)[keyof typeof Type];
