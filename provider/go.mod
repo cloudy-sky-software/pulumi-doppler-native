@@ -3,11 +3,11 @@ module github.com/cloudy-sky-software/pulumi-doppler-native/provider
 go 1.21
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20240705172638-7ddd7501458f
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20240707152217-651f66f108e8
+	github.com/cloudy-sky-software/pulschema v0.0.0-20240711012715-766959d9733d
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20240711145101-509c4c36ac48
 	github.com/getkin/kin-openapi v0.126.0
-	github.com/pulumi/pulumi/pkg/v3 v3.122.0
-	github.com/pulumi/pulumi/sdk/v3 v3.122.0
+	github.com/pulumi/pulumi/pkg/v3 v3.123.0
+	github.com/pulumi/pulumi/sdk/v3 v3.123.0
 )
 
 require github.com/stretchr/testify v1.9.0
@@ -81,7 +81,7 @@ require (
 	github.com/gofrs/uuid v4.4.0+incompatible // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang-jwt/jwt/v5 v5.2.1 // indirect
-	github.com/golang/glog v1.2.1 // indirect
+	github.com/golang/glog v1.2.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
