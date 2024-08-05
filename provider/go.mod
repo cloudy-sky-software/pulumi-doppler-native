@@ -3,11 +3,11 @@ module github.com/cloudy-sky-software/pulumi-doppler-native/provider
 go 1.21
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20240712202108-2a35e3b3a470
+	github.com/cloudy-sky-software/pulschema v0.0.0-20240805221543-453c5c0e2971
 	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20240712222412-d103e1160350
-	github.com/getkin/kin-openapi v0.126.0
-	github.com/pulumi/pulumi/pkg/v3 v3.124.0
-	github.com/pulumi/pulumi/sdk/v3 v3.124.0
+	github.com/getkin/kin-openapi v0.127.0
+	github.com/pulumi/pulumi/pkg/v3 v3.128.0
+	github.com/pulumi/pulumi/sdk/v3 v3.128.0
 )
 
 require github.com/stretchr/testify v1.9.0
