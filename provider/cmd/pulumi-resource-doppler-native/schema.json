@@ -1661,26 +1661,26 @@
             },
             "type": "object"
         },
-        "doppler-native:workplace/v3:GetRetrieveMemberProperties": {
+        "doppler-native:workplace/v3:GetMemberProperties": {
             "properties": {
                 "group": {
-                    "$ref": "#/types/doppler-native:workplace/v3:GetRetrieveMemberPropertiesGroupProperties"
+                    "$ref": "#/types/doppler-native:workplace/v3:GetMemberPropertiesGroupProperties"
                 }
             },
             "type": "object"
         },
-        "doppler-native:workplace/v3:GetRetrieveMemberPropertiesGroupProperties": {
+        "doppler-native:workplace/v3:GetMemberPropertiesGroupProperties": {
             "properties": {
                 "createdAt": {
                     "type": "string"
                 },
                 "defaultProjectRole": {
-                    "$ref": "#/types/doppler-native:workplace/v3:GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties"
+                    "$ref": "#/types/doppler-native:workplace/v3:GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties"
                 },
                 "members": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties"
+                        "$ref": "#/types/doppler-native:workplace/v3:GetMemberPropertiesGroupPropertiesMembersItemProperties"
                     }
                 },
                 "name": {
@@ -1689,7 +1689,7 @@
                 "projects": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties"
+                        "$ref": "#/types/doppler-native:workplace/v3:GetMemberPropertiesGroupPropertiesProjectsItemProperties"
                     }
                 },
                 "slug": {
@@ -1698,7 +1698,7 @@
             },
             "type": "object"
         },
-        "doppler-native:workplace/v3:GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties": {
+        "doppler-native:workplace/v3:GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties": {
             "properties": {
                 "identifier": {
                     "type": "string"
@@ -1706,7 +1706,7 @@
             },
             "type": "object"
         },
-        "doppler-native:workplace/v3:GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties": {
+        "doppler-native:workplace/v3:GetMemberPropertiesGroupPropertiesMembersItemProperties": {
             "properties": {
                 "slug": {
                     "type": "string"
@@ -1717,13 +1717,13 @@
             },
             "type": "object"
         },
-        "doppler-native:workplace/v3:GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties": {
+        "doppler-native:workplace/v3:GetMemberPropertiesGroupPropertiesProjectsItemProperties": {
             "properties": {
                 "name": {
                     "type": "string"
                 },
                 "role": {
-                    "$ref": "#/types/doppler-native:workplace/v3:GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties"
+                    "$ref": "#/types/doppler-native:workplace/v3:GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties"
                 },
                 "slug": {
                     "type": "string"
@@ -1731,7 +1731,7 @@
             },
             "type": "object"
         },
-        "doppler-native:workplace/v3:GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties": {
+        "doppler-native:workplace/v3:GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties": {
             "properties": {
                 "identifier": {
                     "type": "string"
@@ -2427,18 +2427,15 @@
         }
     },
     "resources": {
-        "doppler-native:configs/v3:ConfigLogsRollback": {
-            "properties": {
-                "log": {
-                    "$ref": "#/types/doppler-native:configs/v3:LogProperties"
-                }
-            },
-            "type": "object"
-        },
-        "doppler-native:configs/v3:Configs": {
+        "doppler-native:configs/v3:Config": {
             "properties": {
                 "config": {
-                    "$ref": "#/types/doppler-native:configs/v3:ConfigProperties"
+                    "$ref": "#/types/doppler-native:configs/v3:ConfigProperties",
+                    "language": {
+                        "csharp": {
+                            "name": "ConfigValue"
+                        }
+                    }
                 },
                 "environment": {
                     "type": "string",
@@ -2483,6 +2480,14 @@
                 "environment",
                 "project"
             ]
+        },
+        "doppler-native:configs/v3:ConfigLogsRollback": {
+            "properties": {
+                "log": {
+                    "$ref": "#/types/doppler-native:configs/v3:LogProperties"
+                }
+            },
+            "type": "object"
         },
         "doppler-native:configs/v3:ConfigsClone": {
             "properties": {
@@ -2826,7 +2831,7 @@
                 "secret"
             ]
         },
-        "doppler-native:configs/v3:ServiceTokens": {
+        "doppler-native:configs/v3:ServiceToken": {
             "properties": {
                 "access": {
                     "$ref": "#/types/doppler-native:configs/v3:Access",
@@ -2893,7 +2898,7 @@
                 "project"
             ]
         },
-        "doppler-native:configs/v3:Syncs": {
+        "doppler-native:configs/v3:Sync": {
             "properties": {
                 "awaitInitialSync": {
                     "type": "boolean",
@@ -2914,7 +2919,12 @@
                     "description": "The integration slug which the sync will use"
                 },
                 "sync": {
-                    "$ref": "#/types/doppler-native:configs/v3:SyncProperties"
+                    "$ref": "#/types/doppler-native:configs/v3:SyncProperties",
+                    "language": {
+                        "csharp": {
+                            "name": "SyncValue"
+                        }
+                    }
                 }
             },
             "type": "object",
@@ -2947,10 +2957,15 @@
                 "integration"
             ]
         },
-        "doppler-native:environments/v3:Environments": {
+        "doppler-native:environments/v3:Environment": {
             "properties": {
                 "environment": {
-                    "$ref": "#/types/doppler-native:environments/v3:EnvironmentProperties"
+                    "$ref": "#/types/doppler-native:environments/v3:EnvironmentProperties",
+                    "language": {
+                        "csharp": {
+                            "name": "EnvironmentValue"
+                        }
+                    }
                 },
                 "name": {
                     "type": "string"
@@ -2999,14 +3014,19 @@
                 }
             }
         },
-        "doppler-native:integrations/v3:Integrations": {
+        "doppler-native:integrations/v3:Integration": {
             "properties": {
                 "data": {
                     "$ref": "pulumi.json#/Any",
                     "description": "The authentication data for the integration"
                 },
                 "integration": {
-                    "$ref": "#/types/doppler-native:integrations/v3:IntegrationProperties"
+                    "$ref": "#/types/doppler-native:integrations/v3:IntegrationProperties",
+                    "language": {
+                        "csharp": {
+                            "name": "IntegrationValue"
+                        }
+                    }
                 },
                 "name": {
                     "type": "string",
@@ -3040,7 +3060,45 @@
                 "type"
             ]
         },
-        "doppler-native:projects/v3:ProjectMembers": {
+        "doppler-native:projects/v3:Project": {
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description of project",
+                    "default": "PROJECT_DESCRIPTION"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of project",
+                    "default": "PROJECT_NAME"
+                },
+                "project": {
+                    "$ref": "#/types/doppler-native:projects/v3:ProjectProperties",
+                    "language": {
+                        "csharp": {
+                            "name": "ProjectValue"
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description of project",
+                    "default": "PROJECT_DESCRIPTION"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of project",
+                    "default": "PROJECT_NAME"
+                }
+            }
+        },
+        "doppler-native:projects/v3:ProjectMember": {
             "properties": {
                 "environments": {
                     "type": "array",
@@ -3094,7 +3152,7 @@
                 "type"
             ]
         },
-        "doppler-native:projects/v3:ProjectRoles": {
+        "doppler-native:projects/v3:ProjectRole": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -3132,39 +3190,6 @@
             "requiredInputs": [
                 "permissions"
             ]
-        },
-        "doppler-native:projects/v3:Projects": {
-            "properties": {
-                "description": {
-                    "type": "string",
-                    "description": "Description of project",
-                    "default": "PROJECT_DESCRIPTION"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Name of project",
-                    "default": "PROJECT_NAME"
-                },
-                "project": {
-                    "$ref": "#/types/doppler-native:projects/v3:ProjectProperties"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name"
-            ],
-            "inputProperties": {
-                "description": {
-                    "type": "string",
-                    "description": "Description of project",
-                    "default": "PROJECT_DESCRIPTION"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Name of project",
-                    "default": "PROJECT_NAME"
-                }
-            }
         },
         "doppler-native:projects/v3:ProjectsUpdate": {
             "properties": {
@@ -3208,7 +3233,7 @@
                 "project"
             ]
         },
-        "doppler-native:webhooks/v3:Webhooks": {
+        "doppler-native:webhooks/v3:Webhook": {
             "properties": {
                 "authentication": {
                     "$ref": "#/types/doppler-native:webhooks/v3:AuthenticationProperties"
@@ -3283,14 +3308,19 @@
                 }
             }
         },
-        "doppler-native:workplace/v3:Groups": {
+        "doppler-native:workplace/v3:Group": {
             "properties": {
                 "defaultProjectRole": {
                     "type": "string",
                     "description": "Identifier of the project role"
                 },
                 "group": {
-                    "$ref": "#/types/doppler-native:workplace/v3:GroupProperties"
+                    "$ref": "#/types/doppler-native:workplace/v3:GroupProperties",
+                    "language": {
+                        "csharp": {
+                            "name": "GroupValue"
+                        }
+                    }
                 },
                 "name": {
                     "type": "string"
@@ -3339,7 +3369,36 @@
                 "type"
             ]
         },
-        "doppler-native:workplace/v3:ServiceAccountTokens": {
+        "doppler-native:workplace/v3:ServiceAccount": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "serviceAccount": {
+                    "$ref": "#/types/doppler-native:workplace/v3:ServiceAccountProperties",
+                    "language": {
+                        "csharp": {
+                            "name": "ServiceAccountValue"
+                        }
+                    }
+                },
+                "workplaceRole": {
+                    "$ref": "#/types/doppler-native:workplace/v3:WorkplaceRoleProperties",
+                    "description": "You may provide an identifier OR permissions, but not both"
+                }
+            },
+            "type": "object",
+            "inputProperties": {
+                "name": {
+                    "type": "string"
+                },
+                "workplaceRole": {
+                    "$ref": "#/types/doppler-native:workplace/v3:WorkplaceRoleProperties",
+                    "description": "You may provide an identifier OR permissions, but not both"
+                }
+            }
+        },
+        "doppler-native:workplace/v3:ServiceAccountToken": {
             "properties": {
                 "apiKey": {
                     "type": "string"
@@ -3376,31 +3435,7 @@
                 }
             }
         },
-        "doppler-native:workplace/v3:ServiceAccounts": {
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "serviceAccount": {
-                    "$ref": "#/types/doppler-native:workplace/v3:ServiceAccountProperties"
-                },
-                "workplaceRole": {
-                    "$ref": "#/types/doppler-native:workplace/v3:WorkplaceRoleProperties",
-                    "description": "You may provide an identifier OR permissions, but not both"
-                }
-            },
-            "type": "object",
-            "inputProperties": {
-                "name": {
-                    "type": "string"
-                },
-                "workplaceRole": {
-                    "$ref": "#/types/doppler-native:workplace/v3:WorkplaceRoleProperties",
-                    "description": "You may provide an identifier OR permissions, but not both"
-                }
-            }
-        },
-        "doppler-native:workplace/v3:WorkplaceRoles": {
+        "doppler-native:workplace/v3:WorkplaceRole": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -3474,235 +3509,109 @@
         "doppler-native:configs/v3:getConfig": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:configs/v3:GetConfigProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:configs/v3:GetConfigProperties"
             }
         },
         "doppler-native:configs/v3:getConfigLog": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:configs/v3:GetConfigLogProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:configs/v3:GetConfigLogProperties"
             }
         },
         "doppler-native:configs/v3:getSecret": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:configs/v3:GetSecretProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:configs/v3:GetSecretProperties"
             }
         },
         "doppler-native:configs/v3:getSecretsDownload": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:configs/v3:GetSecretsDownloadProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:configs/v3:GetSecretsDownloadProperties"
             }
         },
         "doppler-native:configs/v3:getSecretsName": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:configs/v3:GetSecretsNameProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:configs/v3:GetSecretsNameProperties"
             }
         },
         "doppler-native:configs/v3:getSync": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:configs/v3:GetSyncProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:configs/v3:GetSyncProperties"
             }
         },
         "doppler-native:configs/v3:listConfigLogs": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:configs/v3:ListConfigLogsProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:configs/v3:ListConfigLogsProperties"
             }
         },
         "doppler-native:configs/v3:listConfigs": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:configs/v3:ListConfigsProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:configs/v3:ListConfigsProperties"
             }
         },
         "doppler-native:configs/v3:listConfigsTrustedIps": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:configs/v3:ListConfigsTrustedIpsProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:configs/v3:ListConfigsTrustedIpsProperties"
             }
         },
         "doppler-native:configs/v3:listSecrets": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:configs/v3:ListSecretsProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:configs/v3:ListSecretsProperties"
             }
         },
         "doppler-native:configs/v3:listServiceTokens": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:configs/v3:ListServiceTokensProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:configs/v3:ListServiceTokensProperties"
             }
         },
         "doppler-native:environments/v3:getEnvironment": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:environments/v3:GetEnvironmentProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:environments/v3:GetEnvironmentProperties"
             }
         },
         "doppler-native:environments/v3:listEnvironments": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:environments/v3:ListEnvironmentsProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:environments/v3:ListEnvironmentsProperties"
             }
         },
         "doppler-native:integrations/v3:getIntegration": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:integrations/v3:GetIntegrationProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:integrations/v3:GetIntegrationProperties"
             }
         },
         "doppler-native:integrations/v3:getOption": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "pulumi.json#/Any"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "pulumi.json#/Any"
             }
         },
         "doppler-native:integrations/v3:listIntegrations": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:integrations/v3:ListIntegrationsProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:integrations/v3:ListIntegrationsProperties"
             }
         },
         "doppler-native:me/v3:getAuthMe": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:me/v3:GetAuthMeProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:me/v3:GetAuthMeProperties"
             }
         },
         "doppler-native:projects/v3:getProject": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:projects/v3:GetProjectProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:projects/v3:GetProjectProperties"
             }
         },
         "doppler-native:projects/v3:getProjectMember": {
@@ -3722,14 +3631,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:projects/v3:GetProjectMemberProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:projects/v3:GetProjectMemberProperties"
             }
         },
         "doppler-native:projects/v3:getProjectRole": {
@@ -3745,66 +3647,31 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:projects/v3:GetProjectRoleProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:projects/v3:GetProjectRoleProperties"
             }
         },
         "doppler-native:projects/v3:listProjectMembers": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:projects/v3:ListProjectMembersProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:projects/v3:ListProjectMembersProperties"
             }
         },
         "doppler-native:projects/v3:listProjectRoles": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:projects/v3:ListProjectRolesProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:projects/v3:ListProjectRolesProperties"
             }
         },
         "doppler-native:projects/v3:listProjectRolesPermissions": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:projects/v3:ListProjectRolesPermissionsProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:projects/v3:ListProjectRolesPermissionsProperties"
             }
         },
         "doppler-native:projects/v3:listProjects": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:projects/v3:ListProjectsProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:projects/v3:ListProjectsProperties"
             }
         },
         "doppler-native:webhooks/v3:getWebhook": {
@@ -3820,14 +3687,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "pulumi.json#/Any"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "pulumi.json#/Any"
             }
         },
         "doppler-native:workplace/v3:getAuditUser": {
@@ -3843,14 +3703,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:GetAuditUserProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:workplace/v3:GetAuditUserProperties"
             }
         },
         "doppler-native:workplace/v3:getGroup": {
@@ -3866,17 +3719,10 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:GetGroupProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:workplace/v3:GetGroupProperties"
             }
         },
-        "doppler-native:workplace/v3:getRetrieveMember": {
+        "doppler-native:workplace/v3:getMember": {
             "inputs": {
                 "properties": {
                     "groupSlug": {
@@ -3898,14 +3744,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:GetRetrieveMemberProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:workplace/v3:GetMemberProperties"
             }
         },
         "doppler-native:workplace/v3:getServiceAccount": {
@@ -3921,14 +3760,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:GetServiceAccountProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:workplace/v3:GetServiceAccountProperties"
             }
         },
         "doppler-native:workplace/v3:getServiceAccountToken": {
@@ -3949,14 +3781,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:GetServiceAccountTokenProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:workplace/v3:GetServiceAccountTokenProperties"
             }
         },
         "doppler-native:workplace/v3:getUser": {
@@ -3972,27 +3797,13 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:GetUserProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:workplace/v3:GetUserProperties"
             }
         },
         "doppler-native:workplace/v3:getWorkplace": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:GetWorkplaceProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:workplace/v3:GetWorkplaceProperties"
             }
         },
         "doppler-native:workplace/v3:getWorkplaceRole": {
@@ -4008,40 +3819,19 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:GetWorkplaceRoleProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:workplace/v3:GetWorkplaceRoleProperties"
             }
         },
         "doppler-native:workplace/v3:listGroups": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:ListGroupsProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:workplace/v3:ListGroupsProperties"
             }
         },
         "doppler-native:workplace/v3:listInvites": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:ListInvitesProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:workplace/v3:ListInvitesProperties"
             }
         },
         "doppler-native:workplace/v3:listServiceAccountTokens": {
@@ -4057,66 +3847,31 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:ListServiceAccountTokensProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:workplace/v3:ListServiceAccountTokensProperties"
             }
         },
         "doppler-native:workplace/v3:listServiceAccounts": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:ListServiceAccountsProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:workplace/v3:ListServiceAccountsProperties"
             }
         },
         "doppler-native:workplace/v3:listUsers": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:ListUsersProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:workplace/v3:ListUsersProperties"
             }
         },
         "doppler-native:workplace/v3:listWorkplaceRoles": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:ListWorkplaceRolesProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:workplace/v3:ListWorkplaceRolesProperties"
             }
         },
         "doppler-native:workplace/v3:listWorkplaceRolesPermissions": {
             "inputs": {},
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/doppler-native:workplace/v3:ListWorkplaceRolesPermissionsProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/doppler-native:workplace/v3:ListWorkplaceRolesPermissionsProperties"
             }
         }
     }
