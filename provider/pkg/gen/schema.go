@@ -8,6 +8,8 @@ import (
 
 	"github.com/getkin/kin-openapi/openapi3"
 
+	dotnetgen "github.com/pulumi/pulumi/pkg/v3/codegen/dotnet"
+
 	pschema "github.com/pulumi/pulumi/pkg/v3/codegen/schema"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
@@ -112,14 +114,12 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		}
 	}
 
-	pkg.Language["csharp"] = rawMessage(map[string]interface{}{
-		"rootNamespace": "Pulumi",
-		"packageReferences": map[string]string{
+	pkg.Language["csharp"] = rawMessage(dotnetgen.CSharpPackageInfo{
+		RootNamespace: "CloudySkySoftware.Pulumi",
+		PackageReferences: map[string]string{
 			"Pulumi": "3.*",
 		},
-		"namespaces": csharpNamespaces,
-		// TODO: What does this enable?
-		// "dictionaryConstructors": true,
+		Namespaces: csharpNamespaces,
 	})
 
 	pkg.Language["go"] = rawMessage(map[string]interface{}{
