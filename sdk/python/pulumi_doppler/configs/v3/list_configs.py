@@ -4,56 +4,73 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'ListConfigsResult',
-    'AwaitableListConfigsResult',
+    'ListConfigsProperties',
+    'AwaitableListConfigsProperties',
     'list_configs',
     'list_configs_output',
 ]
 
 @pulumi.output_type
-class ListConfigsResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class ListConfigsProperties:
+    def __init__(__self__, configs=None, page=None):
+        if configs and not isinstance(configs, list):
+            raise TypeError("Expected argument 'configs' to be a list")
+        pulumi.set(__self__, "configs", configs)
+        if page and not isinstance(page, int):
+            raise TypeError("Expected argument 'page' to be a int")
+        pulumi.set(__self__, "page", page)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.ListConfigsProperties':
-        return pulumi.get(self, "items")
+    def configs(self) -> Optional[Sequence['outputs.ListConfigsPropertiesConfigsItemProperties']]:
+        return pulumi.get(self, "configs")
+
+    @property
+    @pulumi.getter
+    def page(self) -> Optional[int]:
+        return pulumi.get(self, "page")
 
 
-class AwaitableListConfigsResult(ListConfigsResult):
+class AwaitableListConfigsProperties(ListConfigsProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListConfigsResult(
-            items=self.items)
+        return ListConfigsProperties(
+            configs=self.configs,
+            page=self.page)
 
 
-def list_configs(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListConfigsResult:
+def list_configs(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListConfigsProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:configs/v3:listConfigs', __args__, opts=opts, typ=ListConfigsResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:configs/v3:listConfigs', __args__, opts=opts, typ=ListConfigsProperties).value
 
-    return AwaitableListConfigsResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_configs)
-def list_configs_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListConfigsResult]:
+    return AwaitableListConfigsProperties(
+        configs=pulumi.get(__ret__, 'configs'),
+        page=pulumi.get(__ret__, 'page'))
+def list_configs_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListConfigsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:configs/v3:listConfigs', __args__, opts=opts, typ=ListConfigsProperties)
+    return __ret__.apply(lambda __response__: ListConfigsProperties(
+        configs=pulumi.get(__response__, 'configs'),
+        page=pulumi.get(__response__, 'page')))

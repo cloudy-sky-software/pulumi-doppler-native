@@ -4,32 +4,21 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
-from . import outputs
 
 __all__ = [
-    'GetIntegrationProperties',
     'GetIntegrationPropertiesIntegrationProperties',
     'IntegrationProperties',
-    'ListIntegrationsProperties',
     'ListIntegrationsPropertiesIntegrationsItemProperties',
 ]
-
-@pulumi.output_type
-class GetIntegrationProperties(dict):
-    def __init__(__self__, *,
-                 integration: Optional['outputs.GetIntegrationPropertiesIntegrationProperties'] = None):
-        if integration is not None:
-            pulumi.set(__self__, "integration", integration)
-
-    @property
-    @pulumi.getter
-    def integration(self) -> Optional['outputs.GetIntegrationPropertiesIntegrationProperties']:
-        return pulumi.get(self, "integration")
-
 
 @pulumi.output_type
 class GetIntegrationPropertiesIntegrationProperties(dict):
@@ -87,29 +76,6 @@ class IntegrationProperties(dict):
     @pulumi.getter
     def type(self) -> Optional[str]:
         return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class ListIntegrationsProperties(dict):
-    def __init__(__self__, *,
-                 integrations: Optional[Sequence['outputs.ListIntegrationsPropertiesIntegrationsItemProperties']] = None,
-                 success: Optional[bool] = None):
-        if integrations is not None:
-            pulumi.set(__self__, "integrations", integrations)
-        if success is None:
-            success = True
-        if success is not None:
-            pulumi.set(__self__, "success", success)
-
-    @property
-    @pulumi.getter
-    def integrations(self) -> Optional[Sequence['outputs.ListIntegrationsPropertiesIntegrationsItemProperties']]:
-        return pulumi.get(self, "integrations")
-
-    @property
-    @pulumi.getter
-    def success(self) -> Optional[bool]:
-        return pulumi.get(self, "success")
 
 
 @pulumi.output_type

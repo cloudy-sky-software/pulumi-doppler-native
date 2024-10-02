@@ -4,17 +4,19 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
-from . import outputs
 
 __all__ = [
     'EnvironmentProperties',
-    'GetEnvironmentProperties',
     'GetEnvironmentPropertiesEnvironmentProperties',
-    'ListEnvironmentsProperties',
     'ListEnvironmentsPropertiesEnvironmentsItemProperties',
 ]
 
@@ -83,19 +85,6 @@ class EnvironmentProperties(dict):
 
 
 @pulumi.output_type
-class GetEnvironmentProperties(dict):
-    def __init__(__self__, *,
-                 environment: Optional['outputs.GetEnvironmentPropertiesEnvironmentProperties'] = None):
-        if environment is not None:
-            pulumi.set(__self__, "environment", environment)
-
-    @property
-    @pulumi.getter
-    def environment(self) -> Optional['outputs.GetEnvironmentPropertiesEnvironmentProperties']:
-        return pulumi.get(self, "environment")
-
-
-@pulumi.output_type
 class GetEnvironmentPropertiesEnvironmentProperties(dict):
     def __init__(__self__, *,
                  created_at: Optional[str] = None,
@@ -138,29 +127,6 @@ class GetEnvironmentPropertiesEnvironmentProperties(dict):
     @pulumi.getter
     def project(self) -> Optional[str]:
         return pulumi.get(self, "project")
-
-
-@pulumi.output_type
-class ListEnvironmentsProperties(dict):
-    def __init__(__self__, *,
-                 environments: Optional[Sequence['outputs.ListEnvironmentsPropertiesEnvironmentsItemProperties']] = None,
-                 page: Optional[int] = None):
-        if environments is not None:
-            pulumi.set(__self__, "environments", environments)
-        if page is None:
-            page = 0
-        if page is not None:
-            pulumi.set(__self__, "page", page)
-
-    @property
-    @pulumi.getter
-    def environments(self) -> Optional[Sequence['outputs.ListEnvironmentsPropertiesEnvironmentsItemProperties']]:
-        return pulumi.get(self, "environments")
-
-    @property
-    @pulumi.getter
-    def page(self) -> Optional[int]:
-        return pulumi.get(self, "page")
 
 
 @pulumi.output_type

@@ -25,19 +25,25 @@ type ListWorkplaceRolesArgs struct {
 }
 
 type ListWorkplaceRolesResult struct {
-	Items ListWorkplaceRolesProperties `pulumi:"items"`
+	Roles []ListWorkplaceRolesPropertiesRolesItemProperties `pulumi:"roles"`
 }
 
 func ListWorkplaceRolesOutput(ctx *pulumi.Context, args ListWorkplaceRolesOutputArgs, opts ...pulumi.InvokeOption) ListWorkplaceRolesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListWorkplaceRolesResult, error) {
+		ApplyT(func(v interface{}) (ListWorkplaceRolesResultOutput, error) {
 			args := v.(ListWorkplaceRolesArgs)
-			r, err := ListWorkplaceRoles(ctx, &args, opts...)
-			var s ListWorkplaceRolesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListWorkplaceRolesResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:listWorkplaceRoles", args, &rv, "", opts...)
+			if err != nil {
+				return ListWorkplaceRolesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListWorkplaceRolesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListWorkplaceRolesResultOutput), nil
+			}
+			return output, nil
 		}).(ListWorkplaceRolesResultOutput)
 }
 
@@ -62,8 +68,8 @@ func (o ListWorkplaceRolesResultOutput) ToListWorkplaceRolesResultOutputWithCont
 	return o
 }
 
-func (o ListWorkplaceRolesResultOutput) Items() ListWorkplaceRolesPropertiesOutput {
-	return o.ApplyT(func(v ListWorkplaceRolesResult) ListWorkplaceRolesProperties { return v.Items }).(ListWorkplaceRolesPropertiesOutput)
+func (o ListWorkplaceRolesResultOutput) Roles() ListWorkplaceRolesPropertiesRolesItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListWorkplaceRolesResult) []ListWorkplaceRolesPropertiesRolesItemProperties { return v.Roles }).(ListWorkplaceRolesPropertiesRolesItemPropertiesArrayOutput)
 }
 
 func init() {

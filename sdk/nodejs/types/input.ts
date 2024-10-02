@@ -118,26 +118,6 @@ export namespace projects {
     }
 }
 
-export namespace webhooks {
-    export namespace v3 {
-        export interface AuthenticationPropertiesArgs {
-            /**
-             * Used when type = Basic
-             */
-            password?: pulumi.Input<string>;
-            /**
-             * Used when type = Bearer
-             */
-            token?: pulumi.Input<string>;
-            type?: pulumi.Input<enums.webhooks.v3.AuthenticationPropertiesType>;
-            /**
-             * Used when type = Basic
-             */
-            username?: pulumi.Input<string>;
-        }
-    }
-}
-
 export namespace workplace {
     export namespace v3 {
         /**

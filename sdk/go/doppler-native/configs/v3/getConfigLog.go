@@ -25,7 +25,7 @@ type GetConfigLogArgs struct {
 }
 
 type GetConfigLogResult struct {
-	Items GetConfigLogProperties `pulumi:"items"`
+	Log *GetConfigLogPropertiesLogProperties `pulumi:"log"`
 }
 
 // Defaults sets the appropriate defaults for GetConfigLogResult
@@ -34,21 +34,27 @@ func (val *GetConfigLogResult) Defaults() *GetConfigLogResult {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
+	tmp.Log = tmp.Log.Defaults()
 
 	return &tmp
 }
 
 func GetConfigLogOutput(ctx *pulumi.Context, args GetConfigLogOutputArgs, opts ...pulumi.InvokeOption) GetConfigLogResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetConfigLogResult, error) {
+		ApplyT(func(v interface{}) (GetConfigLogResultOutput, error) {
 			args := v.(GetConfigLogArgs)
-			r, err := GetConfigLog(ctx, &args, opts...)
-			var s GetConfigLogResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetConfigLogResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:configs/v3:getConfigLog", args, &rv, "", opts...)
+			if err != nil {
+				return GetConfigLogResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetConfigLogResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetConfigLogResultOutput), nil
+			}
+			return output, nil
 		}).(GetConfigLogResultOutput)
 }
 
@@ -73,8 +79,8 @@ func (o GetConfigLogResultOutput) ToGetConfigLogResultOutputWithContext(ctx cont
 	return o
 }
 
-func (o GetConfigLogResultOutput) Items() GetConfigLogPropertiesOutput {
-	return o.ApplyT(func(v GetConfigLogResult) GetConfigLogProperties { return v.Items }).(GetConfigLogPropertiesOutput)
+func (o GetConfigLogResultOutput) Log() GetConfigLogPropertiesLogPropertiesPtrOutput {
+	return o.ApplyT(func(v GetConfigLogResult) *GetConfigLogPropertiesLogProperties { return v.Log }).(GetConfigLogPropertiesLogPropertiesPtrOutput)
 }
 
 func init() {

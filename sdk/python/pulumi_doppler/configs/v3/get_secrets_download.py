@@ -4,56 +4,94 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
-from . import outputs
 
 __all__ = [
-    'GetSecretsDownloadResult',
-    'AwaitableGetSecretsDownloadResult',
+    'GetSecretsDownloadProperties',
+    'AwaitableGetSecretsDownloadProperties',
     'get_secrets_download',
     'get_secrets_download_output',
 ]
 
 @pulumi.output_type
-class GetSecretsDownloadResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetSecretsDownloadProperties:
+    def __init__(__self__, algolia=None, database=None, stripe=None, user=None):
+        if algolia and not isinstance(algolia, str):
+            raise TypeError("Expected argument 'algolia' to be a str")
+        pulumi.set(__self__, "algolia", algolia)
+        if database and not isinstance(database, str):
+            raise TypeError("Expected argument 'database' to be a str")
+        pulumi.set(__self__, "database", database)
+        if stripe and not isinstance(stripe, str):
+            raise TypeError("Expected argument 'stripe' to be a str")
+        pulumi.set(__self__, "stripe", stripe)
+        if user and not isinstance(user, str):
+            raise TypeError("Expected argument 'user' to be a str")
+        pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.GetSecretsDownloadProperties':
-        return pulumi.get(self, "items")
+    def algolia(self) -> Optional[str]:
+        return pulumi.get(self, "algolia")
+
+    @property
+    @pulumi.getter
+    def database(self) -> Optional[str]:
+        return pulumi.get(self, "database")
+
+    @property
+    @pulumi.getter
+    def stripe(self) -> Optional[str]:
+        return pulumi.get(self, "stripe")
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[str]:
+        return pulumi.get(self, "user")
 
 
-class AwaitableGetSecretsDownloadResult(GetSecretsDownloadResult):
+class AwaitableGetSecretsDownloadProperties(GetSecretsDownloadProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetSecretsDownloadResult(
-            items=self.items)
+        return GetSecretsDownloadProperties(
+            algolia=self.algolia,
+            database=self.database,
+            stripe=self.stripe,
+            user=self.user)
 
 
-def get_secrets_download(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretsDownloadResult:
+def get_secrets_download(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretsDownloadProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:configs/v3:getSecretsDownload', __args__, opts=opts, typ=GetSecretsDownloadResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:configs/v3:getSecretsDownload', __args__, opts=opts, typ=GetSecretsDownloadProperties).value
 
-    return AwaitableGetSecretsDownloadResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(get_secrets_download)
-def get_secrets_download_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretsDownloadResult]:
+    return AwaitableGetSecretsDownloadProperties(
+        algolia=pulumi.get(__ret__, 'algolia'),
+        database=pulumi.get(__ret__, 'database'),
+        stripe=pulumi.get(__ret__, 'stripe'),
+        user=pulumi.get(__ret__, 'user'))
+def get_secrets_download_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretsDownloadProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:configs/v3:getSecretsDownload', __args__, opts=opts, typ=GetSecretsDownloadProperties)
+    return __ret__.apply(lambda __response__: GetSecretsDownloadProperties(
+        algolia=pulumi.get(__response__, 'algolia'),
+        database=pulumi.get(__response__, 'database'),
+        stripe=pulumi.get(__response__, 'stripe'),
+        user=pulumi.get(__response__, 'user')))

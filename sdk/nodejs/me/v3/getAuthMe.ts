@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function getAuthMe(args?: GetAuthMeArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthMeResult> {
+export function getAuthMe(args?: GetAuthMeArgs, opts?: pulumi.InvokeOptions): Promise<outputs.me.v3.GetAuthMeProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:me/v3:getAuthMe", {
     }, opts);
@@ -17,10 +16,9 @@ export function getAuthMe(args?: GetAuthMeArgs, opts?: pulumi.InvokeOptions): Pr
 
 export interface GetAuthMeArgs {
 }
+export function getAuthMeOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.me.v3.GetAuthMeProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:me/v3:getAuthMe", {
+    }, opts);
+}
 
-export interface GetAuthMeResult {
-    readonly items: outputs.me.v3.GetAuthMeProperties;
-}
-export function getAuthMeOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthMeResult> {
-    return pulumi.output(getAuthMe(opts))
-}

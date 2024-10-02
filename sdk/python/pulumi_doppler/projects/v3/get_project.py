@@ -4,56 +4,62 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'GetProjectResult',
-    'AwaitableGetProjectResult',
+    'GetProjectProperties',
+    'AwaitableGetProjectProperties',
     'get_project',
     'get_project_output',
 ]
 
 @pulumi.output_type
-class GetProjectResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetProjectProperties:
+    def __init__(__self__, project=None):
+        if project and not isinstance(project, dict):
+            raise TypeError("Expected argument 'project' to be a dict")
+        pulumi.set(__self__, "project", project)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.GetProjectProperties':
-        return pulumi.get(self, "items")
+    def project(self) -> Optional['outputs.GetProjectPropertiesProjectProperties']:
+        return pulumi.get(self, "project")
 
 
-class AwaitableGetProjectResult(GetProjectResult):
+class AwaitableGetProjectProperties(GetProjectProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetProjectResult(
-            items=self.items)
+        return GetProjectProperties(
+            project=self.project)
 
 
-def get_project(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectResult:
+def get_project(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:projects/v3:getProject', __args__, opts=opts, typ=GetProjectResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:projects/v3:getProject', __args__, opts=opts, typ=GetProjectProperties).value
 
-    return AwaitableGetProjectResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(get_project)
-def get_project_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectResult]:
+    return AwaitableGetProjectProperties(
+        project=pulumi.get(__ret__, 'project'))
+def get_project_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:projects/v3:getProject', __args__, opts=opts, typ=GetProjectProperties)
+    return __ret__.apply(lambda __response__: GetProjectProperties(
+        project=pulumi.get(__response__, 'project')))

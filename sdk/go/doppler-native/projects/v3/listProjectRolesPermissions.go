@@ -25,19 +25,25 @@ type ListProjectRolesPermissionsArgs struct {
 }
 
 type ListProjectRolesPermissionsResult struct {
-	Items ListProjectRolesPermissionsProperties `pulumi:"items"`
+	Permissions []string `pulumi:"permissions"`
 }
 
 func ListProjectRolesPermissionsOutput(ctx *pulumi.Context, args ListProjectRolesPermissionsOutputArgs, opts ...pulumi.InvokeOption) ListProjectRolesPermissionsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListProjectRolesPermissionsResult, error) {
+		ApplyT(func(v interface{}) (ListProjectRolesPermissionsResultOutput, error) {
 			args := v.(ListProjectRolesPermissionsArgs)
-			r, err := ListProjectRolesPermissions(ctx, &args, opts...)
-			var s ListProjectRolesPermissionsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListProjectRolesPermissionsResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:projects/v3:listProjectRolesPermissions", args, &rv, "", opts...)
+			if err != nil {
+				return ListProjectRolesPermissionsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListProjectRolesPermissionsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListProjectRolesPermissionsResultOutput), nil
+			}
+			return output, nil
 		}).(ListProjectRolesPermissionsResultOutput)
 }
 
@@ -62,8 +68,8 @@ func (o ListProjectRolesPermissionsResultOutput) ToListProjectRolesPermissionsRe
 	return o
 }
 
-func (o ListProjectRolesPermissionsResultOutput) Items() ListProjectRolesPermissionsPropertiesOutput {
-	return o.ApplyT(func(v ListProjectRolesPermissionsResult) ListProjectRolesPermissionsProperties { return v.Items }).(ListProjectRolesPermissionsPropertiesOutput)
+func (o ListProjectRolesPermissionsResultOutput) Permissions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListProjectRolesPermissionsResult) []string { return v.Permissions }).(pulumi.StringArrayOutput)
 }
 
 func init() {

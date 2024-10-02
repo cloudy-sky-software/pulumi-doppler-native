@@ -4,56 +4,62 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'GetEnvironmentResult',
-    'AwaitableGetEnvironmentResult',
+    'GetEnvironmentProperties',
+    'AwaitableGetEnvironmentProperties',
     'get_environment',
     'get_environment_output',
 ]
 
 @pulumi.output_type
-class GetEnvironmentResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetEnvironmentProperties:
+    def __init__(__self__, environment=None):
+        if environment and not isinstance(environment, dict):
+            raise TypeError("Expected argument 'environment' to be a dict")
+        pulumi.set(__self__, "environment", environment)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.GetEnvironmentProperties':
-        return pulumi.get(self, "items")
+    def environment(self) -> Optional['outputs.GetEnvironmentPropertiesEnvironmentProperties']:
+        return pulumi.get(self, "environment")
 
 
-class AwaitableGetEnvironmentResult(GetEnvironmentResult):
+class AwaitableGetEnvironmentProperties(GetEnvironmentProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetEnvironmentResult(
-            items=self.items)
+        return GetEnvironmentProperties(
+            environment=self.environment)
 
 
-def get_environment(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEnvironmentResult:
+def get_environment(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEnvironmentProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:environments/v3:getEnvironment', __args__, opts=opts, typ=GetEnvironmentResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:environments/v3:getEnvironment', __args__, opts=opts, typ=GetEnvironmentProperties).value
 
-    return AwaitableGetEnvironmentResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(get_environment)
-def get_environment_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEnvironmentResult]:
+    return AwaitableGetEnvironmentProperties(
+        environment=pulumi.get(__ret__, 'environment'))
+def get_environment_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEnvironmentProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:environments/v3:getEnvironment', __args__, opts=opts, typ=GetEnvironmentProperties)
+    return __ret__.apply(lambda __response__: GetEnvironmentProperties(
+        environment=pulumi.get(__response__, 'environment')))

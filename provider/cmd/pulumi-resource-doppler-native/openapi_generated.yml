@@ -3982,6 +3982,35 @@ paths:
                     description: "404"
             summary: Update
     /v3/webhooks:
+        get:
+            description: Webhooks
+            operationId: webhooks-list
+            parameters:
+                - description: The project's name
+                  in: query
+                  name: project
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            examples:
+                                Result:
+                                    value: '{}'
+                            schema:
+                                type: object
+                    description: "200"
+                "400":
+                    content:
+                        application/json:
+                            examples:
+                                Result:
+                                    value: '{}'
+                            schema:
+                                type: object
+                    description: "400"
+            summary: List
         post:
             description: Webhook
             operationId: webhooks-add

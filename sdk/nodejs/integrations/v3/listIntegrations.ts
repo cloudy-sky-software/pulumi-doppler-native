@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function listIntegrations(args?: ListIntegrationsArgs, opts?: pulumi.InvokeOptions): Promise<ListIntegrationsResult> {
+export function listIntegrations(args?: ListIntegrationsArgs, opts?: pulumi.InvokeOptions): Promise<outputs.integrations.v3.ListIntegrationsProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:integrations/v3:listIntegrations", {
     }, opts);
@@ -17,10 +16,9 @@ export function listIntegrations(args?: ListIntegrationsArgs, opts?: pulumi.Invo
 
 export interface ListIntegrationsArgs {
 }
+export function listIntegrationsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.integrations.v3.ListIntegrationsProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:integrations/v3:listIntegrations", {
+    }, opts);
+}
 
-export interface ListIntegrationsResult {
-    readonly items: outputs.integrations.v3.ListIntegrationsProperties;
-}
-export function listIntegrationsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListIntegrationsResult> {
-    return pulumi.output(listIntegrations(opts))
-}

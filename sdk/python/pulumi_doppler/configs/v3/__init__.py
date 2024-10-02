@@ -6,8 +6,8 @@ from ... import _utilities
 import typing
 # Export this package's modules as members:
 from ._enums import *
+from .config import *
 from .config_logs_rollback import *
-from .configs import *
 from .configs_clone import *
 from .configs_lock import *
 from .configs_trusted_ip import *
@@ -27,7 +27,7 @@ from .list_secrets import *
 from .list_service_tokens import *
 from .secrets_update import *
 from .secrets_update_note import *
-from .service_tokens import *
-from .syncs import *
+from .service_token import *
+from .sync import *
 from ._inputs import *
 from . import outputs

@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function listServiceAccounts(args?: ListServiceAccountsArgs, opts?: pulumi.InvokeOptions): Promise<ListServiceAccountsResult> {
+export function listServiceAccounts(args?: ListServiceAccountsArgs, opts?: pulumi.InvokeOptions): Promise<outputs.workplace.v3.ListServiceAccountsProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:workplace/v3:listServiceAccounts", {
     }, opts);
@@ -17,10 +16,9 @@ export function listServiceAccounts(args?: ListServiceAccountsArgs, opts?: pulum
 
 export interface ListServiceAccountsArgs {
 }
+export function listServiceAccountsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.ListServiceAccountsProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:listServiceAccounts", {
+    }, opts);
+}
 
-export interface ListServiceAccountsResult {
-    readonly items: outputs.workplace.v3.ListServiceAccountsProperties;
-}
-export function listServiceAccountsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListServiceAccountsResult> {
-    return pulumi.output(listServiceAccounts(opts))
-}

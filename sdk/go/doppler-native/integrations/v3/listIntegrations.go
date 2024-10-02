@@ -25,7 +25,8 @@ type ListIntegrationsArgs struct {
 }
 
 type ListIntegrationsResult struct {
-	Items ListIntegrationsProperties `pulumi:"items"`
+	Integrations []ListIntegrationsPropertiesIntegrationsItemProperties `pulumi:"integrations"`
+	Success      *bool                                                  `pulumi:"success"`
 }
 
 // Defaults sets the appropriate defaults for ListIntegrationsResult
@@ -34,21 +35,29 @@ func (val *ListIntegrationsResult) Defaults() *ListIntegrationsResult {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
-
+	if tmp.Success == nil {
+		success_ := true
+		tmp.Success = &success_
+	}
 	return &tmp
 }
 
 func ListIntegrationsOutput(ctx *pulumi.Context, args ListIntegrationsOutputArgs, opts ...pulumi.InvokeOption) ListIntegrationsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListIntegrationsResult, error) {
+		ApplyT(func(v interface{}) (ListIntegrationsResultOutput, error) {
 			args := v.(ListIntegrationsArgs)
-			r, err := ListIntegrations(ctx, &args, opts...)
-			var s ListIntegrationsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListIntegrationsResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:integrations/v3:listIntegrations", args, &rv, "", opts...)
+			if err != nil {
+				return ListIntegrationsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListIntegrationsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListIntegrationsResultOutput), nil
+			}
+			return output, nil
 		}).(ListIntegrationsResultOutput)
 }
 
@@ -73,8 +82,14 @@ func (o ListIntegrationsResultOutput) ToListIntegrationsResultOutputWithContext(
 	return o
 }
 
-func (o ListIntegrationsResultOutput) Items() ListIntegrationsPropertiesOutput {
-	return o.ApplyT(func(v ListIntegrationsResult) ListIntegrationsProperties { return v.Items }).(ListIntegrationsPropertiesOutput)
+func (o ListIntegrationsResultOutput) Integrations() ListIntegrationsPropertiesIntegrationsItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListIntegrationsResult) []ListIntegrationsPropertiesIntegrationsItemProperties {
+		return v.Integrations
+	}).(ListIntegrationsPropertiesIntegrationsItemPropertiesArrayOutput)
+}
+
+func (o ListIntegrationsResultOutput) Success() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ListIntegrationsResult) *bool { return v.Success }).(pulumi.BoolPtrOutput)
 }
 
 func init() {

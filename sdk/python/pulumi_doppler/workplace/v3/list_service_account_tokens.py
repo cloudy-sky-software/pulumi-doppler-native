@@ -4,43 +4,57 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'ListServiceAccountTokensResult',
-    'AwaitableListServiceAccountTokensResult',
+    'ListServiceAccountTokensProperties',
+    'AwaitableListServiceAccountTokensProperties',
     'list_service_account_tokens',
     'list_service_account_tokens_output',
 ]
 
 @pulumi.output_type
-class ListServiceAccountTokensResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class ListServiceAccountTokensProperties:
+    def __init__(__self__, api_tokens=None, success=None):
+        if api_tokens and not isinstance(api_tokens, list):
+            raise TypeError("Expected argument 'api_tokens' to be a list")
+        pulumi.set(__self__, "api_tokens", api_tokens)
+        if success and not isinstance(success, bool):
+            raise TypeError("Expected argument 'success' to be a bool")
+        pulumi.set(__self__, "success", success)
+
+    @property
+    @pulumi.getter(name="apiTokens")
+    def api_tokens(self) -> Optional[Sequence['outputs.ListServiceAccountTokensPropertiesApiTokensItemProperties']]:
+        return pulumi.get(self, "api_tokens")
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.ListServiceAccountTokensProperties':
-        return pulumi.get(self, "items")
+    def success(self) -> Optional[bool]:
+        return pulumi.get(self, "success")
 
 
-class AwaitableListServiceAccountTokensResult(ListServiceAccountTokensResult):
+class AwaitableListServiceAccountTokensProperties(ListServiceAccountTokensProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListServiceAccountTokensResult(
-            items=self.items)
+        return ListServiceAccountTokensProperties(
+            api_tokens=self.api_tokens,
+            success=self.success)
 
 
 def list_service_account_tokens(service_account: Optional[str] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListServiceAccountTokensResult:
+                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListServiceAccountTokensProperties:
     """
     Use this data source to access information about an existing resource.
 
@@ -49,18 +63,22 @@ def list_service_account_tokens(service_account: Optional[str] = None,
     __args__ = dict()
     __args__['serviceAccount'] = service_account
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:listServiceAccountTokens', __args__, opts=opts, typ=ListServiceAccountTokensResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:listServiceAccountTokens', __args__, opts=opts, typ=ListServiceAccountTokensProperties).value
 
-    return AwaitableListServiceAccountTokensResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_service_account_tokens)
+    return AwaitableListServiceAccountTokensProperties(
+        api_tokens=pulumi.get(__ret__, 'api_tokens'),
+        success=pulumi.get(__ret__, 'success'))
 def list_service_account_tokens_output(service_account: Optional[pulumi.Input[str]] = None,
-                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListServiceAccountTokensResult]:
+                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListServiceAccountTokensProperties]:
     """
     Use this data source to access information about an existing resource.
 
     :param str service_account: Slug of the service account
     """
-    ...
+    __args__ = dict()
+    __args__['serviceAccount'] = service_account
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:listServiceAccountTokens', __args__, opts=opts, typ=ListServiceAccountTokensProperties)
+    return __ret__.apply(lambda __response__: ListServiceAccountTokensProperties(
+        api_tokens=pulumi.get(__response__, 'api_tokens'),
+        success=pulumi.get(__response__, 'success')))

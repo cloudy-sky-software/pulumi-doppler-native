@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 from ._enums import *
@@ -16,31 +21,20 @@ __all__ = [
     'ChangeRequestsItemPropertiesOriginalValueTypeProperties',
     'ChangeRequestsItemPropertiesValueTypeProperties',
     'ConfigProperties',
-    'GetConfigLogProperties',
     'GetConfigLogPropertiesLogProperties',
     'GetConfigLogPropertiesLogPropertiesDiffItemProperties',
     'GetConfigLogPropertiesLogPropertiesUserProperties',
-    'GetConfigProperties',
     'GetConfigPropertiesConfigProperties',
-    'GetSecretProperties',
     'GetSecretPropertiesValueProperties',
-    'GetSecretsDownloadProperties',
-    'GetSecretsNameProperties',
-    'GetSyncProperties',
     'GetSyncPropertiesSyncProperties',
-    'ListConfigLogsProperties',
     'ListConfigLogsPropertiesLogsItemProperties',
     'ListConfigLogsPropertiesLogsItemPropertiesUserProperties',
-    'ListConfigsProperties',
     'ListConfigsPropertiesConfigsItemProperties',
-    'ListConfigsTrustedIpsProperties',
-    'ListSecretsProperties',
     'ListSecretsPropertiesSecretsProperties',
     'ListSecretsPropertiesSecretsPropertiesAlgoliaProperties',
     'ListSecretsPropertiesSecretsPropertiesDatabaseProperties',
     'ListSecretsPropertiesSecretsPropertiesStripeProperties',
     'ListSecretsPropertiesSecretsPropertiesUserProperties',
-    'ListServiceTokensProperties',
     'ListServiceTokensPropertiesTokensItemProperties',
     'LogProperties',
     'LogPropertiesDiffItemProperties',
@@ -353,19 +347,6 @@ class ConfigProperties(dict):
 
 
 @pulumi.output_type
-class GetConfigLogProperties(dict):
-    def __init__(__self__, *,
-                 log: Optional['outputs.GetConfigLogPropertiesLogProperties'] = None):
-        if log is not None:
-            pulumi.set(__self__, "log", log)
-
-    @property
-    @pulumi.getter
-    def log(self) -> Optional['outputs.GetConfigLogPropertiesLogProperties']:
-        return pulumi.get(self, "log")
-
-
-@pulumi.output_type
 class GetConfigLogPropertiesLogProperties(dict):
     def __init__(__self__, *,
                  config: Optional[str] = None,
@@ -511,19 +492,6 @@ class GetConfigLogPropertiesLogPropertiesUserProperties(dict):
 
 
 @pulumi.output_type
-class GetConfigProperties(dict):
-    def __init__(__self__, *,
-                 config: Optional['outputs.GetConfigPropertiesConfigProperties'] = None):
-        if config is not None:
-            pulumi.set(__self__, "config", config)
-
-    @property
-    @pulumi.getter
-    def config(self) -> Optional['outputs.GetConfigPropertiesConfigProperties']:
-        return pulumi.get(self, "config")
-
-
-@pulumi.output_type
 class GetConfigPropertiesConfigProperties(dict):
     def __init__(__self__, *,
                  created_at: Optional[str] = None,
@@ -597,27 +565,6 @@ class GetConfigPropertiesConfigProperties(dict):
 
 
 @pulumi.output_type
-class GetSecretProperties(dict):
-    def __init__(__self__, *,
-                 name: Optional[str] = None,
-                 value: Optional['outputs.GetSecretPropertiesValueProperties'] = None):
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if value is not None:
-            pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def value(self) -> Optional['outputs.GetSecretPropertiesValueProperties']:
-        return pulumi.get(self, "value")
-
-
-@pulumi.output_type
 class GetSecretPropertiesValueProperties(dict):
     def __init__(__self__, *,
                  computed: Optional[str] = None,
@@ -644,69 +591,6 @@ class GetSecretPropertiesValueProperties(dict):
     @pulumi.getter
     def raw(self) -> Optional[str]:
         return pulumi.get(self, "raw")
-
-
-@pulumi.output_type
-class GetSecretsDownloadProperties(dict):
-    def __init__(__self__, *,
-                 algolia: Optional[str] = None,
-                 database: Optional[str] = None,
-                 stripe: Optional[str] = None,
-                 user: Optional[str] = None):
-        if algolia is not None:
-            pulumi.set(__self__, "algolia", algolia)
-        if database is not None:
-            pulumi.set(__self__, "database", database)
-        if stripe is not None:
-            pulumi.set(__self__, "stripe", stripe)
-        if user is not None:
-            pulumi.set(__self__, "user", user)
-
-    @property
-    @pulumi.getter
-    def algolia(self) -> Optional[str]:
-        return pulumi.get(self, "algolia")
-
-    @property
-    @pulumi.getter
-    def database(self) -> Optional[str]:
-        return pulumi.get(self, "database")
-
-    @property
-    @pulumi.getter
-    def stripe(self) -> Optional[str]:
-        return pulumi.get(self, "stripe")
-
-    @property
-    @pulumi.getter
-    def user(self) -> Optional[str]:
-        return pulumi.get(self, "user")
-
-
-@pulumi.output_type
-class GetSecretsNameProperties(dict):
-    def __init__(__self__, *,
-                 names: Optional[Sequence[str]] = None):
-        if names is not None:
-            pulumi.set(__self__, "names", names)
-
-    @property
-    @pulumi.getter
-    def names(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "names")
-
-
-@pulumi.output_type
-class GetSyncProperties(dict):
-    def __init__(__self__, *,
-                 sync: Optional['outputs.GetSyncPropertiesSyncProperties'] = None):
-        if sync is not None:
-            pulumi.set(__self__, "sync", sync)
-
-    @property
-    @pulumi.getter
-    def sync(self) -> Optional['outputs.GetSyncPropertiesSyncProperties']:
-        return pulumi.get(self, "sync")
 
 
 @pulumi.output_type
@@ -762,29 +646,6 @@ class GetSyncPropertiesSyncProperties(dict):
     @pulumi.getter
     def slug(self) -> Optional[str]:
         return pulumi.get(self, "slug")
-
-
-@pulumi.output_type
-class ListConfigLogsProperties(dict):
-    def __init__(__self__, *,
-                 logs: Optional[Sequence['outputs.ListConfigLogsPropertiesLogsItemProperties']] = None,
-                 page: Optional[int] = None):
-        if logs is not None:
-            pulumi.set(__self__, "logs", logs)
-        if page is None:
-            page = 0
-        if page is not None:
-            pulumi.set(__self__, "page", page)
-
-    @property
-    @pulumi.getter
-    def logs(self) -> Optional[Sequence['outputs.ListConfigLogsPropertiesLogsItemProperties']]:
-        return pulumi.get(self, "logs")
-
-    @property
-    @pulumi.getter
-    def page(self) -> Optional[int]:
-        return pulumi.get(self, "page")
 
 
 @pulumi.output_type
@@ -904,29 +765,6 @@ class ListConfigLogsPropertiesLogsItemPropertiesUserProperties(dict):
 
 
 @pulumi.output_type
-class ListConfigsProperties(dict):
-    def __init__(__self__, *,
-                 configs: Optional[Sequence['outputs.ListConfigsPropertiesConfigsItemProperties']] = None,
-                 page: Optional[int] = None):
-        if configs is not None:
-            pulumi.set(__self__, "configs", configs)
-        if page is None:
-            page = 0
-        if page is not None:
-            pulumi.set(__self__, "page", page)
-
-    @property
-    @pulumi.getter
-    def configs(self) -> Optional[Sequence['outputs.ListConfigsPropertiesConfigsItemProperties']]:
-        return pulumi.get(self, "configs")
-
-    @property
-    @pulumi.getter
-    def page(self) -> Optional[int]:
-        return pulumi.get(self, "page")
-
-
-@pulumi.output_type
 class ListConfigsPropertiesConfigsItemProperties(dict):
     def __init__(__self__, *,
                  created_at: Optional[str] = None,
@@ -997,32 +835,6 @@ class ListConfigsPropertiesConfigsItemProperties(dict):
     @pulumi.getter
     def root(self) -> Optional[bool]:
         return pulumi.get(self, "root")
-
-
-@pulumi.output_type
-class ListConfigsTrustedIpsProperties(dict):
-    def __init__(__self__, *,
-                 ips: Optional[Sequence[str]] = None):
-        if ips is not None:
-            pulumi.set(__self__, "ips", ips)
-
-    @property
-    @pulumi.getter
-    def ips(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "ips")
-
-
-@pulumi.output_type
-class ListSecretsProperties(dict):
-    def __init__(__self__, *,
-                 secrets: Optional['outputs.ListSecretsPropertiesSecretsProperties'] = None):
-        if secrets is not None:
-            pulumi.set(__self__, "secrets", secrets)
-
-    @property
-    @pulumi.getter
-    def secrets(self) -> Optional['outputs.ListSecretsPropertiesSecretsProperties']:
-        return pulumi.get(self, "secrets")
 
 
 @pulumi.output_type
@@ -1240,19 +1052,6 @@ class ListSecretsPropertiesSecretsPropertiesUserProperties(dict):
     @pulumi.getter(name="rawVisibility")
     def raw_visibility(self) -> Optional[str]:
         return pulumi.get(self, "raw_visibility")
-
-
-@pulumi.output_type
-class ListServiceTokensProperties(dict):
-    def __init__(__self__, *,
-                 tokens: Optional[Sequence['outputs.ListServiceTokensPropertiesTokensItemProperties']] = None):
-        if tokens is not None:
-            pulumi.set(__self__, "tokens", tokens)
-
-    @property
-    @pulumi.getter
-    def tokens(self) -> Optional[Sequence['outputs.ListServiceTokensPropertiesTokensItemProperties']]:
-        return pulumi.get(self, "tokens")
 
 
 @pulumi.output_type

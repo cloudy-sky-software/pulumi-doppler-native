@@ -7,8 +7,7 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function getServiceAccountToken(args: GetServiceAccountTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceAccountTokenResult> {
-
+export function getServiceAccountToken(args: GetServiceAccountTokenArgs, opts?: pulumi.InvokeOptions): Promise<outputs.workplace.v3.GetServiceAccountTokenProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:workplace/v3:getServiceAccountToken", {
         "apiToken": args.apiToken,
@@ -26,12 +25,12 @@ export interface GetServiceAccountTokenArgs {
      */
     serviceAccount: string;
 }
-
-export interface GetServiceAccountTokenResult {
-    readonly items: outputs.workplace.v3.GetServiceAccountTokenProperties;
-}
-export function getServiceAccountTokenOutput(args: GetServiceAccountTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceAccountTokenResult> {
-    return pulumi.output(args).apply((a: any) => getServiceAccountToken(a, opts))
+export function getServiceAccountTokenOutput(args: GetServiceAccountTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.GetServiceAccountTokenProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:getServiceAccountToken", {
+        "apiToken": args.apiToken,
+        "serviceAccount": args.serviceAccount,
+    }, opts);
 }
 
 export interface GetServiceAccountTokenOutputArgs {

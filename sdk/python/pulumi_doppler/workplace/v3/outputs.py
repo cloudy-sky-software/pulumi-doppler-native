@@ -4,63 +4,53 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 from ._enums import *
 
 __all__ = [
     'ApiTokenProperties',
-    'GetAuditUserProperties',
     'GetAuditUserPropertiesWorkplaceUserProperties',
     'GetAuditUserPropertiesWorkplaceUserPropertiesUserProperties',
-    'GetGroupProperties',
     'GetGroupPropertiesGroupProperties',
     'GetGroupPropertiesGroupPropertiesDefaultProjectRoleProperties',
     'GetGroupPropertiesGroupPropertiesMembersItemProperties',
     'GetGroupPropertiesGroupPropertiesProjectsItemProperties',
     'GetGroupPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties',
-    'GetRetrieveMemberProperties',
-    'GetRetrieveMemberPropertiesGroupProperties',
-    'GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties',
-    'GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties',
-    'GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties',
-    'GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties',
-    'GetServiceAccountProperties',
+    'GetMemberPropertiesGroupProperties',
+    'GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties',
+    'GetMemberPropertiesGroupPropertiesMembersItemProperties',
+    'GetMemberPropertiesGroupPropertiesProjectsItemProperties',
+    'GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties',
     'GetServiceAccountPropertiesServiceAccountProperties',
     'GetServiceAccountPropertiesServiceAccountPropertiesWorkplaceRoleProperties',
-    'GetServiceAccountTokenProperties',
     'GetServiceAccountTokenPropertiesApiTokenProperties',
-    'GetUserProperties',
     'GetUserPropertiesWorkplaceUserProperties',
     'GetUserPropertiesWorkplaceUserPropertiesUserProperties',
-    'GetWorkplaceProperties',
     'GetWorkplacePropertiesWorkplaceProperties',
-    'GetWorkplaceRoleProperties',
     'GetWorkplaceRolePropertiesRoleProperties',
     'GroupProperties',
     'GroupPropertiesDefaultProjectRoleProperties',
     'GroupPropertiesMembersItemProperties',
     'GroupPropertiesProjectsItemProperties',
     'GroupPropertiesProjectsItemPropertiesRoleProperties',
-    'ListGroupsProperties',
     'ListGroupsPropertiesGroupsItemProperties',
     'ListGroupsPropertiesGroupsItemPropertiesDefaultProjectRoleProperties',
-    'ListInvitesProperties',
     'ListInvitesPropertiesInvitesItemProperties',
     'ListInvitesPropertiesInvitesItemPropertiesWorkplaceRoleProperties',
-    'ListServiceAccountTokensProperties',
     'ListServiceAccountTokensPropertiesApiTokensItemProperties',
-    'ListServiceAccountsProperties',
     'ListServiceAccountsPropertiesServiceAccountsItemProperties',
     'ListServiceAccountsPropertiesServiceAccountsItemPropertiesWorkplaceRoleProperties',
-    'ListUsersProperties',
     'ListUsersPropertiesWorkplaceUsersItemProperties',
     'ListUsersPropertiesWorkplaceUsersItemPropertiesUserProperties',
-    'ListWorkplaceRolesPermissionsProperties',
-    'ListWorkplaceRolesProperties',
     'ListWorkplaceRolesPropertiesRolesItemProperties',
     'RoleProperties',
     'ServiceAccountProperties',
@@ -133,29 +123,6 @@ class ApiTokenProperties(dict):
     @pulumi.getter
     def slug(self) -> Optional[str]:
         return pulumi.get(self, "slug")
-
-
-@pulumi.output_type
-class GetAuditUserProperties(dict):
-    def __init__(__self__, *,
-                 success: Optional[bool] = None,
-                 workplace_user: Optional['outputs.GetAuditUserPropertiesWorkplaceUserProperties'] = None):
-        if success is None:
-            success = True
-        if success is not None:
-            pulumi.set(__self__, "success", success)
-        if workplace_user is not None:
-            pulumi.set(__self__, "workplace_user", workplace_user)
-
-    @property
-    @pulumi.getter
-    def success(self) -> Optional[bool]:
-        return pulumi.get(self, "success")
-
-    @property
-    @pulumi.getter(name="workplaceUser")
-    def workplace_user(self) -> Optional['outputs.GetAuditUserPropertiesWorkplaceUserProperties']:
-        return pulumi.get(self, "workplace_user")
 
 
 @pulumi.output_type
@@ -260,19 +227,6 @@ class GetAuditUserPropertiesWorkplaceUserPropertiesUserProperties(dict):
     @pulumi.getter
     def username(self) -> Optional[str]:
         return pulumi.get(self, "username")
-
-
-@pulumi.output_type
-class GetGroupProperties(dict):
-    def __init__(__self__, *,
-                 group: Optional['outputs.GetGroupPropertiesGroupProperties'] = None):
-        if group is not None:
-            pulumi.set(__self__, "group", group)
-
-    @property
-    @pulumi.getter
-    def group(self) -> Optional['outputs.GetGroupPropertiesGroupProperties']:
-        return pulumi.get(self, "group")
 
 
 @pulumi.output_type
@@ -405,26 +359,13 @@ class GetGroupPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties(dict
 
 
 @pulumi.output_type
-class GetRetrieveMemberProperties(dict):
-    def __init__(__self__, *,
-                 group: Optional['outputs.GetRetrieveMemberPropertiesGroupProperties'] = None):
-        if group is not None:
-            pulumi.set(__self__, "group", group)
-
-    @property
-    @pulumi.getter
-    def group(self) -> Optional['outputs.GetRetrieveMemberPropertiesGroupProperties']:
-        return pulumi.get(self, "group")
-
-
-@pulumi.output_type
-class GetRetrieveMemberPropertiesGroupProperties(dict):
+class GetMemberPropertiesGroupProperties(dict):
     def __init__(__self__, *,
                  created_at: Optional[str] = None,
-                 default_project_role: Optional['outputs.GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties'] = None,
-                 members: Optional[Sequence['outputs.GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties']] = None,
+                 default_project_role: Optional['outputs.GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties'] = None,
+                 members: Optional[Sequence['outputs.GetMemberPropertiesGroupPropertiesMembersItemProperties']] = None,
                  name: Optional[str] = None,
-                 projects: Optional[Sequence['outputs.GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties']] = None,
+                 projects: Optional[Sequence['outputs.GetMemberPropertiesGroupPropertiesProjectsItemProperties']] = None,
                  slug: Optional[str] = None):
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -446,12 +387,12 @@ class GetRetrieveMemberPropertiesGroupProperties(dict):
 
     @property
     @pulumi.getter(name="defaultProjectRole")
-    def default_project_role(self) -> Optional['outputs.GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties']:
+    def default_project_role(self) -> Optional['outputs.GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties']:
         return pulumi.get(self, "default_project_role")
 
     @property
     @pulumi.getter
-    def members(self) -> Optional[Sequence['outputs.GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties']]:
+    def members(self) -> Optional[Sequence['outputs.GetMemberPropertiesGroupPropertiesMembersItemProperties']]:
         return pulumi.get(self, "members")
 
     @property
@@ -461,7 +402,7 @@ class GetRetrieveMemberPropertiesGroupProperties(dict):
 
     @property
     @pulumi.getter
-    def projects(self) -> Optional[Sequence['outputs.GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties']]:
+    def projects(self) -> Optional[Sequence['outputs.GetMemberPropertiesGroupPropertiesProjectsItemProperties']]:
         return pulumi.get(self, "projects")
 
     @property
@@ -471,7 +412,7 @@ class GetRetrieveMemberPropertiesGroupProperties(dict):
 
 
 @pulumi.output_type
-class GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties(dict):
+class GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties(dict):
     def __init__(__self__, *,
                  identifier: Optional[str] = None):
         if identifier is not None:
@@ -484,7 +425,7 @@ class GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties(dic
 
 
 @pulumi.output_type
-class GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties(dict):
+class GetMemberPropertiesGroupPropertiesMembersItemProperties(dict):
     def __init__(__self__, *,
                  slug: Optional[str] = None,
                  type: Optional[str] = None):
@@ -505,10 +446,10 @@ class GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties(dict):
 
 
 @pulumi.output_type
-class GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties(dict):
+class GetMemberPropertiesGroupPropertiesProjectsItemProperties(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None,
-                 role: Optional['outputs.GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties'] = None,
+                 role: Optional['outputs.GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties'] = None,
                  slug: Optional[str] = None):
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -524,7 +465,7 @@ class GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties(dict):
 
     @property
     @pulumi.getter
-    def role(self) -> Optional['outputs.GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties']:
+    def role(self) -> Optional['outputs.GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties']:
         return pulumi.get(self, "role")
 
     @property
@@ -534,7 +475,7 @@ class GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties(dict):
 
 
 @pulumi.output_type
-class GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties(dict):
+class GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties(dict):
     def __init__(__self__, *,
                  identifier: Optional[str] = None):
         if identifier is not None:
@@ -544,19 +485,6 @@ class GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProper
     @pulumi.getter
     def identifier(self) -> Optional[str]:
         return pulumi.get(self, "identifier")
-
-
-@pulumi.output_type
-class GetServiceAccountProperties(dict):
-    def __init__(__self__, *,
-                 service_account: Optional['outputs.GetServiceAccountPropertiesServiceAccountProperties'] = None):
-        if service_account is not None:
-            pulumi.set(__self__, "service_account", service_account)
-
-    @property
-    @pulumi.getter(name="serviceAccount")
-    def service_account(self) -> Optional['outputs.GetServiceAccountPropertiesServiceAccountProperties']:
-        return pulumi.get(self, "service_account")
 
 
 @pulumi.output_type
@@ -654,29 +582,6 @@ class GetServiceAccountPropertiesServiceAccountPropertiesWorkplaceRoleProperties
 
 
 @pulumi.output_type
-class GetServiceAccountTokenProperties(dict):
-    def __init__(__self__, *,
-                 api_token: Optional['outputs.GetServiceAccountTokenPropertiesApiTokenProperties'] = None,
-                 success: Optional[bool] = None):
-        if api_token is not None:
-            pulumi.set(__self__, "api_token", api_token)
-        if success is None:
-            success = True
-        if success is not None:
-            pulumi.set(__self__, "success", success)
-
-    @property
-    @pulumi.getter(name="apiToken")
-    def api_token(self) -> Optional['outputs.GetServiceAccountTokenPropertiesApiTokenProperties']:
-        return pulumi.get(self, "api_token")
-
-    @property
-    @pulumi.getter
-    def success(self) -> Optional[bool]:
-        return pulumi.get(self, "success")
-
-
-@pulumi.output_type
 class GetServiceAccountTokenPropertiesApiTokenProperties(dict):
     def __init__(__self__, *,
                  created_at: Optional[str] = None,
@@ -719,29 +624,6 @@ class GetServiceAccountTokenPropertiesApiTokenProperties(dict):
     @pulumi.getter
     def slug(self) -> Optional[str]:
         return pulumi.get(self, "slug")
-
-
-@pulumi.output_type
-class GetUserProperties(dict):
-    def __init__(__self__, *,
-                 success: Optional[bool] = None,
-                 workplace_user: Optional['outputs.GetUserPropertiesWorkplaceUserProperties'] = None):
-        if success is None:
-            success = True
-        if success is not None:
-            pulumi.set(__self__, "success", success)
-        if workplace_user is not None:
-            pulumi.set(__self__, "workplace_user", workplace_user)
-
-    @property
-    @pulumi.getter
-    def success(self) -> Optional[bool]:
-        return pulumi.get(self, "success")
-
-    @property
-    @pulumi.getter(name="workplaceUser")
-    def workplace_user(self) -> Optional['outputs.GetUserPropertiesWorkplaceUserProperties']:
-        return pulumi.get(self, "workplace_user")
 
 
 @pulumi.output_type
@@ -819,19 +701,6 @@ class GetUserPropertiesWorkplaceUserPropertiesUserProperties(dict):
 
 
 @pulumi.output_type
-class GetWorkplaceProperties(dict):
-    def __init__(__self__, *,
-                 workplace: Optional['outputs.GetWorkplacePropertiesWorkplaceProperties'] = None):
-        if workplace is not None:
-            pulumi.set(__self__, "workplace", workplace)
-
-    @property
-    @pulumi.getter
-    def workplace(self) -> Optional['outputs.GetWorkplacePropertiesWorkplaceProperties']:
-        return pulumi.get(self, "workplace")
-
-
-@pulumi.output_type
 class GetWorkplacePropertiesWorkplaceProperties(dict):
     def __init__(__self__, *,
                  billing_email: Optional[str] = None,
@@ -866,19 +735,6 @@ class GetWorkplacePropertiesWorkplaceProperties(dict):
     @pulumi.getter(name="securityEmail")
     def security_email(self) -> Optional[str]:
         return pulumi.get(self, "security_email")
-
-
-@pulumi.output_type
-class GetWorkplaceRoleProperties(dict):
-    def __init__(__self__, *,
-                 role: Optional['outputs.GetWorkplaceRolePropertiesRoleProperties'] = None):
-        if role is not None:
-            pulumi.set(__self__, "role", role)
-
-    @property
-    @pulumi.getter
-    def role(self) -> Optional['outputs.GetWorkplaceRolePropertiesRoleProperties']:
-        return pulumi.get(self, "role")
 
 
 @pulumi.output_type
@@ -1087,19 +943,6 @@ class GroupPropertiesProjectsItemPropertiesRoleProperties(dict):
 
 
 @pulumi.output_type
-class ListGroupsProperties(dict):
-    def __init__(__self__, *,
-                 groups: Optional[Sequence['outputs.ListGroupsPropertiesGroupsItemProperties']] = None):
-        if groups is not None:
-            pulumi.set(__self__, "groups", groups)
-
-    @property
-    @pulumi.getter
-    def groups(self) -> Optional[Sequence['outputs.ListGroupsPropertiesGroupsItemProperties']]:
-        return pulumi.get(self, "groups")
-
-
-@pulumi.output_type
 class ListGroupsPropertiesGroupsItemProperties(dict):
     def __init__(__self__, *,
                  created_at: Optional[str] = None,
@@ -1147,19 +990,6 @@ class ListGroupsPropertiesGroupsItemPropertiesDefaultProjectRoleProperties(dict)
     @pulumi.getter
     def identifier(self) -> Optional[str]:
         return pulumi.get(self, "identifier")
-
-
-@pulumi.output_type
-class ListInvitesProperties(dict):
-    def __init__(__self__, *,
-                 invites: Optional[Sequence['outputs.ListInvitesPropertiesInvitesItemProperties']] = None):
-        if invites is not None:
-            pulumi.set(__self__, "invites", invites)
-
-    @property
-    @pulumi.getter
-    def invites(self) -> Optional[Sequence['outputs.ListInvitesPropertiesInvitesItemProperties']]:
-        return pulumi.get(self, "invites")
 
 
 @pulumi.output_type
@@ -1257,29 +1087,6 @@ class ListInvitesPropertiesInvitesItemPropertiesWorkplaceRoleProperties(dict):
 
 
 @pulumi.output_type
-class ListServiceAccountTokensProperties(dict):
-    def __init__(__self__, *,
-                 api_tokens: Optional[Sequence['outputs.ListServiceAccountTokensPropertiesApiTokensItemProperties']] = None,
-                 success: Optional[bool] = None):
-        if api_tokens is not None:
-            pulumi.set(__self__, "api_tokens", api_tokens)
-        if success is None:
-            success = True
-        if success is not None:
-            pulumi.set(__self__, "success", success)
-
-    @property
-    @pulumi.getter(name="apiTokens")
-    def api_tokens(self) -> Optional[Sequence['outputs.ListServiceAccountTokensPropertiesApiTokensItemProperties']]:
-        return pulumi.get(self, "api_tokens")
-
-    @property
-    @pulumi.getter
-    def success(self) -> Optional[bool]:
-        return pulumi.get(self, "success")
-
-
-@pulumi.output_type
 class ListServiceAccountTokensPropertiesApiTokensItemProperties(dict):
     def __init__(__self__, *,
                  created_at: Optional[str] = None,
@@ -1322,19 +1129,6 @@ class ListServiceAccountTokensPropertiesApiTokensItemProperties(dict):
     @pulumi.getter
     def slug(self) -> Optional[str]:
         return pulumi.get(self, "slug")
-
-
-@pulumi.output_type
-class ListServiceAccountsProperties(dict):
-    def __init__(__self__, *,
-                 service_accounts: Optional[Sequence['outputs.ListServiceAccountsPropertiesServiceAccountsItemProperties']] = None):
-        if service_accounts is not None:
-            pulumi.set(__self__, "service_accounts", service_accounts)
-
-    @property
-    @pulumi.getter(name="serviceAccounts")
-    def service_accounts(self) -> Optional[Sequence['outputs.ListServiceAccountsPropertiesServiceAccountsItemProperties']]:
-        return pulumi.get(self, "service_accounts")
 
 
 @pulumi.output_type
@@ -1432,39 +1226,6 @@ class ListServiceAccountsPropertiesServiceAccountsItemPropertiesWorkplaceRolePro
 
 
 @pulumi.output_type
-class ListUsersProperties(dict):
-    def __init__(__self__, *,
-                 page: Optional[int] = None,
-                 success: Optional[bool] = None,
-                 workplace_users: Optional[Sequence['outputs.ListUsersPropertiesWorkplaceUsersItemProperties']] = None):
-        if page is None:
-            page = 0
-        if page is not None:
-            pulumi.set(__self__, "page", page)
-        if success is None:
-            success = True
-        if success is not None:
-            pulumi.set(__self__, "success", success)
-        if workplace_users is not None:
-            pulumi.set(__self__, "workplace_users", workplace_users)
-
-    @property
-    @pulumi.getter
-    def page(self) -> Optional[int]:
-        return pulumi.get(self, "page")
-
-    @property
-    @pulumi.getter
-    def success(self) -> Optional[bool]:
-        return pulumi.get(self, "success")
-
-    @property
-    @pulumi.getter(name="workplaceUsers")
-    def workplace_users(self) -> Optional[Sequence['outputs.ListUsersPropertiesWorkplaceUsersItemProperties']]:
-        return pulumi.get(self, "workplace_users")
-
-
-@pulumi.output_type
 class ListUsersPropertiesWorkplaceUsersItemProperties(dict):
     def __init__(__self__, *,
                  access: Optional[str] = None,
@@ -1536,32 +1297,6 @@ class ListUsersPropertiesWorkplaceUsersItemPropertiesUserProperties(dict):
     @pulumi.getter
     def username(self) -> Optional[str]:
         return pulumi.get(self, "username")
-
-
-@pulumi.output_type
-class ListWorkplaceRolesPermissionsProperties(dict):
-    def __init__(__self__, *,
-                 permissions: Optional[Sequence[str]] = None):
-        if permissions is not None:
-            pulumi.set(__self__, "permissions", permissions)
-
-    @property
-    @pulumi.getter
-    def permissions(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "permissions")
-
-
-@pulumi.output_type
-class ListWorkplaceRolesProperties(dict):
-    def __init__(__self__, *,
-                 roles: Optional[Sequence['outputs.ListWorkplaceRolesPropertiesRolesItemProperties']] = None):
-        if roles is not None:
-            pulumi.set(__self__, "roles", roles)
-
-    @property
-    @pulumi.getter
-    def roles(self) -> Optional[Sequence['outputs.ListWorkplaceRolesPropertiesRolesItemProperties']]:
-        return pulumi.get(self, "roles")
 
 
 @pulumi.output_type

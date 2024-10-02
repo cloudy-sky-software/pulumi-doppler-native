@@ -25,19 +25,25 @@ type ListSecretsArgs struct {
 }
 
 type ListSecretsResult struct {
-	Items ListSecretsProperties `pulumi:"items"`
+	Secrets *ListSecretsPropertiesSecretsProperties `pulumi:"secrets"`
 }
 
 func ListSecretsOutput(ctx *pulumi.Context, args ListSecretsOutputArgs, opts ...pulumi.InvokeOption) ListSecretsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListSecretsResult, error) {
+		ApplyT(func(v interface{}) (ListSecretsResultOutput, error) {
 			args := v.(ListSecretsArgs)
-			r, err := ListSecrets(ctx, &args, opts...)
-			var s ListSecretsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListSecretsResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:configs/v3:listSecrets", args, &rv, "", opts...)
+			if err != nil {
+				return ListSecretsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListSecretsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListSecretsResultOutput), nil
+			}
+			return output, nil
 		}).(ListSecretsResultOutput)
 }
 
@@ -62,8 +68,8 @@ func (o ListSecretsResultOutput) ToListSecretsResultOutputWithContext(ctx contex
 	return o
 }
 
-func (o ListSecretsResultOutput) Items() ListSecretsPropertiesOutput {
-	return o.ApplyT(func(v ListSecretsResult) ListSecretsProperties { return v.Items }).(ListSecretsPropertiesOutput)
+func (o ListSecretsResultOutput) Secrets() ListSecretsPropertiesSecretsPropertiesPtrOutput {
+	return o.ApplyT(func(v ListSecretsResult) *ListSecretsPropertiesSecretsProperties { return v.Secrets }).(ListSecretsPropertiesSecretsPropertiesPtrOutput)
 }
 
 func init() {

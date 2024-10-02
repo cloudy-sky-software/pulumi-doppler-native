@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetGroup(ctx *pulumi.Context, args *GetGroupArgs, opts ...pulumi.InvokeOption) (*GetGroupResult, error) {
+func LookupGroup(ctx *pulumi.Context, args *LookupGroupArgs, opts ...pulumi.InvokeOption) (*LookupGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetGroupResult
+	var rv LookupGroupResult
 	err := ctx.Invoke("doppler-native:workplace/v3:getGroup", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,55 +21,61 @@ func GetGroup(ctx *pulumi.Context, args *GetGroupArgs, opts ...pulumi.InvokeOpti
 	return &rv, nil
 }
 
-type GetGroupArgs struct {
+type LookupGroupArgs struct {
 	// The group's slug
 	Slug string `pulumi:"slug"`
 }
 
-type GetGroupResult struct {
-	Items GetGroupProperties `pulumi:"items"`
+type LookupGroupResult struct {
+	Group *GetGroupPropertiesGroupProperties `pulumi:"group"`
 }
 
-func GetGroupOutput(ctx *pulumi.Context, args GetGroupOutputArgs, opts ...pulumi.InvokeOption) GetGroupResultOutput {
+func LookupGroupOutput(ctx *pulumi.Context, args LookupGroupOutputArgs, opts ...pulumi.InvokeOption) LookupGroupResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetGroupResult, error) {
-			args := v.(GetGroupArgs)
-			r, err := GetGroup(ctx, &args, opts...)
-			var s GetGroupResult
-			if r != nil {
-				s = *r
+		ApplyT(func(v interface{}) (LookupGroupResultOutput, error) {
+			args := v.(LookupGroupArgs)
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupGroupResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:getGroup", args, &rv, "", opts...)
+			if err != nil {
+				return LookupGroupResultOutput{}, err
 			}
-			return s, err
-		}).(GetGroupResultOutput)
+
+			output := pulumi.ToOutput(rv).(LookupGroupResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupGroupResultOutput), nil
+			}
+			return output, nil
+		}).(LookupGroupResultOutput)
 }
 
-type GetGroupOutputArgs struct {
+type LookupGroupOutputArgs struct {
 	// The group's slug
 	Slug pulumi.StringInput `pulumi:"slug"`
 }
 
-func (GetGroupOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGroupArgs)(nil)).Elem()
+func (LookupGroupOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupGroupArgs)(nil)).Elem()
 }
 
-type GetGroupResultOutput struct{ *pulumi.OutputState }
+type LookupGroupResultOutput struct{ *pulumi.OutputState }
 
-func (GetGroupResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGroupResult)(nil)).Elem()
+func (LookupGroupResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupGroupResult)(nil)).Elem()
 }
 
-func (o GetGroupResultOutput) ToGetGroupResultOutput() GetGroupResultOutput {
+func (o LookupGroupResultOutput) ToLookupGroupResultOutput() LookupGroupResultOutput {
 	return o
 }
 
-func (o GetGroupResultOutput) ToGetGroupResultOutputWithContext(ctx context.Context) GetGroupResultOutput {
+func (o LookupGroupResultOutput) ToLookupGroupResultOutputWithContext(ctx context.Context) LookupGroupResultOutput {
 	return o
 }
 
-func (o GetGroupResultOutput) Items() GetGroupPropertiesOutput {
-	return o.ApplyT(func(v GetGroupResult) GetGroupProperties { return v.Items }).(GetGroupPropertiesOutput)
+func (o LookupGroupResultOutput) Group() GetGroupPropertiesGroupPropertiesPtrOutput {
+	return o.ApplyT(func(v LookupGroupResult) *GetGroupPropertiesGroupProperties { return v.Group }).(GetGroupPropertiesGroupPropertiesPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetGroupResultOutput{})
+	pulumi.RegisterOutputType(LookupGroupResultOutput{})
 }

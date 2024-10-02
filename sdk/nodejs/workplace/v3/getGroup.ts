@@ -7,8 +7,7 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> {
-
+export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<outputs.workplace.v3.GetGroupProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:workplace/v3:getGroup", {
         "slug": args.slug,
@@ -21,12 +20,11 @@ export interface GetGroupArgs {
      */
     slug: string;
 }
-
-export interface GetGroupResult {
-    readonly items: outputs.workplace.v3.GetGroupProperties;
-}
-export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGroupResult> {
-    return pulumi.output(args).apply((a: any) => getGroup(a, opts))
+export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.GetGroupProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:getGroup", {
+        "slug": args.slug,
+    }, opts);
 }
 
 export interface GetGroupOutputArgs {

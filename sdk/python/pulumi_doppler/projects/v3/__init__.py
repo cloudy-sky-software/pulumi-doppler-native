@@ -13,8 +13,8 @@ from .list_project_members import *
 from .list_project_roles import *
 from .list_project_roles_permissions import *
 from .list_projects import *
-from .project_members import *
-from .project_roles import *
-from .projects import *
+from .project import *
+from .project_member import *
+from .project_role import *
 from .projects_update import *
 from . import outputs

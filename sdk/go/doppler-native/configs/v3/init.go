@@ -21,10 +21,10 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "doppler-native:configs/v3:Config":
+		r = &Config{}
 	case "doppler-native:configs/v3:ConfigLogsRollback":
 		r = &ConfigLogsRollback{}
-	case "doppler-native:configs/v3:Configs":
-		r = &Configs{}
 	case "doppler-native:configs/v3:ConfigsClone":
 		r = &ConfigsClone{}
 	case "doppler-native:configs/v3:ConfigsLock":
@@ -41,10 +41,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SecretsUpdate{}
 	case "doppler-native:configs/v3:SecretsUpdateNote":
 		r = &SecretsUpdateNote{}
-	case "doppler-native:configs/v3:ServiceTokens":
-		r = &ServiceTokens{}
-	case "doppler-native:configs/v3:Syncs":
-		r = &Syncs{}
+	case "doppler-native:configs/v3:ServiceToken":
+		r = &ServiceToken{}
+	case "doppler-native:configs/v3:Sync":
+		r = &Sync{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}

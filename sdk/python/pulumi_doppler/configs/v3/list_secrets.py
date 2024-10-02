@@ -4,56 +4,62 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'ListSecretsResult',
-    'AwaitableListSecretsResult',
+    'ListSecretsProperties',
+    'AwaitableListSecretsProperties',
     'list_secrets',
     'list_secrets_output',
 ]
 
 @pulumi.output_type
-class ListSecretsResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class ListSecretsProperties:
+    def __init__(__self__, secrets=None):
+        if secrets and not isinstance(secrets, dict):
+            raise TypeError("Expected argument 'secrets' to be a dict")
+        pulumi.set(__self__, "secrets", secrets)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.ListSecretsProperties':
-        return pulumi.get(self, "items")
+    def secrets(self) -> Optional['outputs.ListSecretsPropertiesSecretsProperties']:
+        return pulumi.get(self, "secrets")
 
 
-class AwaitableListSecretsResult(ListSecretsResult):
+class AwaitableListSecretsProperties(ListSecretsProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListSecretsResult(
-            items=self.items)
+        return ListSecretsProperties(
+            secrets=self.secrets)
 
 
-def list_secrets(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListSecretsResult:
+def list_secrets(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListSecretsProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:configs/v3:listSecrets', __args__, opts=opts, typ=ListSecretsResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:configs/v3:listSecrets', __args__, opts=opts, typ=ListSecretsProperties).value
 
-    return AwaitableListSecretsResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_secrets)
-def list_secrets_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListSecretsResult]:
+    return AwaitableListSecretsProperties(
+        secrets=pulumi.get(__ret__, 'secrets'))
+def list_secrets_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListSecretsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:configs/v3:listSecrets', __args__, opts=opts, typ=ListSecretsProperties)
+    return __ret__.apply(lambda __response__: ListSecretsProperties(
+        secrets=pulumi.get(__response__, 'secrets')))

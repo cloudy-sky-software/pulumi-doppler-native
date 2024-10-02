@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 from ._enums import *
@@ -93,19 +98,19 @@ class SecretsUpdate(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 change_requests: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ChangeRequestsItemPropertiesArgs']]]]] = None,
+                 change_requests: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ChangeRequestsItemPropertiesArgs', 'ChangeRequestsItemPropertiesArgsDict']]]]] = None,
                  config: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
-                 secrets: Optional[pulumi.Input[pulumi.InputType['SecretsPropertiesArgs']]] = None,
+                 secrets: Optional[pulumi.Input[Union['SecretsPropertiesArgs', 'SecretsPropertiesArgsDict']]] = None,
                  __props__=None):
         """
         Create a SecretsUpdate resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ChangeRequestsItemPropertiesArgs']]]] change_requests: Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ChangeRequestsItemPropertiesArgs', 'ChangeRequestsItemPropertiesArgsDict']]]] change_requests: Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below.
         :param pulumi.Input[str] config: Name of the config object.
         :param pulumi.Input[str] project: Unique identifier for the project object.
-        :param pulumi.Input[pulumi.InputType['SecretsPropertiesArgs']] secrets: Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below.
+        :param pulumi.Input[Union['SecretsPropertiesArgs', 'SecretsPropertiesArgsDict']] secrets: Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below.
         """
         ...
     @overload
@@ -130,10 +135,10 @@ class SecretsUpdate(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 change_requests: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ChangeRequestsItemPropertiesArgs']]]]] = None,
+                 change_requests: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ChangeRequestsItemPropertiesArgs', 'ChangeRequestsItemPropertiesArgsDict']]]]] = None,
                  config: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
-                 secrets: Optional[pulumi.Input[pulumi.InputType['SecretsPropertiesArgs']]] = None,
+                 secrets: Optional[pulumi.Input[Union['SecretsPropertiesArgs', 'SecretsPropertiesArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

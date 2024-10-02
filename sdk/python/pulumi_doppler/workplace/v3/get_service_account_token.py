@@ -4,44 +4,58 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'GetServiceAccountTokenResult',
-    'AwaitableGetServiceAccountTokenResult',
+    'GetServiceAccountTokenProperties',
+    'AwaitableGetServiceAccountTokenProperties',
     'get_service_account_token',
     'get_service_account_token_output',
 ]
 
 @pulumi.output_type
-class GetServiceAccountTokenResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetServiceAccountTokenProperties:
+    def __init__(__self__, api_token=None, success=None):
+        if api_token and not isinstance(api_token, dict):
+            raise TypeError("Expected argument 'api_token' to be a dict")
+        pulumi.set(__self__, "api_token", api_token)
+        if success and not isinstance(success, bool):
+            raise TypeError("Expected argument 'success' to be a bool")
+        pulumi.set(__self__, "success", success)
+
+    @property
+    @pulumi.getter(name="apiToken")
+    def api_token(self) -> Optional['outputs.GetServiceAccountTokenPropertiesApiTokenProperties']:
+        return pulumi.get(self, "api_token")
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.GetServiceAccountTokenProperties':
-        return pulumi.get(self, "items")
+    def success(self) -> Optional[bool]:
+        return pulumi.get(self, "success")
 
 
-class AwaitableGetServiceAccountTokenResult(GetServiceAccountTokenResult):
+class AwaitableGetServiceAccountTokenProperties(GetServiceAccountTokenProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetServiceAccountTokenResult(
-            items=self.items)
+        return GetServiceAccountTokenProperties(
+            api_token=self.api_token,
+            success=self.success)
 
 
 def get_service_account_token(api_token: Optional[str] = None,
                               service_account: Optional[str] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceAccountTokenResult:
+                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceAccountTokenProperties:
     """
     Use this data source to access information about an existing resource.
 
@@ -52,20 +66,25 @@ def get_service_account_token(api_token: Optional[str] = None,
     __args__['apiToken'] = api_token
     __args__['serviceAccount'] = service_account
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:getServiceAccountToken', __args__, opts=opts, typ=GetServiceAccountTokenResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:getServiceAccountToken', __args__, opts=opts, typ=GetServiceAccountTokenProperties).value
 
-    return AwaitableGetServiceAccountTokenResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(get_service_account_token)
+    return AwaitableGetServiceAccountTokenProperties(
+        api_token=pulumi.get(__ret__, 'api_token'),
+        success=pulumi.get(__ret__, 'success'))
 def get_service_account_token_output(api_token: Optional[pulumi.Input[str]] = None,
                                      service_account: Optional[pulumi.Input[str]] = None,
-                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceAccountTokenResult]:
+                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceAccountTokenProperties]:
     """
     Use this data source to access information about an existing resource.
 
     :param str api_token: Slug of the API token
     :param str service_account: Slug of the service account
     """
-    ...
+    __args__ = dict()
+    __args__['apiToken'] = api_token
+    __args__['serviceAccount'] = service_account
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:getServiceAccountToken', __args__, opts=opts, typ=GetServiceAccountTokenProperties)
+    return __ret__.apply(lambda __response__: GetServiceAccountTokenProperties(
+        api_token=pulumi.get(__response__, 'api_token'),
+        success=pulumi.get(__response__, 'success')))

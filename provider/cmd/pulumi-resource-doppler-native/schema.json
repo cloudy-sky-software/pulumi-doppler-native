@@ -15,6 +15,9 @@
     "publisher": "Cloudy Sky Software",
     "language": {
         "csharp": {
+            "packageReferences": {
+                "Pulumi": "3.*"
+            },
             "namespaces": {
                 "": "Provider",
                 "configs/v3": "ConfigsV3",
@@ -26,10 +29,7 @@
                 "webhooks/v3": "WebhooksV3",
                 "workplace/v3": "WorkplaceV3"
             },
-            "packageReferences": {
-                "Pulumi": "3.*"
-            },
-            "rootNamespace": "Pulumi"
+            "rootNamespace": "CloudySkySoftware.Pulumi"
         },
         "go": {
             "importBasePath": "github.com/cloudy-sky-software/pulumi-doppler-native/sdk/go/doppler-native"
@@ -1465,43 +1465,6 @@
                 {
                     "name": "ServiceAccount",
                     "value": "service_account"
-                }
-            ]
-        },
-        "doppler-native:webhooks/v3:AuthenticationProperties": {
-            "properties": {
-                "password": {
-                    "type": "string",
-                    "description": "Used when type = Basic"
-                },
-                "token": {
-                    "type": "string",
-                    "description": "Used when type = Bearer"
-                },
-                "type": {
-                    "$ref": "#/types/doppler-native:webhooks/v3:AuthenticationPropertiesType"
-                },
-                "username": {
-                    "type": "string",
-                    "description": "Used when type = Basic"
-                }
-            },
-            "type": "object"
-        },
-        "doppler-native:webhooks/v3:AuthenticationPropertiesType": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "None",
-                    "value": "None"
-                },
-                {
-                    "name": "Bearer",
-                    "value": "Bearer"
-                },
-                {
-                    "name": "Basic",
-                    "value": "Basic"
                 }
             ]
         },
@@ -3233,63 +3196,6 @@
                 "project"
             ]
         },
-        "doppler-native:webhooks/v3:Webhook": {
-            "properties": {
-                "authentication": {
-                    "$ref": "#/types/doppler-native:webhooks/v3:AuthenticationProperties"
-                },
-                "enableConfigs": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Config slugs that the webhook should be enabled for"
-                },
-                "payload": {
-                    "type": "string",
-                    "description": "See: https://docs.doppler.com/docs/webhooks#default-payload"
-                },
-                "secret": {
-                    "type": "string",
-                    "description": "See: https://docs.doppler.com/docs/webhooks#verify-webhook-with-request-signing"
-                },
-                "url": {
-                    "type": "string",
-                    "description": "The webhook URL. Must be https"
-                }
-            },
-            "type": "object",
-            "required": [
-                "url"
-            ],
-            "inputProperties": {
-                "authentication": {
-                    "$ref": "#/types/doppler-native:webhooks/v3:AuthenticationProperties"
-                },
-                "enableConfigs": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Config slugs that the webhook should be enabled for"
-                },
-                "payload": {
-                    "type": "string",
-                    "description": "See: https://docs.doppler.com/docs/webhooks#default-payload"
-                },
-                "secret": {
-                    "type": "string",
-                    "description": "See: https://docs.doppler.com/docs/webhooks#verify-webhook-with-request-signing"
-                },
-                "url": {
-                    "type": "string",
-                    "description": "The webhook URL. Must be https"
-                }
-            },
-            "requiredInputs": [
-                "url"
-            ]
-        },
         "doppler-native:webhooks/v3:WebhooksDisable": {
             "type": "object",
             "inputProperties": {
@@ -3590,12 +3496,6 @@
                 "$ref": "#/types/doppler-native:integrations/v3:GetIntegrationProperties"
             }
         },
-        "doppler-native:integrations/v3:getOption": {
-            "inputs": {},
-            "outputs": {
-                "$ref": "pulumi.json#/Any"
-            }
-        },
         "doppler-native:integrations/v3:listIntegrations": {
             "inputs": {},
             "outputs": {
@@ -3672,22 +3572,6 @@
             "inputs": {},
             "outputs": {
                 "$ref": "#/types/doppler-native:projects/v3:ListProjectsProperties"
-            }
-        },
-        "doppler-native:webhooks/v3:getWebhook": {
-            "inputs": {
-                "properties": {
-                    "slug": {
-                        "type": "string",
-                        "description": "Webhook's slug"
-                    }
-                },
-                "required": [
-                    "slug"
-                ]
-            },
-            "outputs": {
-                "$ref": "pulumi.json#/Any"
             }
         },
         "doppler-native:workplace/v3:getAuditUser": {

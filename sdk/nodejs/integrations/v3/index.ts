@@ -5,22 +5,17 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../../utilities";
 
 // Export members:
-export { GetIntegrationArgs, GetIntegrationResult } from "./getIntegration";
+export { GetIntegrationArgs } from "./getIntegration";
 export const getIntegration: typeof import("./getIntegration").getIntegration = null as any;
 export const getIntegrationOutput: typeof import("./getIntegration").getIntegrationOutput = null as any;
 utilities.lazyLoad(exports, ["getIntegration","getIntegrationOutput"], () => require("./getIntegration"));
 
-export { GetOptionArgs, GetOptionResult } from "./getOption";
-export const getOption: typeof import("./getOption").getOption = null as any;
-export const getOptionOutput: typeof import("./getOption").getOptionOutput = null as any;
-utilities.lazyLoad(exports, ["getOption","getOptionOutput"], () => require("./getOption"));
+export { IntegrationArgs } from "./integration";
+export type Integration = import("./integration").Integration;
+export const Integration: typeof import("./integration").Integration = null as any;
+utilities.lazyLoad(exports, ["Integration"], () => require("./integration"));
 
-export { IntegrationsArgs } from "./integrations";
-export type Integrations = import("./integrations").Integrations;
-export const Integrations: typeof import("./integrations").Integrations = null as any;
-utilities.lazyLoad(exports, ["Integrations"], () => require("./integrations"));
-
-export { ListIntegrationsArgs, ListIntegrationsResult } from "./listIntegrations";
+export { ListIntegrationsArgs } from "./listIntegrations";
 export const listIntegrations: typeof import("./listIntegrations").listIntegrations = null as any;
 export const listIntegrationsOutput: typeof import("./listIntegrations").listIntegrationsOutput = null as any;
 utilities.lazyLoad(exports, ["listIntegrations","listIntegrationsOutput"], () => require("./listIntegrations"));
@@ -30,8 +25,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "doppler-native:integrations/v3:Integrations":
-                return new Integrations(name, <any>undefined, { urn })
+            case "doppler-native:integrations/v3:Integration":
+                return new Integration(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }

@@ -25,19 +25,25 @@ type ListServiceTokensArgs struct {
 }
 
 type ListServiceTokensResult struct {
-	Items ListServiceTokensProperties `pulumi:"items"`
+	Tokens []ListServiceTokensPropertiesTokensItemProperties `pulumi:"tokens"`
 }
 
 func ListServiceTokensOutput(ctx *pulumi.Context, args ListServiceTokensOutputArgs, opts ...pulumi.InvokeOption) ListServiceTokensResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListServiceTokensResult, error) {
+		ApplyT(func(v interface{}) (ListServiceTokensResultOutput, error) {
 			args := v.(ListServiceTokensArgs)
-			r, err := ListServiceTokens(ctx, &args, opts...)
-			var s ListServiceTokensResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListServiceTokensResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:configs/v3:listServiceTokens", args, &rv, "", opts...)
+			if err != nil {
+				return ListServiceTokensResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListServiceTokensResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListServiceTokensResultOutput), nil
+			}
+			return output, nil
 		}).(ListServiceTokensResultOutput)
 }
 
@@ -62,8 +68,8 @@ func (o ListServiceTokensResultOutput) ToListServiceTokensResultOutputWithContex
 	return o
 }
 
-func (o ListServiceTokensResultOutput) Items() ListServiceTokensPropertiesOutput {
-	return o.ApplyT(func(v ListServiceTokensResult) ListServiceTokensProperties { return v.Items }).(ListServiceTokensPropertiesOutput)
+func (o ListServiceTokensResultOutput) Tokens() ListServiceTokensPropertiesTokensItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListServiceTokensResult) []ListServiceTokensPropertiesTokensItemProperties { return v.Tokens }).(ListServiceTokensPropertiesTokensItemPropertiesArrayOutput)
 }
 
 func init() {

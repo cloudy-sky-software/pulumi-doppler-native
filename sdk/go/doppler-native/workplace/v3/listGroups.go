@@ -25,19 +25,25 @@ type ListGroupsArgs struct {
 }
 
 type ListGroupsResult struct {
-	Items ListGroupsProperties `pulumi:"items"`
+	Groups []ListGroupsPropertiesGroupsItemProperties `pulumi:"groups"`
 }
 
 func ListGroupsOutput(ctx *pulumi.Context, args ListGroupsOutputArgs, opts ...pulumi.InvokeOption) ListGroupsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListGroupsResult, error) {
+		ApplyT(func(v interface{}) (ListGroupsResultOutput, error) {
 			args := v.(ListGroupsArgs)
-			r, err := ListGroups(ctx, &args, opts...)
-			var s ListGroupsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListGroupsResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:listGroups", args, &rv, "", opts...)
+			if err != nil {
+				return ListGroupsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListGroupsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListGroupsResultOutput), nil
+			}
+			return output, nil
 		}).(ListGroupsResultOutput)
 }
 
@@ -62,8 +68,8 @@ func (o ListGroupsResultOutput) ToListGroupsResultOutputWithContext(ctx context.
 	return o
 }
 
-func (o ListGroupsResultOutput) Items() ListGroupsPropertiesOutput {
-	return o.ApplyT(func(v ListGroupsResult) ListGroupsProperties { return v.Items }).(ListGroupsPropertiesOutput)
+func (o ListGroupsResultOutput) Groups() ListGroupsPropertiesGroupsItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListGroupsResult) []ListGroupsPropertiesGroupsItemProperties { return v.Groups }).(ListGroupsPropertiesGroupsItemPropertiesArrayOutput)
 }
 
 func init() {

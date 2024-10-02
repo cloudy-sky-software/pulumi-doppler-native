@@ -4,56 +4,73 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'ListProjectsResult',
-    'AwaitableListProjectsResult',
+    'ListProjectsProperties',
+    'AwaitableListProjectsProperties',
     'list_projects',
     'list_projects_output',
 ]
 
 @pulumi.output_type
-class ListProjectsResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class ListProjectsProperties:
+    def __init__(__self__, page=None, projects=None):
+        if page and not isinstance(page, int):
+            raise TypeError("Expected argument 'page' to be a int")
+        pulumi.set(__self__, "page", page)
+        if projects and not isinstance(projects, list):
+            raise TypeError("Expected argument 'projects' to be a list")
+        pulumi.set(__self__, "projects", projects)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.ListProjectsProperties':
-        return pulumi.get(self, "items")
+    def page(self) -> Optional[int]:
+        return pulumi.get(self, "page")
+
+    @property
+    @pulumi.getter
+    def projects(self) -> Optional[Sequence['outputs.ListProjectsPropertiesProjectsItemProperties']]:
+        return pulumi.get(self, "projects")
 
 
-class AwaitableListProjectsResult(ListProjectsResult):
+class AwaitableListProjectsProperties(ListProjectsProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListProjectsResult(
-            items=self.items)
+        return ListProjectsProperties(
+            page=self.page,
+            projects=self.projects)
 
 
-def list_projects(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListProjectsResult:
+def list_projects(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListProjectsProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:projects/v3:listProjects', __args__, opts=opts, typ=ListProjectsResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:projects/v3:listProjects', __args__, opts=opts, typ=ListProjectsProperties).value
 
-    return AwaitableListProjectsResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_projects)
-def list_projects_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListProjectsResult]:
+    return AwaitableListProjectsProperties(
+        page=pulumi.get(__ret__, 'page'),
+        projects=pulumi.get(__ret__, 'projects'))
+def list_projects_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListProjectsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:projects/v3:listProjects', __args__, opts=opts, typ=ListProjectsProperties)
+    return __ret__.apply(lambda __response__: ListProjectsProperties(
+        page=pulumi.get(__response__, 'page'),
+        projects=pulumi.get(__response__, 'projects')))

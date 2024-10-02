@@ -21,16 +21,16 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "doppler-native:workplace/v3:Groups":
-		r = &Groups{}
+	case "doppler-native:workplace/v3:Group":
+		r = &Group{}
 	case "doppler-native:workplace/v3:GroupsMember":
 		r = &GroupsMember{}
-	case "doppler-native:workplace/v3:ServiceAccountTokens":
-		r = &ServiceAccountTokens{}
-	case "doppler-native:workplace/v3:ServiceAccounts":
-		r = &ServiceAccounts{}
-	case "doppler-native:workplace/v3:WorkplaceRoles":
-		r = &WorkplaceRoles{}
+	case "doppler-native:workplace/v3:ServiceAccount":
+		r = &ServiceAccount{}
+	case "doppler-native:workplace/v3:ServiceAccountToken":
+		r = &ServiceAccountToken{}
+	case "doppler-native:workplace/v3:WorkplaceRole":
+		r = &WorkplaceRole{}
 	case "doppler-native:workplace/v3:WorkplaceUpdate":
 		r = &WorkplaceUpdate{}
 	default:

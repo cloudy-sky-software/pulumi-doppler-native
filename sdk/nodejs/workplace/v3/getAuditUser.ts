@@ -7,8 +7,7 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function getAuditUser(args: GetAuditUserArgs, opts?: pulumi.InvokeOptions): Promise<GetAuditUserResult> {
-
+export function getAuditUser(args: GetAuditUserArgs, opts?: pulumi.InvokeOptions): Promise<outputs.workplace.v3.GetAuditUserProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:workplace/v3:getAuditUser", {
         "workplaceUserId": args.workplaceUserId,
@@ -21,12 +20,11 @@ export interface GetAuditUserArgs {
      */
     workplaceUserId: string;
 }
-
-export interface GetAuditUserResult {
-    readonly items: outputs.workplace.v3.GetAuditUserProperties;
-}
-export function getAuditUserOutput(args: GetAuditUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuditUserResult> {
-    return pulumi.output(args).apply((a: any) => getAuditUser(a, opts))
+export function getAuditUserOutput(args: GetAuditUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.GetAuditUserProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:getAuditUser", {
+        "workplaceUserId": args.workplaceUserId,
+    }, opts);
 }
 
 export interface GetAuditUserOutputArgs {

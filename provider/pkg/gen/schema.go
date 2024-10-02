@@ -98,6 +98,12 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 			"/v3/logs",
 			"/v3/logs/log",
 			"/v3/auth/revoke",
+			// The response in the following paths is empty
+			// in the OpenAPI spec for one or more request
+			// methods.
+			"/v3/integrations/integration/options",
+			"/v3/webhooks",
+			"/v3/webhooks/webhook/{slug}",
 		},
 	}
 

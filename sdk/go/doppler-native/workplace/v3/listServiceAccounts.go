@@ -25,19 +25,25 @@ type ListServiceAccountsArgs struct {
 }
 
 type ListServiceAccountsResult struct {
-	Items ListServiceAccountsProperties `pulumi:"items"`
+	ServiceAccounts []ListServiceAccountsPropertiesServiceAccountsItemProperties `pulumi:"serviceAccounts"`
 }
 
 func ListServiceAccountsOutput(ctx *pulumi.Context, args ListServiceAccountsOutputArgs, opts ...pulumi.InvokeOption) ListServiceAccountsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListServiceAccountsResult, error) {
+		ApplyT(func(v interface{}) (ListServiceAccountsResultOutput, error) {
 			args := v.(ListServiceAccountsArgs)
-			r, err := ListServiceAccounts(ctx, &args, opts...)
-			var s ListServiceAccountsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListServiceAccountsResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:listServiceAccounts", args, &rv, "", opts...)
+			if err != nil {
+				return ListServiceAccountsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListServiceAccountsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListServiceAccountsResultOutput), nil
+			}
+			return output, nil
 		}).(ListServiceAccountsResultOutput)
 }
 
@@ -62,8 +68,10 @@ func (o ListServiceAccountsResultOutput) ToListServiceAccountsResultOutputWithCo
 	return o
 }
 
-func (o ListServiceAccountsResultOutput) Items() ListServiceAccountsPropertiesOutput {
-	return o.ApplyT(func(v ListServiceAccountsResult) ListServiceAccountsProperties { return v.Items }).(ListServiceAccountsPropertiesOutput)
+func (o ListServiceAccountsResultOutput) ServiceAccounts() ListServiceAccountsPropertiesServiceAccountsItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListServiceAccountsResult) []ListServiceAccountsPropertiesServiceAccountsItemProperties {
+		return v.ServiceAccounts
+	}).(ListServiceAccountsPropertiesServiceAccountsItemPropertiesArrayOutput)
 }
 
 func init() {

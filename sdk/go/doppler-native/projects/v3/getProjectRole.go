@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetProjectRole(ctx *pulumi.Context, args *GetProjectRoleArgs, opts ...pulumi.InvokeOption) (*GetProjectRoleResult, error) {
+func LookupProjectRole(ctx *pulumi.Context, args *LookupProjectRoleArgs, opts ...pulumi.InvokeOption) (*LookupProjectRoleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetProjectRoleResult
+	var rv LookupProjectRoleResult
 	err := ctx.Invoke("doppler-native:projects/v3:getProjectRole", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,66 +21,72 @@ func GetProjectRole(ctx *pulumi.Context, args *GetProjectRoleArgs, opts ...pulum
 	return rv.Defaults(), nil
 }
 
-type GetProjectRoleArgs struct {
+type LookupProjectRoleArgs struct {
 	// The role's unique identifier
 	Role string `pulumi:"role"`
 }
 
-type GetProjectRoleResult struct {
-	Items GetProjectRoleProperties `pulumi:"items"`
+type LookupProjectRoleResult struct {
+	Role *GetProjectRolePropertiesRoleProperties `pulumi:"role"`
 }
 
-// Defaults sets the appropriate defaults for GetProjectRoleResult
-func (val *GetProjectRoleResult) Defaults() *GetProjectRoleResult {
+// Defaults sets the appropriate defaults for LookupProjectRoleResult
+func (val *LookupProjectRoleResult) Defaults() *LookupProjectRoleResult {
 	if val == nil {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
+	tmp.Role = tmp.Role.Defaults()
 
 	return &tmp
 }
 
-func GetProjectRoleOutput(ctx *pulumi.Context, args GetProjectRoleOutputArgs, opts ...pulumi.InvokeOption) GetProjectRoleResultOutput {
+func LookupProjectRoleOutput(ctx *pulumi.Context, args LookupProjectRoleOutputArgs, opts ...pulumi.InvokeOption) LookupProjectRoleResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetProjectRoleResult, error) {
-			args := v.(GetProjectRoleArgs)
-			r, err := GetProjectRole(ctx, &args, opts...)
-			var s GetProjectRoleResult
-			if r != nil {
-				s = *r
+		ApplyT(func(v interface{}) (LookupProjectRoleResultOutput, error) {
+			args := v.(LookupProjectRoleArgs)
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupProjectRoleResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:projects/v3:getProjectRole", args, &rv, "", opts...)
+			if err != nil {
+				return LookupProjectRoleResultOutput{}, err
 			}
-			return s, err
-		}).(GetProjectRoleResultOutput)
+
+			output := pulumi.ToOutput(rv).(LookupProjectRoleResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupProjectRoleResultOutput), nil
+			}
+			return output, nil
+		}).(LookupProjectRoleResultOutput)
 }
 
-type GetProjectRoleOutputArgs struct {
+type LookupProjectRoleOutputArgs struct {
 	// The role's unique identifier
 	Role pulumi.StringInput `pulumi:"role"`
 }
 
-func (GetProjectRoleOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProjectRoleArgs)(nil)).Elem()
+func (LookupProjectRoleOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupProjectRoleArgs)(nil)).Elem()
 }
 
-type GetProjectRoleResultOutput struct{ *pulumi.OutputState }
+type LookupProjectRoleResultOutput struct{ *pulumi.OutputState }
 
-func (GetProjectRoleResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProjectRoleResult)(nil)).Elem()
+func (LookupProjectRoleResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupProjectRoleResult)(nil)).Elem()
 }
 
-func (o GetProjectRoleResultOutput) ToGetProjectRoleResultOutput() GetProjectRoleResultOutput {
+func (o LookupProjectRoleResultOutput) ToLookupProjectRoleResultOutput() LookupProjectRoleResultOutput {
 	return o
 }
 
-func (o GetProjectRoleResultOutput) ToGetProjectRoleResultOutputWithContext(ctx context.Context) GetProjectRoleResultOutput {
+func (o LookupProjectRoleResultOutput) ToLookupProjectRoleResultOutputWithContext(ctx context.Context) LookupProjectRoleResultOutput {
 	return o
 }
 
-func (o GetProjectRoleResultOutput) Items() GetProjectRolePropertiesOutput {
-	return o.ApplyT(func(v GetProjectRoleResult) GetProjectRoleProperties { return v.Items }).(GetProjectRolePropertiesOutput)
+func (o LookupProjectRoleResultOutput) Role() GetProjectRolePropertiesRolePropertiesPtrOutput {
+	return o.ApplyT(func(v LookupProjectRoleResult) *GetProjectRolePropertiesRoleProperties { return v.Role }).(GetProjectRolePropertiesRolePropertiesPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetProjectRoleResultOutput{})
+	pulumi.RegisterOutputType(LookupProjectRoleResultOutput{})
 }

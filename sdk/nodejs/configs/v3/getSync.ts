@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function getSync(args?: GetSyncArgs, opts?: pulumi.InvokeOptions): Promise<GetSyncResult> {
+export function getSync(args?: GetSyncArgs, opts?: pulumi.InvokeOptions): Promise<outputs.configs.v3.GetSyncProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:configs/v3:getSync", {
     }, opts);
@@ -17,10 +16,9 @@ export function getSync(args?: GetSyncArgs, opts?: pulumi.InvokeOptions): Promis
 
 export interface GetSyncArgs {
 }
+export function getSyncOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.configs.v3.GetSyncProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:configs/v3:getSync", {
+    }, opts);
+}
 
-export interface GetSyncResult {
-    readonly items: outputs.configs.v3.GetSyncProperties;
-}
-export function getSyncOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetSyncResult> {
-    return pulumi.output(getSync(opts))
-}

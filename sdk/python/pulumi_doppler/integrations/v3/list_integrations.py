@@ -4,56 +4,73 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'ListIntegrationsResult',
-    'AwaitableListIntegrationsResult',
+    'ListIntegrationsProperties',
+    'AwaitableListIntegrationsProperties',
     'list_integrations',
     'list_integrations_output',
 ]
 
 @pulumi.output_type
-class ListIntegrationsResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class ListIntegrationsProperties:
+    def __init__(__self__, integrations=None, success=None):
+        if integrations and not isinstance(integrations, list):
+            raise TypeError("Expected argument 'integrations' to be a list")
+        pulumi.set(__self__, "integrations", integrations)
+        if success and not isinstance(success, bool):
+            raise TypeError("Expected argument 'success' to be a bool")
+        pulumi.set(__self__, "success", success)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.ListIntegrationsProperties':
-        return pulumi.get(self, "items")
+    def integrations(self) -> Optional[Sequence['outputs.ListIntegrationsPropertiesIntegrationsItemProperties']]:
+        return pulumi.get(self, "integrations")
+
+    @property
+    @pulumi.getter
+    def success(self) -> Optional[bool]:
+        return pulumi.get(self, "success")
 
 
-class AwaitableListIntegrationsResult(ListIntegrationsResult):
+class AwaitableListIntegrationsProperties(ListIntegrationsProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListIntegrationsResult(
-            items=self.items)
+        return ListIntegrationsProperties(
+            integrations=self.integrations,
+            success=self.success)
 
 
-def list_integrations(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListIntegrationsResult:
+def list_integrations(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListIntegrationsProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:integrations/v3:listIntegrations', __args__, opts=opts, typ=ListIntegrationsResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:integrations/v3:listIntegrations', __args__, opts=opts, typ=ListIntegrationsProperties).value
 
-    return AwaitableListIntegrationsResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_integrations)
-def list_integrations_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListIntegrationsResult]:
+    return AwaitableListIntegrationsProperties(
+        integrations=pulumi.get(__ret__, 'integrations'),
+        success=pulumi.get(__ret__, 'success'))
+def list_integrations_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListIntegrationsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:integrations/v3:listIntegrations', __args__, opts=opts, typ=ListIntegrationsProperties)
+    return __ret__.apply(lambda __response__: ListIntegrationsProperties(
+        integrations=pulumi.get(__response__, 'integrations'),
+        success=pulumi.get(__response__, 'success')))

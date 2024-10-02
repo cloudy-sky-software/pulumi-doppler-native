@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function listEnvironments(args?: ListEnvironmentsArgs, opts?: pulumi.InvokeOptions): Promise<ListEnvironmentsResult> {
+export function listEnvironments(args?: ListEnvironmentsArgs, opts?: pulumi.InvokeOptions): Promise<outputs.environments.v3.ListEnvironmentsProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:environments/v3:listEnvironments", {
     }, opts);
@@ -17,10 +16,9 @@ export function listEnvironments(args?: ListEnvironmentsArgs, opts?: pulumi.Invo
 
 export interface ListEnvironmentsArgs {
 }
+export function listEnvironmentsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.environments.v3.ListEnvironmentsProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:environments/v3:listEnvironments", {
+    }, opts);
+}
 
-export interface ListEnvironmentsResult {
-    readonly items: outputs.environments.v3.ListEnvironmentsProperties;
-}
-export function listEnvironmentsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListEnvironmentsResult> {
-    return pulumi.output(listEnvironments(opts))
-}

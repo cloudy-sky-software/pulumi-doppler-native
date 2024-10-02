@@ -804,107 +804,107 @@ func (o GetGroupPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-type GetRetrieveMemberProperties struct {
-	Group *GetRetrieveMemberPropertiesGroupProperties `pulumi:"group"`
+type GetMemberProperties struct {
+	Group *GetMemberPropertiesGroupProperties `pulumi:"group"`
 }
 
-type GetRetrieveMemberPropertiesOutput struct{ *pulumi.OutputState }
+type GetMemberPropertiesOutput struct{ *pulumi.OutputState }
 
-func (GetRetrieveMemberPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetRetrieveMemberProperties)(nil)).Elem()
+func (GetMemberPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMemberProperties)(nil)).Elem()
 }
 
-func (o GetRetrieveMemberPropertiesOutput) ToGetRetrieveMemberPropertiesOutput() GetRetrieveMemberPropertiesOutput {
+func (o GetMemberPropertiesOutput) ToGetMemberPropertiesOutput() GetMemberPropertiesOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesOutput) ToGetRetrieveMemberPropertiesOutputWithContext(ctx context.Context) GetRetrieveMemberPropertiesOutput {
+func (o GetMemberPropertiesOutput) ToGetMemberPropertiesOutputWithContext(ctx context.Context) GetMemberPropertiesOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesOutput) Group() GetRetrieveMemberPropertiesGroupPropertiesPtrOutput {
-	return o.ApplyT(func(v GetRetrieveMemberProperties) *GetRetrieveMemberPropertiesGroupProperties { return v.Group }).(GetRetrieveMemberPropertiesGroupPropertiesPtrOutput)
+func (o GetMemberPropertiesOutput) Group() GetMemberPropertiesGroupPropertiesPtrOutput {
+	return o.ApplyT(func(v GetMemberProperties) *GetMemberPropertiesGroupProperties { return v.Group }).(GetMemberPropertiesGroupPropertiesPtrOutput)
 }
 
-type GetRetrieveMemberPropertiesGroupProperties struct {
-	CreatedAt          *string                                                                 `pulumi:"createdAt"`
-	DefaultProjectRole *GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties `pulumi:"defaultProjectRole"`
-	Members            []GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties       `pulumi:"members"`
-	Name               *string                                                                 `pulumi:"name"`
-	Projects           []GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties      `pulumi:"projects"`
-	Slug               *string                                                                 `pulumi:"slug"`
+type GetMemberPropertiesGroupProperties struct {
+	CreatedAt          *string                                                         `pulumi:"createdAt"`
+	DefaultProjectRole *GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties `pulumi:"defaultProjectRole"`
+	Members            []GetMemberPropertiesGroupPropertiesMembersItemProperties       `pulumi:"members"`
+	Name               *string                                                         `pulumi:"name"`
+	Projects           []GetMemberPropertiesGroupPropertiesProjectsItemProperties      `pulumi:"projects"`
+	Slug               *string                                                         `pulumi:"slug"`
 }
 
-type GetRetrieveMemberPropertiesGroupPropertiesOutput struct{ *pulumi.OutputState }
+type GetMemberPropertiesGroupPropertiesOutput struct{ *pulumi.OutputState }
 
-func (GetRetrieveMemberPropertiesGroupPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetRetrieveMemberPropertiesGroupProperties)(nil)).Elem()
+func (GetMemberPropertiesGroupPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMemberPropertiesGroupProperties)(nil)).Elem()
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesOutput) ToGetRetrieveMemberPropertiesGroupPropertiesOutput() GetRetrieveMemberPropertiesGroupPropertiesOutput {
+func (o GetMemberPropertiesGroupPropertiesOutput) ToGetMemberPropertiesGroupPropertiesOutput() GetMemberPropertiesGroupPropertiesOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesOutput) ToGetRetrieveMemberPropertiesGroupPropertiesOutputWithContext(ctx context.Context) GetRetrieveMemberPropertiesGroupPropertiesOutput {
+func (o GetMemberPropertiesGroupPropertiesOutput) ToGetMemberPropertiesGroupPropertiesOutputWithContext(ctx context.Context) GetMemberPropertiesGroupPropertiesOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRetrieveMemberPropertiesGroupProperties) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+func (o GetMemberPropertiesGroupPropertiesOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMemberPropertiesGroupProperties) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesOutput) DefaultProjectRole() GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput {
-	return o.ApplyT(func(v GetRetrieveMemberPropertiesGroupProperties) *GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties {
+func (o GetMemberPropertiesGroupPropertiesOutput) DefaultProjectRole() GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput {
+	return o.ApplyT(func(v GetMemberPropertiesGroupProperties) *GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties {
 		return v.DefaultProjectRole
-	}).(GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput)
+	}).(GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesOutput) Members() GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput {
-	return o.ApplyT(func(v GetRetrieveMemberPropertiesGroupProperties) []GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties {
+func (o GetMemberPropertiesGroupPropertiesOutput) Members() GetMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput {
+	return o.ApplyT(func(v GetMemberPropertiesGroupProperties) []GetMemberPropertiesGroupPropertiesMembersItemProperties {
 		return v.Members
-	}).(GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput)
+	}).(GetMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRetrieveMemberPropertiesGroupProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetMemberPropertiesGroupPropertiesOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMemberPropertiesGroupProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesOutput) Projects() GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput {
-	return o.ApplyT(func(v GetRetrieveMemberPropertiesGroupProperties) []GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties {
+func (o GetMemberPropertiesGroupPropertiesOutput) Projects() GetMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput {
+	return o.ApplyT(func(v GetMemberPropertiesGroupProperties) []GetMemberPropertiesGroupPropertiesProjectsItemProperties {
 		return v.Projects
-	}).(GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput)
+	}).(GetMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesOutput) Slug() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRetrieveMemberPropertiesGroupProperties) *string { return v.Slug }).(pulumi.StringPtrOutput)
+func (o GetMemberPropertiesGroupPropertiesOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMemberPropertiesGroupProperties) *string { return v.Slug }).(pulumi.StringPtrOutput)
 }
 
-type GetRetrieveMemberPropertiesGroupPropertiesPtrOutput struct{ *pulumi.OutputState }
+type GetMemberPropertiesGroupPropertiesPtrOutput struct{ *pulumi.OutputState }
 
-func (GetRetrieveMemberPropertiesGroupPropertiesPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetRetrieveMemberPropertiesGroupProperties)(nil)).Elem()
+func (GetMemberPropertiesGroupPropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetMemberPropertiesGroupProperties)(nil)).Elem()
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesPtrOutput) ToGetRetrieveMemberPropertiesGroupPropertiesPtrOutput() GetRetrieveMemberPropertiesGroupPropertiesPtrOutput {
+func (o GetMemberPropertiesGroupPropertiesPtrOutput) ToGetMemberPropertiesGroupPropertiesPtrOutput() GetMemberPropertiesGroupPropertiesPtrOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesPtrOutput) ToGetRetrieveMemberPropertiesGroupPropertiesPtrOutputWithContext(ctx context.Context) GetRetrieveMemberPropertiesGroupPropertiesPtrOutput {
+func (o GetMemberPropertiesGroupPropertiesPtrOutput) ToGetMemberPropertiesGroupPropertiesPtrOutputWithContext(ctx context.Context) GetMemberPropertiesGroupPropertiesPtrOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesPtrOutput) Elem() GetRetrieveMemberPropertiesGroupPropertiesOutput {
-	return o.ApplyT(func(v *GetRetrieveMemberPropertiesGroupProperties) GetRetrieveMemberPropertiesGroupProperties {
+func (o GetMemberPropertiesGroupPropertiesPtrOutput) Elem() GetMemberPropertiesGroupPropertiesOutput {
+	return o.ApplyT(func(v *GetMemberPropertiesGroupProperties) GetMemberPropertiesGroupProperties {
 		if v != nil {
 			return *v
 		}
-		var ret GetRetrieveMemberPropertiesGroupProperties
+		var ret GetMemberPropertiesGroupProperties
 		return ret
-	}).(GetRetrieveMemberPropertiesGroupPropertiesOutput)
+	}).(GetMemberPropertiesGroupPropertiesOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesPtrOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetRetrieveMemberPropertiesGroupProperties) *string {
+func (o GetMemberPropertiesGroupPropertiesPtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetMemberPropertiesGroupProperties) *string {
 		if v == nil {
 			return nil
 		}
@@ -912,26 +912,26 @@ func (o GetRetrieveMemberPropertiesGroupPropertiesPtrOutput) CreatedAt() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesPtrOutput) DefaultProjectRole() GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput {
-	return o.ApplyT(func(v *GetRetrieveMemberPropertiesGroupProperties) *GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties {
+func (o GetMemberPropertiesGroupPropertiesPtrOutput) DefaultProjectRole() GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput {
+	return o.ApplyT(func(v *GetMemberPropertiesGroupProperties) *GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties {
 		if v == nil {
 			return nil
 		}
 		return v.DefaultProjectRole
-	}).(GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput)
+	}).(GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesPtrOutput) Members() GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput {
-	return o.ApplyT(func(v *GetRetrieveMemberPropertiesGroupProperties) []GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties {
+func (o GetMemberPropertiesGroupPropertiesPtrOutput) Members() GetMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput {
+	return o.ApplyT(func(v *GetMemberPropertiesGroupProperties) []GetMemberPropertiesGroupPropertiesMembersItemProperties {
 		if v == nil {
 			return nil
 		}
 		return v.Members
-	}).(GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput)
+	}).(GetMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetRetrieveMemberPropertiesGroupProperties) *string {
+func (o GetMemberPropertiesGroupPropertiesPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetMemberPropertiesGroupProperties) *string {
 		if v == nil {
 			return nil
 		}
@@ -939,17 +939,17 @@ func (o GetRetrieveMemberPropertiesGroupPropertiesPtrOutput) Name() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesPtrOutput) Projects() GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput {
-	return o.ApplyT(func(v *GetRetrieveMemberPropertiesGroupProperties) []GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties {
+func (o GetMemberPropertiesGroupPropertiesPtrOutput) Projects() GetMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput {
+	return o.ApplyT(func(v *GetMemberPropertiesGroupProperties) []GetMemberPropertiesGroupPropertiesProjectsItemProperties {
 		if v == nil {
 			return nil
 		}
 		return v.Projects
-	}).(GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput)
+	}).(GetMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesPtrOutput) Slug() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetRetrieveMemberPropertiesGroupProperties) *string {
+func (o GetMemberPropertiesGroupPropertiesPtrOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetMemberPropertiesGroupProperties) *string {
 		if v == nil {
 			return nil
 		}
@@ -957,56 +957,54 @@ func (o GetRetrieveMemberPropertiesGroupPropertiesPtrOutput) Slug() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
-type GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties struct {
+type GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties struct {
 	Identifier *string `pulumi:"identifier"`
 }
 
-type GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput struct{ *pulumi.OutputState }
+type GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput struct{ *pulumi.OutputState }
 
-func (GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties)(nil)).Elem()
+func (GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties)(nil)).Elem()
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput) ToGetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput() GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput {
+func (o GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput) ToGetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput() GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput) ToGetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutputWithContext(ctx context.Context) GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput {
+func (o GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput) ToGetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutputWithContext(ctx context.Context) GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput) Identifier() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties) *string {
-		return v.Identifier
-	}).(pulumi.StringPtrOutput)
+func (o GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput) Identifier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties) *string { return v.Identifier }).(pulumi.StringPtrOutput)
 }
 
-type GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput struct{ *pulumi.OutputState }
+type GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput struct{ *pulumi.OutputState }
 
-func (GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties)(nil)).Elem()
+func (GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties)(nil)).Elem()
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput) ToGetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput() GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput {
+func (o GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput) ToGetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput() GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput) ToGetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutputWithContext(ctx context.Context) GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput {
+func (o GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput) ToGetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutputWithContext(ctx context.Context) GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput) Elem() GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput {
-	return o.ApplyT(func(v *GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties) GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties {
+func (o GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput) Elem() GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput {
+	return o.ApplyT(func(v *GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties) GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties {
 		if v != nil {
 			return *v
 		}
-		var ret GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties
+		var ret GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties
 		return ret
-	}).(GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput)
+	}).(GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput) Identifier() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties) *string {
+func (o GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput) Identifier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties) *string {
 		if v == nil {
 			return nil
 		}
@@ -1014,157 +1012,157 @@ func (o GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPt
 	}).(pulumi.StringPtrOutput)
 }
 
-type GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties struct {
+type GetMemberPropertiesGroupPropertiesMembersItemProperties struct {
 	Slug *string `pulumi:"slug"`
 	Type *string `pulumi:"type"`
 }
 
-type GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesOutput struct{ *pulumi.OutputState }
+type GetMemberPropertiesGroupPropertiesMembersItemPropertiesOutput struct{ *pulumi.OutputState }
 
-func (GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties)(nil)).Elem()
+func (GetMemberPropertiesGroupPropertiesMembersItemPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMemberPropertiesGroupPropertiesMembersItemProperties)(nil)).Elem()
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesOutput) ToGetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesOutput() GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesOutput {
+func (o GetMemberPropertiesGroupPropertiesMembersItemPropertiesOutput) ToGetMemberPropertiesGroupPropertiesMembersItemPropertiesOutput() GetMemberPropertiesGroupPropertiesMembersItemPropertiesOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesOutput) ToGetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesOutputWithContext(ctx context.Context) GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesOutput {
+func (o GetMemberPropertiesGroupPropertiesMembersItemPropertiesOutput) ToGetMemberPropertiesGroupPropertiesMembersItemPropertiesOutputWithContext(ctx context.Context) GetMemberPropertiesGroupPropertiesMembersItemPropertiesOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesOutput) Slug() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties) *string { return v.Slug }).(pulumi.StringPtrOutput)
+func (o GetMemberPropertiesGroupPropertiesMembersItemPropertiesOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMemberPropertiesGroupPropertiesMembersItemProperties) *string { return v.Slug }).(pulumi.StringPtrOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties) *string { return v.Type }).(pulumi.StringPtrOutput)
+func (o GetMemberPropertiesGroupPropertiesMembersItemPropertiesOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMemberPropertiesGroupPropertiesMembersItemProperties) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-type GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput struct{ *pulumi.OutputState }
+type GetMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput struct{ *pulumi.OutputState }
 
-func (GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties)(nil)).Elem()
+func (GetMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMemberPropertiesGroupPropertiesMembersItemProperties)(nil)).Elem()
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput) ToGetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput() GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput {
+func (o GetMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput) ToGetMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput() GetMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput) ToGetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutputWithContext(ctx context.Context) GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput {
+func (o GetMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput) ToGetMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutputWithContext(ctx context.Context) GetMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput) Index(i pulumi.IntInput) GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties {
-		return vs[0].([]GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties)[vs[1].(int)]
-	}).(GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesOutput)
+func (o GetMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput) Index(i pulumi.IntInput) GetMemberPropertiesGroupPropertiesMembersItemPropertiesOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMemberPropertiesGroupPropertiesMembersItemProperties {
+		return vs[0].([]GetMemberPropertiesGroupPropertiesMembersItemProperties)[vs[1].(int)]
+	}).(GetMemberPropertiesGroupPropertiesMembersItemPropertiesOutput)
 }
 
-type GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties struct {
-	Name *string                                                                         `pulumi:"name"`
-	Role *GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties `pulumi:"role"`
-	Slug *string                                                                         `pulumi:"slug"`
+type GetMemberPropertiesGroupPropertiesProjectsItemProperties struct {
+	Name *string                                                                 `pulumi:"name"`
+	Role *GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties `pulumi:"role"`
+	Slug *string                                                                 `pulumi:"slug"`
 }
 
-type GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput struct{ *pulumi.OutputState }
+type GetMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput struct{ *pulumi.OutputState }
 
-func (GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties)(nil)).Elem()
+func (GetMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMemberPropertiesGroupPropertiesProjectsItemProperties)(nil)).Elem()
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput) ToGetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput() GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput {
+func (o GetMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput) ToGetMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput() GetMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput) ToGetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesOutputWithContext(ctx context.Context) GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput {
+func (o GetMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput) ToGetMemberPropertiesGroupPropertiesProjectsItemPropertiesOutputWithContext(ctx context.Context) GetMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMemberPropertiesGroupPropertiesProjectsItemProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput) Role() GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput {
-	return o.ApplyT(func(v GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties) *GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties {
+func (o GetMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput) Role() GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput {
+	return o.ApplyT(func(v GetMemberPropertiesGroupPropertiesProjectsItemProperties) *GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties {
 		return v.Role
-	}).(GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput)
+	}).(GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput) Slug() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties) *string { return v.Slug }).(pulumi.StringPtrOutput)
+func (o GetMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMemberPropertiesGroupPropertiesProjectsItemProperties) *string { return v.Slug }).(pulumi.StringPtrOutput)
 }
 
-type GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput struct{ *pulumi.OutputState }
+type GetMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput struct{ *pulumi.OutputState }
 
-func (GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties)(nil)).Elem()
+func (GetMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMemberPropertiesGroupPropertiesProjectsItemProperties)(nil)).Elem()
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput) ToGetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput() GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput {
+func (o GetMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput) ToGetMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput() GetMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput) ToGetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutputWithContext(ctx context.Context) GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput {
+func (o GetMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput) ToGetMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutputWithContext(ctx context.Context) GetMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput) Index(i pulumi.IntInput) GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties {
-		return vs[0].([]GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties)[vs[1].(int)]
-	}).(GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput)
+func (o GetMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput) Index(i pulumi.IntInput) GetMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMemberPropertiesGroupPropertiesProjectsItemProperties {
+		return vs[0].([]GetMemberPropertiesGroupPropertiesProjectsItemProperties)[vs[1].(int)]
+	}).(GetMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput)
 }
 
-type GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties struct {
+type GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties struct {
 	Identifier *string `pulumi:"identifier"`
 }
 
-type GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput struct{ *pulumi.OutputState }
+type GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput struct{ *pulumi.OutputState }
 
-func (GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties)(nil)).Elem()
+func (GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties)(nil)).Elem()
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput) ToGetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput() GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput {
+func (o GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput) ToGetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput() GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput) ToGetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutputWithContext(ctx context.Context) GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput {
+func (o GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput) ToGetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutputWithContext(ctx context.Context) GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput) Identifier() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties) *string {
+func (o GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput) Identifier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties) *string {
 		return v.Identifier
 	}).(pulumi.StringPtrOutput)
 }
 
-type GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput struct{ *pulumi.OutputState }
+type GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput struct{ *pulumi.OutputState }
 
-func (GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties)(nil)).Elem()
+func (GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties)(nil)).Elem()
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput) ToGetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput() GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput {
+func (o GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput) ToGetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput() GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput) ToGetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutputWithContext(ctx context.Context) GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput {
+func (o GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput) ToGetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutputWithContext(ctx context.Context) GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput {
 	return o
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput) Elem() GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput {
-	return o.ApplyT(func(v *GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties) GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties {
+func (o GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput) Elem() GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput {
+	return o.ApplyT(func(v *GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties) GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties {
 		if v != nil {
 			return *v
 		}
-		var ret GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties
+		var ret GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties
 		return ret
-	}).(GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput)
+	}).(GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput)
 }
 
-func (o GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput) Identifier() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties) *string {
+func (o GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput) Identifier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties) *string {
 		if v == nil {
 			return nil
 		}
@@ -4222,17 +4220,17 @@ func init() {
 	pulumi.RegisterOutputType(GetGroupPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(GetGroupPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput{})
 	pulumi.RegisterOutputType(GetGroupPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput{})
-	pulumi.RegisterOutputType(GetRetrieveMemberPropertiesOutput{})
-	pulumi.RegisterOutputType(GetRetrieveMemberPropertiesGroupPropertiesOutput{})
-	pulumi.RegisterOutputType(GetRetrieveMemberPropertiesGroupPropertiesPtrOutput{})
-	pulumi.RegisterOutputType(GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput{})
-	pulumi.RegisterOutputType(GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput{})
-	pulumi.RegisterOutputType(GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesOutput{})
-	pulumi.RegisterOutputType(GetRetrieveMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput{})
-	pulumi.RegisterOutputType(GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput{})
-	pulumi.RegisterOutputType(GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput{})
-	pulumi.RegisterOutputType(GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput{})
-	pulumi.RegisterOutputType(GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput{})
+	pulumi.RegisterOutputType(GetMemberPropertiesOutput{})
+	pulumi.RegisterOutputType(GetMemberPropertiesGroupPropertiesOutput{})
+	pulumi.RegisterOutputType(GetMemberPropertiesGroupPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesOutput{})
+	pulumi.RegisterOutputType(GetMemberPropertiesGroupPropertiesDefaultProjectRolePropertiesPtrOutput{})
+	pulumi.RegisterOutputType(GetMemberPropertiesGroupPropertiesMembersItemPropertiesOutput{})
+	pulumi.RegisterOutputType(GetMemberPropertiesGroupPropertiesMembersItemPropertiesArrayOutput{})
+	pulumi.RegisterOutputType(GetMemberPropertiesGroupPropertiesProjectsItemPropertiesOutput{})
+	pulumi.RegisterOutputType(GetMemberPropertiesGroupPropertiesProjectsItemPropertiesArrayOutput{})
+	pulumi.RegisterOutputType(GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesOutput{})
+	pulumi.RegisterOutputType(GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRolePropertiesPtrOutput{})
 	pulumi.RegisterOutputType(GetServiceAccountPropertiesOutput{})
 	pulumi.RegisterOutputType(GetServiceAccountPropertiesServiceAccountPropertiesOutput{})
 	pulumi.RegisterOutputType(GetServiceAccountPropertiesServiceAccountPropertiesPtrOutput{})

@@ -5,55 +5,55 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../../utilities";
 
 // Export members:
-export { GetProjectArgs, GetProjectResult } from "./getProject";
+export { GetProjectArgs } from "./getProject";
 export const getProject: typeof import("./getProject").getProject = null as any;
 export const getProjectOutput: typeof import("./getProject").getProjectOutput = null as any;
 utilities.lazyLoad(exports, ["getProject","getProjectOutput"], () => require("./getProject"));
 
-export { GetProjectMemberArgs, GetProjectMemberResult, GetProjectMemberOutputArgs } from "./getProjectMember";
+export { GetProjectMemberArgs, GetProjectMemberOutputArgs } from "./getProjectMember";
 export const getProjectMember: typeof import("./getProjectMember").getProjectMember = null as any;
 export const getProjectMemberOutput: typeof import("./getProjectMember").getProjectMemberOutput = null as any;
 utilities.lazyLoad(exports, ["getProjectMember","getProjectMemberOutput"], () => require("./getProjectMember"));
 
-export { GetProjectRoleArgs, GetProjectRoleResult, GetProjectRoleOutputArgs } from "./getProjectRole";
+export { GetProjectRoleArgs, GetProjectRoleOutputArgs } from "./getProjectRole";
 export const getProjectRole: typeof import("./getProjectRole").getProjectRole = null as any;
 export const getProjectRoleOutput: typeof import("./getProjectRole").getProjectRoleOutput = null as any;
 utilities.lazyLoad(exports, ["getProjectRole","getProjectRoleOutput"], () => require("./getProjectRole"));
 
-export { ListProjectMembersArgs, ListProjectMembersResult } from "./listProjectMembers";
+export { ListProjectMembersArgs } from "./listProjectMembers";
 export const listProjectMembers: typeof import("./listProjectMembers").listProjectMembers = null as any;
 export const listProjectMembersOutput: typeof import("./listProjectMembers").listProjectMembersOutput = null as any;
 utilities.lazyLoad(exports, ["listProjectMembers","listProjectMembersOutput"], () => require("./listProjectMembers"));
 
-export { ListProjectRolesArgs, ListProjectRolesResult } from "./listProjectRoles";
+export { ListProjectRolesArgs } from "./listProjectRoles";
 export const listProjectRoles: typeof import("./listProjectRoles").listProjectRoles = null as any;
 export const listProjectRolesOutput: typeof import("./listProjectRoles").listProjectRolesOutput = null as any;
 utilities.lazyLoad(exports, ["listProjectRoles","listProjectRolesOutput"], () => require("./listProjectRoles"));
 
-export { ListProjectRolesPermissionsArgs, ListProjectRolesPermissionsResult } from "./listProjectRolesPermissions";
+export { ListProjectRolesPermissionsArgs } from "./listProjectRolesPermissions";
 export const listProjectRolesPermissions: typeof import("./listProjectRolesPermissions").listProjectRolesPermissions = null as any;
 export const listProjectRolesPermissionsOutput: typeof import("./listProjectRolesPermissions").listProjectRolesPermissionsOutput = null as any;
 utilities.lazyLoad(exports, ["listProjectRolesPermissions","listProjectRolesPermissionsOutput"], () => require("./listProjectRolesPermissions"));
 
-export { ListProjectsArgs, ListProjectsResult } from "./listProjects";
+export { ListProjectsArgs } from "./listProjects";
 export const listProjects: typeof import("./listProjects").listProjects = null as any;
 export const listProjectsOutput: typeof import("./listProjects").listProjectsOutput = null as any;
 utilities.lazyLoad(exports, ["listProjects","listProjectsOutput"], () => require("./listProjects"));
 
-export { ProjectMembersArgs } from "./projectMembers";
-export type ProjectMembers = import("./projectMembers").ProjectMembers;
-export const ProjectMembers: typeof import("./projectMembers").ProjectMembers = null as any;
-utilities.lazyLoad(exports, ["ProjectMembers"], () => require("./projectMembers"));
+export { ProjectArgs } from "./project";
+export type Project = import("./project").Project;
+export const Project: typeof import("./project").Project = null as any;
+utilities.lazyLoad(exports, ["Project"], () => require("./project"));
 
-export { ProjectRolesArgs } from "./projectRoles";
-export type ProjectRoles = import("./projectRoles").ProjectRoles;
-export const ProjectRoles: typeof import("./projectRoles").ProjectRoles = null as any;
-utilities.lazyLoad(exports, ["ProjectRoles"], () => require("./projectRoles"));
+export { ProjectMemberArgs } from "./projectMember";
+export type ProjectMember = import("./projectMember").ProjectMember;
+export const ProjectMember: typeof import("./projectMember").ProjectMember = null as any;
+utilities.lazyLoad(exports, ["ProjectMember"], () => require("./projectMember"));
 
-export { ProjectsArgs } from "./projects";
-export type Projects = import("./projects").Projects;
-export const Projects: typeof import("./projects").Projects = null as any;
-utilities.lazyLoad(exports, ["Projects"], () => require("./projects"));
+export { ProjectRoleArgs } from "./projectRole";
+export type ProjectRole = import("./projectRole").ProjectRole;
+export const ProjectRole: typeof import("./projectRole").ProjectRole = null as any;
+utilities.lazyLoad(exports, ["ProjectRole"], () => require("./projectRole"));
 
 export { ProjectsUpdateArgs } from "./projectsUpdate";
 export type ProjectsUpdate = import("./projectsUpdate").ProjectsUpdate;
@@ -68,12 +68,12 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "doppler-native:projects/v3:ProjectMembers":
-                return new ProjectMembers(name, <any>undefined, { urn })
-            case "doppler-native:projects/v3:ProjectRoles":
-                return new ProjectRoles(name, <any>undefined, { urn })
-            case "doppler-native:projects/v3:Projects":
-                return new Projects(name, <any>undefined, { urn })
+            case "doppler-native:projects/v3:Project":
+                return new Project(name, <any>undefined, { urn })
+            case "doppler-native:projects/v3:ProjectMember":
+                return new ProjectMember(name, <any>undefined, { urn })
+            case "doppler-native:projects/v3:ProjectRole":
+                return new ProjectRole(name, <any>undefined, { urn })
             case "doppler-native:projects/v3:ProjectsUpdate":
                 return new ProjectsUpdate(name, <any>undefined, { urn })
             default:

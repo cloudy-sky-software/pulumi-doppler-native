@@ -25,7 +25,8 @@ type ListConfigLogsArgs struct {
 }
 
 type ListConfigLogsResult struct {
-	Items ListConfigLogsProperties `pulumi:"items"`
+	Logs []ListConfigLogsPropertiesLogsItemProperties `pulumi:"logs"`
+	Page *int                                         `pulumi:"page"`
 }
 
 // Defaults sets the appropriate defaults for ListConfigLogsResult
@@ -34,21 +35,29 @@ func (val *ListConfigLogsResult) Defaults() *ListConfigLogsResult {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
-
+	if tmp.Page == nil {
+		page_ := 0
+		tmp.Page = &page_
+	}
 	return &tmp
 }
 
 func ListConfigLogsOutput(ctx *pulumi.Context, args ListConfigLogsOutputArgs, opts ...pulumi.InvokeOption) ListConfigLogsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListConfigLogsResult, error) {
+		ApplyT(func(v interface{}) (ListConfigLogsResultOutput, error) {
 			args := v.(ListConfigLogsArgs)
-			r, err := ListConfigLogs(ctx, &args, opts...)
-			var s ListConfigLogsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListConfigLogsResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:configs/v3:listConfigLogs", args, &rv, "", opts...)
+			if err != nil {
+				return ListConfigLogsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListConfigLogsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListConfigLogsResultOutput), nil
+			}
+			return output, nil
 		}).(ListConfigLogsResultOutput)
 }
 
@@ -73,8 +82,12 @@ func (o ListConfigLogsResultOutput) ToListConfigLogsResultOutputWithContext(ctx 
 	return o
 }
 
-func (o ListConfigLogsResultOutput) Items() ListConfigLogsPropertiesOutput {
-	return o.ApplyT(func(v ListConfigLogsResult) ListConfigLogsProperties { return v.Items }).(ListConfigLogsPropertiesOutput)
+func (o ListConfigLogsResultOutput) Logs() ListConfigLogsPropertiesLogsItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListConfigLogsResult) []ListConfigLogsPropertiesLogsItemProperties { return v.Logs }).(ListConfigLogsPropertiesLogsItemPropertiesArrayOutput)
+}
+
+func (o ListConfigLogsResultOutput) Page() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListConfigLogsResult) *int { return v.Page }).(pulumi.IntPtrOutput)
 }
 
 func init() {

@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function listSecrets(args?: ListSecretsArgs, opts?: pulumi.InvokeOptions): Promise<ListSecretsResult> {
+export function listSecrets(args?: ListSecretsArgs, opts?: pulumi.InvokeOptions): Promise<outputs.configs.v3.ListSecretsProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:configs/v3:listSecrets", {
     }, opts);
@@ -17,10 +16,9 @@ export function listSecrets(args?: ListSecretsArgs, opts?: pulumi.InvokeOptions)
 
 export interface ListSecretsArgs {
 }
+export function listSecretsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.configs.v3.ListSecretsProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:configs/v3:listSecrets", {
+    }, opts);
+}
 
-export interface ListSecretsResult {
-    readonly items: outputs.configs.v3.ListSecretsProperties;
-}
-export function listSecretsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListSecretsResult> {
-    return pulumi.output(listSecrets(opts))
-}

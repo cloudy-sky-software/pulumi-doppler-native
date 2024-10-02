@@ -25,7 +25,9 @@ type ListUsersArgs struct {
 }
 
 type ListUsersResult struct {
-	Items ListUsersProperties `pulumi:"items"`
+	Page           *int                                              `pulumi:"page"`
+	Success        *bool                                             `pulumi:"success"`
+	WorkplaceUsers []ListUsersPropertiesWorkplaceUsersItemProperties `pulumi:"workplaceUsers"`
 }
 
 // Defaults sets the appropriate defaults for ListUsersResult
@@ -34,21 +36,33 @@ func (val *ListUsersResult) Defaults() *ListUsersResult {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
-
+	if tmp.Page == nil {
+		page_ := 0
+		tmp.Page = &page_
+	}
+	if tmp.Success == nil {
+		success_ := true
+		tmp.Success = &success_
+	}
 	return &tmp
 }
 
 func ListUsersOutput(ctx *pulumi.Context, args ListUsersOutputArgs, opts ...pulumi.InvokeOption) ListUsersResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListUsersResult, error) {
+		ApplyT(func(v interface{}) (ListUsersResultOutput, error) {
 			args := v.(ListUsersArgs)
-			r, err := ListUsers(ctx, &args, opts...)
-			var s ListUsersResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListUsersResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:listUsers", args, &rv, "", opts...)
+			if err != nil {
+				return ListUsersResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListUsersResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListUsersResultOutput), nil
+			}
+			return output, nil
 		}).(ListUsersResultOutput)
 }
 
@@ -73,8 +87,16 @@ func (o ListUsersResultOutput) ToListUsersResultOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o ListUsersResultOutput) Items() ListUsersPropertiesOutput {
-	return o.ApplyT(func(v ListUsersResult) ListUsersProperties { return v.Items }).(ListUsersPropertiesOutput)
+func (o ListUsersResultOutput) Page() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListUsersResult) *int { return v.Page }).(pulumi.IntPtrOutput)
+}
+
+func (o ListUsersResultOutput) Success() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ListUsersResult) *bool { return v.Success }).(pulumi.BoolPtrOutput)
+}
+
+func (o ListUsersResultOutput) WorkplaceUsers() ListUsersPropertiesWorkplaceUsersItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListUsersResult) []ListUsersPropertiesWorkplaceUsersItemProperties { return v.WorkplaceUsers }).(ListUsersPropertiesWorkplaceUsersItemPropertiesArrayOutput)
 }
 
 func init() {

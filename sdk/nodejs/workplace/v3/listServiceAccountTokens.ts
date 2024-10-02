@@ -7,8 +7,7 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function listServiceAccountTokens(args: ListServiceAccountTokensArgs, opts?: pulumi.InvokeOptions): Promise<ListServiceAccountTokensResult> {
-
+export function listServiceAccountTokens(args: ListServiceAccountTokensArgs, opts?: pulumi.InvokeOptions): Promise<outputs.workplace.v3.ListServiceAccountTokensProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:workplace/v3:listServiceAccountTokens", {
         "serviceAccount": args.serviceAccount,
@@ -21,12 +20,11 @@ export interface ListServiceAccountTokensArgs {
      */
     serviceAccount: string;
 }
-
-export interface ListServiceAccountTokensResult {
-    readonly items: outputs.workplace.v3.ListServiceAccountTokensProperties;
-}
-export function listServiceAccountTokensOutput(args: ListServiceAccountTokensOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListServiceAccountTokensResult> {
-    return pulumi.output(args).apply((a: any) => listServiceAccountTokens(a, opts))
+export function listServiceAccountTokensOutput(args: ListServiceAccountTokensOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.ListServiceAccountTokensProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:listServiceAccountTokens", {
+        "serviceAccount": args.serviceAccount,
+    }, opts);
 }
 
 export interface ListServiceAccountTokensOutputArgs {

@@ -25,7 +25,8 @@ type ListConfigsArgs struct {
 }
 
 type ListConfigsResult struct {
-	Items ListConfigsProperties `pulumi:"items"`
+	Configs []ListConfigsPropertiesConfigsItemProperties `pulumi:"configs"`
+	Page    *int                                         `pulumi:"page"`
 }
 
 // Defaults sets the appropriate defaults for ListConfigsResult
@@ -34,21 +35,29 @@ func (val *ListConfigsResult) Defaults() *ListConfigsResult {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
-
+	if tmp.Page == nil {
+		page_ := 0
+		tmp.Page = &page_
+	}
 	return &tmp
 }
 
 func ListConfigsOutput(ctx *pulumi.Context, args ListConfigsOutputArgs, opts ...pulumi.InvokeOption) ListConfigsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListConfigsResult, error) {
+		ApplyT(func(v interface{}) (ListConfigsResultOutput, error) {
 			args := v.(ListConfigsArgs)
-			r, err := ListConfigs(ctx, &args, opts...)
-			var s ListConfigsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListConfigsResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:configs/v3:listConfigs", args, &rv, "", opts...)
+			if err != nil {
+				return ListConfigsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListConfigsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListConfigsResultOutput), nil
+			}
+			return output, nil
 		}).(ListConfigsResultOutput)
 }
 
@@ -73,8 +82,12 @@ func (o ListConfigsResultOutput) ToListConfigsResultOutputWithContext(ctx contex
 	return o
 }
 
-func (o ListConfigsResultOutput) Items() ListConfigsPropertiesOutput {
-	return o.ApplyT(func(v ListConfigsResult) ListConfigsProperties { return v.Items }).(ListConfigsPropertiesOutput)
+func (o ListConfigsResultOutput) Configs() ListConfigsPropertiesConfigsItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListConfigsResult) []ListConfigsPropertiesConfigsItemProperties { return v.Configs }).(ListConfigsPropertiesConfigsItemPropertiesArrayOutput)
+}
+
+func (o ListConfigsResultOutput) Page() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListConfigsResult) *int { return v.Page }).(pulumi.IntPtrOutput)
 }
 
 func init() {

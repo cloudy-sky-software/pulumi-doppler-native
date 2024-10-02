@@ -25,19 +25,25 @@ type ListConfigsTrustedIpsArgs struct {
 }
 
 type ListConfigsTrustedIpsResult struct {
-	Items ListConfigsTrustedIpsProperties `pulumi:"items"`
+	Ips []string `pulumi:"ips"`
 }
 
 func ListConfigsTrustedIpsOutput(ctx *pulumi.Context, args ListConfigsTrustedIpsOutputArgs, opts ...pulumi.InvokeOption) ListConfigsTrustedIpsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListConfigsTrustedIpsResult, error) {
+		ApplyT(func(v interface{}) (ListConfigsTrustedIpsResultOutput, error) {
 			args := v.(ListConfigsTrustedIpsArgs)
-			r, err := ListConfigsTrustedIps(ctx, &args, opts...)
-			var s ListConfigsTrustedIpsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListConfigsTrustedIpsResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:configs/v3:listConfigsTrustedIps", args, &rv, "", opts...)
+			if err != nil {
+				return ListConfigsTrustedIpsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListConfigsTrustedIpsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListConfigsTrustedIpsResultOutput), nil
+			}
+			return output, nil
 		}).(ListConfigsTrustedIpsResultOutput)
 }
 
@@ -62,8 +68,8 @@ func (o ListConfigsTrustedIpsResultOutput) ToListConfigsTrustedIpsResultOutputWi
 	return o
 }
 
-func (o ListConfigsTrustedIpsResultOutput) Items() ListConfigsTrustedIpsPropertiesOutput {
-	return o.ApplyT(func(v ListConfigsTrustedIpsResult) ListConfigsTrustedIpsProperties { return v.Items }).(ListConfigsTrustedIpsPropertiesOutput)
+func (o ListConfigsTrustedIpsResultOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListConfigsTrustedIpsResult) []string { return v.Ips }).(pulumi.StringArrayOutput)
 }
 
 func init() {

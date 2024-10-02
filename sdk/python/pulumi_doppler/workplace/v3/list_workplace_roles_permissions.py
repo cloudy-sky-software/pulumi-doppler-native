@@ -4,56 +4,61 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
-from . import outputs
 
 __all__ = [
-    'ListWorkplaceRolesPermissionsResult',
-    'AwaitableListWorkplaceRolesPermissionsResult',
+    'ListWorkplaceRolesPermissionsProperties',
+    'AwaitableListWorkplaceRolesPermissionsProperties',
     'list_workplace_roles_permissions',
     'list_workplace_roles_permissions_output',
 ]
 
 @pulumi.output_type
-class ListWorkplaceRolesPermissionsResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class ListWorkplaceRolesPermissionsProperties:
+    def __init__(__self__, permissions=None):
+        if permissions and not isinstance(permissions, list):
+            raise TypeError("Expected argument 'permissions' to be a list")
+        pulumi.set(__self__, "permissions", permissions)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.ListWorkplaceRolesPermissionsProperties':
-        return pulumi.get(self, "items")
+    def permissions(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "permissions")
 
 
-class AwaitableListWorkplaceRolesPermissionsResult(ListWorkplaceRolesPermissionsResult):
+class AwaitableListWorkplaceRolesPermissionsProperties(ListWorkplaceRolesPermissionsProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListWorkplaceRolesPermissionsResult(
-            items=self.items)
+        return ListWorkplaceRolesPermissionsProperties(
+            permissions=self.permissions)
 
 
-def list_workplace_roles_permissions(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListWorkplaceRolesPermissionsResult:
+def list_workplace_roles_permissions(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListWorkplaceRolesPermissionsProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:listWorkplaceRolesPermissions', __args__, opts=opts, typ=ListWorkplaceRolesPermissionsResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:listWorkplaceRolesPermissions', __args__, opts=opts, typ=ListWorkplaceRolesPermissionsProperties).value
 
-    return AwaitableListWorkplaceRolesPermissionsResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_workplace_roles_permissions)
-def list_workplace_roles_permissions_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListWorkplaceRolesPermissionsResult]:
+    return AwaitableListWorkplaceRolesPermissionsProperties(
+        permissions=pulumi.get(__ret__, 'permissions'))
+def list_workplace_roles_permissions_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListWorkplaceRolesPermissionsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:listWorkplaceRolesPermissions', __args__, opts=opts, typ=ListWorkplaceRolesPermissionsProperties)
+    return __ret__.apply(lambda __response__: ListWorkplaceRolesPermissionsProperties(
+        permissions=pulumi.get(__response__, 'permissions')))

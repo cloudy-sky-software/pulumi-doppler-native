@@ -5,7 +5,7 @@
 from ... import _utilities
 import typing
 # Export this package's modules as members:
-from .environments import *
+from .environment import *
 from .environments_rename import *
 from .get_environment import *
 from .list_environments import *

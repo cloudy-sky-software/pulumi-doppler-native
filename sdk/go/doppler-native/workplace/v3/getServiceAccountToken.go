@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetServiceAccountToken(ctx *pulumi.Context, args *GetServiceAccountTokenArgs, opts ...pulumi.InvokeOption) (*GetServiceAccountTokenResult, error) {
+func LookupServiceAccountToken(ctx *pulumi.Context, args *LookupServiceAccountTokenArgs, opts ...pulumi.InvokeOption) (*LookupServiceAccountTokenResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetServiceAccountTokenResult
+	var rv LookupServiceAccountTokenResult
 	err := ctx.Invoke("doppler-native:workplace/v3:getServiceAccountToken", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,70 +21,85 @@ func GetServiceAccountToken(ctx *pulumi.Context, args *GetServiceAccountTokenArg
 	return rv.Defaults(), nil
 }
 
-type GetServiceAccountTokenArgs struct {
+type LookupServiceAccountTokenArgs struct {
 	// Slug of the API token
 	ApiToken string `pulumi:"apiToken"`
 	// Slug of the service account
 	ServiceAccount string `pulumi:"serviceAccount"`
 }
 
-type GetServiceAccountTokenResult struct {
-	Items GetServiceAccountTokenProperties `pulumi:"items"`
+type LookupServiceAccountTokenResult struct {
+	ApiToken *GetServiceAccountTokenPropertiesApiTokenProperties `pulumi:"apiToken"`
+	Success  *bool                                               `pulumi:"success"`
 }
 
-// Defaults sets the appropriate defaults for GetServiceAccountTokenResult
-func (val *GetServiceAccountTokenResult) Defaults() *GetServiceAccountTokenResult {
+// Defaults sets the appropriate defaults for LookupServiceAccountTokenResult
+func (val *LookupServiceAccountTokenResult) Defaults() *LookupServiceAccountTokenResult {
 	if val == nil {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
-
+	if tmp.Success == nil {
+		success_ := true
+		tmp.Success = &success_
+	}
 	return &tmp
 }
 
-func GetServiceAccountTokenOutput(ctx *pulumi.Context, args GetServiceAccountTokenOutputArgs, opts ...pulumi.InvokeOption) GetServiceAccountTokenResultOutput {
+func LookupServiceAccountTokenOutput(ctx *pulumi.Context, args LookupServiceAccountTokenOutputArgs, opts ...pulumi.InvokeOption) LookupServiceAccountTokenResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetServiceAccountTokenResult, error) {
-			args := v.(GetServiceAccountTokenArgs)
-			r, err := GetServiceAccountToken(ctx, &args, opts...)
-			var s GetServiceAccountTokenResult
-			if r != nil {
-				s = *r
+		ApplyT(func(v interface{}) (LookupServiceAccountTokenResultOutput, error) {
+			args := v.(LookupServiceAccountTokenArgs)
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupServiceAccountTokenResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:getServiceAccountToken", args, &rv, "", opts...)
+			if err != nil {
+				return LookupServiceAccountTokenResultOutput{}, err
 			}
-			return s, err
-		}).(GetServiceAccountTokenResultOutput)
+
+			output := pulumi.ToOutput(rv).(LookupServiceAccountTokenResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupServiceAccountTokenResultOutput), nil
+			}
+			return output, nil
+		}).(LookupServiceAccountTokenResultOutput)
 }
 
-type GetServiceAccountTokenOutputArgs struct {
+type LookupServiceAccountTokenOutputArgs struct {
 	// Slug of the API token
 	ApiToken pulumi.StringInput `pulumi:"apiToken"`
 	// Slug of the service account
 	ServiceAccount pulumi.StringInput `pulumi:"serviceAccount"`
 }
 
-func (GetServiceAccountTokenOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetServiceAccountTokenArgs)(nil)).Elem()
+func (LookupServiceAccountTokenOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupServiceAccountTokenArgs)(nil)).Elem()
 }
 
-type GetServiceAccountTokenResultOutput struct{ *pulumi.OutputState }
+type LookupServiceAccountTokenResultOutput struct{ *pulumi.OutputState }
 
-func (GetServiceAccountTokenResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetServiceAccountTokenResult)(nil)).Elem()
+func (LookupServiceAccountTokenResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupServiceAccountTokenResult)(nil)).Elem()
 }
 
-func (o GetServiceAccountTokenResultOutput) ToGetServiceAccountTokenResultOutput() GetServiceAccountTokenResultOutput {
+func (o LookupServiceAccountTokenResultOutput) ToLookupServiceAccountTokenResultOutput() LookupServiceAccountTokenResultOutput {
 	return o
 }
 
-func (o GetServiceAccountTokenResultOutput) ToGetServiceAccountTokenResultOutputWithContext(ctx context.Context) GetServiceAccountTokenResultOutput {
+func (o LookupServiceAccountTokenResultOutput) ToLookupServiceAccountTokenResultOutputWithContext(ctx context.Context) LookupServiceAccountTokenResultOutput {
 	return o
 }
 
-func (o GetServiceAccountTokenResultOutput) Items() GetServiceAccountTokenPropertiesOutput {
-	return o.ApplyT(func(v GetServiceAccountTokenResult) GetServiceAccountTokenProperties { return v.Items }).(GetServiceAccountTokenPropertiesOutput)
+func (o LookupServiceAccountTokenResultOutput) ApiToken() GetServiceAccountTokenPropertiesApiTokenPropertiesPtrOutput {
+	return o.ApplyT(func(v LookupServiceAccountTokenResult) *GetServiceAccountTokenPropertiesApiTokenProperties {
+		return v.ApiToken
+	}).(GetServiceAccountTokenPropertiesApiTokenPropertiesPtrOutput)
+}
+
+func (o LookupServiceAccountTokenResultOutput) Success() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupServiceAccountTokenResult) *bool { return v.Success }).(pulumi.BoolPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetServiceAccountTokenResultOutput{})
+	pulumi.RegisterOutputType(LookupServiceAccountTokenResultOutput{})
 }

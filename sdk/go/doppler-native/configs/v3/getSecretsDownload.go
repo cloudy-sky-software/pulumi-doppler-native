@@ -25,19 +25,28 @@ type GetSecretsDownloadArgs struct {
 }
 
 type GetSecretsDownloadResult struct {
-	Items GetSecretsDownloadProperties `pulumi:"items"`
+	Algolia  *string `pulumi:"algolia"`
+	Database *string `pulumi:"database"`
+	Stripe   *string `pulumi:"stripe"`
+	User     *string `pulumi:"user"`
 }
 
 func GetSecretsDownloadOutput(ctx *pulumi.Context, args GetSecretsDownloadOutputArgs, opts ...pulumi.InvokeOption) GetSecretsDownloadResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetSecretsDownloadResult, error) {
+		ApplyT(func(v interface{}) (GetSecretsDownloadResultOutput, error) {
 			args := v.(GetSecretsDownloadArgs)
-			r, err := GetSecretsDownload(ctx, &args, opts...)
-			var s GetSecretsDownloadResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetSecretsDownloadResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:configs/v3:getSecretsDownload", args, &rv, "", opts...)
+			if err != nil {
+				return GetSecretsDownloadResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetSecretsDownloadResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetSecretsDownloadResultOutput), nil
+			}
+			return output, nil
 		}).(GetSecretsDownloadResultOutput)
 }
 
@@ -62,8 +71,20 @@ func (o GetSecretsDownloadResultOutput) ToGetSecretsDownloadResultOutputWithCont
 	return o
 }
 
-func (o GetSecretsDownloadResultOutput) Items() GetSecretsDownloadPropertiesOutput {
-	return o.ApplyT(func(v GetSecretsDownloadResult) GetSecretsDownloadProperties { return v.Items }).(GetSecretsDownloadPropertiesOutput)
+func (o GetSecretsDownloadResultOutput) Algolia() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSecretsDownloadResult) *string { return v.Algolia }).(pulumi.StringPtrOutput)
+}
+
+func (o GetSecretsDownloadResultOutput) Database() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSecretsDownloadResult) *string { return v.Database }).(pulumi.StringPtrOutput)
+}
+
+func (o GetSecretsDownloadResultOutput) Stripe() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSecretsDownloadResult) *string { return v.Stripe }).(pulumi.StringPtrOutput)
+}
+
+func (o GetSecretsDownloadResultOutput) User() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSecretsDownloadResult) *string { return v.User }).(pulumi.StringPtrOutput)
 }
 
 func init() {

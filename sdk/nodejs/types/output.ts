@@ -771,27 +771,6 @@ export namespace projects {
     }
 }
 
-export namespace webhooks {
-    export namespace v3 {
-        export interface AuthenticationProperties {
-            /**
-             * Used when type = Basic
-             */
-            password?: string;
-            /**
-             * Used when type = Bearer
-             */
-            token?: string;
-            type?: enums.webhooks.v3.AuthenticationPropertiesType;
-            /**
-             * Used when type = Basic
-             */
-            username?: string;
-        }
-
-    }
-}
-
 export namespace workplace {
     export namespace v3 {
         export interface ApiTokenProperties {
@@ -886,35 +865,35 @@ export namespace workplace {
             identifier?: string;
         }
 
-        export interface GetRetrieveMemberProperties {
-            group?: outputs.workplace.v3.GetRetrieveMemberPropertiesGroupProperties;
+        export interface GetMemberProperties {
+            group?: outputs.workplace.v3.GetMemberPropertiesGroupProperties;
         }
 
-        export interface GetRetrieveMemberPropertiesGroupProperties {
+        export interface GetMemberPropertiesGroupProperties {
             createdAt?: string;
-            defaultProjectRole?: outputs.workplace.v3.GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties;
-            members?: outputs.workplace.v3.GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties[];
+            defaultProjectRole?: outputs.workplace.v3.GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties;
+            members?: outputs.workplace.v3.GetMemberPropertiesGroupPropertiesMembersItemProperties[];
             name?: string;
-            projects?: outputs.workplace.v3.GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties[];
+            projects?: outputs.workplace.v3.GetMemberPropertiesGroupPropertiesProjectsItemProperties[];
             slug?: string;
         }
 
-        export interface GetRetrieveMemberPropertiesGroupPropertiesDefaultProjectRoleProperties {
+        export interface GetMemberPropertiesGroupPropertiesDefaultProjectRoleProperties {
             identifier?: string;
         }
 
-        export interface GetRetrieveMemberPropertiesGroupPropertiesMembersItemProperties {
+        export interface GetMemberPropertiesGroupPropertiesMembersItemProperties {
             slug?: string;
             type?: string;
         }
 
-        export interface GetRetrieveMemberPropertiesGroupPropertiesProjectsItemProperties {
+        export interface GetMemberPropertiesGroupPropertiesProjectsItemProperties {
             name?: string;
-            role?: outputs.workplace.v3.GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties;
+            role?: outputs.workplace.v3.GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties;
             slug?: string;
         }
 
-        export interface GetRetrieveMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties {
+        export interface GetMemberPropertiesGroupPropertiesProjectsItemPropertiesRoleProperties {
             identifier?: string;
         }
 

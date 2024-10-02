@@ -6,7 +6,6 @@ from ... import _utilities
 import typing
 # Export this package's modules as members:
 from .get_integration import *
-from .get_option import *
-from .integrations import *
+from .integration import *
 from .list_integrations import *
 from . import outputs

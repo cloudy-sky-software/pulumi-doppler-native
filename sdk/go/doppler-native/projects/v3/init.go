@@ -21,12 +21,12 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "doppler-native:projects/v3:ProjectMembers":
-		r = &ProjectMembers{}
-	case "doppler-native:projects/v3:ProjectRoles":
-		r = &ProjectRoles{}
-	case "doppler-native:projects/v3:Projects":
-		r = &Projects{}
+	case "doppler-native:projects/v3:Project":
+		r = &Project{}
+	case "doppler-native:projects/v3:ProjectMember":
+		r = &ProjectMember{}
+	case "doppler-native:projects/v3:ProjectRole":
+		r = &ProjectRole{}
 	case "doppler-native:projects/v3:ProjectsUpdate":
 		r = &ProjectsUpdate{}
 	default:

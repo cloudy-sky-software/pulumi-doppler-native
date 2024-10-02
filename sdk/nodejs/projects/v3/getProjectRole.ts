@@ -7,8 +7,7 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function getProjectRole(args: GetProjectRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectRoleResult> {
-
+export function getProjectRole(args: GetProjectRoleArgs, opts?: pulumi.InvokeOptions): Promise<outputs.projects.v3.GetProjectRoleProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:projects/v3:getProjectRole", {
         "role": args.role,
@@ -21,12 +20,11 @@ export interface GetProjectRoleArgs {
      */
     role: string;
 }
-
-export interface GetProjectRoleResult {
-    readonly items: outputs.projects.v3.GetProjectRoleProperties;
-}
-export function getProjectRoleOutput(args: GetProjectRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectRoleResult> {
-    return pulumi.output(args).apply((a: any) => getProjectRole(a, opts))
+export function getProjectRoleOutput(args: GetProjectRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.projects.v3.GetProjectRoleProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:projects/v3:getProjectRole", {
+        "role": args.role,
+    }, opts);
 }
 
 export interface GetProjectRoleOutputArgs {

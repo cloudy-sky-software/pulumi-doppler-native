@@ -4,56 +4,61 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
-from . import outputs
 
 __all__ = [
-    'ListConfigsTrustedIpsResult',
-    'AwaitableListConfigsTrustedIpsResult',
+    'ListConfigsTrustedIpsProperties',
+    'AwaitableListConfigsTrustedIpsProperties',
     'list_configs_trusted_ips',
     'list_configs_trusted_ips_output',
 ]
 
 @pulumi.output_type
-class ListConfigsTrustedIpsResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class ListConfigsTrustedIpsProperties:
+    def __init__(__self__, ips=None):
+        if ips and not isinstance(ips, list):
+            raise TypeError("Expected argument 'ips' to be a list")
+        pulumi.set(__self__, "ips", ips)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.ListConfigsTrustedIpsProperties':
-        return pulumi.get(self, "items")
+    def ips(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "ips")
 
 
-class AwaitableListConfigsTrustedIpsResult(ListConfigsTrustedIpsResult):
+class AwaitableListConfigsTrustedIpsProperties(ListConfigsTrustedIpsProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListConfigsTrustedIpsResult(
-            items=self.items)
+        return ListConfigsTrustedIpsProperties(
+            ips=self.ips)
 
 
-def list_configs_trusted_ips(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListConfigsTrustedIpsResult:
+def list_configs_trusted_ips(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListConfigsTrustedIpsProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:configs/v3:listConfigsTrustedIps', __args__, opts=opts, typ=ListConfigsTrustedIpsResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:configs/v3:listConfigsTrustedIps', __args__, opts=opts, typ=ListConfigsTrustedIpsProperties).value
 
-    return AwaitableListConfigsTrustedIpsResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_configs_trusted_ips)
-def list_configs_trusted_ips_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListConfigsTrustedIpsResult]:
+    return AwaitableListConfigsTrustedIpsProperties(
+        ips=pulumi.get(__ret__, 'ips'))
+def list_configs_trusted_ips_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListConfigsTrustedIpsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:configs/v3:listConfigsTrustedIps', __args__, opts=opts, typ=ListConfigsTrustedIpsProperties)
+    return __ret__.apply(lambda __response__: ListConfigsTrustedIpsProperties(
+        ips=pulumi.get(__response__, 'ips')))

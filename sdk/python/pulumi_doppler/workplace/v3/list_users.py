@@ -4,56 +4,84 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'ListUsersResult',
-    'AwaitableListUsersResult',
+    'ListUsersProperties',
+    'AwaitableListUsersProperties',
     'list_users',
     'list_users_output',
 ]
 
 @pulumi.output_type
-class ListUsersResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class ListUsersProperties:
+    def __init__(__self__, page=None, success=None, workplace_users=None):
+        if page and not isinstance(page, int):
+            raise TypeError("Expected argument 'page' to be a int")
+        pulumi.set(__self__, "page", page)
+        if success and not isinstance(success, bool):
+            raise TypeError("Expected argument 'success' to be a bool")
+        pulumi.set(__self__, "success", success)
+        if workplace_users and not isinstance(workplace_users, list):
+            raise TypeError("Expected argument 'workplace_users' to be a list")
+        pulumi.set(__self__, "workplace_users", workplace_users)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.ListUsersProperties':
-        return pulumi.get(self, "items")
+    def page(self) -> Optional[int]:
+        return pulumi.get(self, "page")
+
+    @property
+    @pulumi.getter
+    def success(self) -> Optional[bool]:
+        return pulumi.get(self, "success")
+
+    @property
+    @pulumi.getter(name="workplaceUsers")
+    def workplace_users(self) -> Optional[Sequence['outputs.ListUsersPropertiesWorkplaceUsersItemProperties']]:
+        return pulumi.get(self, "workplace_users")
 
 
-class AwaitableListUsersResult(ListUsersResult):
+class AwaitableListUsersProperties(ListUsersProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListUsersResult(
-            items=self.items)
+        return ListUsersProperties(
+            page=self.page,
+            success=self.success,
+            workplace_users=self.workplace_users)
 
 
-def list_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListUsersResult:
+def list_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListUsersProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:listUsers', __args__, opts=opts, typ=ListUsersResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:listUsers', __args__, opts=opts, typ=ListUsersProperties).value
 
-    return AwaitableListUsersResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_users)
-def list_users_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListUsersResult]:
+    return AwaitableListUsersProperties(
+        page=pulumi.get(__ret__, 'page'),
+        success=pulumi.get(__ret__, 'success'),
+        workplace_users=pulumi.get(__ret__, 'workplace_users'))
+def list_users_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListUsersProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:listUsers', __args__, opts=opts, typ=ListUsersProperties)
+    return __ret__.apply(lambda __response__: ListUsersProperties(
+        page=pulumi.get(__response__, 'page'),
+        success=pulumi.get(__response__, 'success'),
+        workplace_users=pulumi.get(__response__, 'workplace_users')))

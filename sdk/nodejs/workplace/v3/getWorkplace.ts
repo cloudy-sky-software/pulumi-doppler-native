@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function getWorkplace(args?: GetWorkplaceArgs, opts?: pulumi.InvokeOptions): Promise<GetWorkplaceResult> {
+export function getWorkplace(args?: GetWorkplaceArgs, opts?: pulumi.InvokeOptions): Promise<outputs.workplace.v3.GetWorkplaceProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:workplace/v3:getWorkplace", {
     }, opts);
@@ -17,10 +16,9 @@ export function getWorkplace(args?: GetWorkplaceArgs, opts?: pulumi.InvokeOption
 
 export interface GetWorkplaceArgs {
 }
+export function getWorkplaceOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.GetWorkplaceProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:getWorkplace", {
+    }, opts);
+}
 
-export interface GetWorkplaceResult {
-    readonly items: outputs.workplace.v3.GetWorkplaceProperties;
-}
-export function getWorkplaceOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetWorkplaceResult> {
-    return pulumi.output(getWorkplace(opts))
-}

@@ -25,19 +25,25 @@ type ListWorkplaceRolesPermissionsArgs struct {
 }
 
 type ListWorkplaceRolesPermissionsResult struct {
-	Items ListWorkplaceRolesPermissionsProperties `pulumi:"items"`
+	Permissions []string `pulumi:"permissions"`
 }
 
 func ListWorkplaceRolesPermissionsOutput(ctx *pulumi.Context, args ListWorkplaceRolesPermissionsOutputArgs, opts ...pulumi.InvokeOption) ListWorkplaceRolesPermissionsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListWorkplaceRolesPermissionsResult, error) {
+		ApplyT(func(v interface{}) (ListWorkplaceRolesPermissionsResultOutput, error) {
 			args := v.(ListWorkplaceRolesPermissionsArgs)
-			r, err := ListWorkplaceRolesPermissions(ctx, &args, opts...)
-			var s ListWorkplaceRolesPermissionsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListWorkplaceRolesPermissionsResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:listWorkplaceRolesPermissions", args, &rv, "", opts...)
+			if err != nil {
+				return ListWorkplaceRolesPermissionsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListWorkplaceRolesPermissionsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListWorkplaceRolesPermissionsResultOutput), nil
+			}
+			return output, nil
 		}).(ListWorkplaceRolesPermissionsResultOutput)
 }
 
@@ -62,8 +68,8 @@ func (o ListWorkplaceRolesPermissionsResultOutput) ToListWorkplaceRolesPermissio
 	return o
 }
 
-func (o ListWorkplaceRolesPermissionsResultOutput) Items() ListWorkplaceRolesPermissionsPropertiesOutput {
-	return o.ApplyT(func(v ListWorkplaceRolesPermissionsResult) ListWorkplaceRolesPermissionsProperties { return v.Items }).(ListWorkplaceRolesPermissionsPropertiesOutput)
+func (o ListWorkplaceRolesPermissionsResultOutput) Permissions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListWorkplaceRolesPermissionsResult) []string { return v.Permissions }).(pulumi.StringArrayOutput)
 }
 
 func init() {

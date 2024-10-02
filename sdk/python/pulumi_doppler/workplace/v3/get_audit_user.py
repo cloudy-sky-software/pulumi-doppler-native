@@ -4,43 +4,57 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'GetAuditUserResult',
-    'AwaitableGetAuditUserResult',
+    'GetAuditUserProperties',
+    'AwaitableGetAuditUserProperties',
     'get_audit_user',
     'get_audit_user_output',
 ]
 
 @pulumi.output_type
-class GetAuditUserResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetAuditUserProperties:
+    def __init__(__self__, success=None, workplace_user=None):
+        if success and not isinstance(success, bool):
+            raise TypeError("Expected argument 'success' to be a bool")
+        pulumi.set(__self__, "success", success)
+        if workplace_user and not isinstance(workplace_user, dict):
+            raise TypeError("Expected argument 'workplace_user' to be a dict")
+        pulumi.set(__self__, "workplace_user", workplace_user)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.GetAuditUserProperties':
-        return pulumi.get(self, "items")
+    def success(self) -> Optional[bool]:
+        return pulumi.get(self, "success")
+
+    @property
+    @pulumi.getter(name="workplaceUser")
+    def workplace_user(self) -> Optional['outputs.GetAuditUserPropertiesWorkplaceUserProperties']:
+        return pulumi.get(self, "workplace_user")
 
 
-class AwaitableGetAuditUserResult(GetAuditUserResult):
+class AwaitableGetAuditUserProperties(GetAuditUserProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetAuditUserResult(
-            items=self.items)
+        return GetAuditUserProperties(
+            success=self.success,
+            workplace_user=self.workplace_user)
 
 
 def get_audit_user(workplace_user_id: Optional[str] = None,
-                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuditUserResult:
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuditUserProperties:
     """
     Use this data source to access information about an existing resource.
 
@@ -49,18 +63,22 @@ def get_audit_user(workplace_user_id: Optional[str] = None,
     __args__ = dict()
     __args__['workplaceUserId'] = workplace_user_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:getAuditUser', __args__, opts=opts, typ=GetAuditUserResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:getAuditUser', __args__, opts=opts, typ=GetAuditUserProperties).value
 
-    return AwaitableGetAuditUserResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(get_audit_user)
+    return AwaitableGetAuditUserProperties(
+        success=pulumi.get(__ret__, 'success'),
+        workplace_user=pulumi.get(__ret__, 'workplace_user'))
 def get_audit_user_output(workplace_user_id: Optional[pulumi.Input[str]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuditUserResult]:
+                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuditUserProperties]:
     """
     Use this data source to access information about an existing resource.
 
     :param str workplace_user_id: The ID of the workplace user
     """
-    ...
+    __args__ = dict()
+    __args__['workplaceUserId'] = workplace_user_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:getAuditUser', __args__, opts=opts, typ=GetAuditUserProperties)
+    return __ret__.apply(lambda __response__: GetAuditUserProperties(
+        success=pulumi.get(__response__, 'success'),
+        workplace_user=pulumi.get(__response__, 'workplace_user')))

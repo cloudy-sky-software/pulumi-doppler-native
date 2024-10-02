@@ -25,19 +25,26 @@ type GetSecretArgs struct {
 }
 
 type GetSecretResult struct {
-	Items GetSecretProperties `pulumi:"items"`
+	Name  *string                             `pulumi:"name"`
+	Value *GetSecretPropertiesValueProperties `pulumi:"value"`
 }
 
 func GetSecretOutput(ctx *pulumi.Context, args GetSecretOutputArgs, opts ...pulumi.InvokeOption) GetSecretResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetSecretResult, error) {
+		ApplyT(func(v interface{}) (GetSecretResultOutput, error) {
 			args := v.(GetSecretArgs)
-			r, err := GetSecret(ctx, &args, opts...)
-			var s GetSecretResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetSecretResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:configs/v3:getSecret", args, &rv, "", opts...)
+			if err != nil {
+				return GetSecretResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetSecretResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetSecretResultOutput), nil
+			}
+			return output, nil
 		}).(GetSecretResultOutput)
 }
 
@@ -62,8 +69,12 @@ func (o GetSecretResultOutput) ToGetSecretResultOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o GetSecretResultOutput) Items() GetSecretPropertiesOutput {
-	return o.ApplyT(func(v GetSecretResult) GetSecretProperties { return v.Items }).(GetSecretPropertiesOutput)
+func (o GetSecretResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSecretResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o GetSecretResultOutput) Value() GetSecretPropertiesValuePropertiesPtrOutput {
+	return o.ApplyT(func(v GetSecretResult) *GetSecretPropertiesValueProperties { return v.Value }).(GetSecretPropertiesValuePropertiesPtrOutput)
 }
 
 func init() {

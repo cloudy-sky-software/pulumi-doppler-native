@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function listConfigsTrustedIps(args?: ListConfigsTrustedIpsArgs, opts?: pulumi.InvokeOptions): Promise<ListConfigsTrustedIpsResult> {
+export function listConfigsTrustedIps(args?: ListConfigsTrustedIpsArgs, opts?: pulumi.InvokeOptions): Promise<outputs.configs.v3.ListConfigsTrustedIpsProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:configs/v3:listConfigsTrustedIps", {
     }, opts);
@@ -17,10 +16,9 @@ export function listConfigsTrustedIps(args?: ListConfigsTrustedIpsArgs, opts?: p
 
 export interface ListConfigsTrustedIpsArgs {
 }
+export function listConfigsTrustedIpsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.configs.v3.ListConfigsTrustedIpsProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:configs/v3:listConfigsTrustedIps", {
+    }, opts);
+}
 
-export interface ListConfigsTrustedIpsResult {
-    readonly items: outputs.configs.v3.ListConfigsTrustedIpsProperties;
-}
-export function listConfigsTrustedIpsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListConfigsTrustedIpsResult> {
-    return pulumi.output(listConfigsTrustedIps(opts))
-}

@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetSync(ctx *pulumi.Context, args *GetSyncArgs, opts ...pulumi.InvokeOption) (*GetSyncResult, error) {
+func LookupSync(ctx *pulumi.Context, args *LookupSyncArgs, opts ...pulumi.InvokeOption) (*LookupSyncResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetSyncResult
+	var rv LookupSyncResult
 	err := ctx.Invoke("doppler-native:configs/v3:getSync", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,62 +21,68 @@ func GetSync(ctx *pulumi.Context, args *GetSyncArgs, opts ...pulumi.InvokeOption
 	return rv.Defaults(), nil
 }
 
-type GetSyncArgs struct {
+type LookupSyncArgs struct {
 }
 
-type GetSyncResult struct {
-	Items GetSyncProperties `pulumi:"items"`
+type LookupSyncResult struct {
+	Sync *GetSyncPropertiesSyncProperties `pulumi:"sync"`
 }
 
-// Defaults sets the appropriate defaults for GetSyncResult
-func (val *GetSyncResult) Defaults() *GetSyncResult {
+// Defaults sets the appropriate defaults for LookupSyncResult
+func (val *LookupSyncResult) Defaults() *LookupSyncResult {
 	if val == nil {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
+	tmp.Sync = tmp.Sync.Defaults()
 
 	return &tmp
 }
 
-func GetSyncOutput(ctx *pulumi.Context, args GetSyncOutputArgs, opts ...pulumi.InvokeOption) GetSyncResultOutput {
+func LookupSyncOutput(ctx *pulumi.Context, args LookupSyncOutputArgs, opts ...pulumi.InvokeOption) LookupSyncResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetSyncResult, error) {
-			args := v.(GetSyncArgs)
-			r, err := GetSync(ctx, &args, opts...)
-			var s GetSyncResult
-			if r != nil {
-				s = *r
+		ApplyT(func(v interface{}) (LookupSyncResultOutput, error) {
+			args := v.(LookupSyncArgs)
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupSyncResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:configs/v3:getSync", args, &rv, "", opts...)
+			if err != nil {
+				return LookupSyncResultOutput{}, err
 			}
-			return s, err
-		}).(GetSyncResultOutput)
+
+			output := pulumi.ToOutput(rv).(LookupSyncResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupSyncResultOutput), nil
+			}
+			return output, nil
+		}).(LookupSyncResultOutput)
 }
 
-type GetSyncOutputArgs struct {
+type LookupSyncOutputArgs struct {
 }
 
-func (GetSyncOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetSyncArgs)(nil)).Elem()
+func (LookupSyncOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSyncArgs)(nil)).Elem()
 }
 
-type GetSyncResultOutput struct{ *pulumi.OutputState }
+type LookupSyncResultOutput struct{ *pulumi.OutputState }
 
-func (GetSyncResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetSyncResult)(nil)).Elem()
+func (LookupSyncResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSyncResult)(nil)).Elem()
 }
 
-func (o GetSyncResultOutput) ToGetSyncResultOutput() GetSyncResultOutput {
+func (o LookupSyncResultOutput) ToLookupSyncResultOutput() LookupSyncResultOutput {
 	return o
 }
 
-func (o GetSyncResultOutput) ToGetSyncResultOutputWithContext(ctx context.Context) GetSyncResultOutput {
+func (o LookupSyncResultOutput) ToLookupSyncResultOutputWithContext(ctx context.Context) LookupSyncResultOutput {
 	return o
 }
 
-func (o GetSyncResultOutput) Items() GetSyncPropertiesOutput {
-	return o.ApplyT(func(v GetSyncResult) GetSyncProperties { return v.Items }).(GetSyncPropertiesOutput)
+func (o LookupSyncResultOutput) Sync() GetSyncPropertiesSyncPropertiesPtrOutput {
+	return o.ApplyT(func(v LookupSyncResult) *GetSyncPropertiesSyncProperties { return v.Sync }).(GetSyncPropertiesSyncPropertiesPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetSyncResultOutput{})
+	pulumi.RegisterOutputType(LookupSyncResultOutput{})
 }

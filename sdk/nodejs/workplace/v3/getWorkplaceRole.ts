@@ -7,8 +7,7 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function getWorkplaceRole(args: GetWorkplaceRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetWorkplaceRoleResult> {
-
+export function getWorkplaceRole(args: GetWorkplaceRoleArgs, opts?: pulumi.InvokeOptions): Promise<outputs.workplace.v3.GetWorkplaceRoleProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:workplace/v3:getWorkplaceRole", {
         "role": args.role,
@@ -21,12 +20,11 @@ export interface GetWorkplaceRoleArgs {
      */
     role: string;
 }
-
-export interface GetWorkplaceRoleResult {
-    readonly items: outputs.workplace.v3.GetWorkplaceRoleProperties;
-}
-export function getWorkplaceRoleOutput(args: GetWorkplaceRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWorkplaceRoleResult> {
-    return pulumi.output(args).apply((a: any) => getWorkplaceRole(a, opts))
+export function getWorkplaceRoleOutput(args: GetWorkplaceRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.GetWorkplaceRoleProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:getWorkplaceRole", {
+        "role": args.role,
+    }, opts);
 }
 
 export interface GetWorkplaceRoleOutputArgs {

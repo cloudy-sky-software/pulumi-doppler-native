@@ -5,15 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../../utilities";
 
 // Export members:
+export { ConfigArgs } from "./config";
+export type Config = import("./config").Config;
+export const Config: typeof import("./config").Config = null as any;
+utilities.lazyLoad(exports, ["Config"], () => require("./config"));
+
 export { ConfigLogsRollbackArgs } from "./configLogsRollback";
 export type ConfigLogsRollback = import("./configLogsRollback").ConfigLogsRollback;
 export const ConfigLogsRollback: typeof import("./configLogsRollback").ConfigLogsRollback = null as any;
 utilities.lazyLoad(exports, ["ConfigLogsRollback"], () => require("./configLogsRollback"));
-
-export { ConfigsArgs } from "./configs";
-export type Configs = import("./configs").Configs;
-export const Configs: typeof import("./configs").Configs = null as any;
-utilities.lazyLoad(exports, ["Configs"], () => require("./configs"));
 
 export { ConfigsCloneArgs } from "./configsClone";
 export type ConfigsClone = import("./configsClone").ConfigsClone;
@@ -45,57 +45,57 @@ export type DynamicSecretsIssueLease = import("./dynamicSecretsIssueLease").Dyna
 export const DynamicSecretsIssueLease: typeof import("./dynamicSecretsIssueLease").DynamicSecretsIssueLease = null as any;
 utilities.lazyLoad(exports, ["DynamicSecretsIssueLease"], () => require("./dynamicSecretsIssueLease"));
 
-export { GetConfigArgs, GetConfigResult } from "./getConfig";
+export { GetConfigArgs } from "./getConfig";
 export const getConfig: typeof import("./getConfig").getConfig = null as any;
 export const getConfigOutput: typeof import("./getConfig").getConfigOutput = null as any;
 utilities.lazyLoad(exports, ["getConfig","getConfigOutput"], () => require("./getConfig"));
 
-export { GetConfigLogArgs, GetConfigLogResult } from "./getConfigLog";
+export { GetConfigLogArgs } from "./getConfigLog";
 export const getConfigLog: typeof import("./getConfigLog").getConfigLog = null as any;
 export const getConfigLogOutput: typeof import("./getConfigLog").getConfigLogOutput = null as any;
 utilities.lazyLoad(exports, ["getConfigLog","getConfigLogOutput"], () => require("./getConfigLog"));
 
-export { GetSecretArgs, GetSecretResult } from "./getSecret";
+export { GetSecretArgs } from "./getSecret";
 export const getSecret: typeof import("./getSecret").getSecret = null as any;
 export const getSecretOutput: typeof import("./getSecret").getSecretOutput = null as any;
 utilities.lazyLoad(exports, ["getSecret","getSecretOutput"], () => require("./getSecret"));
 
-export { GetSecretsDownloadArgs, GetSecretsDownloadResult } from "./getSecretsDownload";
+export { GetSecretsDownloadArgs } from "./getSecretsDownload";
 export const getSecretsDownload: typeof import("./getSecretsDownload").getSecretsDownload = null as any;
 export const getSecretsDownloadOutput: typeof import("./getSecretsDownload").getSecretsDownloadOutput = null as any;
 utilities.lazyLoad(exports, ["getSecretsDownload","getSecretsDownloadOutput"], () => require("./getSecretsDownload"));
 
-export { GetSecretsNameArgs, GetSecretsNameResult } from "./getSecretsName";
+export { GetSecretsNameArgs } from "./getSecretsName";
 export const getSecretsName: typeof import("./getSecretsName").getSecretsName = null as any;
 export const getSecretsNameOutput: typeof import("./getSecretsName").getSecretsNameOutput = null as any;
 utilities.lazyLoad(exports, ["getSecretsName","getSecretsNameOutput"], () => require("./getSecretsName"));
 
-export { GetSyncArgs, GetSyncResult } from "./getSync";
+export { GetSyncArgs } from "./getSync";
 export const getSync: typeof import("./getSync").getSync = null as any;
 export const getSyncOutput: typeof import("./getSync").getSyncOutput = null as any;
 utilities.lazyLoad(exports, ["getSync","getSyncOutput"], () => require("./getSync"));
 
-export { ListConfigLogsArgs, ListConfigLogsResult } from "./listConfigLogs";
+export { ListConfigLogsArgs } from "./listConfigLogs";
 export const listConfigLogs: typeof import("./listConfigLogs").listConfigLogs = null as any;
 export const listConfigLogsOutput: typeof import("./listConfigLogs").listConfigLogsOutput = null as any;
 utilities.lazyLoad(exports, ["listConfigLogs","listConfigLogsOutput"], () => require("./listConfigLogs"));
 
-export { ListConfigsArgs, ListConfigsResult } from "./listConfigs";
+export { ListConfigsArgs } from "./listConfigs";
 export const listConfigs: typeof import("./listConfigs").listConfigs = null as any;
 export const listConfigsOutput: typeof import("./listConfigs").listConfigsOutput = null as any;
 utilities.lazyLoad(exports, ["listConfigs","listConfigsOutput"], () => require("./listConfigs"));
 
-export { ListConfigsTrustedIpsArgs, ListConfigsTrustedIpsResult } from "./listConfigsTrustedIps";
+export { ListConfigsTrustedIpsArgs } from "./listConfigsTrustedIps";
 export const listConfigsTrustedIps: typeof import("./listConfigsTrustedIps").listConfigsTrustedIps = null as any;
 export const listConfigsTrustedIpsOutput: typeof import("./listConfigsTrustedIps").listConfigsTrustedIpsOutput = null as any;
 utilities.lazyLoad(exports, ["listConfigsTrustedIps","listConfigsTrustedIpsOutput"], () => require("./listConfigsTrustedIps"));
 
-export { ListSecretsArgs, ListSecretsResult } from "./listSecrets";
+export { ListSecretsArgs } from "./listSecrets";
 export const listSecrets: typeof import("./listSecrets").listSecrets = null as any;
 export const listSecretsOutput: typeof import("./listSecrets").listSecretsOutput = null as any;
 utilities.lazyLoad(exports, ["listSecrets","listSecretsOutput"], () => require("./listSecrets"));
 
-export { ListServiceTokensArgs, ListServiceTokensResult } from "./listServiceTokens";
+export { ListServiceTokensArgs } from "./listServiceTokens";
 export const listServiceTokens: typeof import("./listServiceTokens").listServiceTokens = null as any;
 export const listServiceTokensOutput: typeof import("./listServiceTokens").listServiceTokensOutput = null as any;
 utilities.lazyLoad(exports, ["listServiceTokens","listServiceTokensOutput"], () => require("./listServiceTokens"));
@@ -110,15 +110,15 @@ export type SecretsUpdateNote = import("./secretsUpdateNote").SecretsUpdateNote;
 export const SecretsUpdateNote: typeof import("./secretsUpdateNote").SecretsUpdateNote = null as any;
 utilities.lazyLoad(exports, ["SecretsUpdateNote"], () => require("./secretsUpdateNote"));
 
-export { ServiceTokensArgs } from "./serviceTokens";
-export type ServiceTokens = import("./serviceTokens").ServiceTokens;
-export const ServiceTokens: typeof import("./serviceTokens").ServiceTokens = null as any;
-utilities.lazyLoad(exports, ["ServiceTokens"], () => require("./serviceTokens"));
+export { ServiceTokenArgs } from "./serviceToken";
+export type ServiceToken = import("./serviceToken").ServiceToken;
+export const ServiceToken: typeof import("./serviceToken").ServiceToken = null as any;
+utilities.lazyLoad(exports, ["ServiceToken"], () => require("./serviceToken"));
 
-export { SyncsArgs } from "./syncs";
-export type Syncs = import("./syncs").Syncs;
-export const Syncs: typeof import("./syncs").Syncs = null as any;
-utilities.lazyLoad(exports, ["Syncs"], () => require("./syncs"));
+export { SyncArgs } from "./sync";
+export type Sync = import("./sync").Sync;
+export const Sync: typeof import("./sync").Sync = null as any;
+utilities.lazyLoad(exports, ["Sync"], () => require("./sync"));
 
 
 // Export enums:
@@ -128,10 +128,10 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "doppler-native:configs/v3:Config":
+                return new Config(name, <any>undefined, { urn })
             case "doppler-native:configs/v3:ConfigLogsRollback":
                 return new ConfigLogsRollback(name, <any>undefined, { urn })
-            case "doppler-native:configs/v3:Configs":
-                return new Configs(name, <any>undefined, { urn })
             case "doppler-native:configs/v3:ConfigsClone":
                 return new ConfigsClone(name, <any>undefined, { urn })
             case "doppler-native:configs/v3:ConfigsLock":
@@ -148,10 +148,10 @@ const _module = {
                 return new SecretsUpdate(name, <any>undefined, { urn })
             case "doppler-native:configs/v3:SecretsUpdateNote":
                 return new SecretsUpdateNote(name, <any>undefined, { urn })
-            case "doppler-native:configs/v3:ServiceTokens":
-                return new ServiceTokens(name, <any>undefined, { urn })
-            case "doppler-native:configs/v3:Syncs":
-                return new Syncs(name, <any>undefined, { urn })
+            case "doppler-native:configs/v3:ServiceToken":
+                return new ServiceToken(name, <any>undefined, { urn })
+            case "doppler-native:configs/v3:Sync":
+                return new Sync(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }

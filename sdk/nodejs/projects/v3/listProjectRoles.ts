@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function listProjectRoles(args?: ListProjectRolesArgs, opts?: pulumi.InvokeOptions): Promise<ListProjectRolesResult> {
+export function listProjectRoles(args?: ListProjectRolesArgs, opts?: pulumi.InvokeOptions): Promise<outputs.projects.v3.ListProjectRolesProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:projects/v3:listProjectRoles", {
     }, opts);
@@ -17,10 +16,9 @@ export function listProjectRoles(args?: ListProjectRolesArgs, opts?: pulumi.Invo
 
 export interface ListProjectRolesArgs {
 }
+export function listProjectRolesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.projects.v3.ListProjectRolesProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:projects/v3:listProjectRoles", {
+    }, opts);
+}
 
-export interface ListProjectRolesResult {
-    readonly items: outputs.projects.v3.ListProjectRolesProperties;
-}
-export function listProjectRolesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListProjectRolesResult> {
-    return pulumi.output(listProjectRoles(opts))
-}

@@ -27,7 +27,8 @@ type GetAuditUserArgs struct {
 }
 
 type GetAuditUserResult struct {
-	Items GetAuditUserProperties `pulumi:"items"`
+	Success       *bool                                          `pulumi:"success"`
+	WorkplaceUser *GetAuditUserPropertiesWorkplaceUserProperties `pulumi:"workplaceUser"`
 }
 
 // Defaults sets the appropriate defaults for GetAuditUserResult
@@ -36,21 +37,31 @@ func (val *GetAuditUserResult) Defaults() *GetAuditUserResult {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
+	if tmp.Success == nil {
+		success_ := true
+		tmp.Success = &success_
+	}
+	tmp.WorkplaceUser = tmp.WorkplaceUser.Defaults()
 
 	return &tmp
 }
 
 func GetAuditUserOutput(ctx *pulumi.Context, args GetAuditUserOutputArgs, opts ...pulumi.InvokeOption) GetAuditUserResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetAuditUserResult, error) {
+		ApplyT(func(v interface{}) (GetAuditUserResultOutput, error) {
 			args := v.(GetAuditUserArgs)
-			r, err := GetAuditUser(ctx, &args, opts...)
-			var s GetAuditUserResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetAuditUserResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:getAuditUser", args, &rv, "", opts...)
+			if err != nil {
+				return GetAuditUserResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetAuditUserResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetAuditUserResultOutput), nil
+			}
+			return output, nil
 		}).(GetAuditUserResultOutput)
 }
 
@@ -77,8 +88,12 @@ func (o GetAuditUserResultOutput) ToGetAuditUserResultOutputWithContext(ctx cont
 	return o
 }
 
-func (o GetAuditUserResultOutput) Items() GetAuditUserPropertiesOutput {
-	return o.ApplyT(func(v GetAuditUserResult) GetAuditUserProperties { return v.Items }).(GetAuditUserPropertiesOutput)
+func (o GetAuditUserResultOutput) Success() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetAuditUserResult) *bool { return v.Success }).(pulumi.BoolPtrOutput)
+}
+
+func (o GetAuditUserResultOutput) WorkplaceUser() GetAuditUserPropertiesWorkplaceUserPropertiesPtrOutput {
+	return o.ApplyT(func(v GetAuditUserResult) *GetAuditUserPropertiesWorkplaceUserProperties { return v.WorkplaceUser }).(GetAuditUserPropertiesWorkplaceUserPropertiesPtrOutput)
 }
 
 func init() {

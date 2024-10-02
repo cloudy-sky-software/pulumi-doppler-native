@@ -5762,39 +5762,38 @@ paths:
                   value: ""
       deprecated: false
   "/v3/webhooks":
-    # TODO: Commented out because the response schema is empty!
-    # get:
-    #   summary: List
-    #   description: Webhooks
-    #   operationId: webhooks-list
-    #   parameters:
-    #     - name: project
-    #       in: query
-    #       description: The project's name
-    #       schema:
-    #         type: string
-    #   responses:
-    #     "200":
-    #       description: "200"
-    #       content:
-    #         application/json:
-    #           examples:
-    #             Result:
-    #               value: "{}"
-    #           schema:
-    #             type: object
-    #             properties: {}
-    #     "400":
-    #       description: "400"
-    #       content:
-    #         application/json:
-    #           examples:
-    #             Result:
-    #               value: "{}"
-    #           schema:
-    #             type: object
-    #             properties: {}
-    #   deprecated: false
+    get:
+      summary: List
+      description: Webhooks
+      operationId: webhooks-list
+      parameters:
+        - name: project
+          in: query
+          description: The project's name
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
     post:
       summary: Add
       description: Webhook

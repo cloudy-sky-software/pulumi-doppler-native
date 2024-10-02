@@ -25,19 +25,25 @@ type ListInvitesArgs struct {
 }
 
 type ListInvitesResult struct {
-	Items ListInvitesProperties `pulumi:"items"`
+	Invites []ListInvitesPropertiesInvitesItemProperties `pulumi:"invites"`
 }
 
 func ListInvitesOutput(ctx *pulumi.Context, args ListInvitesOutputArgs, opts ...pulumi.InvokeOption) ListInvitesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListInvitesResult, error) {
+		ApplyT(func(v interface{}) (ListInvitesResultOutput, error) {
 			args := v.(ListInvitesArgs)
-			r, err := ListInvites(ctx, &args, opts...)
-			var s ListInvitesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListInvitesResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:listInvites", args, &rv, "", opts...)
+			if err != nil {
+				return ListInvitesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListInvitesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListInvitesResultOutput), nil
+			}
+			return output, nil
 		}).(ListInvitesResultOutput)
 }
 
@@ -62,8 +68,8 @@ func (o ListInvitesResultOutput) ToListInvitesResultOutputWithContext(ctx contex
 	return o
 }
 
-func (o ListInvitesResultOutput) Items() ListInvitesPropertiesOutput {
-	return o.ApplyT(func(v ListInvitesResult) ListInvitesProperties { return v.Items }).(ListInvitesPropertiesOutput)
+func (o ListInvitesResultOutput) Invites() ListInvitesPropertiesInvitesItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListInvitesResult) []ListInvitesPropertiesInvitesItemProperties { return v.Invites }).(ListInvitesPropertiesInvitesItemPropertiesArrayOutput)
 }
 
 func init() {

@@ -4,56 +4,61 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
-from . import outputs
 
 __all__ = [
-    'GetSecretsNameResult',
-    'AwaitableGetSecretsNameResult',
+    'GetSecretsNameProperties',
+    'AwaitableGetSecretsNameProperties',
     'get_secrets_name',
     'get_secrets_name_output',
 ]
 
 @pulumi.output_type
-class GetSecretsNameResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetSecretsNameProperties:
+    def __init__(__self__, names=None):
+        if names and not isinstance(names, list):
+            raise TypeError("Expected argument 'names' to be a list")
+        pulumi.set(__self__, "names", names)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.GetSecretsNameProperties':
-        return pulumi.get(self, "items")
+    def names(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "names")
 
 
-class AwaitableGetSecretsNameResult(GetSecretsNameResult):
+class AwaitableGetSecretsNameProperties(GetSecretsNameProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetSecretsNameResult(
-            items=self.items)
+        return GetSecretsNameProperties(
+            names=self.names)
 
 
-def get_secrets_name(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretsNameResult:
+def get_secrets_name(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretsNameProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:configs/v3:getSecretsName', __args__, opts=opts, typ=GetSecretsNameResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:configs/v3:getSecretsName', __args__, opts=opts, typ=GetSecretsNameProperties).value
 
-    return AwaitableGetSecretsNameResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(get_secrets_name)
-def get_secrets_name_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretsNameResult]:
+    return AwaitableGetSecretsNameProperties(
+        names=pulumi.get(__ret__, 'names'))
+def get_secrets_name_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretsNameProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:configs/v3:getSecretsName', __args__, opts=opts, typ=GetSecretsNameProperties)
+    return __ret__.apply(lambda __response__: GetSecretsNameProperties(
+        names=pulumi.get(__response__, 'names')))

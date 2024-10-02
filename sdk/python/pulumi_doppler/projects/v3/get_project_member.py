@@ -4,44 +4,49 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'GetProjectMemberResult',
-    'AwaitableGetProjectMemberResult',
+    'GetProjectMemberProperties',
+    'AwaitableGetProjectMemberProperties',
     'get_project_member',
     'get_project_member_output',
 ]
 
 @pulumi.output_type
-class GetProjectMemberResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetProjectMemberProperties:
+    def __init__(__self__, member=None):
+        if member and not isinstance(member, dict):
+            raise TypeError("Expected argument 'member' to be a dict")
+        pulumi.set(__self__, "member", member)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.GetProjectMemberProperties':
-        return pulumi.get(self, "items")
+    def member(self) -> Optional['outputs.GetProjectMemberPropertiesMemberProperties']:
+        return pulumi.get(self, "member")
 
 
-class AwaitableGetProjectMemberResult(GetProjectMemberResult):
+class AwaitableGetProjectMemberProperties(GetProjectMemberProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetProjectMemberResult(
-            items=self.items)
+        return GetProjectMemberProperties(
+            member=self.member)
 
 
 def get_project_member(slug: Optional[str] = None,
                        type: Optional[str] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectMemberResult:
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectMemberProperties:
     """
     Use this data source to access information about an existing resource.
 
@@ -51,19 +56,22 @@ def get_project_member(slug: Optional[str] = None,
     __args__['slug'] = slug
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:projects/v3:getProjectMember', __args__, opts=opts, typ=GetProjectMemberResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:projects/v3:getProjectMember', __args__, opts=opts, typ=GetProjectMemberProperties).value
 
-    return AwaitableGetProjectMemberResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(get_project_member)
+    return AwaitableGetProjectMemberProperties(
+        member=pulumi.get(__ret__, 'member'))
 def get_project_member_output(slug: Optional[pulumi.Input[str]] = None,
                               type: Optional[pulumi.Input[str]] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectMemberResult]:
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectMemberProperties]:
     """
     Use this data source to access information about an existing resource.
 
     :param str slug: Member's slug
     """
-    ...
+    __args__ = dict()
+    __args__['slug'] = slug
+    __args__['type'] = type
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:projects/v3:getProjectMember', __args__, opts=opts, typ=GetProjectMemberProperties)
+    return __ret__.apply(lambda __response__: GetProjectMemberProperties(
+        member=pulumi.get(__response__, 'member')))

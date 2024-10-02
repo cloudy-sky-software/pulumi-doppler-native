@@ -7,8 +7,7 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function getServiceAccount(args: GetServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceAccountResult> {
-
+export function getServiceAccount(args: GetServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<outputs.workplace.v3.GetServiceAccountProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:workplace/v3:getServiceAccount", {
         "slug": args.slug,
@@ -21,12 +20,11 @@ export interface GetServiceAccountArgs {
      */
     slug: string;
 }
-
-export interface GetServiceAccountResult {
-    readonly items: outputs.workplace.v3.GetServiceAccountProperties;
-}
-export function getServiceAccountOutput(args: GetServiceAccountOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceAccountResult> {
-    return pulumi.output(args).apply((a: any) => getServiceAccount(a, opts))
+export function getServiceAccountOutput(args: GetServiceAccountOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.GetServiceAccountProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:getServiceAccount", {
+        "slug": args.slug,
+    }, opts);
 }
 
 export interface GetServiceAccountOutputArgs {

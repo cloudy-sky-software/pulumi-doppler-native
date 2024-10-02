@@ -4,56 +4,62 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'GetConfigResult',
-    'AwaitableGetConfigResult',
+    'GetConfigProperties',
+    'AwaitableGetConfigProperties',
     'get_config',
     'get_config_output',
 ]
 
 @pulumi.output_type
-class GetConfigResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetConfigProperties:
+    def __init__(__self__, config=None):
+        if config and not isinstance(config, dict):
+            raise TypeError("Expected argument 'config' to be a dict")
+        pulumi.set(__self__, "config", config)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.GetConfigProperties':
-        return pulumi.get(self, "items")
+    def config(self) -> Optional['outputs.GetConfigPropertiesConfigProperties']:
+        return pulumi.get(self, "config")
 
 
-class AwaitableGetConfigResult(GetConfigResult):
+class AwaitableGetConfigProperties(GetConfigProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetConfigResult(
-            items=self.items)
+        return GetConfigProperties(
+            config=self.config)
 
 
-def get_config(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetConfigResult:
+def get_config(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetConfigProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:configs/v3:getConfig', __args__, opts=opts, typ=GetConfigResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:configs/v3:getConfig', __args__, opts=opts, typ=GetConfigProperties).value
 
-    return AwaitableGetConfigResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(get_config)
-def get_config_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetConfigResult]:
+    return AwaitableGetConfigProperties(
+        config=pulumi.get(__ret__, 'config'))
+def get_config_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetConfigProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:configs/v3:getConfig', __args__, opts=opts, typ=GetConfigProperties)
+    return __ret__.apply(lambda __response__: GetConfigProperties(
+        config=pulumi.get(__response__, 'config')))

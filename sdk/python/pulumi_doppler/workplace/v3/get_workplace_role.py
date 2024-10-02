@@ -4,43 +4,48 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'GetWorkplaceRoleResult',
-    'AwaitableGetWorkplaceRoleResult',
+    'GetWorkplaceRoleProperties',
+    'AwaitableGetWorkplaceRoleProperties',
     'get_workplace_role',
     'get_workplace_role_output',
 ]
 
 @pulumi.output_type
-class GetWorkplaceRoleResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetWorkplaceRoleProperties:
+    def __init__(__self__, role=None):
+        if role and not isinstance(role, dict):
+            raise TypeError("Expected argument 'role' to be a dict")
+        pulumi.set(__self__, "role", role)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.GetWorkplaceRoleProperties':
-        return pulumi.get(self, "items")
+    def role(self) -> Optional['outputs.GetWorkplaceRolePropertiesRoleProperties']:
+        return pulumi.get(self, "role")
 
 
-class AwaitableGetWorkplaceRoleResult(GetWorkplaceRoleResult):
+class AwaitableGetWorkplaceRoleProperties(GetWorkplaceRoleProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetWorkplaceRoleResult(
-            items=self.items)
+        return GetWorkplaceRoleProperties(
+            role=self.role)
 
 
 def get_workplace_role(role: Optional[str] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWorkplaceRoleResult:
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWorkplaceRoleProperties:
     """
     Use this data source to access information about an existing resource.
 
@@ -49,18 +54,20 @@ def get_workplace_role(role: Optional[str] = None,
     __args__ = dict()
     __args__['role'] = role
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:getWorkplaceRole', __args__, opts=opts, typ=GetWorkplaceRoleResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:getWorkplaceRole', __args__, opts=opts, typ=GetWorkplaceRoleProperties).value
 
-    return AwaitableGetWorkplaceRoleResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(get_workplace_role)
+    return AwaitableGetWorkplaceRoleProperties(
+        role=pulumi.get(__ret__, 'role'))
 def get_workplace_role_output(role: Optional[pulumi.Input[str]] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWorkplaceRoleResult]:
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWorkplaceRoleProperties]:
     """
     Use this data source to access information about an existing resource.
 
     :param str role: The role's unique identifier
     """
-    ...
+    __args__ = dict()
+    __args__['role'] = role
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:getWorkplaceRole', __args__, opts=opts, typ=GetWorkplaceRoleProperties)
+    return __ret__.apply(lambda __response__: GetWorkplaceRoleProperties(
+        role=pulumi.get(__response__, 'role')))

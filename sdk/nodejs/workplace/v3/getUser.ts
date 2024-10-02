@@ -7,8 +7,7 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function getUser(args: GetUserArgs, opts?: pulumi.InvokeOptions): Promise<GetUserResult> {
-
+export function getUser(args: GetUserArgs, opts?: pulumi.InvokeOptions): Promise<outputs.workplace.v3.GetUserProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:workplace/v3:getUser", {
         "slug": args.slug,
@@ -21,12 +20,11 @@ export interface GetUserArgs {
      */
     slug: string;
 }
-
-export interface GetUserResult {
-    readonly items: outputs.workplace.v3.GetUserProperties;
-}
-export function getUserOutput(args: GetUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserResult> {
-    return pulumi.output(args).apply((a: any) => getUser(a, opts))
+export function getUserOutput(args: GetUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.GetUserProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:getUser", {
+        "slug": args.slug,
+    }, opts);
 }
 
 export interface GetUserOutputArgs {

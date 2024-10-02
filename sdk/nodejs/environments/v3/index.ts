@@ -5,22 +5,22 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../../utilities";
 
 // Export members:
-export { EnvironmentsArgs } from "./environments";
-export type Environments = import("./environments").Environments;
-export const Environments: typeof import("./environments").Environments = null as any;
-utilities.lazyLoad(exports, ["Environments"], () => require("./environments"));
+export { EnvironmentArgs } from "./environment";
+export type Environment = import("./environment").Environment;
+export const Environment: typeof import("./environment").Environment = null as any;
+utilities.lazyLoad(exports, ["Environment"], () => require("./environment"));
 
 export { EnvironmentsRenameArgs } from "./environmentsRename";
 export type EnvironmentsRename = import("./environmentsRename").EnvironmentsRename;
 export const EnvironmentsRename: typeof import("./environmentsRename").EnvironmentsRename = null as any;
 utilities.lazyLoad(exports, ["EnvironmentsRename"], () => require("./environmentsRename"));
 
-export { GetEnvironmentArgs, GetEnvironmentResult } from "./getEnvironment";
+export { GetEnvironmentArgs } from "./getEnvironment";
 export const getEnvironment: typeof import("./getEnvironment").getEnvironment = null as any;
 export const getEnvironmentOutput: typeof import("./getEnvironment").getEnvironmentOutput = null as any;
 utilities.lazyLoad(exports, ["getEnvironment","getEnvironmentOutput"], () => require("./getEnvironment"));
 
-export { ListEnvironmentsArgs, ListEnvironmentsResult } from "./listEnvironments";
+export { ListEnvironmentsArgs } from "./listEnvironments";
 export const listEnvironments: typeof import("./listEnvironments").listEnvironments = null as any;
 export const listEnvironmentsOutput: typeof import("./listEnvironments").listEnvironmentsOutput = null as any;
 utilities.lazyLoad(exports, ["listEnvironments","listEnvironmentsOutput"], () => require("./listEnvironments"));
@@ -30,8 +30,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "doppler-native:environments/v3:Environments":
-                return new Environments(name, <any>undefined, { urn })
+            case "doppler-native:environments/v3:Environment":
+                return new Environment(name, <any>undefined, { urn })
             case "doppler-native:environments/v3:EnvironmentsRename":
                 return new EnvironmentsRename(name, <any>undefined, { urn })
             default:

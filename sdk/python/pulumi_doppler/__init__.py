@@ -43,8 +43,8 @@ _utilities.register(
   "mod": "configs/v3",
   "fqn": "pulumi_doppler.configs.v3",
   "classes": {
+   "doppler-native:configs/v3:Config": "Config",
    "doppler-native:configs/v3:ConfigLogsRollback": "ConfigLogsRollback",
-   "doppler-native:configs/v3:Configs": "Configs",
    "doppler-native:configs/v3:ConfigsClone": "ConfigsClone",
    "doppler-native:configs/v3:ConfigsLock": "ConfigsLock",
    "doppler-native:configs/v3:ConfigsTrustedIp": "ConfigsTrustedIp",
@@ -53,8 +53,8 @@ _utilities.register(
    "doppler-native:configs/v3:DynamicSecretsIssueLease": "DynamicSecretsIssueLease",
    "doppler-native:configs/v3:SecretsUpdate": "SecretsUpdate",
    "doppler-native:configs/v3:SecretsUpdateNote": "SecretsUpdateNote",
-   "doppler-native:configs/v3:ServiceTokens": "ServiceTokens",
-   "doppler-native:configs/v3:Syncs": "Syncs"
+   "doppler-native:configs/v3:ServiceToken": "ServiceToken",
+   "doppler-native:configs/v3:Sync": "Sync"
   }
  },
  {
@@ -62,7 +62,7 @@ _utilities.register(
   "mod": "environments/v3",
   "fqn": "pulumi_doppler.environments.v3",
   "classes": {
-   "doppler-native:environments/v3:Environments": "Environments",
+   "doppler-native:environments/v3:Environment": "Environment",
    "doppler-native:environments/v3:EnvironmentsRename": "EnvironmentsRename"
   }
  },
@@ -71,7 +71,7 @@ _utilities.register(
   "mod": "integrations/v3",
   "fqn": "pulumi_doppler.integrations.v3",
   "classes": {
-   "doppler-native:integrations/v3:Integrations": "Integrations"
+   "doppler-native:integrations/v3:Integration": "Integration"
   }
  },
  {
@@ -79,9 +79,9 @@ _utilities.register(
   "mod": "projects/v3",
   "fqn": "pulumi_doppler.projects.v3",
   "classes": {
-   "doppler-native:projects/v3:ProjectMembers": "ProjectMembers",
-   "doppler-native:projects/v3:ProjectRoles": "ProjectRoles",
-   "doppler-native:projects/v3:Projects": "Projects",
+   "doppler-native:projects/v3:Project": "Project",
+   "doppler-native:projects/v3:ProjectMember": "ProjectMember",
+   "doppler-native:projects/v3:ProjectRole": "ProjectRole",
    "doppler-native:projects/v3:ProjectsUpdate": "ProjectsUpdate"
   }
  },
@@ -90,7 +90,6 @@ _utilities.register(
   "mod": "webhooks/v3",
   "fqn": "pulumi_doppler.webhooks.v3",
   "classes": {
-   "doppler-native:webhooks/v3:Webhooks": "Webhooks",
    "doppler-native:webhooks/v3:WebhooksDisable": "WebhooksDisable",
    "doppler-native:webhooks/v3:WebhooksEnable": "WebhooksEnable"
   }
@@ -100,11 +99,11 @@ _utilities.register(
   "mod": "workplace/v3",
   "fqn": "pulumi_doppler.workplace.v3",
   "classes": {
-   "doppler-native:workplace/v3:Groups": "Groups",
+   "doppler-native:workplace/v3:Group": "Group",
    "doppler-native:workplace/v3:GroupsMember": "GroupsMember",
-   "doppler-native:workplace/v3:ServiceAccountTokens": "ServiceAccountTokens",
-   "doppler-native:workplace/v3:ServiceAccounts": "ServiceAccounts",
-   "doppler-native:workplace/v3:WorkplaceRoles": "WorkplaceRoles",
+   "doppler-native:workplace/v3:ServiceAccount": "ServiceAccount",
+   "doppler-native:workplace/v3:ServiceAccountToken": "ServiceAccountToken",
+   "doppler-native:workplace/v3:WorkplaceRole": "WorkplaceRole",
    "doppler-native:workplace/v3:WorkplaceUpdate": "WorkplaceUpdate"
   }
  }

@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function listConfigs(args?: ListConfigsArgs, opts?: pulumi.InvokeOptions): Promise<ListConfigsResult> {
+export function listConfigs(args?: ListConfigsArgs, opts?: pulumi.InvokeOptions): Promise<outputs.configs.v3.ListConfigsProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:configs/v3:listConfigs", {
     }, opts);
@@ -17,10 +16,9 @@ export function listConfigs(args?: ListConfigsArgs, opts?: pulumi.InvokeOptions)
 
 export interface ListConfigsArgs {
 }
+export function listConfigsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.configs.v3.ListConfigsProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:configs/v3:listConfigs", {
+    }, opts);
+}
 
-export interface ListConfigsResult {
-    readonly items: outputs.configs.v3.ListConfigsProperties;
-}
-export function listConfigsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListConfigsResult> {
-    return pulumi.output(listConfigs(opts))
-}

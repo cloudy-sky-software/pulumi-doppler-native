@@ -21,8 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "doppler-native:environments/v3:Environments":
-		r = &Environments{}
+	case "doppler-native:environments/v3:Environment":
+		r = &Environment{}
 	case "doppler-native:environments/v3:EnvironmentsRename":
 		r = &EnvironmentsRename{}
 	default:

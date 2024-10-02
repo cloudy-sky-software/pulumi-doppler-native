@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function listWorkplaceRolesPermissions(args?: ListWorkplaceRolesPermissionsArgs, opts?: pulumi.InvokeOptions): Promise<ListWorkplaceRolesPermissionsResult> {
+export function listWorkplaceRolesPermissions(args?: ListWorkplaceRolesPermissionsArgs, opts?: pulumi.InvokeOptions): Promise<outputs.workplace.v3.ListWorkplaceRolesPermissionsProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:workplace/v3:listWorkplaceRolesPermissions", {
     }, opts);
@@ -17,10 +16,9 @@ export function listWorkplaceRolesPermissions(args?: ListWorkplaceRolesPermissio
 
 export interface ListWorkplaceRolesPermissionsArgs {
 }
+export function listWorkplaceRolesPermissionsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.ListWorkplaceRolesPermissionsProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:listWorkplaceRolesPermissions", {
+    }, opts);
+}
 
-export interface ListWorkplaceRolesPermissionsResult {
-    readonly items: outputs.workplace.v3.ListWorkplaceRolesPermissionsProperties;
-}
-export function listWorkplaceRolesPermissionsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListWorkplaceRolesPermissionsResult> {
-    return pulumi.output(listWorkplaceRolesPermissions(opts))
-}

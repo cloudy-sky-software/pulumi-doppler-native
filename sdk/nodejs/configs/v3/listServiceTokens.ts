@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function listServiceTokens(args?: ListServiceTokensArgs, opts?: pulumi.InvokeOptions): Promise<ListServiceTokensResult> {
+export function listServiceTokens(args?: ListServiceTokensArgs, opts?: pulumi.InvokeOptions): Promise<outputs.configs.v3.ListServiceTokensProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:configs/v3:listServiceTokens", {
     }, opts);
@@ -17,10 +16,9 @@ export function listServiceTokens(args?: ListServiceTokensArgs, opts?: pulumi.In
 
 export interface ListServiceTokensArgs {
 }
+export function listServiceTokensOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.configs.v3.ListServiceTokensProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:configs/v3:listServiceTokens", {
+    }, opts);
+}
 
-export interface ListServiceTokensResult {
-    readonly items: outputs.configs.v3.ListServiceTokensProperties;
-}
-export function listServiceTokensOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListServiceTokensResult> {
-    return pulumi.output(listServiceTokens(opts))
-}

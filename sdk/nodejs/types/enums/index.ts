@@ -4,12 +4,10 @@
 // Export sub-modules:
 import * as configs from "./configs";
 import * as projects from "./projects";
-import * as webhooks from "./webhooks";
 import * as workplace from "./workplace";
 
 export {
     configs,
     projects,
-    webhooks,
     workplace,
 };

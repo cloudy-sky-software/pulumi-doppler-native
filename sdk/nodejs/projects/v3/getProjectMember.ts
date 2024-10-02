@@ -7,8 +7,7 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function getProjectMember(args: GetProjectMemberArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectMemberResult> {
-
+export function getProjectMember(args: GetProjectMemberArgs, opts?: pulumi.InvokeOptions): Promise<outputs.projects.v3.GetProjectMemberProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:projects/v3:getProjectMember", {
         "slug": args.slug,
@@ -23,12 +22,12 @@ export interface GetProjectMemberArgs {
     slug: string;
     type: string;
 }
-
-export interface GetProjectMemberResult {
-    readonly items: outputs.projects.v3.GetProjectMemberProperties;
-}
-export function getProjectMemberOutput(args: GetProjectMemberOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectMemberResult> {
-    return pulumi.output(args).apply((a: any) => getProjectMember(a, opts))
+export function getProjectMemberOutput(args: GetProjectMemberOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.projects.v3.GetProjectMemberProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:projects/v3:getProjectMember", {
+        "slug": args.slug,
+        "type": args.type,
+    }, opts);
 }
 
 export interface GetProjectMemberOutputArgs {

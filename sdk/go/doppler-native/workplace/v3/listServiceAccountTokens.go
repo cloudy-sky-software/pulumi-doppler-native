@@ -27,7 +27,8 @@ type ListServiceAccountTokensArgs struct {
 }
 
 type ListServiceAccountTokensResult struct {
-	Items ListServiceAccountTokensProperties `pulumi:"items"`
+	ApiTokens []ListServiceAccountTokensPropertiesApiTokensItemProperties `pulumi:"apiTokens"`
+	Success   *bool                                                       `pulumi:"success"`
 }
 
 // Defaults sets the appropriate defaults for ListServiceAccountTokensResult
@@ -36,21 +37,29 @@ func (val *ListServiceAccountTokensResult) Defaults() *ListServiceAccountTokensR
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
-
+	if tmp.Success == nil {
+		success_ := true
+		tmp.Success = &success_
+	}
 	return &tmp
 }
 
 func ListServiceAccountTokensOutput(ctx *pulumi.Context, args ListServiceAccountTokensOutputArgs, opts ...pulumi.InvokeOption) ListServiceAccountTokensResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListServiceAccountTokensResult, error) {
+		ApplyT(func(v interface{}) (ListServiceAccountTokensResultOutput, error) {
 			args := v.(ListServiceAccountTokensArgs)
-			r, err := ListServiceAccountTokens(ctx, &args, opts...)
-			var s ListServiceAccountTokensResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListServiceAccountTokensResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:listServiceAccountTokens", args, &rv, "", opts...)
+			if err != nil {
+				return ListServiceAccountTokensResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListServiceAccountTokensResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListServiceAccountTokensResultOutput), nil
+			}
+			return output, nil
 		}).(ListServiceAccountTokensResultOutput)
 }
 
@@ -77,8 +86,14 @@ func (o ListServiceAccountTokensResultOutput) ToListServiceAccountTokensResultOu
 	return o
 }
 
-func (o ListServiceAccountTokensResultOutput) Items() ListServiceAccountTokensPropertiesOutput {
-	return o.ApplyT(func(v ListServiceAccountTokensResult) ListServiceAccountTokensProperties { return v.Items }).(ListServiceAccountTokensPropertiesOutput)
+func (o ListServiceAccountTokensResultOutput) ApiTokens() ListServiceAccountTokensPropertiesApiTokensItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListServiceAccountTokensResult) []ListServiceAccountTokensPropertiesApiTokensItemProperties {
+		return v.ApiTokens
+	}).(ListServiceAccountTokensPropertiesApiTokensItemPropertiesArrayOutput)
+}
+
+func (o ListServiceAccountTokensResultOutput) Success() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ListServiceAccountTokensResult) *bool { return v.Success }).(pulumi.BoolPtrOutput)
 }
 
 func init() {

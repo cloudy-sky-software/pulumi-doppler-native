@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function listInvites(args?: ListInvitesArgs, opts?: pulumi.InvokeOptions): Promise<ListInvitesResult> {
+export function listInvites(args?: ListInvitesArgs, opts?: pulumi.InvokeOptions): Promise<outputs.workplace.v3.ListInvitesProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:workplace/v3:listInvites", {
     }, opts);
@@ -17,10 +16,9 @@ export function listInvites(args?: ListInvitesArgs, opts?: pulumi.InvokeOptions)
 
 export interface ListInvitesArgs {
 }
+export function listInvitesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.ListInvitesProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:listInvites", {
+    }, opts);
+}
 
-export interface ListInvitesResult {
-    readonly items: outputs.workplace.v3.ListInvitesProperties;
-}
-export function listInvitesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListInvitesResult> {
-    return pulumi.output(listInvites(opts))
-}

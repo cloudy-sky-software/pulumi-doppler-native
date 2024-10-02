@@ -4,56 +4,62 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'GetWorkplaceResult',
-    'AwaitableGetWorkplaceResult',
+    'GetWorkplaceProperties',
+    'AwaitableGetWorkplaceProperties',
     'get_workplace',
     'get_workplace_output',
 ]
 
 @pulumi.output_type
-class GetWorkplaceResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetWorkplaceProperties:
+    def __init__(__self__, workplace=None):
+        if workplace and not isinstance(workplace, dict):
+            raise TypeError("Expected argument 'workplace' to be a dict")
+        pulumi.set(__self__, "workplace", workplace)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.GetWorkplaceProperties':
-        return pulumi.get(self, "items")
+    def workplace(self) -> Optional['outputs.GetWorkplacePropertiesWorkplaceProperties']:
+        return pulumi.get(self, "workplace")
 
 
-class AwaitableGetWorkplaceResult(GetWorkplaceResult):
+class AwaitableGetWorkplaceProperties(GetWorkplaceProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetWorkplaceResult(
-            items=self.items)
+        return GetWorkplaceProperties(
+            workplace=self.workplace)
 
 
-def get_workplace(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWorkplaceResult:
+def get_workplace(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWorkplaceProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:getWorkplace', __args__, opts=opts, typ=GetWorkplaceResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:getWorkplace', __args__, opts=opts, typ=GetWorkplaceProperties).value
 
-    return AwaitableGetWorkplaceResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(get_workplace)
-def get_workplace_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWorkplaceResult]:
+    return AwaitableGetWorkplaceProperties(
+        workplace=pulumi.get(__ret__, 'workplace'))
+def get_workplace_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWorkplaceProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:getWorkplace', __args__, opts=opts, typ=GetWorkplaceProperties)
+    return __ret__.apply(lambda __response__: GetWorkplaceProperties(
+        workplace=pulumi.get(__response__, 'workplace')))

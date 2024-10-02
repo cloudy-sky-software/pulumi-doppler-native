@@ -4,21 +4,44 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from ._enums import *
 
 __all__ = [
     'ChangeRequestsItemPropertiesOriginalValueTypePropertiesArgs',
+    'ChangeRequestsItemPropertiesOriginalValueTypePropertiesArgsDict',
     'ChangeRequestsItemPropertiesValueTypePropertiesArgs',
+    'ChangeRequestsItemPropertiesValueTypePropertiesArgsDict',
     'ChangeRequestsItemPropertiesArgs',
+    'ChangeRequestsItemPropertiesArgsDict',
     'SecretsPropertiesAlgoliaPropertiesArgs',
+    'SecretsPropertiesAlgoliaPropertiesArgsDict',
     'SecretsPropertiesDatabasePropertiesArgs',
+    'SecretsPropertiesDatabasePropertiesArgsDict',
     'SecretsPropertiesStripePropertiesArgs',
+    'SecretsPropertiesStripePropertiesArgsDict',
     'SecretsPropertiesArgs',
+    'SecretsPropertiesArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class ChangeRequestsItemPropertiesOriginalValueTypePropertiesArgsDict(TypedDict):
+        """
+        The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler.
+        """
+        type: NotRequired[pulumi.Input['ChangeRequestsItemPropertiesOriginalValueTypePropertiesType']]
+elif False:
+    ChangeRequestsItemPropertiesOriginalValueTypePropertiesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ChangeRequestsItemPropertiesOriginalValueTypePropertiesArgs:
@@ -40,6 +63,15 @@ class ChangeRequestsItemPropertiesOriginalValueTypePropertiesArgs:
         pulumi.set(self, "type", value)
 
 
+if not MYPY:
+    class ChangeRequestsItemPropertiesValueTypePropertiesArgsDict(TypedDict):
+        """
+        The default valueType (string) will result in no validations being applied.
+        """
+        type: NotRequired[pulumi.Input['ChangeRequestsItemPropertiesValueTypePropertiesType']]
+elif False:
+    ChangeRequestsItemPropertiesValueTypePropertiesArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ChangeRequestsItemPropertiesValueTypePropertiesArgs:
     def __init__(__self__, *,
@@ -59,6 +91,55 @@ class ChangeRequestsItemPropertiesValueTypePropertiesArgs:
     def type(self, value: Optional[pulumi.Input['ChangeRequestsItemPropertiesValueTypePropertiesType']]):
         pulumi.set(self, "type", value)
 
+
+if not MYPY:
+    class ChangeRequestsItemPropertiesArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The name of the secret.
+        """
+        original_name: pulumi.Input[str]
+        """
+        The original name of the secret. Use `null` (an actual `null`, not the string `null`) or omit this parameter for new secrets. If it differs from `name` then a rename is inferred.
+        """
+        value: pulumi.Input[str]
+        """
+        The value the secret should have. Use `null` (an actual `null`, not the string `null`) to leave the existing secret value unchanged.
+        """
+        original_value: NotRequired[pulumi.Input[str]]
+        """
+        The value you expect the secret to have before `name` is applied. If specified, the request will only be processed if the provided value matches what's found in Doppler.
+        """
+        original_value_type: NotRequired[pulumi.Input['ChangeRequestsItemPropertiesOriginalValueTypePropertiesArgsDict']]
+        """
+        The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler.
+        """
+        original_visibility: NotRequired[pulumi.Input[str]]
+        """
+        Must be set to either `masked`, `unmasked`, or `restricted`. The visibility you expect the secret to have before `visibility` is applied. If specified, the request will only be processed if the provided visibility matches what's found in Doppler.
+        """
+        should_converge: NotRequired[pulumi.Input[bool]]
+        """
+        Defaults to `false`. Can only be set to `true` if the config being updated is a branch config and there is a secret with the same name in the root config. In this case, the branch secret will inherit the value and visibility type from the root secret.
+        """
+        should_delete: NotRequired[pulumi.Input[bool]]
+        """
+        Defaults to `false`. If set to `true`, will delete the secret matching the `name` field.
+        """
+        should_promote: NotRequired[pulumi.Input[bool]]
+        """
+        Defaults to `false`. Can only be set to `true` if the config being updated is a branch config. If set to `true`, the provided secret will be set in both the branch config as well as the root config in that environment.
+        """
+        value_type: NotRequired[pulumi.Input['ChangeRequestsItemPropertiesValueTypePropertiesArgsDict']]
+        """
+        The default valueType (string) will result in no validations being applied.
+        """
+        visibility: NotRequired[pulumi.Input[str]]
+        """
+        Must be set to either `masked`, `unmasked`, or `restricted`.
+        """
+elif False:
+    ChangeRequestsItemPropertiesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ChangeRequestsItemPropertiesArgs:
@@ -240,6 +321,14 @@ class ChangeRequestsItemPropertiesArgs:
         pulumi.set(self, "visibility", value)
 
 
+if not MYPY:
+    class SecretsPropertiesAlgoliaPropertiesArgsDict(TypedDict):
+        computed: NotRequired[pulumi.Input[str]]
+        note: NotRequired[pulumi.Input[str]]
+        raw: NotRequired[pulumi.Input[str]]
+elif False:
+    SecretsPropertiesAlgoliaPropertiesArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretsPropertiesAlgoliaPropertiesArgs:
     def __init__(__self__, *,
@@ -280,6 +369,14 @@ class SecretsPropertiesAlgoliaPropertiesArgs:
     def raw(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "raw", value)
 
+
+if not MYPY:
+    class SecretsPropertiesDatabasePropertiesArgsDict(TypedDict):
+        computed: NotRequired[pulumi.Input[str]]
+        note: NotRequired[pulumi.Input[str]]
+        raw: NotRequired[pulumi.Input[str]]
+elif False:
+    SecretsPropertiesDatabasePropertiesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretsPropertiesDatabasePropertiesArgs:
@@ -322,6 +419,14 @@ class SecretsPropertiesDatabasePropertiesArgs:
         pulumi.set(self, "raw", value)
 
 
+if not MYPY:
+    class SecretsPropertiesStripePropertiesArgsDict(TypedDict):
+        computed: NotRequired[pulumi.Input[str]]
+        note: NotRequired[pulumi.Input[str]]
+        raw: NotRequired[pulumi.Input[str]]
+elif False:
+    SecretsPropertiesStripePropertiesArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretsPropertiesStripePropertiesArgs:
     def __init__(__self__, *,
@@ -362,6 +467,14 @@ class SecretsPropertiesStripePropertiesArgs:
     def raw(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "raw", value)
 
+
+if not MYPY:
+    class SecretsPropertiesArgsDict(TypedDict):
+        algolia: NotRequired[pulumi.Input['SecretsPropertiesAlgoliaPropertiesArgsDict']]
+        database: NotRequired[pulumi.Input['SecretsPropertiesDatabasePropertiesArgsDict']]
+        stripe: NotRequired[pulumi.Input['SecretsPropertiesStripePropertiesArgsDict']]
+elif False:
+    SecretsPropertiesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretsPropertiesArgs:

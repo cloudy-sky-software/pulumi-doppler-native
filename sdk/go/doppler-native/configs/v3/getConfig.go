@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetConfig(ctx *pulumi.Context, args *GetConfigArgs, opts ...pulumi.InvokeOption) (*GetConfigResult, error) {
+func LookupConfig(ctx *pulumi.Context, args *LookupConfigArgs, opts ...pulumi.InvokeOption) (*LookupConfigResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetConfigResult
+	var rv LookupConfigResult
 	err := ctx.Invoke("doppler-native:configs/v3:getConfig", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,62 +21,68 @@ func GetConfig(ctx *pulumi.Context, args *GetConfigArgs, opts ...pulumi.InvokeOp
 	return rv.Defaults(), nil
 }
 
-type GetConfigArgs struct {
+type LookupConfigArgs struct {
 }
 
-type GetConfigResult struct {
-	Items GetConfigProperties `pulumi:"items"`
+type LookupConfigResult struct {
+	Config *GetConfigPropertiesConfigProperties `pulumi:"config"`
 }
 
-// Defaults sets the appropriate defaults for GetConfigResult
-func (val *GetConfigResult) Defaults() *GetConfigResult {
+// Defaults sets the appropriate defaults for LookupConfigResult
+func (val *LookupConfigResult) Defaults() *LookupConfigResult {
 	if val == nil {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
+	tmp.Config = tmp.Config.Defaults()
 
 	return &tmp
 }
 
-func GetConfigOutput(ctx *pulumi.Context, args GetConfigOutputArgs, opts ...pulumi.InvokeOption) GetConfigResultOutput {
+func LookupConfigOutput(ctx *pulumi.Context, args LookupConfigOutputArgs, opts ...pulumi.InvokeOption) LookupConfigResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetConfigResult, error) {
-			args := v.(GetConfigArgs)
-			r, err := GetConfig(ctx, &args, opts...)
-			var s GetConfigResult
-			if r != nil {
-				s = *r
+		ApplyT(func(v interface{}) (LookupConfigResultOutput, error) {
+			args := v.(LookupConfigArgs)
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupConfigResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:configs/v3:getConfig", args, &rv, "", opts...)
+			if err != nil {
+				return LookupConfigResultOutput{}, err
 			}
-			return s, err
-		}).(GetConfigResultOutput)
+
+			output := pulumi.ToOutput(rv).(LookupConfigResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupConfigResultOutput), nil
+			}
+			return output, nil
+		}).(LookupConfigResultOutput)
 }
 
-type GetConfigOutputArgs struct {
+type LookupConfigOutputArgs struct {
 }
 
-func (GetConfigOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetConfigArgs)(nil)).Elem()
+func (LookupConfigOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupConfigArgs)(nil)).Elem()
 }
 
-type GetConfigResultOutput struct{ *pulumi.OutputState }
+type LookupConfigResultOutput struct{ *pulumi.OutputState }
 
-func (GetConfigResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetConfigResult)(nil)).Elem()
+func (LookupConfigResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupConfigResult)(nil)).Elem()
 }
 
-func (o GetConfigResultOutput) ToGetConfigResultOutput() GetConfigResultOutput {
+func (o LookupConfigResultOutput) ToLookupConfigResultOutput() LookupConfigResultOutput {
 	return o
 }
 
-func (o GetConfigResultOutput) ToGetConfigResultOutputWithContext(ctx context.Context) GetConfigResultOutput {
+func (o LookupConfigResultOutput) ToLookupConfigResultOutputWithContext(ctx context.Context) LookupConfigResultOutput {
 	return o
 }
 
-func (o GetConfigResultOutput) Items() GetConfigPropertiesOutput {
-	return o.ApplyT(func(v GetConfigResult) GetConfigProperties { return v.Items }).(GetConfigPropertiesOutput)
+func (o LookupConfigResultOutput) Config() GetConfigPropertiesConfigPropertiesPtrOutput {
+	return o.ApplyT(func(v LookupConfigResult) *GetConfigPropertiesConfigProperties { return v.Config }).(GetConfigPropertiesConfigPropertiesPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetConfigResultOutput{})
+	pulumi.RegisterOutputType(LookupConfigResultOutput{})
 }

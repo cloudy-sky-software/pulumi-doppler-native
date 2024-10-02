@@ -25,19 +25,31 @@ type GetAuthMeArgs struct {
 }
 
 type GetAuthMeResult struct {
-	Items GetAuthMeProperties `pulumi:"items"`
+	CreatedAt    *string                                 `pulumi:"createdAt"`
+	LastSeenAt   *string                                 `pulumi:"lastSeenAt"`
+	Name         *string                                 `pulumi:"name"`
+	Slug         *string                                 `pulumi:"slug"`
+	TokenPreview *string                                 `pulumi:"tokenPreview"`
+	Type         *string                                 `pulumi:"type"`
+	Workplace    *GetAuthMePropertiesWorkplaceProperties `pulumi:"workplace"`
 }
 
 func GetAuthMeOutput(ctx *pulumi.Context, args GetAuthMeOutputArgs, opts ...pulumi.InvokeOption) GetAuthMeResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetAuthMeResult, error) {
+		ApplyT(func(v interface{}) (GetAuthMeResultOutput, error) {
 			args := v.(GetAuthMeArgs)
-			r, err := GetAuthMe(ctx, &args, opts...)
-			var s GetAuthMeResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetAuthMeResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:me/v3:getAuthMe", args, &rv, "", opts...)
+			if err != nil {
+				return GetAuthMeResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetAuthMeResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetAuthMeResultOutput), nil
+			}
+			return output, nil
 		}).(GetAuthMeResultOutput)
 }
 
@@ -62,8 +74,32 @@ func (o GetAuthMeResultOutput) ToGetAuthMeResultOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o GetAuthMeResultOutput) Items() GetAuthMePropertiesOutput {
-	return o.ApplyT(func(v GetAuthMeResult) GetAuthMeProperties { return v.Items }).(GetAuthMePropertiesOutput)
+func (o GetAuthMeResultOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAuthMeResult) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o GetAuthMeResultOutput) LastSeenAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAuthMeResult) *string { return v.LastSeenAt }).(pulumi.StringPtrOutput)
+}
+
+func (o GetAuthMeResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAuthMeResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o GetAuthMeResultOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAuthMeResult) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+func (o GetAuthMeResultOutput) TokenPreview() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAuthMeResult) *string { return v.TokenPreview }).(pulumi.StringPtrOutput)
+}
+
+func (o GetAuthMeResultOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAuthMeResult) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o GetAuthMeResultOutput) Workplace() GetAuthMePropertiesWorkplacePropertiesPtrOutput {
+	return o.ApplyT(func(v GetAuthMeResult) *GetAuthMePropertiesWorkplaceProperties { return v.Workplace }).(GetAuthMePropertiesWorkplacePropertiesPtrOutput)
 }
 
 func init() {

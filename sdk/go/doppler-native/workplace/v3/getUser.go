@@ -27,7 +27,8 @@ type GetUserArgs struct {
 }
 
 type GetUserResult struct {
-	Items GetUserProperties `pulumi:"items"`
+	Success       *bool                                     `pulumi:"success"`
+	WorkplaceUser *GetUserPropertiesWorkplaceUserProperties `pulumi:"workplaceUser"`
 }
 
 // Defaults sets the appropriate defaults for GetUserResult
@@ -36,21 +37,29 @@ func (val *GetUserResult) Defaults() *GetUserResult {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
-
+	if tmp.Success == nil {
+		success_ := true
+		tmp.Success = &success_
+	}
 	return &tmp
 }
 
 func GetUserOutput(ctx *pulumi.Context, args GetUserOutputArgs, opts ...pulumi.InvokeOption) GetUserResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetUserResult, error) {
+		ApplyT(func(v interface{}) (GetUserResultOutput, error) {
 			args := v.(GetUserArgs)
-			r, err := GetUser(ctx, &args, opts...)
-			var s GetUserResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetUserResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:getUser", args, &rv, "", opts...)
+			if err != nil {
+				return GetUserResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetUserResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetUserResultOutput), nil
+			}
+			return output, nil
 		}).(GetUserResultOutput)
 }
 
@@ -77,8 +86,12 @@ func (o GetUserResultOutput) ToGetUserResultOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o GetUserResultOutput) Items() GetUserPropertiesOutput {
-	return o.ApplyT(func(v GetUserResult) GetUserProperties { return v.Items }).(GetUserPropertiesOutput)
+func (o GetUserResultOutput) Success() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetUserResult) *bool { return v.Success }).(pulumi.BoolPtrOutput)
+}
+
+func (o GetUserResultOutput) WorkplaceUser() GetUserPropertiesWorkplaceUserPropertiesPtrOutput {
+	return o.ApplyT(func(v GetUserResult) *GetUserPropertiesWorkplaceUserProperties { return v.WorkplaceUser }).(GetUserPropertiesWorkplaceUserPropertiesPtrOutput)
 }
 
 func init() {

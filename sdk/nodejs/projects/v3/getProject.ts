@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> {
+export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<outputs.projects.v3.GetProjectProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:projects/v3:getProject", {
     }, opts);
@@ -17,10 +16,9 @@ export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): 
 
 export interface GetProjectArgs {
 }
+export function getProjectOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.projects.v3.GetProjectProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:projects/v3:getProject", {
+    }, opts);
+}
 
-export interface GetProjectResult {
-    readonly items: outputs.projects.v3.GetProjectProperties;
-}
-export function getProjectOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectResult> {
-    return pulumi.output(getProject(opts))
-}

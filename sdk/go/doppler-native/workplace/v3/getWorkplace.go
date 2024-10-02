@@ -25,19 +25,25 @@ type GetWorkplaceArgs struct {
 }
 
 type GetWorkplaceResult struct {
-	Items GetWorkplaceProperties `pulumi:"items"`
+	Workplace *GetWorkplacePropertiesWorkplaceProperties `pulumi:"workplace"`
 }
 
 func GetWorkplaceOutput(ctx *pulumi.Context, args GetWorkplaceOutputArgs, opts ...pulumi.InvokeOption) GetWorkplaceResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetWorkplaceResult, error) {
+		ApplyT(func(v interface{}) (GetWorkplaceResultOutput, error) {
 			args := v.(GetWorkplaceArgs)
-			r, err := GetWorkplace(ctx, &args, opts...)
-			var s GetWorkplaceResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetWorkplaceResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:getWorkplace", args, &rv, "", opts...)
+			if err != nil {
+				return GetWorkplaceResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetWorkplaceResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetWorkplaceResultOutput), nil
+			}
+			return output, nil
 		}).(GetWorkplaceResultOutput)
 }
 
@@ -62,8 +68,8 @@ func (o GetWorkplaceResultOutput) ToGetWorkplaceResultOutputWithContext(ctx cont
 	return o
 }
 
-func (o GetWorkplaceResultOutput) Items() GetWorkplacePropertiesOutput {
-	return o.ApplyT(func(v GetWorkplaceResult) GetWorkplaceProperties { return v.Items }).(GetWorkplacePropertiesOutput)
+func (o GetWorkplaceResultOutput) Workplace() GetWorkplacePropertiesWorkplacePropertiesPtrOutput {
+	return o.ApplyT(func(v GetWorkplaceResult) *GetWorkplacePropertiesWorkplaceProperties { return v.Workplace }).(GetWorkplacePropertiesWorkplacePropertiesPtrOutput)
 }
 
 func init() {

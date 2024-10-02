@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetEnvironment(ctx *pulumi.Context, args *GetEnvironmentArgs, opts ...pulumi.InvokeOption) (*GetEnvironmentResult, error) {
+func LookupEnvironment(ctx *pulumi.Context, args *LookupEnvironmentArgs, opts ...pulumi.InvokeOption) (*LookupEnvironmentResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetEnvironmentResult
+	var rv LookupEnvironmentResult
 	err := ctx.Invoke("doppler-native:environments/v3:getEnvironment", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,51 +21,57 @@ func GetEnvironment(ctx *pulumi.Context, args *GetEnvironmentArgs, opts ...pulum
 	return &rv, nil
 }
 
-type GetEnvironmentArgs struct {
+type LookupEnvironmentArgs struct {
 }
 
-type GetEnvironmentResult struct {
-	Items GetEnvironmentProperties `pulumi:"items"`
+type LookupEnvironmentResult struct {
+	Environment *GetEnvironmentPropertiesEnvironmentProperties `pulumi:"environment"`
 }
 
-func GetEnvironmentOutput(ctx *pulumi.Context, args GetEnvironmentOutputArgs, opts ...pulumi.InvokeOption) GetEnvironmentResultOutput {
+func LookupEnvironmentOutput(ctx *pulumi.Context, args LookupEnvironmentOutputArgs, opts ...pulumi.InvokeOption) LookupEnvironmentResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetEnvironmentResult, error) {
-			args := v.(GetEnvironmentArgs)
-			r, err := GetEnvironment(ctx, &args, opts...)
-			var s GetEnvironmentResult
-			if r != nil {
-				s = *r
+		ApplyT(func(v interface{}) (LookupEnvironmentResultOutput, error) {
+			args := v.(LookupEnvironmentArgs)
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupEnvironmentResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:environments/v3:getEnvironment", args, &rv, "", opts...)
+			if err != nil {
+				return LookupEnvironmentResultOutput{}, err
 			}
-			return s, err
-		}).(GetEnvironmentResultOutput)
+
+			output := pulumi.ToOutput(rv).(LookupEnvironmentResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupEnvironmentResultOutput), nil
+			}
+			return output, nil
+		}).(LookupEnvironmentResultOutput)
 }
 
-type GetEnvironmentOutputArgs struct {
+type LookupEnvironmentOutputArgs struct {
 }
 
-func (GetEnvironmentOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetEnvironmentArgs)(nil)).Elem()
+func (LookupEnvironmentOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupEnvironmentArgs)(nil)).Elem()
 }
 
-type GetEnvironmentResultOutput struct{ *pulumi.OutputState }
+type LookupEnvironmentResultOutput struct{ *pulumi.OutputState }
 
-func (GetEnvironmentResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetEnvironmentResult)(nil)).Elem()
+func (LookupEnvironmentResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupEnvironmentResult)(nil)).Elem()
 }
 
-func (o GetEnvironmentResultOutput) ToGetEnvironmentResultOutput() GetEnvironmentResultOutput {
+func (o LookupEnvironmentResultOutput) ToLookupEnvironmentResultOutput() LookupEnvironmentResultOutput {
 	return o
 }
 
-func (o GetEnvironmentResultOutput) ToGetEnvironmentResultOutputWithContext(ctx context.Context) GetEnvironmentResultOutput {
+func (o LookupEnvironmentResultOutput) ToLookupEnvironmentResultOutputWithContext(ctx context.Context) LookupEnvironmentResultOutput {
 	return o
 }
 
-func (o GetEnvironmentResultOutput) Items() GetEnvironmentPropertiesOutput {
-	return o.ApplyT(func(v GetEnvironmentResult) GetEnvironmentProperties { return v.Items }).(GetEnvironmentPropertiesOutput)
+func (o LookupEnvironmentResultOutput) Environment() GetEnvironmentPropertiesEnvironmentPropertiesPtrOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) *GetEnvironmentPropertiesEnvironmentProperties { return v.Environment }).(GetEnvironmentPropertiesEnvironmentPropertiesPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetEnvironmentResultOutput{})
+	pulumi.RegisterOutputType(LookupEnvironmentResultOutput{})
 }

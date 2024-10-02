@@ -4,47 +4,32 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 from ._enums import *
 
 __all__ = [
-    'GetProjectMemberProperties',
     'GetProjectMemberPropertiesMemberProperties',
     'GetProjectMemberPropertiesMemberPropertiesRoleProperties',
-    'GetProjectProperties',
     'GetProjectPropertiesProjectProperties',
-    'GetProjectRoleProperties',
     'GetProjectRolePropertiesRoleProperties',
-    'ListProjectMembersProperties',
     'ListProjectMembersPropertiesMembersItemProperties',
     'ListProjectMembersPropertiesMembersItemPropertiesRoleProperties',
-    'ListProjectRolesPermissionsProperties',
-    'ListProjectRolesProperties',
     'ListProjectRolesPropertiesRolesItemProperties',
-    'ListProjectsProperties',
     'ListProjectsPropertiesProjectsItemProperties',
     'MemberProperties',
     'MemberPropertiesRoleProperties',
     'ProjectProperties',
     'RoleProperties',
 ]
-
-@pulumi.output_type
-class GetProjectMemberProperties(dict):
-    def __init__(__self__, *,
-                 member: Optional['outputs.GetProjectMemberPropertiesMemberProperties'] = None):
-        if member is not None:
-            pulumi.set(__self__, "member", member)
-
-    @property
-    @pulumi.getter
-    def member(self) -> Optional['outputs.GetProjectMemberPropertiesMemberProperties']:
-        return pulumi.get(self, "member")
-
 
 @pulumi.output_type
 class GetProjectMemberPropertiesMemberProperties(dict):
@@ -107,19 +92,6 @@ class GetProjectMemberPropertiesMemberPropertiesRoleProperties(dict):
 
 
 @pulumi.output_type
-class GetProjectProperties(dict):
-    def __init__(__self__, *,
-                 project: Optional['outputs.GetProjectPropertiesProjectProperties'] = None):
-        if project is not None:
-            pulumi.set(__self__, "project", project)
-
-    @property
-    @pulumi.getter
-    def project(self) -> Optional['outputs.GetProjectPropertiesProjectProperties']:
-        return pulumi.get(self, "project")
-
-
-@pulumi.output_type
 class GetProjectPropertiesProjectProperties(dict):
     def __init__(__self__, *,
                  created_at: Optional[str] = None,
@@ -154,19 +126,6 @@ class GetProjectPropertiesProjectProperties(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class GetProjectRoleProperties(dict):
-    def __init__(__self__, *,
-                 role: Optional['outputs.GetProjectRolePropertiesRoleProperties'] = None):
-        if role is not None:
-            pulumi.set(__self__, "role", role)
-
-    @property
-    @pulumi.getter
-    def role(self) -> Optional['outputs.GetProjectRolePropertiesRoleProperties']:
-        return pulumi.get(self, "role")
 
 
 @pulumi.output_type
@@ -214,19 +173,6 @@ class GetProjectRolePropertiesRoleProperties(dict):
     @pulumi.getter
     def permissions(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "permissions")
-
-
-@pulumi.output_type
-class ListProjectMembersProperties(dict):
-    def __init__(__self__, *,
-                 members: Optional[Sequence['outputs.ListProjectMembersPropertiesMembersItemProperties']] = None):
-        if members is not None:
-            pulumi.set(__self__, "members", members)
-
-    @property
-    @pulumi.getter
-    def members(self) -> Optional[Sequence['outputs.ListProjectMembersPropertiesMembersItemProperties']]:
-        return pulumi.get(self, "members")
 
 
 @pulumi.output_type
@@ -290,32 +236,6 @@ class ListProjectMembersPropertiesMembersItemPropertiesRoleProperties(dict):
 
 
 @pulumi.output_type
-class ListProjectRolesPermissionsProperties(dict):
-    def __init__(__self__, *,
-                 permissions: Optional[Sequence[str]] = None):
-        if permissions is not None:
-            pulumi.set(__self__, "permissions", permissions)
-
-    @property
-    @pulumi.getter
-    def permissions(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "permissions")
-
-
-@pulumi.output_type
-class ListProjectRolesProperties(dict):
-    def __init__(__self__, *,
-                 roles: Optional[Sequence['outputs.ListProjectRolesPropertiesRolesItemProperties']] = None):
-        if roles is not None:
-            pulumi.set(__self__, "roles", roles)
-
-    @property
-    @pulumi.getter
-    def roles(self) -> Optional[Sequence['outputs.ListProjectRolesPropertiesRolesItemProperties']]:
-        return pulumi.get(self, "roles")
-
-
-@pulumi.output_type
 class ListProjectRolesPropertiesRolesItemProperties(dict):
     def __init__(__self__, *,
                  created_at: Optional[str] = None,
@@ -360,29 +280,6 @@ class ListProjectRolesPropertiesRolesItemProperties(dict):
     @pulumi.getter
     def permissions(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "permissions")
-
-
-@pulumi.output_type
-class ListProjectsProperties(dict):
-    def __init__(__self__, *,
-                 page: Optional[int] = None,
-                 projects: Optional[Sequence['outputs.ListProjectsPropertiesProjectsItemProperties']] = None):
-        if page is None:
-            page = 0
-        if page is not None:
-            pulumi.set(__self__, "page", page)
-        if projects is not None:
-            pulumi.set(__self__, "projects", projects)
-
-    @property
-    @pulumi.getter
-    def page(self) -> Optional[int]:
-        return pulumi.get(self, "page")
-
-    @property
-    @pulumi.getter
-    def projects(self) -> Optional[Sequence['outputs.ListProjectsPropertiesProjectsItemProperties']]:
-        return pulumi.get(self, "projects")
 
 
 @pulumi.output_type

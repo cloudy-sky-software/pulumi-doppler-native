@@ -4,56 +4,62 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'ListServiceAccountsResult',
-    'AwaitableListServiceAccountsResult',
+    'ListServiceAccountsProperties',
+    'AwaitableListServiceAccountsProperties',
     'list_service_accounts',
     'list_service_accounts_output',
 ]
 
 @pulumi.output_type
-class ListServiceAccountsResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class ListServiceAccountsProperties:
+    def __init__(__self__, service_accounts=None):
+        if service_accounts and not isinstance(service_accounts, list):
+            raise TypeError("Expected argument 'service_accounts' to be a list")
+        pulumi.set(__self__, "service_accounts", service_accounts)
 
     @property
-    @pulumi.getter
-    def items(self) -> 'outputs.ListServiceAccountsProperties':
-        return pulumi.get(self, "items")
+    @pulumi.getter(name="serviceAccounts")
+    def service_accounts(self) -> Optional[Sequence['outputs.ListServiceAccountsPropertiesServiceAccountsItemProperties']]:
+        return pulumi.get(self, "service_accounts")
 
 
-class AwaitableListServiceAccountsResult(ListServiceAccountsResult):
+class AwaitableListServiceAccountsProperties(ListServiceAccountsProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListServiceAccountsResult(
-            items=self.items)
+        return ListServiceAccountsProperties(
+            service_accounts=self.service_accounts)
 
 
-def list_service_accounts(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListServiceAccountsResult:
+def list_service_accounts(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListServiceAccountsProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:listServiceAccounts', __args__, opts=opts, typ=ListServiceAccountsResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:listServiceAccounts', __args__, opts=opts, typ=ListServiceAccountsProperties).value
 
-    return AwaitableListServiceAccountsResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_service_accounts)
-def list_service_accounts_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListServiceAccountsResult]:
+    return AwaitableListServiceAccountsProperties(
+        service_accounts=pulumi.get(__ret__, 'service_accounts'))
+def list_service_accounts_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListServiceAccountsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:listServiceAccounts', __args__, opts=opts, typ=ListServiceAccountsProperties)
+    return __ret__.apply(lambda __response__: ListServiceAccountsProperties(
+        service_accounts=pulumi.get(__response__, 'service_accounts')))

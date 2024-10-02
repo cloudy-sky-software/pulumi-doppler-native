@@ -25,19 +25,25 @@ type ListProjectRolesArgs struct {
 }
 
 type ListProjectRolesResult struct {
-	Items ListProjectRolesProperties `pulumi:"items"`
+	Roles []ListProjectRolesPropertiesRolesItemProperties `pulumi:"roles"`
 }
 
 func ListProjectRolesOutput(ctx *pulumi.Context, args ListProjectRolesOutputArgs, opts ...pulumi.InvokeOption) ListProjectRolesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListProjectRolesResult, error) {
+		ApplyT(func(v interface{}) (ListProjectRolesResultOutput, error) {
 			args := v.(ListProjectRolesArgs)
-			r, err := ListProjectRoles(ctx, &args, opts...)
-			var s ListProjectRolesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListProjectRolesResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:projects/v3:listProjectRoles", args, &rv, "", opts...)
+			if err != nil {
+				return ListProjectRolesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListProjectRolesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListProjectRolesResultOutput), nil
+			}
+			return output, nil
 		}).(ListProjectRolesResultOutput)
 }
 
@@ -62,8 +68,8 @@ func (o ListProjectRolesResultOutput) ToListProjectRolesResultOutputWithContext(
 	return o
 }
 
-func (o ListProjectRolesResultOutput) Items() ListProjectRolesPropertiesOutput {
-	return o.ApplyT(func(v ListProjectRolesResult) ListProjectRolesProperties { return v.Items }).(ListProjectRolesPropertiesOutput)
+func (o ListProjectRolesResultOutput) Roles() ListProjectRolesPropertiesRolesItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListProjectRolesResult) []ListProjectRolesPropertiesRolesItemProperties { return v.Roles }).(ListProjectRolesPropertiesRolesItemPropertiesArrayOutput)
 }
 
 func init() {

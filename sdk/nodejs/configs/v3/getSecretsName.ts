@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function getSecretsName(args?: GetSecretsNameArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretsNameResult> {
+export function getSecretsName(args?: GetSecretsNameArgs, opts?: pulumi.InvokeOptions): Promise<outputs.configs.v3.GetSecretsNameProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:configs/v3:getSecretsName", {
     }, opts);
@@ -17,10 +16,9 @@ export function getSecretsName(args?: GetSecretsNameArgs, opts?: pulumi.InvokeOp
 
 export interface GetSecretsNameArgs {
 }
+export function getSecretsNameOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.configs.v3.GetSecretsNameProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:configs/v3:getSecretsName", {
+    }, opts);
+}
 
-export interface GetSecretsNameResult {
-    readonly items: outputs.configs.v3.GetSecretsNameProperties;
-}
-export function getSecretsNameOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretsNameResult> {
-    return pulumi.output(getSecretsName(opts))
-}

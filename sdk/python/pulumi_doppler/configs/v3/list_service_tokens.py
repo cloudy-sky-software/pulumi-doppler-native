@@ -4,56 +4,62 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'ListServiceTokensResult',
-    'AwaitableListServiceTokensResult',
+    'ListServiceTokensProperties',
+    'AwaitableListServiceTokensProperties',
     'list_service_tokens',
     'list_service_tokens_output',
 ]
 
 @pulumi.output_type
-class ListServiceTokensResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class ListServiceTokensProperties:
+    def __init__(__self__, tokens=None):
+        if tokens and not isinstance(tokens, list):
+            raise TypeError("Expected argument 'tokens' to be a list")
+        pulumi.set(__self__, "tokens", tokens)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.ListServiceTokensProperties':
-        return pulumi.get(self, "items")
+    def tokens(self) -> Optional[Sequence['outputs.ListServiceTokensPropertiesTokensItemProperties']]:
+        return pulumi.get(self, "tokens")
 
 
-class AwaitableListServiceTokensResult(ListServiceTokensResult):
+class AwaitableListServiceTokensProperties(ListServiceTokensProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListServiceTokensResult(
-            items=self.items)
+        return ListServiceTokensProperties(
+            tokens=self.tokens)
 
 
-def list_service_tokens(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListServiceTokensResult:
+def list_service_tokens(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListServiceTokensProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:configs/v3:listServiceTokens', __args__, opts=opts, typ=ListServiceTokensResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:configs/v3:listServiceTokens', __args__, opts=opts, typ=ListServiceTokensProperties).value
 
-    return AwaitableListServiceTokensResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_service_tokens)
-def list_service_tokens_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListServiceTokensResult]:
+    return AwaitableListServiceTokensProperties(
+        tokens=pulumi.get(__ret__, 'tokens'))
+def list_service_tokens_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListServiceTokensProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:configs/v3:listServiceTokens', __args__, opts=opts, typ=ListServiceTokensProperties)
+    return __ret__.apply(lambda __response__: ListServiceTokensProperties(
+        tokens=pulumi.get(__response__, 'tokens')))

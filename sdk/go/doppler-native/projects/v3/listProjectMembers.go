@@ -25,19 +25,25 @@ type ListProjectMembersArgs struct {
 }
 
 type ListProjectMembersResult struct {
-	Items ListProjectMembersProperties `pulumi:"items"`
+	Members []ListProjectMembersPropertiesMembersItemProperties `pulumi:"members"`
 }
 
 func ListProjectMembersOutput(ctx *pulumi.Context, args ListProjectMembersOutputArgs, opts ...pulumi.InvokeOption) ListProjectMembersResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListProjectMembersResult, error) {
+		ApplyT(func(v interface{}) (ListProjectMembersResultOutput, error) {
 			args := v.(ListProjectMembersArgs)
-			r, err := ListProjectMembers(ctx, &args, opts...)
-			var s ListProjectMembersResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListProjectMembersResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:projects/v3:listProjectMembers", args, &rv, "", opts...)
+			if err != nil {
+				return ListProjectMembersResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListProjectMembersResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListProjectMembersResultOutput), nil
+			}
+			return output, nil
 		}).(ListProjectMembersResultOutput)
 }
 
@@ -62,8 +68,8 @@ func (o ListProjectMembersResultOutput) ToListProjectMembersResultOutputWithCont
 	return o
 }
 
-func (o ListProjectMembersResultOutput) Items() ListProjectMembersPropertiesOutput {
-	return o.ApplyT(func(v ListProjectMembersResult) ListProjectMembersProperties { return v.Items }).(ListProjectMembersPropertiesOutput)
+func (o ListProjectMembersResultOutput) Members() ListProjectMembersPropertiesMembersItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListProjectMembersResult) []ListProjectMembersPropertiesMembersItemProperties { return v.Members }).(ListProjectMembersPropertiesMembersItemPropertiesArrayOutput)
 }
 
 func init() {

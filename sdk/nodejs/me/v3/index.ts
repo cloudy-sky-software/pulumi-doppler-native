@@ -4,7 +4,7 @@
 import * as utilities from "../../utilities";
 
 // Export members:
-export { GetAuthMeArgs, GetAuthMeResult } from "./getAuthMe";
+export { GetAuthMeArgs } from "./getAuthMe";
 export const getAuthMe: typeof import("./getAuthMe").getAuthMe = null as any;
 export const getAuthMeOutput: typeof import("./getAuthMe").getAuthMeOutput = null as any;
 utilities.lazyLoad(exports, ["getAuthMe","getAuthMeOutput"], () => require("./getAuthMe"));

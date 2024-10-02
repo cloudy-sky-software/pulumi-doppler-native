@@ -25,7 +25,8 @@ type ListProjectsArgs struct {
 }
 
 type ListProjectsResult struct {
-	Items ListProjectsProperties `pulumi:"items"`
+	Page     *int                                           `pulumi:"page"`
+	Projects []ListProjectsPropertiesProjectsItemProperties `pulumi:"projects"`
 }
 
 // Defaults sets the appropriate defaults for ListProjectsResult
@@ -34,21 +35,29 @@ func (val *ListProjectsResult) Defaults() *ListProjectsResult {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
-
+	if tmp.Page == nil {
+		page_ := 0
+		tmp.Page = &page_
+	}
 	return &tmp
 }
 
 func ListProjectsOutput(ctx *pulumi.Context, args ListProjectsOutputArgs, opts ...pulumi.InvokeOption) ListProjectsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListProjectsResult, error) {
+		ApplyT(func(v interface{}) (ListProjectsResultOutput, error) {
 			args := v.(ListProjectsArgs)
-			r, err := ListProjects(ctx, &args, opts...)
-			var s ListProjectsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListProjectsResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:projects/v3:listProjects", args, &rv, "", opts...)
+			if err != nil {
+				return ListProjectsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListProjectsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListProjectsResultOutput), nil
+			}
+			return output, nil
 		}).(ListProjectsResultOutput)
 }
 
@@ -73,8 +82,12 @@ func (o ListProjectsResultOutput) ToListProjectsResultOutputWithContext(ctx cont
 	return o
 }
 
-func (o ListProjectsResultOutput) Items() ListProjectsPropertiesOutput {
-	return o.ApplyT(func(v ListProjectsResult) ListProjectsProperties { return v.Items }).(ListProjectsPropertiesOutput)
+func (o ListProjectsResultOutput) Page() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListProjectsResult) *int { return v.Page }).(pulumi.IntPtrOutput)
+}
+
+func (o ListProjectsResultOutput) Projects() ListProjectsPropertiesProjectsItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListProjectsResult) []ListProjectsPropertiesProjectsItemProperties { return v.Projects }).(ListProjectsPropertiesProjectsItemPropertiesArrayOutput)
 }
 
 func init() {

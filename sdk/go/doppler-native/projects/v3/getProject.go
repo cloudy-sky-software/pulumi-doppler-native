@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetProject(ctx *pulumi.Context, args *GetProjectArgs, opts ...pulumi.InvokeOption) (*GetProjectResult, error) {
+func LookupProject(ctx *pulumi.Context, args *LookupProjectArgs, opts ...pulumi.InvokeOption) (*LookupProjectResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetProjectResult
+	var rv LookupProjectResult
 	err := ctx.Invoke("doppler-native:projects/v3:getProject", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,51 +21,57 @@ func GetProject(ctx *pulumi.Context, args *GetProjectArgs, opts ...pulumi.Invoke
 	return &rv, nil
 }
 
-type GetProjectArgs struct {
+type LookupProjectArgs struct {
 }
 
-type GetProjectResult struct {
-	Items GetProjectProperties `pulumi:"items"`
+type LookupProjectResult struct {
+	Project *GetProjectPropertiesProjectProperties `pulumi:"project"`
 }
 
-func GetProjectOutput(ctx *pulumi.Context, args GetProjectOutputArgs, opts ...pulumi.InvokeOption) GetProjectResultOutput {
+func LookupProjectOutput(ctx *pulumi.Context, args LookupProjectOutputArgs, opts ...pulumi.InvokeOption) LookupProjectResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetProjectResult, error) {
-			args := v.(GetProjectArgs)
-			r, err := GetProject(ctx, &args, opts...)
-			var s GetProjectResult
-			if r != nil {
-				s = *r
+		ApplyT(func(v interface{}) (LookupProjectResultOutput, error) {
+			args := v.(LookupProjectArgs)
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupProjectResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:projects/v3:getProject", args, &rv, "", opts...)
+			if err != nil {
+				return LookupProjectResultOutput{}, err
 			}
-			return s, err
-		}).(GetProjectResultOutput)
+
+			output := pulumi.ToOutput(rv).(LookupProjectResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupProjectResultOutput), nil
+			}
+			return output, nil
+		}).(LookupProjectResultOutput)
 }
 
-type GetProjectOutputArgs struct {
+type LookupProjectOutputArgs struct {
 }
 
-func (GetProjectOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProjectArgs)(nil)).Elem()
+func (LookupProjectOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupProjectArgs)(nil)).Elem()
 }
 
-type GetProjectResultOutput struct{ *pulumi.OutputState }
+type LookupProjectResultOutput struct{ *pulumi.OutputState }
 
-func (GetProjectResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProjectResult)(nil)).Elem()
+func (LookupProjectResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupProjectResult)(nil)).Elem()
 }
 
-func (o GetProjectResultOutput) ToGetProjectResultOutput() GetProjectResultOutput {
+func (o LookupProjectResultOutput) ToLookupProjectResultOutput() LookupProjectResultOutput {
 	return o
 }
 
-func (o GetProjectResultOutput) ToGetProjectResultOutputWithContext(ctx context.Context) GetProjectResultOutput {
+func (o LookupProjectResultOutput) ToLookupProjectResultOutputWithContext(ctx context.Context) LookupProjectResultOutput {
 	return o
 }
 
-func (o GetProjectResultOutput) Items() GetProjectPropertiesOutput {
-	return o.ApplyT(func(v GetProjectResult) GetProjectProperties { return v.Items }).(GetProjectPropertiesOutput)
+func (o LookupProjectResultOutput) Project() GetProjectPropertiesProjectPropertiesPtrOutput {
+	return o.ApplyT(func(v LookupProjectResult) *GetProjectPropertiesProjectProperties { return v.Project }).(GetProjectPropertiesProjectPropertiesPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetProjectResultOutput{})
+	pulumi.RegisterOutputType(LookupProjectResultOutput{})
 }

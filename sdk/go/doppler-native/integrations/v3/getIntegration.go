@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetIntegration(ctx *pulumi.Context, args *GetIntegrationArgs, opts ...pulumi.InvokeOption) (*GetIntegrationResult, error) {
+func LookupIntegration(ctx *pulumi.Context, args *LookupIntegrationArgs, opts ...pulumi.InvokeOption) (*LookupIntegrationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetIntegrationResult
+	var rv LookupIntegrationResult
 	err := ctx.Invoke("doppler-native:integrations/v3:getIntegration", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,51 +21,57 @@ func GetIntegration(ctx *pulumi.Context, args *GetIntegrationArgs, opts ...pulum
 	return &rv, nil
 }
 
-type GetIntegrationArgs struct {
+type LookupIntegrationArgs struct {
 }
 
-type GetIntegrationResult struct {
-	Items GetIntegrationProperties `pulumi:"items"`
+type LookupIntegrationResult struct {
+	Integration *GetIntegrationPropertiesIntegrationProperties `pulumi:"integration"`
 }
 
-func GetIntegrationOutput(ctx *pulumi.Context, args GetIntegrationOutputArgs, opts ...pulumi.InvokeOption) GetIntegrationResultOutput {
+func LookupIntegrationOutput(ctx *pulumi.Context, args LookupIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupIntegrationResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetIntegrationResult, error) {
-			args := v.(GetIntegrationArgs)
-			r, err := GetIntegration(ctx, &args, opts...)
-			var s GetIntegrationResult
-			if r != nil {
-				s = *r
+		ApplyT(func(v interface{}) (LookupIntegrationResultOutput, error) {
+			args := v.(LookupIntegrationArgs)
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupIntegrationResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:integrations/v3:getIntegration", args, &rv, "", opts...)
+			if err != nil {
+				return LookupIntegrationResultOutput{}, err
 			}
-			return s, err
-		}).(GetIntegrationResultOutput)
+
+			output := pulumi.ToOutput(rv).(LookupIntegrationResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupIntegrationResultOutput), nil
+			}
+			return output, nil
+		}).(LookupIntegrationResultOutput)
 }
 
-type GetIntegrationOutputArgs struct {
+type LookupIntegrationOutputArgs struct {
 }
 
-func (GetIntegrationOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetIntegrationArgs)(nil)).Elem()
+func (LookupIntegrationOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupIntegrationArgs)(nil)).Elem()
 }
 
-type GetIntegrationResultOutput struct{ *pulumi.OutputState }
+type LookupIntegrationResultOutput struct{ *pulumi.OutputState }
 
-func (GetIntegrationResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetIntegrationResult)(nil)).Elem()
+func (LookupIntegrationResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupIntegrationResult)(nil)).Elem()
 }
 
-func (o GetIntegrationResultOutput) ToGetIntegrationResultOutput() GetIntegrationResultOutput {
+func (o LookupIntegrationResultOutput) ToLookupIntegrationResultOutput() LookupIntegrationResultOutput {
 	return o
 }
 
-func (o GetIntegrationResultOutput) ToGetIntegrationResultOutputWithContext(ctx context.Context) GetIntegrationResultOutput {
+func (o LookupIntegrationResultOutput) ToLookupIntegrationResultOutputWithContext(ctx context.Context) LookupIntegrationResultOutput {
 	return o
 }
 
-func (o GetIntegrationResultOutput) Items() GetIntegrationPropertiesOutput {
-	return o.ApplyT(func(v GetIntegrationResult) GetIntegrationProperties { return v.Items }).(GetIntegrationPropertiesOutput)
+func (o LookupIntegrationResultOutput) Integration() GetIntegrationPropertiesIntegrationPropertiesPtrOutput {
+	return o.ApplyT(func(v LookupIntegrationResult) *GetIntegrationPropertiesIntegrationProperties { return v.Integration }).(GetIntegrationPropertiesIntegrationPropertiesPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetIntegrationResultOutput{})
+	pulumi.RegisterOutputType(LookupIntegrationResultOutput{})
 }

@@ -4,56 +4,128 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'GetAuthMeResult',
-    'AwaitableGetAuthMeResult',
+    'GetAuthMeProperties',
+    'AwaitableGetAuthMeProperties',
     'get_auth_me',
     'get_auth_me_output',
 ]
 
 @pulumi.output_type
-class GetAuthMeResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetAuthMeProperties:
+    def __init__(__self__, created_at=None, last_seen_at=None, name=None, slug=None, token_preview=None, type=None, workplace=None):
+        if created_at and not isinstance(created_at, str):
+            raise TypeError("Expected argument 'created_at' to be a str")
+        pulumi.set(__self__, "created_at", created_at)
+        if last_seen_at and not isinstance(last_seen_at, str):
+            raise TypeError("Expected argument 'last_seen_at' to be a str")
+        pulumi.set(__self__, "last_seen_at", last_seen_at)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if slug and not isinstance(slug, str):
+            raise TypeError("Expected argument 'slug' to be a str")
+        pulumi.set(__self__, "slug", slug)
+        if token_preview and not isinstance(token_preview, str):
+            raise TypeError("Expected argument 'token_preview' to be a str")
+        pulumi.set(__self__, "token_preview", token_preview)
+        if type and not isinstance(type, str):
+            raise TypeError("Expected argument 'type' to be a str")
+        pulumi.set(__self__, "type", type)
+        if workplace and not isinstance(workplace, dict):
+            raise TypeError("Expected argument 'workplace' to be a dict")
+        pulumi.set(__self__, "workplace", workplace)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="lastSeenAt")
+    def last_seen_at(self) -> Optional[str]:
+        return pulumi.get(self, "last_seen_at")
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.GetAuthMeProperties':
-        return pulumi.get(self, "items")
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def slug(self) -> Optional[str]:
+        return pulumi.get(self, "slug")
+
+    @property
+    @pulumi.getter(name="tokenPreview")
+    def token_preview(self) -> Optional[str]:
+        return pulumi.get(self, "token_preview")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def workplace(self) -> Optional['outputs.GetAuthMePropertiesWorkplaceProperties']:
+        return pulumi.get(self, "workplace")
 
 
-class AwaitableGetAuthMeResult(GetAuthMeResult):
+class AwaitableGetAuthMeProperties(GetAuthMeProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetAuthMeResult(
-            items=self.items)
+        return GetAuthMeProperties(
+            created_at=self.created_at,
+            last_seen_at=self.last_seen_at,
+            name=self.name,
+            slug=self.slug,
+            token_preview=self.token_preview,
+            type=self.type,
+            workplace=self.workplace)
 
 
-def get_auth_me(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthMeResult:
+def get_auth_me(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthMeProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:me/v3:getAuthMe', __args__, opts=opts, typ=GetAuthMeResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:me/v3:getAuthMe', __args__, opts=opts, typ=GetAuthMeProperties).value
 
-    return AwaitableGetAuthMeResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(get_auth_me)
-def get_auth_me_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthMeResult]:
+    return AwaitableGetAuthMeProperties(
+        created_at=pulumi.get(__ret__, 'created_at'),
+        last_seen_at=pulumi.get(__ret__, 'last_seen_at'),
+        name=pulumi.get(__ret__, 'name'),
+        slug=pulumi.get(__ret__, 'slug'),
+        token_preview=pulumi.get(__ret__, 'token_preview'),
+        type=pulumi.get(__ret__, 'type'),
+        workplace=pulumi.get(__ret__, 'workplace'))
+def get_auth_me_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthMeProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:me/v3:getAuthMe', __args__, opts=opts, typ=GetAuthMeProperties)
+    return __ret__.apply(lambda __response__: GetAuthMeProperties(
+        created_at=pulumi.get(__response__, 'created_at'),
+        last_seen_at=pulumi.get(__response__, 'last_seen_at'),
+        name=pulumi.get(__response__, 'name'),
+        slug=pulumi.get(__response__, 'slug'),
+        token_preview=pulumi.get(__response__, 'token_preview'),
+        type=pulumi.get(__response__, 'type'),
+        workplace=pulumi.get(__response__, 'workplace')))

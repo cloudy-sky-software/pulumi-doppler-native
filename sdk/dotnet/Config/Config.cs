@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Pulumi.DopplerNative
+namespace CloudySkySoftware.Pulumi.DopplerNative
 {
     public static class Config
     {

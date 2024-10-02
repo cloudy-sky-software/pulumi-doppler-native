@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetWorkplaceRole(ctx *pulumi.Context, args *GetWorkplaceRoleArgs, opts ...pulumi.InvokeOption) (*GetWorkplaceRoleResult, error) {
+func LookupWorkplaceRole(ctx *pulumi.Context, args *LookupWorkplaceRoleArgs, opts ...pulumi.InvokeOption) (*LookupWorkplaceRoleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetWorkplaceRoleResult
+	var rv LookupWorkplaceRoleResult
 	err := ctx.Invoke("doppler-native:workplace/v3:getWorkplaceRole", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,66 +21,72 @@ func GetWorkplaceRole(ctx *pulumi.Context, args *GetWorkplaceRoleArgs, opts ...p
 	return rv.Defaults(), nil
 }
 
-type GetWorkplaceRoleArgs struct {
+type LookupWorkplaceRoleArgs struct {
 	// The role's unique identifier
 	Role string `pulumi:"role"`
 }
 
-type GetWorkplaceRoleResult struct {
-	Items GetWorkplaceRoleProperties `pulumi:"items"`
+type LookupWorkplaceRoleResult struct {
+	Role *GetWorkplaceRolePropertiesRoleProperties `pulumi:"role"`
 }
 
-// Defaults sets the appropriate defaults for GetWorkplaceRoleResult
-func (val *GetWorkplaceRoleResult) Defaults() *GetWorkplaceRoleResult {
+// Defaults sets the appropriate defaults for LookupWorkplaceRoleResult
+func (val *LookupWorkplaceRoleResult) Defaults() *LookupWorkplaceRoleResult {
 	if val == nil {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
+	tmp.Role = tmp.Role.Defaults()
 
 	return &tmp
 }
 
-func GetWorkplaceRoleOutput(ctx *pulumi.Context, args GetWorkplaceRoleOutputArgs, opts ...pulumi.InvokeOption) GetWorkplaceRoleResultOutput {
+func LookupWorkplaceRoleOutput(ctx *pulumi.Context, args LookupWorkplaceRoleOutputArgs, opts ...pulumi.InvokeOption) LookupWorkplaceRoleResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetWorkplaceRoleResult, error) {
-			args := v.(GetWorkplaceRoleArgs)
-			r, err := GetWorkplaceRole(ctx, &args, opts...)
-			var s GetWorkplaceRoleResult
-			if r != nil {
-				s = *r
+		ApplyT(func(v interface{}) (LookupWorkplaceRoleResultOutput, error) {
+			args := v.(LookupWorkplaceRoleArgs)
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupWorkplaceRoleResult
+			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:getWorkplaceRole", args, &rv, "", opts...)
+			if err != nil {
+				return LookupWorkplaceRoleResultOutput{}, err
 			}
-			return s, err
-		}).(GetWorkplaceRoleResultOutput)
+
+			output := pulumi.ToOutput(rv).(LookupWorkplaceRoleResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupWorkplaceRoleResultOutput), nil
+			}
+			return output, nil
+		}).(LookupWorkplaceRoleResultOutput)
 }
 
-type GetWorkplaceRoleOutputArgs struct {
+type LookupWorkplaceRoleOutputArgs struct {
 	// The role's unique identifier
 	Role pulumi.StringInput `pulumi:"role"`
 }
 
-func (GetWorkplaceRoleOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetWorkplaceRoleArgs)(nil)).Elem()
+func (LookupWorkplaceRoleOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupWorkplaceRoleArgs)(nil)).Elem()
 }
 
-type GetWorkplaceRoleResultOutput struct{ *pulumi.OutputState }
+type LookupWorkplaceRoleResultOutput struct{ *pulumi.OutputState }
 
-func (GetWorkplaceRoleResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetWorkplaceRoleResult)(nil)).Elem()
+func (LookupWorkplaceRoleResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupWorkplaceRoleResult)(nil)).Elem()
 }
 
-func (o GetWorkplaceRoleResultOutput) ToGetWorkplaceRoleResultOutput() GetWorkplaceRoleResultOutput {
+func (o LookupWorkplaceRoleResultOutput) ToLookupWorkplaceRoleResultOutput() LookupWorkplaceRoleResultOutput {
 	return o
 }
 
-func (o GetWorkplaceRoleResultOutput) ToGetWorkplaceRoleResultOutputWithContext(ctx context.Context) GetWorkplaceRoleResultOutput {
+func (o LookupWorkplaceRoleResultOutput) ToLookupWorkplaceRoleResultOutputWithContext(ctx context.Context) LookupWorkplaceRoleResultOutput {
 	return o
 }
 
-func (o GetWorkplaceRoleResultOutput) Items() GetWorkplaceRolePropertiesOutput {
-	return o.ApplyT(func(v GetWorkplaceRoleResult) GetWorkplaceRoleProperties { return v.Items }).(GetWorkplaceRolePropertiesOutput)
+func (o LookupWorkplaceRoleResultOutput) Role() GetWorkplaceRolePropertiesRolePropertiesPtrOutput {
+	return o.ApplyT(func(v LookupWorkplaceRoleResult) *GetWorkplaceRolePropertiesRoleProperties { return v.Role }).(GetWorkplaceRolePropertiesRolePropertiesPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetWorkplaceRoleResultOutput{})
+	pulumi.RegisterOutputType(LookupWorkplaceRoleResultOutput{})
 }

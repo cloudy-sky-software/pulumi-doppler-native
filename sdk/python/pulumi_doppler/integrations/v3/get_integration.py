@@ -4,56 +4,62 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'GetIntegrationResult',
-    'AwaitableGetIntegrationResult',
+    'GetIntegrationProperties',
+    'AwaitableGetIntegrationProperties',
     'get_integration',
     'get_integration_output',
 ]
 
 @pulumi.output_type
-class GetIntegrationResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetIntegrationProperties:
+    def __init__(__self__, integration=None):
+        if integration and not isinstance(integration, dict):
+            raise TypeError("Expected argument 'integration' to be a dict")
+        pulumi.set(__self__, "integration", integration)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.GetIntegrationProperties':
-        return pulumi.get(self, "items")
+    def integration(self) -> Optional['outputs.GetIntegrationPropertiesIntegrationProperties']:
+        return pulumi.get(self, "integration")
 
 
-class AwaitableGetIntegrationResult(GetIntegrationResult):
+class AwaitableGetIntegrationProperties(GetIntegrationProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetIntegrationResult(
-            items=self.items)
+        return GetIntegrationProperties(
+            integration=self.integration)
 
 
-def get_integration(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIntegrationResult:
+def get_integration(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIntegrationProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:integrations/v3:getIntegration', __args__, opts=opts, typ=GetIntegrationResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:integrations/v3:getIntegration', __args__, opts=opts, typ=GetIntegrationProperties).value
 
-    return AwaitableGetIntegrationResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(get_integration)
-def get_integration_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIntegrationResult]:
+    return AwaitableGetIntegrationProperties(
+        integration=pulumi.get(__ret__, 'integration'))
+def get_integration_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIntegrationProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:integrations/v3:getIntegration', __args__, opts=opts, typ=GetIntegrationProperties)
+    return __ret__.apply(lambda __response__: GetIntegrationProperties(
+        integration=pulumi.get(__response__, 'integration')))

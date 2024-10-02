@@ -4,56 +4,62 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'ListGroupsResult',
-    'AwaitableListGroupsResult',
+    'ListGroupsProperties',
+    'AwaitableListGroupsProperties',
     'list_groups',
     'list_groups_output',
 ]
 
 @pulumi.output_type
-class ListGroupsResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class ListGroupsProperties:
+    def __init__(__self__, groups=None):
+        if groups and not isinstance(groups, list):
+            raise TypeError("Expected argument 'groups' to be a list")
+        pulumi.set(__self__, "groups", groups)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.ListGroupsProperties':
-        return pulumi.get(self, "items")
+    def groups(self) -> Optional[Sequence['outputs.ListGroupsPropertiesGroupsItemProperties']]:
+        return pulumi.get(self, "groups")
 
 
-class AwaitableListGroupsResult(ListGroupsResult):
+class AwaitableListGroupsProperties(ListGroupsProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListGroupsResult(
-            items=self.items)
+        return ListGroupsProperties(
+            groups=self.groups)
 
 
-def list_groups(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListGroupsResult:
+def list_groups(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListGroupsProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:listGroups', __args__, opts=opts, typ=ListGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:listGroups', __args__, opts=opts, typ=ListGroupsProperties).value
 
-    return AwaitableListGroupsResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_groups)
-def list_groups_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListGroupsResult]:
+    return AwaitableListGroupsProperties(
+        groups=pulumi.get(__ret__, 'groups'))
+def list_groups_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListGroupsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:listGroups', __args__, opts=opts, typ=ListGroupsProperties)
+    return __ret__.apply(lambda __response__: ListGroupsProperties(
+        groups=pulumi.get(__response__, 'groups')))

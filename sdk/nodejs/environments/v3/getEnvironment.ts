@@ -7,9 +7,8 @@ import * as outputs from "../../types/output";
 import * as enums from "../../types/enums";
 import * as utilities from "../../utilities";
 
-export function getEnvironment(args?: GetEnvironmentArgs, opts?: pulumi.InvokeOptions): Promise<GetEnvironmentResult> {
+export function getEnvironment(args?: GetEnvironmentArgs, opts?: pulumi.InvokeOptions): Promise<outputs.environments.v3.GetEnvironmentProperties> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("doppler-native:environments/v3:getEnvironment", {
     }, opts);
@@ -17,10 +16,9 @@ export function getEnvironment(args?: GetEnvironmentArgs, opts?: pulumi.InvokeOp
 
 export interface GetEnvironmentArgs {
 }
+export function getEnvironmentOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.environments.v3.GetEnvironmentProperties> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("doppler-native:environments/v3:getEnvironment", {
+    }, opts);
+}
 
-export interface GetEnvironmentResult {
-    readonly items: outputs.environments.v3.GetEnvironmentProperties;
-}
-export function getEnvironmentOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetEnvironmentResult> {
-    return pulumi.output(getEnvironment(opts))
-}

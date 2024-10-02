@@ -4,56 +4,62 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'ListInvitesResult',
-    'AwaitableListInvitesResult',
+    'ListInvitesProperties',
+    'AwaitableListInvitesProperties',
     'list_invites',
     'list_invites_output',
 ]
 
 @pulumi.output_type
-class ListInvitesResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class ListInvitesProperties:
+    def __init__(__self__, invites=None):
+        if invites and not isinstance(invites, list):
+            raise TypeError("Expected argument 'invites' to be a list")
+        pulumi.set(__self__, "invites", invites)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.ListInvitesProperties':
-        return pulumi.get(self, "items")
+    def invites(self) -> Optional[Sequence['outputs.ListInvitesPropertiesInvitesItemProperties']]:
+        return pulumi.get(self, "invites")
 
 
-class AwaitableListInvitesResult(ListInvitesResult):
+class AwaitableListInvitesProperties(ListInvitesProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListInvitesResult(
-            items=self.items)
+        return ListInvitesProperties(
+            invites=self.invites)
 
 
-def list_invites(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListInvitesResult:
+def list_invites(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListInvitesProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:listInvites', __args__, opts=opts, typ=ListInvitesResult).value
+    __ret__ = pulumi.runtime.invoke('doppler-native:workplace/v3:listInvites', __args__, opts=opts, typ=ListInvitesProperties).value
 
-    return AwaitableListInvitesResult(
-        items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_invites)
-def list_invites_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListInvitesResult]:
+    return AwaitableListInvitesProperties(
+        invites=pulumi.get(__ret__, 'invites'))
+def list_invites_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListInvitesProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:listInvites', __args__, opts=opts, typ=ListInvitesProperties)
+    return __ret__.apply(lambda __response__: ListInvitesProperties(
+        invites=pulumi.get(__response__, 'invites')))
