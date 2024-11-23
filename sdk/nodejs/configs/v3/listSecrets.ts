@@ -16,7 +16,7 @@ export function listSecrets(args?: ListSecretsArgs, opts?: pulumi.InvokeOptions)
 
 export interface ListSecretsArgs {
 }
-export function listSecretsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.configs.v3.ListSecretsProperties> {
+export function listSecretsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.configs.v3.ListSecretsProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:configs/v3:listSecrets", {
     }, opts);

@@ -16,7 +16,7 @@ export function listInvites(args?: ListInvitesArgs, opts?: pulumi.InvokeOptions)
 
 export interface ListInvitesArgs {
 }
-export function listInvitesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.ListInvitesProperties> {
+export function listInvitesOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.workplace.v3.ListInvitesProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:listInvites", {
     }, opts);

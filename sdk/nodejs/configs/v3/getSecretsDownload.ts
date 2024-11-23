@@ -16,7 +16,7 @@ export function getSecretsDownload(args?: GetSecretsDownloadArgs, opts?: pulumi.
 
 export interface GetSecretsDownloadArgs {
 }
-export function getSecretsDownloadOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.configs.v3.GetSecretsDownloadProperties> {
+export function getSecretsDownloadOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.configs.v3.GetSecretsDownloadProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:configs/v3:getSecretsDownload", {
     }, opts);

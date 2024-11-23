@@ -16,7 +16,7 @@ export function listServiceTokens(args?: ListServiceTokensArgs, opts?: pulumi.In
 
 export interface ListServiceTokensArgs {
 }
-export function listServiceTokensOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.configs.v3.ListServiceTokensProperties> {
+export function listServiceTokensOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.configs.v3.ListServiceTokensProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:configs/v3:listServiceTokens", {
     }, opts);

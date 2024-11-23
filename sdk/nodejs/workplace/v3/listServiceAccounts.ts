@@ -16,7 +16,7 @@ export function listServiceAccounts(args?: ListServiceAccountsArgs, opts?: pulum
 
 export interface ListServiceAccountsArgs {
 }
-export function listServiceAccountsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.ListServiceAccountsProperties> {
+export function listServiceAccountsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.workplace.v3.ListServiceAccountsProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:listServiceAccounts", {
     }, opts);

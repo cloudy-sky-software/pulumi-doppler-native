@@ -16,7 +16,7 @@ export function listConfigsTrustedIps(args?: ListConfigsTrustedIpsArgs, opts?: p
 
 export interface ListConfigsTrustedIpsArgs {
 }
-export function listConfigsTrustedIpsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.configs.v3.ListConfigsTrustedIpsProperties> {
+export function listConfigsTrustedIpsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.configs.v3.ListConfigsTrustedIpsProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:configs/v3:listConfigsTrustedIps", {
     }, opts);

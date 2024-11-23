@@ -69,7 +69,7 @@ def get_audit_user(workplace_user_id: Optional[str] = None,
         success=pulumi.get(__ret__, 'success'),
         workplace_user=pulumi.get(__ret__, 'workplace_user'))
 def get_audit_user_output(workplace_user_id: Optional[pulumi.Input[str]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuditUserProperties]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAuditUserProperties]:
     """
     Use this data source to access information about an existing resource.
 
@@ -77,7 +77,7 @@ def get_audit_user_output(workplace_user_id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['workplaceUserId'] = workplace_user_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:getAuditUser', __args__, opts=opts, typ=GetAuditUserProperties)
     return __ret__.apply(lambda __response__: GetAuditUserProperties(
         success=pulumi.get(__response__, 'success'),

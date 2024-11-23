@@ -54,12 +54,12 @@ def get_sync(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSyncPro
 
     return AwaitableGetSyncProperties(
         sync=pulumi.get(__ret__, 'sync'))
-def get_sync_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSyncProperties]:
+def get_sync_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSyncProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:configs/v3:getSync', __args__, opts=opts, typ=GetSyncProperties)
     return __ret__.apply(lambda __response__: GetSyncProperties(
         sync=pulumi.get(__response__, 'sync')))

@@ -20,7 +20,7 @@ export interface GetProjectRoleArgs {
      */
     role: string;
 }
-export function getProjectRoleOutput(args: GetProjectRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.projects.v3.GetProjectRoleProperties> {
+export function getProjectRoleOutput(args: GetProjectRoleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.projects.v3.GetProjectRoleProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:projects/v3:getProjectRole", {
         "role": args.role,

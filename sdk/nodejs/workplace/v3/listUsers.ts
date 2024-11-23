@@ -16,7 +16,7 @@ export function listUsers(args?: ListUsersArgs, opts?: pulumi.InvokeOptions): Pr
 
 export interface ListUsersArgs {
 }
-export function listUsersOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.ListUsersProperties> {
+export function listUsersOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.workplace.v3.ListUsersProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:listUsers", {
     }, opts);

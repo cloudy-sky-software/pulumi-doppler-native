@@ -20,7 +20,7 @@ export interface GetAuditUserArgs {
      */
     workplaceUserId: string;
 }
-export function getAuditUserOutput(args: GetAuditUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.GetAuditUserProperties> {
+export function getAuditUserOutput(args: GetAuditUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.workplace.v3.GetAuditUserProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:getAuditUser", {
         "workplaceUserId": args.workplaceUserId,

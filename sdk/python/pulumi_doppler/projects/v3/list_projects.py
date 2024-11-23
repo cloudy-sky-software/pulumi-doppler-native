@@ -64,12 +64,12 @@ def list_projects(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListP
     return AwaitableListProjectsProperties(
         page=pulumi.get(__ret__, 'page'),
         projects=pulumi.get(__ret__, 'projects'))
-def list_projects_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListProjectsProperties]:
+def list_projects_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListProjectsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:projects/v3:listProjects', __args__, opts=opts, typ=ListProjectsProperties)
     return __ret__.apply(lambda __response__: ListProjectsProperties(
         page=pulumi.get(__response__, 'page'),

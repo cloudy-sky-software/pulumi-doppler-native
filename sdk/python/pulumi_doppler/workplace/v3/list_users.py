@@ -74,12 +74,12 @@ def list_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListUser
         page=pulumi.get(__ret__, 'page'),
         success=pulumi.get(__ret__, 'success'),
         workplace_users=pulumi.get(__ret__, 'workplace_users'))
-def list_users_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListUsersProperties]:
+def list_users_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListUsersProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:listUsers', __args__, opts=opts, typ=ListUsersProperties)
     return __ret__.apply(lambda __response__: ListUsersProperties(
         page=pulumi.get(__response__, 'page'),

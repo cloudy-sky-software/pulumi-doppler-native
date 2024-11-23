@@ -53,12 +53,12 @@ def list_workplace_roles_permissions(opts: Optional[pulumi.InvokeOptions] = None
 
     return AwaitableListWorkplaceRolesPermissionsProperties(
         permissions=pulumi.get(__ret__, 'permissions'))
-def list_workplace_roles_permissions_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListWorkplaceRolesPermissionsProperties]:
+def list_workplace_roles_permissions_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListWorkplaceRolesPermissionsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:listWorkplaceRolesPermissions', __args__, opts=opts, typ=ListWorkplaceRolesPermissionsProperties)
     return __ret__.apply(lambda __response__: ListWorkplaceRolesPermissionsProperties(
         permissions=pulumi.get(__response__, 'permissions')))

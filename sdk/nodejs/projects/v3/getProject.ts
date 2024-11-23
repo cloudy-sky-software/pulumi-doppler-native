@@ -16,7 +16,7 @@ export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): 
 
 export interface GetProjectArgs {
 }
-export function getProjectOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.projects.v3.GetProjectProperties> {
+export function getProjectOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.projects.v3.GetProjectProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:projects/v3:getProject", {
     }, opts);

@@ -54,12 +54,12 @@ def list_workplace_roles(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitab
 
     return AwaitableListWorkplaceRolesProperties(
         roles=pulumi.get(__ret__, 'roles'))
-def list_workplace_roles_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListWorkplaceRolesProperties]:
+def list_workplace_roles_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListWorkplaceRolesProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:listWorkplaceRoles', __args__, opts=opts, typ=ListWorkplaceRolesProperties)
     return __ret__.apply(lambda __response__: ListWorkplaceRolesProperties(
         roles=pulumi.get(__response__, 'roles')))

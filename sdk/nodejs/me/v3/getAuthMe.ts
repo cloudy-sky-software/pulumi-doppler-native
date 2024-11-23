@@ -16,7 +16,7 @@ export function getAuthMe(args?: GetAuthMeArgs, opts?: pulumi.InvokeOptions): Pr
 
 export interface GetAuthMeArgs {
 }
-export function getAuthMeOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.me.v3.GetAuthMeProperties> {
+export function getAuthMeOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.me.v3.GetAuthMeProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:me/v3:getAuthMe", {
     }, opts);

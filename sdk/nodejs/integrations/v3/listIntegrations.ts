@@ -16,7 +16,7 @@ export function listIntegrations(args?: ListIntegrationsArgs, opts?: pulumi.Invo
 
 export interface ListIntegrationsArgs {
 }
-export function listIntegrationsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.integrations.v3.ListIntegrationsProperties> {
+export function listIntegrationsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.integrations.v3.ListIntegrationsProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:integrations/v3:listIntegrations", {
     }, opts);

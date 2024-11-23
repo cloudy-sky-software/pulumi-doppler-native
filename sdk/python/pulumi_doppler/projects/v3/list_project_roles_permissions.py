@@ -53,12 +53,12 @@ def list_project_roles_permissions(opts: Optional[pulumi.InvokeOptions] = None) 
 
     return AwaitableListProjectRolesPermissionsProperties(
         permissions=pulumi.get(__ret__, 'permissions'))
-def list_project_roles_permissions_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListProjectRolesPermissionsProperties]:
+def list_project_roles_permissions_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListProjectRolesPermissionsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:projects/v3:listProjectRolesPermissions', __args__, opts=opts, typ=ListProjectRolesPermissionsProperties)
     return __ret__.apply(lambda __response__: ListProjectRolesPermissionsProperties(
         permissions=pulumi.get(__response__, 'permissions')))

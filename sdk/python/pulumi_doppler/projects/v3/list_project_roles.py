@@ -54,12 +54,12 @@ def list_project_roles(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitable
 
     return AwaitableListProjectRolesProperties(
         roles=pulumi.get(__ret__, 'roles'))
-def list_project_roles_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListProjectRolesProperties]:
+def list_project_roles_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListProjectRolesProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:projects/v3:listProjectRoles', __args__, opts=opts, typ=ListProjectRolesProperties)
     return __ret__.apply(lambda __response__: ListProjectRolesProperties(
         roles=pulumi.get(__response__, 'roles')))

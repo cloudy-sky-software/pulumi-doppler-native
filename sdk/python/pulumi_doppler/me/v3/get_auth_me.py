@@ -114,12 +114,12 @@ def get_auth_me(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuth
         token_preview=pulumi.get(__ret__, 'token_preview'),
         type=pulumi.get(__ret__, 'type'),
         workplace=pulumi.get(__ret__, 'workplace'))
-def get_auth_me_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthMeProperties]:
+def get_auth_me_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAuthMeProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:me/v3:getAuthMe', __args__, opts=opts, typ=GetAuthMeProperties)
     return __ret__.apply(lambda __response__: GetAuthMeProperties(
         created_at=pulumi.get(__response__, 'created_at'),

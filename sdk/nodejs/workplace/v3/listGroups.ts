@@ -16,7 +16,7 @@ export function listGroups(args?: ListGroupsArgs, opts?: pulumi.InvokeOptions): 
 
 export interface ListGroupsArgs {
 }
-export function listGroupsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.ListGroupsProperties> {
+export function listGroupsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.workplace.v3.ListGroupsProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:listGroups", {
     }, opts);

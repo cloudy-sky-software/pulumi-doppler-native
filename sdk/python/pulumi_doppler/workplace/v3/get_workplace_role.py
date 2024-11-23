@@ -59,7 +59,7 @@ def get_workplace_role(role: Optional[str] = None,
     return AwaitableGetWorkplaceRoleProperties(
         role=pulumi.get(__ret__, 'role'))
 def get_workplace_role_output(role: Optional[pulumi.Input[str]] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWorkplaceRoleProperties]:
+                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWorkplaceRoleProperties]:
     """
     Use this data source to access information about an existing resource.
 
@@ -67,7 +67,7 @@ def get_workplace_role_output(role: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['role'] = role
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:getWorkplaceRole', __args__, opts=opts, typ=GetWorkplaceRoleProperties)
     return __ret__.apply(lambda __response__: GetWorkplaceRoleProperties(
         role=pulumi.get(__response__, 'role')))
