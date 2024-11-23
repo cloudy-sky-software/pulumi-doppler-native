@@ -69,7 +69,7 @@ def list_service_account_tokens(service_account: Optional[str] = None,
         api_tokens=pulumi.get(__ret__, 'api_tokens'),
         success=pulumi.get(__ret__, 'success'))
 def list_service_account_tokens_output(service_account: Optional[pulumi.Input[str]] = None,
-                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListServiceAccountTokensProperties]:
+                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListServiceAccountTokensProperties]:
     """
     Use this data source to access information about an existing resource.
 
@@ -77,7 +77,7 @@ def list_service_account_tokens_output(service_account: Optional[pulumi.Input[st
     """
     __args__ = dict()
     __args__['serviceAccount'] = service_account
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:listServiceAccountTokens', __args__, opts=opts, typ=ListServiceAccountTokensProperties)
     return __ret__.apply(lambda __response__: ListServiceAccountTokensProperties(
         api_tokens=pulumi.get(__response__, 'api_tokens'),

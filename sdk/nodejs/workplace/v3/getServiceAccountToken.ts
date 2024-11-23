@@ -25,7 +25,7 @@ export interface GetServiceAccountTokenArgs {
      */
     serviceAccount: string;
 }
-export function getServiceAccountTokenOutput(args: GetServiceAccountTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.GetServiceAccountTokenProperties> {
+export function getServiceAccountTokenOutput(args: GetServiceAccountTokenOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.workplace.v3.GetServiceAccountTokenProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:getServiceAccountToken", {
         "apiToken": args.apiToken,

@@ -66,7 +66,7 @@ def get_member(group_slug: Optional[str] = None,
 def get_member_output(group_slug: Optional[pulumi.Input[str]] = None,
                       member_slug: Optional[pulumi.Input[str]] = None,
                       member_type: Optional[pulumi.Input[str]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMemberProperties]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMemberProperties]:
     """
     Use this data source to access information about an existing resource.
 
@@ -77,7 +77,7 @@ def get_member_output(group_slug: Optional[pulumi.Input[str]] = None,
     __args__['groupSlug'] = group_slug
     __args__['memberSlug'] = member_slug
     __args__['memberType'] = member_type
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:getMember', __args__, opts=opts, typ=GetMemberProperties)
     return __ret__.apply(lambda __response__: GetMemberProperties(
         group=pulumi.get(__response__, 'group')))

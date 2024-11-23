@@ -54,12 +54,12 @@ def get_integration(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGet
 
     return AwaitableGetIntegrationProperties(
         integration=pulumi.get(__ret__, 'integration'))
-def get_integration_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIntegrationProperties]:
+def get_integration_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIntegrationProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:integrations/v3:getIntegration', __args__, opts=opts, typ=GetIntegrationProperties)
     return __ret__.apply(lambda __response__: GetIntegrationProperties(
         integration=pulumi.get(__response__, 'integration')))

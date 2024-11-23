@@ -59,7 +59,7 @@ def get_service_account(slug: Optional[str] = None,
     return AwaitableGetServiceAccountProperties(
         service_account=pulumi.get(__ret__, 'service_account'))
 def get_service_account_output(slug: Optional[pulumi.Input[str]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceAccountProperties]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceAccountProperties]:
     """
     Use this data source to access information about an existing resource.
 
@@ -67,7 +67,7 @@ def get_service_account_output(slug: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['slug'] = slug
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:getServiceAccount', __args__, opts=opts, typ=GetServiceAccountProperties)
     return __ret__.apply(lambda __response__: GetServiceAccountProperties(
         service_account=pulumi.get(__response__, 'service_account')))

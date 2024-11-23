@@ -16,7 +16,7 @@ export function listConfigLogs(args?: ListConfigLogsArgs, opts?: pulumi.InvokeOp
 
 export interface ListConfigLogsArgs {
 }
-export function listConfigLogsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.configs.v3.ListConfigLogsProperties> {
+export function listConfigLogsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.configs.v3.ListConfigLogsProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:configs/v3:listConfigLogs", {
     }, opts);

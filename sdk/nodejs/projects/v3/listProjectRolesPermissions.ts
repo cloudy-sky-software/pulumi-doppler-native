@@ -16,7 +16,7 @@ export function listProjectRolesPermissions(args?: ListProjectRolesPermissionsAr
 
 export interface ListProjectRolesPermissionsArgs {
 }
-export function listProjectRolesPermissionsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.projects.v3.ListProjectRolesPermissionsProperties> {
+export function listProjectRolesPermissionsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.projects.v3.ListProjectRolesPermissionsProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:projects/v3:listProjectRolesPermissions", {
     }, opts);

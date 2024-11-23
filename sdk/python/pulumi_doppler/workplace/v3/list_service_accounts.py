@@ -54,12 +54,12 @@ def list_service_accounts(opts: Optional[pulumi.InvokeOptions] = None) -> Awaita
 
     return AwaitableListServiceAccountsProperties(
         service_accounts=pulumi.get(__ret__, 'service_accounts'))
-def list_service_accounts_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListServiceAccountsProperties]:
+def list_service_accounts_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListServiceAccountsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:listServiceAccounts', __args__, opts=opts, typ=ListServiceAccountsProperties)
     return __ret__.apply(lambda __response__: ListServiceAccountsProperties(
         service_accounts=pulumi.get(__response__, 'service_accounts')))

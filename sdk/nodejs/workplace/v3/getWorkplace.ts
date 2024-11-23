@@ -16,7 +16,7 @@ export function getWorkplace(args?: GetWorkplaceArgs, opts?: pulumi.InvokeOption
 
 export interface GetWorkplaceArgs {
 }
-export function getWorkplaceOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.GetWorkplaceProperties> {
+export function getWorkplaceOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.workplace.v3.GetWorkplaceProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:getWorkplace", {
     }, opts);

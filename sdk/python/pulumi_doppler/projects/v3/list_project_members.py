@@ -54,12 +54,12 @@ def list_project_members(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitab
 
     return AwaitableListProjectMembersProperties(
         members=pulumi.get(__ret__, 'members'))
-def list_project_members_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListProjectMembersProperties]:
+def list_project_members_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListProjectMembersProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:projects/v3:listProjectMembers', __args__, opts=opts, typ=ListProjectMembersProperties)
     return __ret__.apply(lambda __response__: ListProjectMembersProperties(
         members=pulumi.get(__response__, 'members')))

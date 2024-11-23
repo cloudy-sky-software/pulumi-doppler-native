@@ -83,12 +83,12 @@ def get_secrets_download(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitab
         database=pulumi.get(__ret__, 'database'),
         stripe=pulumi.get(__ret__, 'stripe'),
         user=pulumi.get(__ret__, 'user'))
-def get_secrets_download_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretsDownloadProperties]:
+def get_secrets_download_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretsDownloadProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:configs/v3:getSecretsDownload', __args__, opts=opts, typ=GetSecretsDownloadProperties)
     return __ret__.apply(lambda __response__: GetSecretsDownloadProperties(
         algolia=pulumi.get(__response__, 'algolia'),

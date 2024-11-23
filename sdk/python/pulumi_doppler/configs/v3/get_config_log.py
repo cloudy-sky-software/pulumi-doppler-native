@@ -54,12 +54,12 @@ def get_config_log(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetC
 
     return AwaitableGetConfigLogProperties(
         log=pulumi.get(__ret__, 'log'))
-def get_config_log_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetConfigLogProperties]:
+def get_config_log_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetConfigLogProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:configs/v3:getConfigLog', __args__, opts=opts, typ=GetConfigLogProperties)
     return __ret__.apply(lambda __response__: GetConfigLogProperties(
         log=pulumi.get(__response__, 'log')))

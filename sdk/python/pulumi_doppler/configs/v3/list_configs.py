@@ -64,12 +64,12 @@ def list_configs(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListCo
     return AwaitableListConfigsProperties(
         configs=pulumi.get(__ret__, 'configs'),
         page=pulumi.get(__ret__, 'page'))
-def list_configs_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListConfigsProperties]:
+def list_configs_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListConfigsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:configs/v3:listConfigs', __args__, opts=opts, typ=ListConfigsProperties)
     return __ret__.apply(lambda __response__: ListConfigsProperties(
         configs=pulumi.get(__response__, 'configs'),

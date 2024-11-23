@@ -54,12 +54,12 @@ def list_secrets(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListSe
 
     return AwaitableListSecretsProperties(
         secrets=pulumi.get(__ret__, 'secrets'))
-def list_secrets_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListSecretsProperties]:
+def list_secrets_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListSecretsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:configs/v3:listSecrets', __args__, opts=opts, typ=ListSecretsProperties)
     return __ret__.apply(lambda __response__: ListSecretsProperties(
         secrets=pulumi.get(__response__, 'secrets')))

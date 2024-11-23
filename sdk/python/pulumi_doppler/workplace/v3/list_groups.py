@@ -54,12 +54,12 @@ def list_groups(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListGro
 
     return AwaitableListGroupsProperties(
         groups=pulumi.get(__ret__, 'groups'))
-def list_groups_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListGroupsProperties]:
+def list_groups_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListGroupsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:workplace/v3:listGroups', __args__, opts=opts, typ=ListGroupsProperties)
     return __ret__.apply(lambda __response__: ListGroupsProperties(
         groups=pulumi.get(__response__, 'groups')))

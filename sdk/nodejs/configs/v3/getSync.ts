@@ -16,7 +16,7 @@ export function getSync(args?: GetSyncArgs, opts?: pulumi.InvokeOptions): Promis
 
 export interface GetSyncArgs {
 }
-export function getSyncOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.configs.v3.GetSyncProperties> {
+export function getSyncOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.configs.v3.GetSyncProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:configs/v3:getSync", {
     }, opts);

@@ -16,7 +16,7 @@ export function getSecret(args?: GetSecretArgs, opts?: pulumi.InvokeOptions): Pr
 
 export interface GetSecretArgs {
 }
-export function getSecretOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.configs.v3.GetSecretProperties> {
+export function getSecretOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.configs.v3.GetSecretProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:configs/v3:getSecret", {
     }, opts);

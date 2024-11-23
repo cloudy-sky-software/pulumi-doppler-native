@@ -16,7 +16,7 @@ export function listEnvironments(args?: ListEnvironmentsArgs, opts?: pulumi.Invo
 
 export interface ListEnvironmentsArgs {
 }
-export function listEnvironmentsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.environments.v3.ListEnvironmentsProperties> {
+export function listEnvironmentsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.environments.v3.ListEnvironmentsProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:environments/v3:listEnvironments", {
     }, opts);

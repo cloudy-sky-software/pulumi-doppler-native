@@ -20,7 +20,7 @@ export interface GetServiceAccountArgs {
      */
     slug: string;
 }
-export function getServiceAccountOutput(args: GetServiceAccountOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.GetServiceAccountProperties> {
+export function getServiceAccountOutput(args: GetServiceAccountOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.workplace.v3.GetServiceAccountProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:getServiceAccount", {
         "slug": args.slug,

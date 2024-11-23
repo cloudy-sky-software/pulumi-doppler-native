@@ -54,12 +54,12 @@ def list_service_tokens(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitabl
 
     return AwaitableListServiceTokensProperties(
         tokens=pulumi.get(__ret__, 'tokens'))
-def list_service_tokens_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListServiceTokensProperties]:
+def list_service_tokens_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListServiceTokensProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:configs/v3:listServiceTokens', __args__, opts=opts, typ=ListServiceTokensProperties)
     return __ret__.apply(lambda __response__: ListServiceTokensProperties(
         tokens=pulumi.get(__response__, 'tokens')))

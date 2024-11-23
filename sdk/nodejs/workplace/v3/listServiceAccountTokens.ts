@@ -20,7 +20,7 @@ export interface ListServiceAccountTokensArgs {
      */
     serviceAccount: string;
 }
-export function listServiceAccountTokensOutput(args: ListServiceAccountTokensOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.ListServiceAccountTokensProperties> {
+export function listServiceAccountTokensOutput(args: ListServiceAccountTokensOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.workplace.v3.ListServiceAccountTokensProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:listServiceAccountTokens", {
         "serviceAccount": args.serviceAccount,

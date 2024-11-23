@@ -54,12 +54,12 @@ def get_project(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProj
 
     return AwaitableGetProjectProperties(
         project=pulumi.get(__ret__, 'project'))
-def get_project_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectProperties]:
+def get_project_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:projects/v3:getProject', __args__, opts=opts, typ=GetProjectProperties)
     return __ret__.apply(lambda __response__: GetProjectProperties(
         project=pulumi.get(__response__, 'project')))

@@ -16,7 +16,7 @@ export function listWorkplaceRoles(args?: ListWorkplaceRolesArgs, opts?: pulumi.
 
 export interface ListWorkplaceRolesArgs {
 }
-export function listWorkplaceRolesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.ListWorkplaceRolesProperties> {
+export function listWorkplaceRolesOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.workplace.v3.ListWorkplaceRolesProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:listWorkplaceRoles", {
     }, opts);

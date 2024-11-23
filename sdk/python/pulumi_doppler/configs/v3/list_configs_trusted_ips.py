@@ -53,12 +53,12 @@ def list_configs_trusted_ips(opts: Optional[pulumi.InvokeOptions] = None) -> Awa
 
     return AwaitableListConfigsTrustedIpsProperties(
         ips=pulumi.get(__ret__, 'ips'))
-def list_configs_trusted_ips_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListConfigsTrustedIpsProperties]:
+def list_configs_trusted_ips_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListConfigsTrustedIpsProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('doppler-native:configs/v3:listConfigsTrustedIps', __args__, opts=opts, typ=ListConfigsTrustedIpsProperties)
     return __ret__.apply(lambda __response__: ListConfigsTrustedIpsProperties(
         ips=pulumi.get(__response__, 'ips')))

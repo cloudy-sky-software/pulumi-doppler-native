@@ -22,7 +22,7 @@ export interface GetProjectMemberArgs {
     slug: string;
     type: string;
 }
-export function getProjectMemberOutput(args: GetProjectMemberOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.projects.v3.GetProjectMemberProperties> {
+export function getProjectMemberOutput(args: GetProjectMemberOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.projects.v3.GetProjectMemberProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:projects/v3:getProjectMember", {
         "slug": args.slug,

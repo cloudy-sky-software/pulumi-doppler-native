@@ -16,7 +16,7 @@ export function listProjects(args?: ListProjectsArgs, opts?: pulumi.InvokeOption
 
 export interface ListProjectsArgs {
 }
-export function listProjectsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<outputs.projects.v3.ListProjectsProperties> {
+export function listProjectsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.projects.v3.ListProjectsProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:projects/v3:listProjects", {
     }, opts);

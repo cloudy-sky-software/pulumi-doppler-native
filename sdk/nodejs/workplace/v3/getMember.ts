@@ -27,7 +27,7 @@ export interface GetMemberArgs {
     memberSlug: string;
     memberType: string;
 }
-export function getMemberOutput(args: GetMemberOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.workplace.v3.GetMemberProperties> {
+export function getMemberOutput(args: GetMemberOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.workplace.v3.GetMemberProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("doppler-native:workplace/v3:getMember", {
         "groupSlug": args.groupSlug,
