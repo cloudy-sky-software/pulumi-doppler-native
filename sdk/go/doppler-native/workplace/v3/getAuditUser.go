@@ -45,23 +45,12 @@ func (val *GetAuditUserResult) Defaults() *GetAuditUserResult {
 
 	return &tmp
 }
-
 func GetAuditUserOutput(ctx *pulumi.Context, args GetAuditUserOutputArgs, opts ...pulumi.InvokeOption) GetAuditUserResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetAuditUserResultOutput, error) {
 			args := v.(GetAuditUserArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetAuditUserResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:getAuditUser", args, &rv, "", opts...)
-			if err != nil {
-				return GetAuditUserResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetAuditUserResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetAuditUserResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:workplace/v3:getAuditUser", args, GetAuditUserResultOutput{}, options).(GetAuditUserResultOutput), nil
 		}).(GetAuditUserResultOutput)
 }
 

@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.WorkplaceV3
 
         public static Output<Outputs.GetServiceAccountProperties> Invoke(GetServiceAccountInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetServiceAccountProperties>("doppler-native:workplace/v3:getServiceAccount", args ?? new GetServiceAccountInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.GetServiceAccountProperties> Invoke(GetServiceAccountInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetServiceAccountProperties>("doppler-native:workplace/v3:getServiceAccount", args ?? new GetServiceAccountInvokeArgs(), options.WithDefaults());
     }
 
 

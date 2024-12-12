@@ -41,23 +41,12 @@ func (val *ListConfigsResult) Defaults() *ListConfigsResult {
 	}
 	return &tmp
 }
-
 func ListConfigsOutput(ctx *pulumi.Context, args ListConfigsOutputArgs, opts ...pulumi.InvokeOption) ListConfigsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListConfigsResultOutput, error) {
 			args := v.(ListConfigsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListConfigsResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:configs/v3:listConfigs", args, &rv, "", opts...)
-			if err != nil {
-				return ListConfigsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListConfigsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListConfigsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:configs/v3:listConfigs", args, ListConfigsResultOutput{}, options).(ListConfigsResultOutput), nil
 		}).(ListConfigsResultOutput)
 }
 

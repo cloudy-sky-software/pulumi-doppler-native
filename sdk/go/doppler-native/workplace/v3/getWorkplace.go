@@ -29,21 +29,11 @@ type GetWorkplaceResult struct {
 }
 
 func GetWorkplaceOutput(ctx *pulumi.Context, args GetWorkplaceOutputArgs, opts ...pulumi.InvokeOption) GetWorkplaceResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetWorkplaceResultOutput, error) {
 			args := v.(GetWorkplaceArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetWorkplaceResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:getWorkplace", args, &rv, "", opts...)
-			if err != nil {
-				return GetWorkplaceResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetWorkplaceResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetWorkplaceResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:workplace/v3:getWorkplace", args, GetWorkplaceResultOutput{}, options).(GetWorkplaceResultOutput), nil
 		}).(GetWorkplaceResultOutput)
 }
 

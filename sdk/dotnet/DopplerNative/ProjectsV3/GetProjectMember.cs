@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.ProjectsV3
 
         public static Output<Outputs.GetProjectMemberProperties> Invoke(GetProjectMemberInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetProjectMemberProperties>("doppler-native:projects/v3:getProjectMember", args ?? new GetProjectMemberInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.GetProjectMemberProperties> Invoke(GetProjectMemberInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetProjectMemberProperties>("doppler-native:projects/v3:getProjectMember", args ?? new GetProjectMemberInvokeArgs(), options.WithDefaults());
     }
 
 

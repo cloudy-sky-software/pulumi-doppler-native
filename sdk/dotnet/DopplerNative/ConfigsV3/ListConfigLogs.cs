@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.ConfigsV3
 
         public static Output<Outputs.ListConfigLogsProperties> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListConfigLogsProperties>("doppler-native:configs/v3:listConfigLogs", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<Outputs.ListConfigLogsProperties> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListConfigLogsProperties>("doppler-native:configs/v3:listConfigLogs", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

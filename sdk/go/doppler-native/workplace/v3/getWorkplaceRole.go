@@ -40,23 +40,12 @@ func (val *LookupWorkplaceRoleResult) Defaults() *LookupWorkplaceRoleResult {
 
 	return &tmp
 }
-
 func LookupWorkplaceRoleOutput(ctx *pulumi.Context, args LookupWorkplaceRoleOutputArgs, opts ...pulumi.InvokeOption) LookupWorkplaceRoleResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupWorkplaceRoleResultOutput, error) {
 			args := v.(LookupWorkplaceRoleArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupWorkplaceRoleResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:getWorkplaceRole", args, &rv, "", opts...)
-			if err != nil {
-				return LookupWorkplaceRoleResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupWorkplaceRoleResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupWorkplaceRoleResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:workplace/v3:getWorkplaceRole", args, LookupWorkplaceRoleResultOutput{}, options).(LookupWorkplaceRoleResultOutput), nil
 		}).(LookupWorkplaceRoleResultOutput)
 }
 

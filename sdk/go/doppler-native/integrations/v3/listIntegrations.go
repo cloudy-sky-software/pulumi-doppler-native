@@ -41,23 +41,12 @@ func (val *ListIntegrationsResult) Defaults() *ListIntegrationsResult {
 	}
 	return &tmp
 }
-
 func ListIntegrationsOutput(ctx *pulumi.Context, args ListIntegrationsOutputArgs, opts ...pulumi.InvokeOption) ListIntegrationsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListIntegrationsResultOutput, error) {
 			args := v.(ListIntegrationsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListIntegrationsResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:integrations/v3:listIntegrations", args, &rv, "", opts...)
-			if err != nil {
-				return ListIntegrationsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListIntegrationsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListIntegrationsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:integrations/v3:listIntegrations", args, ListIntegrationsResultOutput{}, options).(ListIntegrationsResultOutput), nil
 		}).(ListIntegrationsResultOutput)
 }
 

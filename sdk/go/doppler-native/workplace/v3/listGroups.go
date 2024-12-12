@@ -29,21 +29,11 @@ type ListGroupsResult struct {
 }
 
 func ListGroupsOutput(ctx *pulumi.Context, args ListGroupsOutputArgs, opts ...pulumi.InvokeOption) ListGroupsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListGroupsResultOutput, error) {
 			args := v.(ListGroupsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListGroupsResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:listGroups", args, &rv, "", opts...)
-			if err != nil {
-				return ListGroupsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListGroupsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListGroupsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:workplace/v3:listGroups", args, ListGroupsResultOutput{}, options).(ListGroupsResultOutput), nil
 		}).(ListGroupsResultOutput)
 }
 

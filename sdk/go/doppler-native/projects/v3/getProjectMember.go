@@ -41,23 +41,12 @@ func (val *LookupProjectMemberResult) Defaults() *LookupProjectMemberResult {
 
 	return &tmp
 }
-
 func LookupProjectMemberOutput(ctx *pulumi.Context, args LookupProjectMemberOutputArgs, opts ...pulumi.InvokeOption) LookupProjectMemberResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupProjectMemberResultOutput, error) {
 			args := v.(LookupProjectMemberArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupProjectMemberResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:projects/v3:getProjectMember", args, &rv, "", opts...)
-			if err != nil {
-				return LookupProjectMemberResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupProjectMemberResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupProjectMemberResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:projects/v3:getProjectMember", args, LookupProjectMemberResultOutput{}, options).(LookupProjectMemberResultOutput), nil
 		}).(LookupProjectMemberResultOutput)
 }
 

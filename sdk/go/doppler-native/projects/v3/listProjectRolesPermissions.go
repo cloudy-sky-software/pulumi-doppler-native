@@ -29,21 +29,11 @@ type ListProjectRolesPermissionsResult struct {
 }
 
 func ListProjectRolesPermissionsOutput(ctx *pulumi.Context, args ListProjectRolesPermissionsOutputArgs, opts ...pulumi.InvokeOption) ListProjectRolesPermissionsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListProjectRolesPermissionsResultOutput, error) {
 			args := v.(ListProjectRolesPermissionsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListProjectRolesPermissionsResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:projects/v3:listProjectRolesPermissions", args, &rv, "", opts...)
-			if err != nil {
-				return ListProjectRolesPermissionsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListProjectRolesPermissionsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListProjectRolesPermissionsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:projects/v3:listProjectRolesPermissions", args, ListProjectRolesPermissionsResultOutput{}, options).(ListProjectRolesPermissionsResultOutput), nil
 		}).(ListProjectRolesPermissionsResultOutput)
 }
 

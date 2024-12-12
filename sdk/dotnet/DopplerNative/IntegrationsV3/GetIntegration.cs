@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.IntegrationsV3
 
         public static Output<Outputs.GetIntegrationProperties> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetIntegrationProperties>("doppler-native:integrations/v3:getIntegration", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<Outputs.GetIntegrationProperties> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetIntegrationProperties>("doppler-native:integrations/v3:getIntegration", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

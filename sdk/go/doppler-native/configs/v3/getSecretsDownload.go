@@ -32,21 +32,11 @@ type GetSecretsDownloadResult struct {
 }
 
 func GetSecretsDownloadOutput(ctx *pulumi.Context, args GetSecretsDownloadOutputArgs, opts ...pulumi.InvokeOption) GetSecretsDownloadResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetSecretsDownloadResultOutput, error) {
 			args := v.(GetSecretsDownloadArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetSecretsDownloadResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:configs/v3:getSecretsDownload", args, &rv, "", opts...)
-			if err != nil {
-				return GetSecretsDownloadResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetSecretsDownloadResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetSecretsDownloadResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:configs/v3:getSecretsDownload", args, GetSecretsDownloadResultOutput{}, options).(GetSecretsDownloadResultOutput), nil
 		}).(GetSecretsDownloadResultOutput)
 }
 

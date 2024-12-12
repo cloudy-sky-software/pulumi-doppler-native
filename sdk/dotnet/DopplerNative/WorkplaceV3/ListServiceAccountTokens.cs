@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.WorkplaceV3
 
         public static Output<Outputs.ListServiceAccountTokensProperties> Invoke(ListServiceAccountTokensInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListServiceAccountTokensProperties>("doppler-native:workplace/v3:listServiceAccountTokens", args ?? new ListServiceAccountTokensInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.ListServiceAccountTokensProperties> Invoke(ListServiceAccountTokensInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListServiceAccountTokensProperties>("doppler-native:workplace/v3:listServiceAccountTokens", args ?? new ListServiceAccountTokensInvokeArgs(), options.WithDefaults());
     }
 
 

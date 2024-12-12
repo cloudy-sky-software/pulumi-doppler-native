@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.ConfigsV3
 
         public static Output<Outputs.ListServiceTokensProperties> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListServiceTokensProperties>("doppler-native:configs/v3:listServiceTokens", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<Outputs.ListServiceTokensProperties> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListServiceTokensProperties>("doppler-native:configs/v3:listServiceTokens", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

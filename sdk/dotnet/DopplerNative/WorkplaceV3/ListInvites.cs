@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.WorkplaceV3
 
         public static Output<Outputs.ListInvitesProperties> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListInvitesProperties>("doppler-native:workplace/v3:listInvites", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<Outputs.ListInvitesProperties> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListInvitesProperties>("doppler-native:workplace/v3:listInvites", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

@@ -41,23 +41,12 @@ func (val *ListEnvironmentsResult) Defaults() *ListEnvironmentsResult {
 	}
 	return &tmp
 }
-
 func ListEnvironmentsOutput(ctx *pulumi.Context, args ListEnvironmentsOutputArgs, opts ...pulumi.InvokeOption) ListEnvironmentsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListEnvironmentsResultOutput, error) {
 			args := v.(ListEnvironmentsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListEnvironmentsResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:environments/v3:listEnvironments", args, &rv, "", opts...)
-			if err != nil {
-				return ListEnvironmentsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListEnvironmentsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListEnvironmentsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:environments/v3:listEnvironments", args, ListEnvironmentsResultOutput{}, options).(ListEnvironmentsResultOutput), nil
 		}).(ListEnvironmentsResultOutput)
 }
 

@@ -29,21 +29,11 @@ type ListProjectMembersResult struct {
 }
 
 func ListProjectMembersOutput(ctx *pulumi.Context, args ListProjectMembersOutputArgs, opts ...pulumi.InvokeOption) ListProjectMembersResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListProjectMembersResultOutput, error) {
 			args := v.(ListProjectMembersArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListProjectMembersResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:projects/v3:listProjectMembers", args, &rv, "", opts...)
-			if err != nil {
-				return ListProjectMembersResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListProjectMembersResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListProjectMembersResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:projects/v3:listProjectMembers", args, ListProjectMembersResultOutput{}, options).(ListProjectMembersResultOutput), nil
 		}).(ListProjectMembersResultOutput)
 }
 

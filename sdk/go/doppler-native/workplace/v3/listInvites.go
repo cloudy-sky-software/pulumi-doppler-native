@@ -29,21 +29,11 @@ type ListInvitesResult struct {
 }
 
 func ListInvitesOutput(ctx *pulumi.Context, args ListInvitesOutputArgs, opts ...pulumi.InvokeOption) ListInvitesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListInvitesResultOutput, error) {
 			args := v.(ListInvitesArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListInvitesResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:listInvites", args, &rv, "", opts...)
-			if err != nil {
-				return ListInvitesResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListInvitesResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListInvitesResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:workplace/v3:listInvites", args, ListInvitesResultOutput{}, options).(ListInvitesResultOutput), nil
 		}).(ListInvitesResultOutput)
 }
 

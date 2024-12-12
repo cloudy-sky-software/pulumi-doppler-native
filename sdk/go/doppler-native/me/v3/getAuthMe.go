@@ -35,21 +35,11 @@ type GetAuthMeResult struct {
 }
 
 func GetAuthMeOutput(ctx *pulumi.Context, args GetAuthMeOutputArgs, opts ...pulumi.InvokeOption) GetAuthMeResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetAuthMeResultOutput, error) {
 			args := v.(GetAuthMeArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetAuthMeResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:me/v3:getAuthMe", args, &rv, "", opts...)
-			if err != nil {
-				return GetAuthMeResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetAuthMeResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetAuthMeResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:me/v3:getAuthMe", args, GetAuthMeResultOutput{}, options).(GetAuthMeResultOutput), nil
 		}).(GetAuthMeResultOutput)
 }
 

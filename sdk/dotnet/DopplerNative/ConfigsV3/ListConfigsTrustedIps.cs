@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.ConfigsV3
 
         public static Output<Outputs.ListConfigsTrustedIpsProperties> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListConfigsTrustedIpsProperties>("doppler-native:configs/v3:listConfigsTrustedIps", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<Outputs.ListConfigsTrustedIpsProperties> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListConfigsTrustedIpsProperties>("doppler-native:configs/v3:listConfigsTrustedIps", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

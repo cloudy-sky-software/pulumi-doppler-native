@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.EnvironmentsV3
 
         public static Output<Outputs.ListEnvironmentsProperties> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListEnvironmentsProperties>("doppler-native:environments/v3:listEnvironments", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<Outputs.ListEnvironmentsProperties> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListEnvironmentsProperties>("doppler-native:environments/v3:listEnvironments", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

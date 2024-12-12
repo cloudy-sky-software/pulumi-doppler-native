@@ -34,21 +34,11 @@ type GetMemberResult struct {
 }
 
 func GetMemberOutput(ctx *pulumi.Context, args GetMemberOutputArgs, opts ...pulumi.InvokeOption) GetMemberResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetMemberResultOutput, error) {
 			args := v.(GetMemberArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetMemberResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:getMember", args, &rv, "", opts...)
-			if err != nil {
-				return GetMemberResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetMemberResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetMemberResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:workplace/v3:getMember", args, GetMemberResultOutput{}, options).(GetMemberResultOutput), nil
 		}).(GetMemberResultOutput)
 }
 

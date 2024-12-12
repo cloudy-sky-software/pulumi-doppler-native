@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.WorkplaceV3
 
         public static Output<Outputs.ListWorkplaceRolesPermissionsProperties> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListWorkplaceRolesPermissionsProperties>("doppler-native:workplace/v3:listWorkplaceRolesPermissions", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<Outputs.ListWorkplaceRolesPermissionsProperties> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListWorkplaceRolesPermissionsProperties>("doppler-native:workplace/v3:listWorkplaceRolesPermissions", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

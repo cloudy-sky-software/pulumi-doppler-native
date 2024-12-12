@@ -45,23 +45,12 @@ func (val *LookupServiceAccountTokenResult) Defaults() *LookupServiceAccountToke
 	}
 	return &tmp
 }
-
 func LookupServiceAccountTokenOutput(ctx *pulumi.Context, args LookupServiceAccountTokenOutputArgs, opts ...pulumi.InvokeOption) LookupServiceAccountTokenResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupServiceAccountTokenResultOutput, error) {
 			args := v.(LookupServiceAccountTokenArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupServiceAccountTokenResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:getServiceAccountToken", args, &rv, "", opts...)
-			if err != nil {
-				return LookupServiceAccountTokenResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupServiceAccountTokenResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupServiceAccountTokenResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:workplace/v3:getServiceAccountToken", args, LookupServiceAccountTokenResultOutput{}, options).(LookupServiceAccountTokenResultOutput), nil
 		}).(LookupServiceAccountTokenResultOutput)
 }
 
