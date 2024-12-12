@@ -43,23 +43,12 @@ func (val *ListServiceAccountTokensResult) Defaults() *ListServiceAccountTokensR
 	}
 	return &tmp
 }
-
 func ListServiceAccountTokensOutput(ctx *pulumi.Context, args ListServiceAccountTokensOutputArgs, opts ...pulumi.InvokeOption) ListServiceAccountTokensResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListServiceAccountTokensResultOutput, error) {
 			args := v.(ListServiceAccountTokensArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListServiceAccountTokensResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:listServiceAccountTokens", args, &rv, "", opts...)
-			if err != nil {
-				return ListServiceAccountTokensResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListServiceAccountTokensResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListServiceAccountTokensResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:workplace/v3:listServiceAccountTokens", args, ListServiceAccountTokensResultOutput{}, options).(ListServiceAccountTokensResultOutput), nil
 		}).(ListServiceAccountTokensResultOutput)
 }
 

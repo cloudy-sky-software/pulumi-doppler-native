@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.ConfigsV3
 
         public static Output<Outputs.ListSecretsProperties> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListSecretsProperties>("doppler-native:configs/v3:listSecrets", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<Outputs.ListSecretsProperties> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListSecretsProperties>("doppler-native:configs/v3:listSecrets", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

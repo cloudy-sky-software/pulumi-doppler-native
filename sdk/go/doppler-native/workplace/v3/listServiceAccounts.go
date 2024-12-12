@@ -29,21 +29,11 @@ type ListServiceAccountsResult struct {
 }
 
 func ListServiceAccountsOutput(ctx *pulumi.Context, args ListServiceAccountsOutputArgs, opts ...pulumi.InvokeOption) ListServiceAccountsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListServiceAccountsResultOutput, error) {
 			args := v.(ListServiceAccountsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListServiceAccountsResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:listServiceAccounts", args, &rv, "", opts...)
-			if err != nil {
-				return ListServiceAccountsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListServiceAccountsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListServiceAccountsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:workplace/v3:listServiceAccounts", args, ListServiceAccountsResultOutput{}, options).(ListServiceAccountsResultOutput), nil
 		}).(ListServiceAccountsResultOutput)
 }
 

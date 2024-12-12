@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.ProjectsV3
 
         public static Output<Outputs.ListProjectRolesPermissionsProperties> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListProjectRolesPermissionsProperties>("doppler-native:projects/v3:listProjectRolesPermissions", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<Outputs.ListProjectRolesPermissionsProperties> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListProjectRolesPermissionsProperties>("doppler-native:projects/v3:listProjectRolesPermissions", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

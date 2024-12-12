@@ -29,21 +29,11 @@ type ListWorkplaceRolesResult struct {
 }
 
 func ListWorkplaceRolesOutput(ctx *pulumi.Context, args ListWorkplaceRolesOutputArgs, opts ...pulumi.InvokeOption) ListWorkplaceRolesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListWorkplaceRolesResultOutput, error) {
 			args := v.(ListWorkplaceRolesArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListWorkplaceRolesResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:workplace/v3:listWorkplaceRoles", args, &rv, "", opts...)
-			if err != nil {
-				return ListWorkplaceRolesResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListWorkplaceRolesResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListWorkplaceRolesResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:workplace/v3:listWorkplaceRoles", args, ListWorkplaceRolesResultOutput{}, options).(ListWorkplaceRolesResultOutput), nil
 		}).(ListWorkplaceRolesResultOutput)
 }
 

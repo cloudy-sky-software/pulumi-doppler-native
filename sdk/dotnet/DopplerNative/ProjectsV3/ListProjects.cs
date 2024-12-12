@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.ProjectsV3
 
         public static Output<Outputs.ListProjectsProperties> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListProjectsProperties>("doppler-native:projects/v3:listProjects", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<Outputs.ListProjectsProperties> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListProjectsProperties>("doppler-native:projects/v3:listProjects", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

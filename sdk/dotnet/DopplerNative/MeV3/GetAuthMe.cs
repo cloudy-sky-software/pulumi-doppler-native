@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.MeV3
 
         public static Output<Outputs.GetAuthMeProperties> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetAuthMeProperties>("doppler-native:me/v3:getAuthMe", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<Outputs.GetAuthMeProperties> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetAuthMeProperties>("doppler-native:me/v3:getAuthMe", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.WorkplaceV3
 
         public static Output<Outputs.GetMemberProperties> Invoke(GetMemberInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetMemberProperties>("doppler-native:workplace/v3:getMember", args ?? new GetMemberInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.GetMemberProperties> Invoke(GetMemberInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetMemberProperties>("doppler-native:workplace/v3:getMember", args ?? new GetMemberInvokeArgs(), options.WithDefaults());
     }
 
 

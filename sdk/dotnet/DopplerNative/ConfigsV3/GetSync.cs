@@ -17,6 +17,9 @@ namespace CloudySkySoftware.Pulumi.DopplerNative.ConfigsV3
 
         public static Output<Outputs.GetSyncProperties> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetSyncProperties>("doppler-native:configs/v3:getSync", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<Outputs.GetSyncProperties> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetSyncProperties>("doppler-native:configs/v3:getSync", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

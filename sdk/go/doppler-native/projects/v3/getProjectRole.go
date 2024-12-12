@@ -40,23 +40,12 @@ func (val *LookupProjectRoleResult) Defaults() *LookupProjectRoleResult {
 
 	return &tmp
 }
-
 func LookupProjectRoleOutput(ctx *pulumi.Context, args LookupProjectRoleOutputArgs, opts ...pulumi.InvokeOption) LookupProjectRoleResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupProjectRoleResultOutput, error) {
 			args := v.(LookupProjectRoleArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupProjectRoleResult
-			secret, err := ctx.InvokePackageRaw("doppler-native:projects/v3:getProjectRole", args, &rv, "", opts...)
-			if err != nil {
-				return LookupProjectRoleResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupProjectRoleResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupProjectRoleResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("doppler-native:projects/v3:getProjectRole", args, LookupProjectRoleResultOutput{}, options).(LookupProjectRoleResultOutput), nil
 		}).(LookupProjectRoleResultOutput)
 }
 
