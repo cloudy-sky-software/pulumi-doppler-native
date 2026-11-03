@@ -92,8 +92,8 @@ github.com/charmbracelet/lipgloss v0.9.1 h1:PNyd3jvaJbg4jRHKWXnCj1akQm4rh8dbEzN1
 github.com/charmbracelet/lipgloss v0.9.1/go.mod h1:1mPmG4cxScwUQALAAnacHaigiiHB9Pmr+v1VEawJl6I=
 github.com/cheggaaa/pb v1.0.29 h1:FckUN5ngEk2LpvuG0fw1GEFx6LtyY2pWI/Z2QgCnEYo=
 github.com/cheggaaa/pb v1.0.29/go.mod h1:W40334L7FMC5JKWldsTWbdGjLo0RxUKK73K+TuPxX30=
-github.com/cloudflare/circl v1.3.7 h1:qlCDlTPz2n9fu58M0Nh1J/JzcFpfgkFHHX3O35r5vcU=
-github.com/cloudflare/circl v1.3.7/go.mod h1:sRTcRWXGLrKw6yIGJ+l7amYJFfAXbZG0kBSc8r4zxgA=
+github.com/cloudflare/circl v1.6.3 h1:9GPOhQGF9MCYUeXyMYlqTR6a5gTrgR/fBLXvUgtVcg8=
+github.com/cloudflare/circl v1.6.3/go.mod h1:2eXP6Qfat4O/Yhh8BznvKnJ+uzEoTQ6jVKJRn81BiS4=
 github.com/cloudy-sky-software/pulschema v0.0.0-20250116160939-4c21315644f9 h1:XniM+DAGVZ7iZQyuxuoDV2hSmbUOXYkuKUSL75J/vFQ=
 github.com/cloudy-sky-software/pulschema v0.0.0-20250116160939-4c21315644f9/go.mod h1:xXX7uI48gDbfOCDUbjB5vVJgBQ/6nEzgLE+yTWoLIEg=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250127042555-285360895862 h1:vzSdmcZHhooCWVhl8W7XaddzJgYPoj8ThhKwKqGwtUY=
